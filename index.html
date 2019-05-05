@@ -268,6 +268,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/this/" itemprop="url">this</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T15:31:36+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="this到底指向谁呢？"><a href="#this到底指向谁呢？" class="headerlink" title="this到底指向谁呢？"></a>this到底指向谁呢？</h4><p><a href="https://zhuanlan.zhihu.com/p/25991271" style="color: blue;" target="_blank" rel="noopener">惊喜在这里</a></p>
+<h5 id="看自己平时积累了"><a href="#看自己平时积累了" class="headerlink" title="看自己平时积累了"></a>看自己平时积累了</h5><ol>
+<li>fn()           this =&gt; window/global</li>
+<li>obj.fn()       this =&gt; obj</li>
+<li>fn.call(xx)    this =&gt; xx</li>
+<li>fn.apply(xx)   this =&gt; xx</li>
+<li>fn.bind(xx)    this =&gt; xx</li>
+<li>new Fn()       this =&gt; 新创建的对象</li>
+<li>fn = ()=&gt; {}   this =&gt; 外面的 this</li>
+</ol>
+<h5 id="看调用"><a href="#看调用" class="headerlink" title="看调用"></a>看调用</h5><ul>
+<li>函数调用</li>
+<li>JS（ES5）里面有三种函数调用形式<ul>
+<li>func(p1, p2) </li>
+<li>obj.child.method(p1, p2)</li>
+<li>func.call(context, p1, p2)</li>
+</ul>
+</li>
+<li>一般我们都比较倾向于使用前两种，第三种不知道什么鬼东西呀<br>其他两种都是语法糖，可以等价地变为 call 形式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func(p1, p2) 等价于 func.call(undefined, p1, p2)</span><br><span class="line">obj.child.method(p1, p2) 等价于 obj.child.method.call(obj.child, p1, p2)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>函数调用只有一种形式</strong> ： func.call(context, p1, p2), context就是this</p>
+<h5 id="看看下面的举例"><a href="#看看下面的举例" class="headerlink" title="看看下面的举例"></a>看看下面的举例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function func() &#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;</span><br><span class="line">func();</span><br><span class="line">// 等价转化一下</span><br><span class="line">func.call(undefined) // 可简写为 func.call()， 结果就是window</span><br></pre></td></tr></table></figure>
+<p>是不是疑问应该是undefined呢？可不能忘记<strong>浏览器</strong>里有一条规则：</p>
+<ul>
+<li>如果你传的context是 null 或者 undefined，那window 对象就是默认的 context（但严格模式下（’use strict’）默认 context 是 undefined）</li>
+</ul>
+<p>如果你不想this是window，好说，那就这样吧： func.call(obj) // 那么里面的 this 就是 obj 对象了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  foo: function() &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.foo(); // 等价转化为obj.foo.call(obj) ，结果就是obj</span><br></pre></td></tr></table></figure></p>
+<p>看看下面的代码，是不是so easy! :(<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  foo: function() &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var bar = obj.foo;</span><br><span class="line">obj.foo(); // 转换为 obj.foo.call(obj)，this 就是 obj</span><br><span class="line">bar() </span><br><span class="line">// 转换为 bar.call(), 没有传 context, 所以 this 就是 undefined</span><br><span class="line">// 最后浏览器给你一个默认的 this —— window 对象</span><br></pre></td></tr></table></figure></p>
+<h5 id="类似-的，this怎么指向呢"><a href="#类似-的，this怎么指向呢" class="headerlink" title="类似 [] 的，this怎么指向呢"></a>类似 [] 的，this怎么指向呢</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function fn () &#123; </span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line">var arr = [fn, fn2];</span><br><span class="line">arr[0]() // arr 转换为 arr.0() arr.0.call(arr) (语法是有问题的，这样推理木有问题呀)</span><br></pre></td></tr></table></figure>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><strong>this 就是你 call 一个函数时，传入的第一个参数</strong></li>
+<li>如果你的函数调用形式不是 call 形式，请<strong>[转换代码]</strong>将其转换为 call 形式。</li>
+</ul>
+<h5 id="问题又来了，Event-Handler-中的-this-指什么呢？"><a href="#问题又来了，Event-Handler-中的-this-指什么呢？" class="headerlink" title="问题又来了，Event Handler 中的 this 指什么呢？"></a>问题又来了，Event Handler 中的 this 指什么呢？</h5><p>不知道ddEventListener 的源代码，怎么办呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(&apos;click&apos; ,function handler()&#123;</span><br><span class="line">  console.log(this) // 请问这里的 this 是什么</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#The_value_of_this_within_the_handler" style="color: blue;" target="_blank" rel="noopener">MDN 对this解释</a></p>
+<ul>
+<li>通常来说this的值是触发事件的元素的引用，这种特性在多个相似的元素使用同一个通用事件监听器时非常让人满意。 </li>
+<li>当使用 addEventListener() 为一个元素注册事件的时候，句柄里的 this 值是该元素的引用。其与传递给句柄的 event 参数的 currentTarget 属性的值一样。<br>所以你可以想浏览器的源码是这样写的：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 当事件被触发时</span><br><span class="line">handler.call(event.currentTarget, event) </span><br><span class="line">// 那么 this 是什么不言而喻</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="jQuery-Event-Handler-中的-this"><a href="#jQuery-Event-Handler-中的-this" class="headerlink" title="jQuery Event Handler 中的 this"></a>jQuery Event Handler 中的 this</h5><p>下面代码中的 this 是什么呢：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ul.on(&apos;click&apos;, &apos;li&apos; , function()&#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.jquery123.com/on/" style="color: blue;" target="_blank" rel="noopener">jQuery 文档是这样写的:</a></p>
+<ul>
+<li>当jQuery的调用处理程序时，this关键字指向的是当前正在执行事件的元素。对于直接事件而言，this 代表绑定事件的元素。</li>
+<li><strong>对于代理事件而言，this 则代表了与 selector 相匹配的元素</strong>。(注意，如果事件是从后代元素冒泡上来的话，那么 this 就有可能不等于 event.target。)若要使用 jQuery 的相关方法，可以根据当前元素创建一个 jQuery 对象，即使用 $(this)。</li>
+</ul>
+<h5 id="总结一下如何确定-this-的值"><a href="#总结一下如何确定-this-的值" class="headerlink" title="总结一下如何确定 this 的值"></a>总结一下如何确定 this 的值</h5><ol>
+<li>看源码中对应的函数是怎么被 call 的（这是最靠谱的办法）</li>
+<li>看文档</li>
+<li>console.log(this)</li>
+<li>不要瞎猜，你猜不到的:(</li>
+</ol>
+<h5 id="如何强制指定-this-的值，call-apply-即可："><a href="#如何强制指定-this-的值，call-apply-即可：" class="headerlink" title="如何强制指定 this 的值，call/apply 即可："></a>如何强制指定 this 的值，call/apply 即可：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function handlerWrapper(event) &#123;</span><br><span class="line">  function handler() &#123;</span><br><span class="line">    console.log(this); // 请问这里的 this 是什么</span><br><span class="line">  &#125;</span><br><span class="line">  handler.call(&#123;name: &apos;xlc&apos;&#125;, event)</span><br><span class="line">&#125;</span><br><span class="line">btn.addEventListener(&apos;click&apos;, handlerWrapper);</span><br><span class="line">// 也可以直接使用bind</span><br><span class="line">function handler() &#123;</span><br><span class="line">  console.log(this); // 请问这里的 this 是什么</span><br><span class="line">&#125;</span><br><span class="line">var handlerWrapper = handler.bind(&#123;name: &apos;xlc&apos;&#125;)</span><br><span class="line">btn.addEventListener(&apos;click&apos;, handlerWrapper);</span><br><span class="line">// 上面代码可以简化为</span><br><span class="line">btn.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(this); // 请问这里的 this 是什么</span><br><span class="line">&#125;.bind(&#123;name: &apos;xlc&apos;&#125;))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/es6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1104,6 +1277,9 @@
 </li>
 </ol>
 <h5 id="手写AJAX"><a href="#手写AJAX" class="headerlink" title="手写AJAX"></a>手写AJAX</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest();</span><br><span class="line">request.open(&apos;GET&apos;, &apos;/a/b/c?name=ff&apos;, true);</span><br><span class="line">request.onreadystatechange = function () &#123;</span><br><span class="line">if (request.readyState === 4 &amp;&amp; request.status === 200) &#123;</span><br><span class="line">    console.log(request.responseText);</span><br><span class="line">&#125;&#125;;</span><br><span class="line">request.send();</span><br><span class="line">// 简单一些可以如下</span><br><span class="line">var request = new XMLHttpRequest();</span><br><span class="line">request.open(&apos;GET&apos;, &apos;/a/b/c?name=ff&apos;, true);</span><br><span class="line">request.onload = () =&gt; console.log(request.responseText);</span><br><span class="line">request.send();</span><br></pre></td></tr></table></figure>
+<h5 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// 简单版本</span><br><span class="line">ul.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">    if (e.target.tagName.toLowerCase() === &apos;li&apos;) &#123;</span><br><span class="line">        fn() // 执行某个函数</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// bug 在于，如果用户点击的是 li 里面的 span，就没法触发 fn，这显然不对</span><br><span class="line">// 优化版本    思路是点击 span 后，递归遍历 span 的祖先元素看其中有没有 ul 里面的 li</span><br><span class="line"> function delegate(element, eventType, selector, fn) &#123;</span><br><span class="line">    element.addEventListener(eventType, e =&gt; &#123;</span><br><span class="line">        let el = e.target;</span><br><span class="line">        while (!el.matches(selector)) &#123;</span><br><span class="line">            if (element === el) &#123;</span><br><span class="line">            el = null;</span><br><span class="line">            break;</span><br><span class="line">            &#125;</span><br><span class="line">            el = el.parentNode;</span><br><span class="line">        &#125;</span><br><span class="line">        el &amp;&amp; fn.call(el, e, el);</span><br><span class="line">    &#125;)</span><br><span class="line">    return element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="用-mouse-事件写一个可拖曳的-div"><a href="#用-mouse-事件写一个可拖曳的-div" class="headerlink" title="用 mouse 事件写一个可拖曳的 div"></a>用 mouse 事件写一个可拖曳的 div</h5><p><a href="https://jsbin.com/zolulovujo/edit?html,js,output" style="color: blue;" target="_blank" rel="noopener">快速看到效果</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var dragFlag = false;</span><br><span class="line">var position = null;</span><br><span class="line">drag.addEventListener(&apos;mousedown&apos;, function(e) &#123;</span><br><span class="line">  dragFlag = true;</span><br><span class="line">  position = [e.clientX, e.clientY];</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// mousemove 与 mouseup 不能监听在元素上 快速拖到会有问题</span><br><span class="line">document.addEventListener(&apos;mousemove&apos;, function(e) &#123;</span><br><span class="line"> if (dragFlag) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  const x = e.clientX;</span><br><span class="line">  const y = e.clientY;</span><br><span class="line">  const deltaX = x - position[0];</span><br><span class="line">  const deltaY = y - position[1];</span><br><span class="line">  // parseInt(&apos;&apos;)空转为 NaN</span><br><span class="line">  // drag.style.left初始值为&apos;0px&apos;</span><br><span class="line">  const left = parseInt(drag.style.left || 0, 10);</span><br><span class="line">  const top = parseInt(drag.style.top || 0, 10);</span><br><span class="line">  drag.style.left = left + deltaX + &apos;px&apos;;</span><br><span class="line">  drag.style.top = top + deltaY + &apos;px&apos;;</span><br><span class="line">  position= [x, y];</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">document.addEventListener(&apos;mouseup&apos;, function() &#123;</span><br><span class="line">    dragFlag = false;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1756,7 +1932,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
