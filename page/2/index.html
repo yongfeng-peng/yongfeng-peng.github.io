@@ -268,6 +268,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/三栏布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/29/三栏布局/" itemprop="url">页面布局-三栏布局实现方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T15:52:19+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应"><a href="#假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应" class="headerlink" title="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应"></a>假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应</h3><h4 id="以下五种实现方案"><a href="#以下五种实现方案" class="headerlink" title="以下五种实现方案"></a>以下五种实现方案</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 公共的css样式`</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    html * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout &#123;</span><br><span class="line">        margin-top: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout article div &#123;</span><br><span class="line">        min-height: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="float实现"><a href="#float实现" class="headerlink" title="float实现"></a>float实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.float .left &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .right &#123;</span><br><span class="line">            float: right;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .center &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-right-center&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;浮动解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="position实现"><a href="#position实现" class="headerlink" title="position实现"></a>position实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.absolute .left-center-right &gt; div &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .left &#123;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .center&#123;</span><br><span class="line">            left: 300px;</span><br><span class="line">            right: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;绝对定位解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="flex实现"><a href="#flex实现" class="headerlink" title="flex实现"></a>flex实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout flexbox&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.flexbox &#123;</span><br><span class="line">            margin-top: 140px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left-center-right &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .center&#123;</span><br><span class="line">            flex: 1;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;flexbox解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="table实现"><a href="#table实现" class="headerlink" title="table实现"></a>table实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">     &lt;style&gt;</span><br><span class="line">        .layout.table .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: table;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left-center-right &gt; div &#123;</span><br><span class="line">            display: table-cell;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;table表格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="grid实现"><a href="#grid实现" class="headerlink" title="grid实现"></a>grid实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.grid .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: grid;</span><br><span class="line">            grid-template-rows: 100px;</span><br><span class="line">            grid-template-columns: 300px auto 300px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .left &#123;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .right &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;grid网格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="五种方案比较"><a href="#五种方案比较" class="headerlink" title="五种方案比较"></a>五种方案比较</h4><ul>
+<li>float：清除浮动，脱离文档流，处理不好，带来很多问题，本身的局限性，兼容性比较好</li>
+<li>position：快捷，不容易出现问题，布局已经脱离文档流，下面的子元素也要脱离文档流，导致可使用性、有效性差</li>
+<li>flex：解决上面float、position的不足，兼容性不好，主要应用移动端</li>
+<li>table：table-cell,很多场景中适用，兼容性好</li>
+<li>grid：网格布局，新技术，可做很多复杂事情</li>
+<li><strong>flex与table-cell</strong>两种看应用场景使用</li>
+</ul>
+<h4 id="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"><a href="#如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用" class="headerlink" title="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"></a>如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用</h4><ul>
+<li>推荐flex与table</li>
+<li>float 需要创建bfc</li>
+</ul>
+<h4 id="大家也可以扩展延伸"><a href="#大家也可以扩展延伸" class="headerlink" title="大家也可以扩展延伸"></a>大家也可以扩展延伸</h4><h5 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h5><ul>
+<li>左右宽度固定，中间自适应</li>
+<li>上下高度固定，中间自适应</li>
+</ul>
+<h5 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h5><ul>
+<li>左宽度固定，右自适应</li>
+<li>右宽度固定，左自适应</li>
+<li>上高度固定，下自适应</li>
+<li>下高度固定，上自适应</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -435,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

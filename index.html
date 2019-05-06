@@ -268,6 +268,271 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/06/http/" itemprop="url">HTTP协议与安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T11:16:48+08:00">
+                2019-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="HTTP协议的主要特点"><a href="#HTTP协议的主要特点" class="headerlink" title="HTTP协议的主要特点"></a>HTTP协议的主要特点</h5><ul>
+<li>简单快速（每个资源是固定的url） </li>
+<li>灵活（通过头部type会有不同结果） </li>
+<li>无连接（连接一次就会断掉） </li>
+<li>无状态（客户端和服务端）</li>
+</ul>
+<h5 id="HTTP报文的组成部分"><a href="#HTTP报文的组成部分" class="headerlink" title="HTTP报文的组成部分"></a>HTTP报文的组成部分</h5><ol>
+<li>请求报文<ul>
+<li>请求行 （http方法 页面地址 http协议 http版本）</li>
+<li>请求头 （key val 值告诉服务端需要什么内容 注意类型）</li>
+<li>空行   （遇到空行时，下一个当着请求体）</li>
+<li>请求体</li>
+</ul>
+</li>
+<li>响应报文（状态行，响应头，空行，响应体） </li>
+</ol>
+<h5 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h5><ul>
+<li>1xx:指示信息，请求已接收，继续处理</li>
+<li>2xx 表示成功，请求已被成功接收</li>
+<li>3xx 表示需要进一步操作，重定向，完成请求必须进行进一步的操作</li>
+<li>4xx 表示浏览器方面出错，客户端错误，请求有语法错误或者请求无法实现</li>
+<li>5xx 表示服务器方面出错，服务端错误，服务器未能实现合法的请求</li>
+</ul>
+<h5 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h5><ul>
+<li>200 客户端请求成功</li>
+<li>206 客户发送一个带有range(范围)头的GET请求，服务器完成它（用于视频）    </li>
+<li>301 所请求的页面已经转移至新的url</li>
+<li>302 所请求的页面已经临时转移至新的url</li>
+<li>304 客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用</li>
+<li>400 客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 请求未经授权，这个状态码必须和WWW-Authenticate报文域一起使用 </li>
+<li>403 对被请求页面的访问被禁止</li>
+<li>404 请求资源不存在</li>
+<li>500 服务器发生不可预期的错误原来缓冲的文档还可以继续使用</li>
+<li>503 请求未完成，服务器临时过载或当机，一段时间后可能恢复正常<br><a href="http://www.runoob.com/http/http-status-codes.html" style="color: blue;" target="_blank" rel="noopener">想了解更多</a> </li>
+</ul>
+<h5 id="HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘"><a href="#HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘" class="headerlink" title="HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)"></a>HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)</h5><ul>
+<li>缓存分类<ul>
+<li>强缓存(以下两个缓存都下发，以后者为准)<ul>
+<li>Expires Expires:THu,21 Jan 2017 23:39/;02 GMT（绝对时间，客服端和服务器时间不一致，比较的时候，是一浏览器时间，下发是服务器时间）</li>
+<li>Cache-Control Cache-Control:max-age=3600（3600是相对时间）</li>
+</ul>
+</li>
+<li>协商缓存（和服务器协商）<ul>
+<li>Last-Modified If-Modified-Since Last-Modified: Web, 26 Jan 2017 23:39/;02 GMT</li>
+<li>Etag If-None-Match</li>
+</ul>
+</li>
+<li>与浏览器缓存相关的http头有哪些，就是以上几个</li>
+</ul>
+</li>
+<li>总结：<ul>
+<li>ETag 是通过对比浏览器和服务器资源的特征值（如MD5）来决定是否要发送文件内容，如果一样就只发送 304（not modified）</li>
+<li>Expires 是设置过期时间（绝对时间），但是如果用户的本地时间错乱了，可能会有问题</li>
+<li>CacheControl: max-age=3600 是设置过期时长（相对时间），跟本地时间无关<br><a href="https://imweb.io/topic/5795dcb6fb312541492eda8c" style="color: blue;" target="_blank" rel="noopener">详细了解 ETag、CacheControl、Expires 的异同</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h5><ul>
+<li>一般理解<ol>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求</li>
+<li>GET产生的URL地址可以被加入收藏栏，而POST不可以</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</li>
+<li>GET参数通过URL传递，POST放在Request body中</li>
+</ol>
+</li>
+<li>核心<ul>
+<li>就一个区别：语义——GET 用于获取资源，POST 用于提交资源<br><a href="https://zhuanlan.zhihu.com/p/22536382" style="color: blue;" target="_blank" rel="noopener"> 请参考 </a></li>
+</ul>
+</li>
+</ul>
+<h5 id="Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session"><a href="#Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session" class="headerlink" title="Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session"></a>Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session</h5><ul>
+<li>Cookie V.S. LocalStorage<ul>
+<li>主要区别是 Cookie 会被发送到服务器，而 LocalStorage 不会</li>
+<li>Cookie 一般最大 4k，LocalStorage 可以用 5Mb 甚至 10Mb（各浏览器不同）</li>
+</ul>
+</li>
+<li>LocalStorage V.S. SessionStorage<ul>
+<li>LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在会话结束时过期（如关闭浏览器）</li>
+</ul>
+</li>
+<li>Cookie V.S. Session<ul>
+<li>Cookie 存在浏览器的文件里，Session 存在服务器的文件里</li>
+<li>Session 是基于 Cookie 实现的，具体做法就是把 SessionID 存在 Cookie 里</li>
+</ul>
+</li>
+</ul>
+<h5 id="XSS（Cross-Site-Scripting）：跨越脚本攻击"><a href="#XSS（Cross-Site-Scripting）：跨越脚本攻击" class="headerlink" title="XSS（Cross-Site Scripting）：跨越脚本攻击"></a>XSS（Cross-Site Scripting）：跨越脚本攻击</h5><ul>
+<li>原理<ul>
+<li>不需要做任何的登录验证，核心原理向页面注入脚本</li>
+</ul>
+</li>
+<li>造成 XSS 有几个要点：<ol>
+<li>恶意用户可以提交内容</li>
+<li>提交的内容可以显示在另一个用户的页面上</li>
+<li>这些内容未经过滤，直接运行在另一个用户的页面上</li>
+</ol>
+</li>
+<li>XSS 的成因以及防御措施<ol>
+<li>后台模板问题：要后台输出的时候，将可疑的符号 &lt; 符号变成 &lt; （HTML实体）就行。</li>
+<li>前端代码问题：就是不要自己拼 HTML，尽量使用 text 方法。如果一定要使用 HTML，就把可疑符号变成 HTML 实体</li>
+</ol>
+</li>
+</ul>
+<h5 id="CSRF（Cross-Site-Request-Forgery）：跨站请求伪造"><a href="#CSRF（Cross-Site-Request-Forgery）：跨站请求伪造" class="headerlink" title="CSRF（Cross Site Request Forgery）：跨站请求伪造"></a>CSRF（Cross Site Request Forgery）：跨站请求伪造</h5><ul>
+<li>原理<ul>
+<li>攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面。</li>
+</ul>
+</li>
+<li>使用anti-csrf-token的方案。 具体方案如下：<ol>
+<li>服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面（一般埋入 form 表单内，<input type="hidden" name="_csrf_token" value="xxxx">）</li>
+<li>服务端设置setCookie，把该随机数作为cookie或者session种入用户浏览器</li>
+<li>当用户发送 GET 或者 POST 请求时带上_csrf_token参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括_csrf_token）</li>
+<li>后台在接受到请求后解析请求的cookie获取_csrf_token的值，然后和用户请求提交的_csrf_token做个比较，如果相等表示请求是合法的。</li>
+</ol>
+</li>
+<li>总结：<ol>
+<li>CSRF<ul>
+<li>(网站中某个接口存在漏洞，用户在这个注册网站确实登录过) </li>
+<li>防御措施 <ul>
+<li>Token验证：用户请求之后，会返回cookie信息，并且服务器向本地存储Token</li>
+<li>Referer验证: 页面来源，服务器判断页面来源是否是当前站点下的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>xss: 向xss注入的js不可执行  </li>
+</ol>
+</li>
+<li>两者区别<ul>
+<li>xss向页面注入js运行，js函数体去做想做的</li>
+<li>CSRF是利用本身的漏洞，帮你去执行相应的接口</li>
+</ul>
+</li>
+<li>推荐查阅资料<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/22521378" style="color: blue;" target="_blank" rel="noopener"> 文章 xsrf </a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22500730" style="color: blue;" target="_blank" rel="noopener"> 文章 xss </a></li>
+<li><a href="http://www.imooc.com/learn/812" style="color: blue;" target="_blank" rel="noopener"> 视频 csrf xss </a></li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/ cross-domain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1429,7 +1694,12 @@
 <h5 id="jQuery如何扩展自定义方法"><a href="#jQuery如何扩展自定义方法" class="headerlink" title="jQuery如何扩展自定义方法"></a>jQuery如何扩展自定义方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(jQuery.fn.myMethod=function () &#123;</span><br><span class="line">    alert(&apos;myMethod&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">// 或者：</span><br><span class="line">(function ($) &#123;</span><br><span class="line">    $.fn.extend(&#123;</span><br><span class="line">        myMethod : function () &#123;</span><br><span class="line">            alert(&apos;myMethod&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)(jQuery)</span><br><span class="line">$(&quot;#div&quot;).myMethod();</span><br></pre></td></tr></table></figure>
 <h5 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * @param &#123;arr&#125;  排序数组</span><br><span class="line">  * @des: 实现冒泡排序</span><br><span class="line">  * @return: new arr</span><br><span class="line">*/</span><br><span class="line">function bubbling(arr) &#123;</span><br><span class="line">    var temp = 0; // 临时变量</span><br><span class="line">    for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        for(let j = 0; j &lt; arr.length - i; j++) &#123;</span><br><span class="line">            if(arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                temp = arr[j + 1];</span><br><span class="line">                arr[j + 1] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="判断一个字符串中出现次数最多的字符，统计这个次数"><a href="#判断一个字符串中出现次数最多的字符，统计这个次数" class="headerlink" title="判断一个字符串中出现次数最多的字符，统计这个次数"></a>判断一个字符串中出现次数最多的字符，统计这个次数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;asdfssaaasasasasaa&apos;;</span><br><span class="line">function findStrMax(str) &#123;</span><br><span class="line">    let resultObj = &#123;&#125;;</span><br><span class="line">    for (let i = 0; i &lt; str.length; i++) &#123;</span><br><span class="line">        if (!resultObj[str.charAt(i)]) &#123;</span><br><span class="line">            resultObj[str.charAt(i)] = 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            resultObj[str.charAt(i)]++;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    let strNum = &apos;&apos;; // 统计出现字符串最多的</span><br><span class="line">    let totalNum = 0; // 统计字符串总的出现了多少次</span><br><span class="line">    for(let i in resultObj) &#123;</span><br><span class="line">        if (resultObj[i] &gt; totalNum) &#123;</span><br><span class="line">            totalNum = resultObj[i];</span><br><span class="line">            strNum = i;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    console.log(&apos;出现次数最多的是：&apos; + strNum + &apos;出现&apos; + totalNum +&apos;次&apos;);</span><br><span class="line">&#125;</span><br><span class="line">findStrMax(str);</span><br></pre></td></tr></table></figure>
-<h5 id="去掉一个数组的重复元素"><a href="#去掉一个数组的重复元素" class="headerlink" title="去掉一个数组的重复元素"></a>去掉一个数组的重复元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 方法1</span><br><span class="line">let arr = [2, 3, 4, 4, 5, 2, 3, 6];</span><br><span class="line">function getNewArr(arr) &#123;</span><br><span class="line">    let newArr = [];</span><br><span class="line">    for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if (newArr.indexOf(arr[i]) &lt; 0) &#123;</span><br><span class="line">            newArr.push(arr[i]);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    console.log(&apos;新的数组&apos; + newArr);</span><br><span class="line">&#125;</span><br><span class="line">getNewArr(arr);</span><br><span class="line">// 方法2</span><br><span class="line">let newArr = arr.filter(function(ele, index, self) &#123;</span><br><span class="line">    return self.indexOf(ele) === index;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="去掉一个数组的重复元素"><a href="#去掉一个数组的重复元素" class="headerlink" title="去掉一个数组的重复元素"></a>去掉一个数组的重复元素</h5><ul>
+<li>计数排序变形</li>
+<li>使用 Set</li>
+<li>使用 WeakMap<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 方法1</span><br><span class="line">let arr = [2, 3, 4, 4, 5, 2, 3, 6];</span><br><span class="line">function getNewArr(arr) &#123;</span><br><span class="line">    let newArr = [];</span><br><span class="line">    for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if (newArr.indexOf(arr[i]) &lt; 0) &#123;</span><br><span class="line">            newArr.push(arr[i]);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    console.log(&apos;新的数组&apos; + newArr);</span><br><span class="line">&#125;</span><br><span class="line">getNewArr(arr);</span><br><span class="line">// 方法2</span><br><span class="line">let newArr = arr.filter(function(ele, index, self) &#123;</span><br><span class="line">    return self.indexOf(ele) === index;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <h5 id="去除字符串前后的空格"><a href="#去除字符串前后的空格" class="headerlink" title="去除字符串前后的空格"></a>去除字符串前后的空格</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.trim = function() &#123;</span><br><span class="line">    return this.replace(/^\s+|\s+$/g, &apos;&apos;);</span><br><span class="line">&#125;</span><br><span class="line">//或者 </span><br><span class="line">function trim(string) &#123;</span><br><span class="line">    return string.replace(/^\s+|\s+$/g, &apos;&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="判断一个数字是不是整数"><a href="#判断一个数字是不是整数" class="headerlink" title="判断一个数字是不是整数"></a>判断一个数字是不是整数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isInt(num) &#123;</span><br><span class="line">	return num % 1 === 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="获取浏览器的地址参数"><a href="#获取浏览器的地址参数" class="headerlink" title="获取浏览器的地址参数"></a>获取浏览器的地址参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function getUrlParams(url) &#123;</span><br><span class="line">    // var _href = window.location.href;</span><br><span class="line">    let _href = &apos;http://www.runoob.com/jquery/misc-trim.html?channelid=12333&amp;name=xiaoming&amp;age=23&apos;;</span><br><span class="line">    let _tmpArr = _href.split(&apos;?&apos;);</span><br><span class="line">    let _paramArr = _tmpArr[1].split(&apos;&amp;&apos;);</span><br><span class="line">    let resultObj = &#123;&#125;;</span><br><span class="line">    let _arg = [];</span><br><span class="line">    for (let i = 0; i &lt; _paramArr.length; i++) &#123;</span><br><span class="line">        _arg = _paramArr[i].split(&apos;=&apos;);</span><br><span class="line">        resultObj[_arg[0]] = _arg[1];</span><br><span class="line">    &#125;;</span><br><span class="line">    console.log(resultObj);</span><br><span class="line">    return resultObj;</span><br><span class="line">&#125;</span><br><span class="line">getUrlParams();</span><br></pre></td></tr></table></figure>
@@ -1441,9 +1711,19 @@
 <h5 id="某年某月的1号为星期几"><a href="#某年某月的1号为星期几" class="headerlink" title="某年某月的1号为星期几"></a>某年某月的1号为星期几</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var weekDay = [&apos;星期日&apos;, &apos;星期一&apos;, &apos;星期二&apos;, &apos;星期三&apos;, &apos;星期四&apos;, &apos;星期五&apos;, &apos;星期六&apos;];</span><br><span class="line">weekDay[new Date(2019, 3, 1).getDay()];</span><br></pre></td></tr></table></figure>
 <h5 id="数据的排序-123454321-23456765432"><a href="#数据的排序-123454321-23456765432" class="headerlink" title="数据的排序 123454321 23456765432"></a>数据的排序 123454321 23456765432</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 方法1 </span><br><span class="line">//01234543210</span><br><span class="line">//先展示前面的   01234</span><br><span class="line">//n：开始的数字    m:结束的数字</span><br><span class="line">function num1(n, m) &#123;</span><br><span class="line">    for(var i = n; i &lt; m; i++) &#123;</span><br><span class="line">        //再展示后面的 543210</span><br><span class="line">        console.log(i);</span><br><span class="line">        if (i === m-1) &#123;</span><br><span class="line">            num2(n, m)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function num2(n, m) &#123;</span><br><span class="line">    for(var i = m; i &gt;= n; i--) &#123;</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">num1(2, 5)  //2345432</span><br><span class="line">// 方法2</span><br><span class="line">function num(n, m) &#123;</span><br><span class="line">    console.log(n);</span><br><span class="line">    if (n &lt; m) &#123;</span><br><span class="line">        num(n + 1, m);</span><br><span class="line">        console.log(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">num(2, 5)  //2345432</span><br></pre></td></tr></table></figure>
 <h5 id="首字母大写"><a href="#首字母大写" class="headerlink" title="首字母大写"></a>首字母大写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">* 首字母大写 </span><br><span class="line">* @param str 字符串 </span><br><span class="line">* @example heheHaha </span><br><span class="line">* @return &#123;string&#125; HeheHaha </span><br><span class="line">*/ </span><br><span class="line">function capitalizeFirstLetter (str) &#123; </span><br><span class="line">    return str.charAt(0).toUpperCase() + str.slice(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj)&#123;</span><br><span class="line">    //判断是否是简单数据类型，</span><br><span class="line">    if(typeof obj == &quot;object&quot;)&#123;</span><br><span class="line">        //复杂数据类型</span><br><span class="line">        var result = obj.constructor == Array ? [] : &#123;&#125;;</span><br><span class="line">        for(let i in obj)&#123;</span><br><span class="line">            result[i] = typeof obj[i] == &quot;object&quot; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        //简单数据类型 直接 == 赋值</span><br><span class="line">        var result = obj;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h5><ul>
+<li>递归</li>
+<li>判断类型</li>
+<li>检查环（也叫循环引用）</li>
+<li>需要忽略原型<br>理解深浅拷贝，<a href="https://www.cnblogs.com/echolun/p/7889848.html" style="color: blue;" target="_blank" rel="noopener">需了解</a></li>
+</ul>
+<ol>
+<li>基本类型–名值存储在栈内存中，例如let a=1<br><img src="/2019/05/03/js-methods/stack.jpg" alt="栈内存"></li>
+<li>引用数据类型–名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值<br><img src="/2019/05/03/js-methods/heap.jpg" alt="堆内存"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj) &#123;</span><br><span class="line">    // 判断是否是简单数据类型，</span><br><span class="line">    if (typeof obj == &apos;object&apos;) &#123;</span><br><span class="line">        //复杂数据类型</span><br><span class="line">        var result = obj.constructor == Array ? [] : &#123;&#125;;</span><br><span class="line">        for(let i in obj) &#123;</span><br><span class="line">            result[i] = typeof obj[i] == &apos;object&apos; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //简单数据类型 直接 == 赋值</span><br><span class="line">        var result = obj;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h5 id="将类数组转化为数组"><a href="#将类数组转化为数组" class="headerlink" title="将类数组转化为数组"></a>将类数组转化为数组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function trigger() &#123;</span><br><span class="line">  var args = Array.prototype.slice.call(arguments);</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用-Array-slice-进行数组复制"><a href="#使用-Array-slice-进行数组复制" class="headerlink" title="使用 Array#slice 进行数组复制"></a>使用 Array#slice 进行数组复制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var items = [1, 2, 3];</span><br><span class="line">// bad</span><br><span class="line">var itemsCopy = [];</span><br><span class="line">for (var i = 0; i &lt; items.length; i++) &#123;</span><br><span class="line">  itemsCopy[i] = items[i];</span><br><span class="line">&#125;</span><br><span class="line">// good slice返回的是一个新数组，和直接赋值区别</span><br><span class="line">var itemsCopy = items.slice();</span><br></pre></td></tr></table></figure>
+<h5 id="使用-Array的-slice-进行数组复制（-浅复制）"><a href="#使用-Array的-slice-进行数组复制（-浅复制）" class="headerlink" title="使用 Array的 slice 进行数组复制（ 浅复制）"></a>使用 Array的 slice 进行数组复制（ 浅复制）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var items = [1, 2, 3];</span><br><span class="line">// bad</span><br><span class="line">var itemsCopy = [];</span><br><span class="line">for (var i = 0; i &lt; items.length; i++) &#123;</span><br><span class="line">  itemsCopy[i] = items[i];</span><br><span class="line">&#125;</span><br><span class="line">// good slice返回的是一个新数组，和直接赋值区别</span><br><span class="line">var itemsCopy = items.slice();</span><br></pre></td></tr></table></figure>
 <h5 id="使用-for-in-循环时需要避免对象从原型链上继承来的属性也被遍历出来，因此保险的做法是对-key-是否是对象自身的属性进行验证"><a href="#使用-for-in-循环时需要避免对象从原型链上继承来的属性也被遍历出来，因此保险的做法是对-key-是否是对象自身的属性进行验证" class="headerlink" title="使用 for-in 循环时需要避免对象从原型链上继承来的属性也被遍历出来，因此保险的做法是对 key 是否是对象自身的属性进行验证"></a>使用 for-in 循环时需要避免对象从原型链上继承来的属性也被遍历出来，因此保险的做法是对 key 是否是对象自身的属性进行验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// good</span><br><span class="line">for (const key in foo) &#123;</span><br><span class="line">  if (Object.prototype.hasOwnProperty.call(foo, key)) &#123;</span><br><span class="line">    doSomething(key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="if-a-1-a-2-a-3-推荐写法"><a href="#if-a-1-a-2-a-3-推荐写法" class="headerlink" title="if(a === 1 || a === 2 || a === 3){}推荐写法"></a>if(a === 1 || a === 2 || a === 3){}推荐写法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3].indexOf() || /^(1|2|3)$/.test()</span><br><span class="line">// 第一种方式</span><br><span class="line">if(a === 1 || a === 2 || a === 3) &#123;</span><br><span class="line">    // doThing</span><br><span class="line">&#125;</span><br><span class="line">// 第二种方式，在数组判断是否存在此元素，不存在返回-1</span><br><span class="line">if([1, 2, 3].indexOf(a) &gt; -1) &#123;</span><br><span class="line">    // doThing</span><br><span class="line">&#125;</span><br><span class="line">// 第三种方式1,2,3之间不能有空格</span><br><span class="line">if (/^(1| 2|3)$/.test(a)) &#123;</span><br><span class="line">	// doThing</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="三位数字分离与合并的相互转化"><a href="#三位数字分离与合并的相互转化" class="headerlink" title="三位数字分离与合并的相互转化"></a>三位数字分离与合并的相互转化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function numSplit(val) &#123;</span><br><span class="line">  if (val) &#123;</span><br><span class="line">	return val.toString().replace(/(\d)(?=(\d&#123;3&#125;)+($|\.))/g, &apos;$1,&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numSplit(1003030)); // 1,003,030</span><br><span class="line"></span><br><span class="line">// 1,333,112 ==&gt; 1333112</span><br><span class="line">function numMery (v) &#123;</span><br><span class="line">	return parseFloat(v.toString().replace(/,/g, &apos;&apos;));</span><br><span class="line">&#125;</span><br><span class="line">console.log(numMery(&apos;1,333,112&apos;));</span><br></pre></td></tr></table></figure>
@@ -1791,153 +2071,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/三栏布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/29/三栏布局/" itemprop="url">页面布局-三栏布局实现方案</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T15:52:19+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应"><a href="#假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应" class="headerlink" title="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应"></a>假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应</h3><h4 id="以下五种实现方案"><a href="#以下五种实现方案" class="headerlink" title="以下五种实现方案"></a>以下五种实现方案</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 公共的css样式`</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    html * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout &#123;</span><br><span class="line">        margin-top: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout article div &#123;</span><br><span class="line">        min-height: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="float实现"><a href="#float实现" class="headerlink" title="float实现"></a>float实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.float .left &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .right &#123;</span><br><span class="line">            float: right;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .center &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-right-center&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;浮动解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="position实现"><a href="#position实现" class="headerlink" title="position实现"></a>position实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.absolute .left-center-right &gt; div &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .left &#123;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .center&#123;</span><br><span class="line">            left: 300px;</span><br><span class="line">            right: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;绝对定位解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="flex实现"><a href="#flex实现" class="headerlink" title="flex实现"></a>flex实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout flexbox&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.flexbox &#123;</span><br><span class="line">            margin-top: 140px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left-center-right &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .center&#123;</span><br><span class="line">            flex: 1;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;flexbox解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="table实现"><a href="#table实现" class="headerlink" title="table实现"></a>table实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">     &lt;style&gt;</span><br><span class="line">        .layout.table .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: table;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left-center-right &gt; div &#123;</span><br><span class="line">            display: table-cell;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;table表格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="grid实现"><a href="#grid实现" class="headerlink" title="grid实现"></a>grid实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.grid .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: grid;</span><br><span class="line">            grid-template-rows: 100px;</span><br><span class="line">            grid-template-columns: 300px auto 300px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .left &#123;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .right &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;grid网格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="五种方案比较"><a href="#五种方案比较" class="headerlink" title="五种方案比较"></a>五种方案比较</h4><ul>
-<li>float：清除浮动，脱离文档流，处理不好，带来很多问题，本身的局限性，兼容性比较好</li>
-<li>position：快捷，不容易出现问题，布局已经脱离文档流，下面的子元素也要脱离文档流，导致可使用性、有效性差</li>
-<li>flex：解决上面float、position的不足，兼容性不好，主要应用移动端</li>
-<li>table：table-cell,很多场景中适用，兼容性好</li>
-<li>grid：网格布局，新技术，可做很多复杂事情</li>
-<li><strong>flex与table-cell</strong>两种看应用场景使用</li>
-</ul>
-<h4 id="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"><a href="#如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用" class="headerlink" title="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"></a>如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用</h4><ul>
-<li>推荐flex与table</li>
-<li>float 需要创建bfc</li>
-</ul>
-<h4 id="大家也可以扩展延伸"><a href="#大家也可以扩展延伸" class="headerlink" title="大家也可以扩展延伸"></a>大家也可以扩展延伸</h4><h5 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h5><ul>
-<li>左右宽度固定，中间自适应</li>
-<li>上下高度固定，中间自适应</li>
-</ul>
-<h5 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h5><ul>
-<li>左宽度固定，右自适应</li>
-<li>右宽度固定，左自适应</li>
-<li>上高度固定，下自适应</li>
-<li>下高度固定，上自适应</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1990,7 +2123,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
