@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="命令窗口，使用快捷键快速跳转 新建一个文件目录，mkdir ~/repos 切换目录 cd ~/repos 克隆 git clone https://github.com/rupa/z.git 新建bashrc文件，如果已经存在这个文件，可忽略这步，touch ~/.bashrc 打开bashrc文件，start ~/.bashrc 在文件里写入 12. ~/repos/z/z.shalias j">
+<meta name="description" content="webpack有哪些常见 loader 和 plugin，你用过哪些？ loader file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件 url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去 source-map-loader：加载额外的 Source Map 文件，以方便断点调试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="window下git bash 命令行实用技巧">
-<meta property="og:url" content="http://yoursite.com/2019/05/04/window-quick/index.html">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/webpack/index.html">
 <meta property="og:site_name" content="anluofly">
-<meta property="og:description" content="命令窗口，使用快捷键快速跳转 新建一个文件目录，mkdir ~/repos 切换目录 cd ~/repos 克隆 git clone https://github.com/rupa/z.git 新建bashrc文件，如果已经存在这个文件，可忽略这步，touch ~/.bashrc 打开bashrc文件，start ~/.bashrc 在文件里写入 12. ~/repos/z/z.shalias j">
+<meta property="og:description" content="webpack有哪些常见 loader 和 plugin，你用过哪些？ loader file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件 url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去 source-map-loader：加载额外的 Source Map 文件，以方便断点调试">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-04T13:46:41.989Z">
+<meta property="og:updated_time" content="2019-05-06T14:07:39.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="window下git bash 命令行实用技巧">
-<meta name="twitter:description" content="命令窗口，使用快捷键快速跳转 新建一个文件目录，mkdir ~/repos 切换目录 cd ~/repos 克隆 git clone https://github.com/rupa/z.git 新建bashrc文件，如果已经存在这个文件，可忽略这步，touch ~/.bashrc 打开bashrc文件，start ~/.bashrc 在文件里写入 12. ~/repos/z/z.shalias j">
+<meta name="twitter:title" content="webpack">
+<meta name="twitter:description" content="webpack有哪些常见 loader 和 plugin，你用过哪些？ loader file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件 url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去 source-map-loader：加载额外的 Source Map 文件，以方便断点调试">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/04/window-quick/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/06/webpack/">
 
 
 
 
 
-  <title>window下git bash 命令行实用技巧 | anluofly</title>
+  <title>webpack | anluofly</title>
   
 
 
@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/window-quick/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yongfeng.peng">
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">window下git bash 命令行实用技巧</h1>
+          <h1 class="post-title" itemprop="name headline">webpack</h1>
         
 
         <div class="post-meta">
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-04T11:43:59+08:00">
-                2019-05-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T22:00:00+08:00">
+                2019-05-06
               </time>
             
 
@@ -335,20 +335,50 @@
       
 
       
-        <h4 id="命令窗口，使用快捷键快速跳转"><a href="#命令窗口，使用快捷键快速跳转" class="headerlink" title="命令窗口，使用快捷键快速跳转"></a>命令窗口，使用快捷键快速跳转</h4><ol>
-<li>新建一个文件目录，mkdir ~/repos</li>
-<li>切换目录 cd ~/repos</li>
-<li>克隆 git clone <a href="https://github.com/rupa/z.git" target="_blank" rel="noopener">https://github.com/rupa/z.git</a></li>
-<li>新建bashrc文件，如果<strong>已经存在这个文件，可忽略这步</strong>，touch ~/.bashrc</li>
-<li>打开bashrc文件，start ~/.bashrc</li>
-<li><p>在文件里写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">. ~/repos/z/z.sh</span><br><span class="line">alias j=&apos;z&apos;</span><br></pre></td></tr></table></figure>
+        <h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><h5 id="有哪些常见-loader-和-plugin，你用过哪些？"><a href="#有哪些常见-loader-和-plugin，你用过哪些？" class="headerlink" title="有哪些常见 loader 和 plugin，你用过哪些？"></a>有哪些常见 loader 和 plugin，你用过哪些？</h5><ol>
+<li>loader<ul>
+<li>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件</li>
+<li>url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去</li>
+<li>source-map-loader：加载额外的 Source Map 文件，以方便断点调试</li>
+<li>image-loader：加载并且压缩图片文件</li>
+<li>babel-loader：把 ES6 转换成 ES5</li>
+<li>css-loader：加载 CSS，支持模块化、压缩、文件导入等特性</li>
+<li>style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。</li>
+<li>eslint-loader：通过 ESLint 检查 JavaScript 代码</li>
+</ul>
 </li>
-<li><p>重启 Git Bash</p>
+<li>plugin<ul>
+<li>define-plugin：定义环境变量</li>
+<li>commons-chunk-plugin：提取公共代码</li>
+<li>uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</li>
+</ul>
 </li>
-<li>验证你的配置，使用 j XXX 就可以快速到达之前去过的目录了</li>
-<li>使用 j 可以查看所有去过的目录，使用z也可以调整目录，调整目录名都可以不用写文件名全称，如：d/document 使用快速调整 z doc 或 j doc<br> <strong>注意，~/repos/z/z.sh 不能删除，删除了就不能用了</strong></li>
 </ol>
+<h5 id="loader-和-plugin-的区别是什么？"><a href="#loader-和-plugin-的区别是什么？" class="headerlink" title="loader 和 plugin 的区别是什么？"></a>loader 和 plugin 的区别是什么？</h5><ol>
+<li>不同的作用<ul>
+<li>Loader直译为”加载器”。Webpack将一切文件视为模块，但是webpack原生是只能解析js文件，如果想将其他文件也打包的话，就会用到loader。 所以Loader的作用是让webpack拥有了加载和解析非JavaScript文件的能力。<br>Plugin直译为”插件”。Plugin可以扩展webpack的功能，让webpack具有更多的灵活性。 在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。</li>
+</ul>
+</li>
+<li>不同的用法<ul>
+<li>Loader在module.rules中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个Object，里面描述了对于什么类型的文件（test），使用什么加载(loader)和使用的参数（options）<br>Plugin在plugins中单独配置。 类型为数组，每一项是一个plugin的实例，参数都通过构造函数传入。</li>
+</ul>
+</li>
+</ol>
+<h5 id="如何按需加载代码？"><a href="#如何按需加载代码？" class="headerlink" title="如何按需加载代码？"></a>如何按需加载代码？</h5><ol>
+<li><p>Vue UI组件库的按需加载 为了快速开发前端项目，经常会引入现成的UI组件库如ElementUI、iView等，但是他们的体积和他们所提供的功能一样，是很庞大的。 而通常情况下，我们仅仅需要少量的几个组件就足够了，但是我们却将庞大的组件库打包到我们的源码中，造成了不必要的开销。<br>不过很多组件库已经提供了现成的解决方案，如Element出品的babel-plugin-component和AntDesign出品的babel-plugin-import 安装以上插件后，在.babelrc配置中或babel-loader的参数中进行设置，即可实现组件按需加载了。</p>
+</li>
+<li><p>单页应用的按需加载 现在很多前端项目都是通过单页应用的方式开发的，但是随着业务的不断扩展，会面临一个严峻的问题——首次加载的代码量会越来越多，影响用户的体验。<br>通过import(<em>)语句来控制加载时机，webpack内置了对于import(</em>)的解析，会将import(<em>)中引入的模块作为一个新的入口在生成一个chunk。 当代码执行到import(</em>)语句时，会去加载Chunk对应生成的文件。import()会返回一个Promise对象，所以为了让浏览器支持，需要事先注入Promise polyfill</p>
+</li>
+</ol>
+<h5 id="如何提高构建速度？"><a href="#如何提高构建速度？" class="headerlink" title="如何提高构建速度？"></a>如何提高构建速度？</h5><ol>
+<li>多入口情况下，使用CommonsChunkPlugin来提取公共代码</li>
+<li>通过externals配置来提取常用库</li>
+<li>利用DllPlugin和DllReferencePlugin预编译资源模块 通过DllPlugin来对那些我们引用但是绝对不会修改的npm包来进行预编译，再通过DllReferencePlugin将预编译的模块加载进来。</li>
+<li>使用Happypack 实现多线程加速编译</li>
+<li>使用webpack-uglify-parallel来提升uglifyPlugin的压缩速度。 原理上webpack-uglify-parallel采用了多核并行压缩来提升压缩速度</li>
+<li>使用Tree-shaking和Scope Hoisting来剔除多余代码</li>
+</ol>
+<h5 id="转义出的文件过大怎么办？"><a href="#转义出的文件过大怎么办？" class="headerlink" title="转义出的文件过大怎么办？"></a>转义出的文件过大怎么办？</h5><p><a href="https://zhuanlan.zhihu.com/p/44438844" style="color: blue" target="_blank" rel="noopener">更多资源</a></p>
 
       
     </div>
@@ -373,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/03/js-methods/" rel="next" title="js常使用的函数总结">
-                <i class="fa fa-chevron-left"></i> js常使用的函数总结
+              <a href="/2019/05/06/http/" rel="next" title="HTTP协议与安全">
+                <i class="fa fa-chevron-left"></i> HTTP协议与安全
               </a>
             
           </div>
@@ -383,8 +413,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/04/html-css/" rel="prev" title="HTML、CSS基础概念总结">
-                HTML、CSS基础概念总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/03/小程序引入iconfont踩坑/" rel="prev" title="小程序引入iconfont踩坑">
+                小程序引入iconfont踩坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令窗口，使用快捷键快速跳转"><span class="nav-number">1.</span> <span class="nav-text">命令窗口，使用快捷键快速跳转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack"><span class="nav-number">1.</span> <span class="nav-text">webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#有哪些常见-loader-和-plugin，你用过哪些？"><span class="nav-number">1.1.</span> <span class="nav-text">有哪些常见 loader 和 plugin，你用过哪些？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loader-和-plugin-的区别是什么？"><span class="nav-number">1.2.</span> <span class="nav-text">loader 和 plugin 的区别是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何按需加载代码？"><span class="nav-number">1.3.</span> <span class="nav-text">如何按需加载代码？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何提高构建速度？"><span class="nav-number">1.4.</span> <span class="nav-text">如何提高构建速度？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转义出的文件过大怎么办？"><span class="nav-number">1.5.</span> <span class="nav-text">转义出的文件过大怎么办？</span></a></li></ol></li></ol></div>
             
 
           </div>
