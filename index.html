@@ -339,14 +339,13 @@
       
         
           
-            <h5 id="容易忽视的小程序细节"><a href="#容易忽视的小程序细节" class="headerlink" title="容易忽视的小程序细节"></a>容易忽视的小程序细节</h5><ul>
-<li>wx:for属性绑定一个数组，默认数组当前项的下标变量名为index，数组当前项默认为 item<ul>
-<li>实质是遍历Array数组，但在开发中经常会遇到遍历<strong>Object对象</strong>,会使用在多层嵌套的循环中，不可避免的会重定义item与index<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wx:for-item=&quot;xxx&quot;</span><br><span class="line">wx:for-index=&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
+            <h4 id="容易忽视的小程序细节"><a href="#容易忽视的小程序细节" class="headerlink" title="容易忽视的小程序细节"></a>容易忽视的小程序细节</h4><h5 id="wx-for属性"><a href="#wx-for属性" class="headerlink" title="wx:for属性"></a>wx:for属性</h5><pre><code>* 绑定一个数组，默认数组当前项的下标变量名为index，数组当前项默认为 item
+* 实质是遍历Array数组，但在开发中经常会遇到遍历**Object对象**,会使用在多层嵌套的循环中，不可避免的会重定义item与index
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wx:for-item=&quot;xxx&quot;</span><br><span class="line">wx:for-index=&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
 <p><strong>针对对象Object,以上两个属性木有用呀</strong></p>
+<ul>
+<li>一般复杂的逻辑，尽量数据结构都是键值对key-value的显示吧，可以让不认真看文档的我，开发效率提高哟</li>
+</ul>
 
           
         
