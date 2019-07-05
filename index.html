@@ -268,6 +268,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/工具函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/05/工具函数/" itemprop="url">工具函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-05T15:58:02+08:00">
+                2019-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="js工具函数"><a href="#js工具函数" class="headerlink" title="js工具函数"></a>js工具函数</h4><h5 id="过滤数组中的false"><a href="#过滤数组中的false" class="headerlink" title="过滤数组中的false"></a>过滤数组中的false</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 0, undefined, null, false];</span><br><span class="line">arr.filter(Boolean);</span><br></pre></td></tr></table></figure>
+<h5 id="创建一个纯净的空对象"><a href="#创建一个纯净的空对象" class="headerlink" title="创建一个纯净的空对象"></a>创建一个纯净的空对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let dict = Object.create(null);</span><br><span class="line">dict.__proto__ === &quot;undefined&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a>合并对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const page = &#123;</span><br><span class="line">    current: 1,</span><br><span class="line">    pageSize: 10</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;&apos;,</span><br><span class="line">    sex: &apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line">const params = &#123;...obj, ...page&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="解构赋值使用别名"><a href="#解构赋值使用别名" class="headerlink" title="解构赋值使用别名"></a>解构赋值使用别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123; x: 1 &#125;;</span><br><span class="line">// Grabs obj.x as &#123; x &#125;</span><br><span class="line">const &#123; x &#125; = obj;</span><br><span class="line"></span><br><span class="line">// Grabs obj.x as &#123; otherName &#125;</span><br><span class="line">const &#123; x: otherName &#125; = obj;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/04/小程序踩坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -345,6 +467,18 @@
 <p><strong>针对对象Object,以上两个属性木有用呀</strong></p>
 <ul>
 <li>一般复杂的逻辑，尽量数据结构都是键值对key-value的显示吧，可以让不认真看文档的我，开发效率提高哟</li>
+</ul>
+<h5 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h5><ul>
+<li><p>可滚动视图区域 <strong>值得注意的是，行内样式的设置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width: 100%;</span><br><span class="line">white-space: nowrap; // 不进行换行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>会遇到需求就是滚动区域内的布局，可换行，<strong>两者之间会冲突，取舍去吧</strong></p>
+</li>
+<li>微信小程序之Android环境下的横向滚动，当遇到不能滚动时，加上overflow-x: auto</li>
+</ul>
+<h5 id="wx-navigator-不可跳转到pages是底部tab"><a href="#wx-navigator-不可跳转到pages是底部tab" class="headerlink" title="wx.navigator 不可跳转到pages是底部tab"></a>wx.navigator 不可跳转到pages是底部tab</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;</span><br><span class="line">    url: &apos;/pages/xxx/xxx&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://www.wxappclub.com/topic/596" style="color: blue;" target="_blank" rel="noopener">想了解more跳转</a></li>
 </ul>
 
           
@@ -611,7 +745,7 @@
 <li><p>每次重新添加icon到项目需要<strong>重新替换</strong>@font-face为上面的生成代码，并且把新添加的图标加入iconfont.wxss</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &apos;iconfont&apos;;  /* project id 1274544 */</span><br><span class="line">  src: url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.eot&apos;);</span><br><span class="line">  src: url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.woff2&apos;) format(&apos;woff2&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.woff&apos;) format(&apos;woff&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.ttf&apos;) format(&apos;truetype&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.svg#iconfont&apos;) format(&apos;svg&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>看起来很简单，可自己就是犯了很多低级错误</p>
+<li><p>看起来很简单，可自己就是犯了很多低级错误rve</p>
 </li>
 </ul>
 
@@ -1809,226 +1943,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/html-css/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/html-css/" itemprop="url">HTML、CSS基础概念总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-04T16:37:46+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><h5 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h5><ul>
-<li>HTML 语义化就是使用正<strong>确的标签</strong>，内容的结构化（内容语义化），选择合适的标签（代码语义化）</li>
-<li>定义麻烦，可以直接<strong>举例</strong>，如：<ul>
-<li>段落就写 p 标签，标题就写 h1~h6 标签，</li>
-<li>文章就写article标签，视频就写video标签，section就写文档中的一个区域（或节），article比section更具有独立性、完整性。可通过该段内容脱离了所在的语境，是否完整、独立来判断等等。</li>
-</ul>
-</li>
-<li>也可以<strong>阐述</strong>一下历史<ul>
-<li>咱们的后台开发人员常使用table布局，美工人员常使用div+css布局，前端的优势当然就是会使用正确的标签进行页面开发啦</li>
-</ul>
-</li>
-</ul>
-<h5 id="语义话的好处"><a href="#语义话的好处" class="headerlink" title="语义话的好处"></a>语义话的好处</h5><ul>
-<li>可简单解释为：便于<strong>开发者</strong>阅读和写出更优雅的代码的同时让<strong>浏览器</strong>的爬虫和机器很好地解析</li>
-</ul>
-<ol>
-<li>在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构—–为了裸奔时好看</li>
-<li>有利于<a href="https://baike.baidu.com/item/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96/3132?fromtitle=SEO&fromid=102990" style="color: blue;" target="_blank" rel="noopener"><strong>SEO</strong></a>：和搜索引擎建立良好沟通，有助于<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/5162711?fromtitle=%E7%88%AC%E8%99%AB&fromid=22046949" style="color: blue;" target="_blank" rel="noopener"><strong>爬虫</strong></a>抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重</li>
-<li>方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以有意义的方式来渲染网页</li>
-<li>有利于团队开发和维护</li>
-</ol>
-<h5 id="meta-viewport是做什么呢？有什么用呢？"><a href="#meta-viewport是做什么呢？有什么用呢？" class="headerlink" title="meta viewport是做什么呢？有什么用呢？"></a>meta viewport是做什么呢？有什么用呢？</h5><ul>
-<li>先了解一下不设置meta viewport标签会导致什么后果呢<ul>
-<li>移动设备上浏览器默认的宽度值为800px，980px，1024px等，总之是大于屏幕宽度的。这里的宽度所用的单位px都是指css中的px，它与实际屏幕物理像素的px不是一回事</li>
-</ul>
-</li>
-<li><p>meta标签的就是让<strong>当前viewport的宽度等于设备的宽度</strong>，同时不允许用户手动缩放</p>
-<ul>
-<li>因为每个移动设备浏览器中都有一个理想的宽度，可以用meta标签把viewport的宽度设为那个理想的宽度<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>width: 设置layout viewport的宽度，为一个正整数，或字符串”width-device”</p>
-</li>
-<li>height: 设置layout viewport的高度，这个属性对我们并不重要，很少使用</li>
-<li>initial-scale: 设置页面的初始缩放值，为一个数字，可以带小数</li>
-<li>minimum-scale: 允许用户的最小缩放值，为一个数字，可以带小数</li>
-<li>maximum-scale: 允许用户的最大缩放值，为一个数字，可以带小数</li>
-<li>user-scalable    是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</li>
-</ul>
-<p>想深入了解的孩童可以看看：<a href="https://www.cnblogs.com/2050/p/3877280.html" style="color: blue;" target="_blank" rel="noopener">click here！</a></p>
-<h5 id="HTML-5-标签都有"><a href="#HTML-5-标签都有" class="headerlink" title="HTML 5 标签都有"></a>HTML 5 标签都有</h5><ol>
-<li><section> : 定义文档中的一个章节</section></li>
-<li><nav> : 定义只包含导航链接的章节</nav></li>
-<li><article> : 定义可以独立于内容其余部分的完整独立内容块</article></li>
-<li><aside> : 定义和页面内容关联度较低的内容——如果被删除，剩下的内容仍然很合理</aside></li>
-<li><header> : 定义页面或章节的头部。它经常包含 logo、页面标题和导航性的目录</header></li>
-<li><footer> : 定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址</footer></li>
-<li><address>: 定义包含联系信息的一个章节</address></li>
-<li><main>: 定义文档中主要或重要的内容<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list" style="color: blue;" target="_blank" rel="noopener">想了解更多:)</a></main></li>
-</ol>
-<h5 id="H5-理解"><a href="#H5-理解" class="headerlink" title="H5 理解"></a>H5 理解</h5><ul>
-<li>简单理解：H5表示移动端页面，反正不是HTML5</li>
-<li>H5更应该被理解为针对酷炫的移动端页面的一种<strong>解决方案</strong>，而这个解决方案里包含HTML5新增的标签(audio/video),canvas技术，拖拽的特性，本地存储，websocket通信，也会用到基本的盒模型，定位等一些<strong>前端基本知识</strong>，所以，H5更应该理解为一个技术合集，前端的技术广度/深度</li>
-<li>H5移动端各种产品的简称吧</li>
-</ul>
-<h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><h5 id="两种盒模型分别说一下"><a href="#两种盒模型分别说一下" class="headerlink" title="两种盒模型分别说一下"></a>两种盒模型分别说一下</h5><ul>
-<li>css盒模型的包括（margin + padding + content）</li>
-<li>标准模型(content) + IE模型(content+padding+border)</li>
-<li>两者的区别：计算宽度和高度的不同</li>
-</ul>
-<h5 id="css如何设置这两种模型"><a href="#css如何设置这两种模型" class="headerlink" title="css如何设置这两种模型"></a>css如何设置这两种模型</h5><ul>
-<li>(标准)box-sizing: content-box         </li>
-<li>(IE)box-sizing: border-box</li>
-</ul>
-<h5 id="js如何设置获取盒模型的宽和高"><a href="#js如何设置获取盒模型的宽和高" class="headerlink" title="js如何设置获取盒模型的宽和高"></a>js如何设置获取盒模型的宽和高</h5><ol>
-<li>dom.style.width/height(获取的是内联)</li>
-<li>dom.currentStyle.width/height(获取页面渲染之后的，只支持IE)</li>
-<li>window.getComputedStyle(dom).width/height(firefox google)</li>
-<li>dom.getBoundingClientRect().width/height(计算元素的绝对位置，获取的是viewport左上角的位置)<br>平时开发<strong>更多使用border-box</strong>，因为更好用</li>
-</ol>
-<h5 id="CSS-选择器优先级"><a href="#CSS-选择器优先级" class="headerlink" title="CSS 选择器优先级"></a>CSS 选择器优先级</h5><ul>
-<li><p>普通的权重比较，<strong>不是完全正确</strong> </p>
-<ul>
-<li>（外部样式）External style sheet &lt;（内部样式）Internal style sheet &lt;（内联样式）Inline style </li>
-</ul>
-<ol>
-<li>内联样式表的权值最高 1000</li>
-<li>ID 选择器的权值为 100</li>
-<li>Class 类选择器的权值为 10</li>
-<li>HTML 标签选择器的权值为 1</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xugang/archive/2010/09/24/1833760.html" style="color: blue;" target="_blank" rel="noopener">详细参考</a></li>
-</ul>
-</li>
-<li><p>越具体优先级越高</p>
-</li>
-<li>优先级写在后面的覆盖写在前面的</li>
-<li>!important 优先级最高，但是要<strong>少用</strong></li>
-</ul>
-<h5 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h5><ol>
-<li><p>父级div定义伪类：after <strong>强烈推荐</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    display: block; /* 或者table */</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix&#123;</span><br><span class="line">    zoom: 1; /* IE 兼容 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在结尾处添加空div标签clear: both</p>
-</li>
-<li>父级div定义height</li>
-<li>父级div定义overflow: hidden</li>
-<li>父级div定义overflow: auto</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2081,7 +1995,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
