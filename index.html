@@ -268,6 +268,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/vue3与vue2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/08/vue3与vue2/" itemprop="url">vue3与vue2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-08T12:04:38+08:00">
+                2019-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="vue3-指vue-cli3-与vue2差异"><a href="#vue3-指vue-cli3-与vue2差异" class="headerlink" title="vue3(指vue-cli3)与vue2差异"></a>vue3(指vue-cli3)与vue2差异</h4><h5 id="创建项目，vue3比起vue2简单很多"><a href="#创建项目，vue3比起vue2简单很多" class="headerlink" title="创建项目，vue3比起vue2简单很多"></a>创建项目，vue3比起vue2简单很多</h5><pre><code>* vue create xxx(项目名称) 或者vue ui
+    * 选择安装模式
+    * ts-sass自己安装过的模板
+    * default系统默认
+    * Manually select features自己选配置
+    * 注意的是
+    * 卸载 npm uninstall vue-cli -g
+    * npm install -g @vue/cli // 安装cli3.x
+    * 更新node到最新版本 npm install -g n(安装模块 这个模块是专门用来管理node.js版本的) n stable(sudo n stable） // 更新node版本
+* &lt;a href=&quot;https://juejin.im/post/5bdec6e8e51d4505327a8952&quot; style=&quot;color: blue;&quot;&gt;想了解more跳转&lt;/a&gt;
+* 移动端vue3配置 &lt;a href=&quot;https://juejin.im/post/5cbf32bc6fb9a03236393379“ style=&quot;color: blue;&quot;&gt;想了解more跳转&lt;/a&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// vue.config.js的配置</span><br><span class="line">// vue.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    // 选项...</span><br><span class="line">    // 当使用基于 HTML5 history.pushState 的路由时；</span><br><span class="line">    // 当使用 pages 选项构建多页面应用时。</span><br><span class="line">    baseUrl:&quot;&quot;,</span><br><span class="line">    // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。</span><br><span class="line">    outputDir:&quot;webApp&quot;,</span><br><span class="line">    // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。</span><br><span class="line">    assetsDir:&quot;assets&quot;,</span><br><span class="line">    // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。</span><br><span class="line">    indexPath:&quot;index.html&quot;,</span><br><span class="line">    // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。然而，这也要求 index 的 HTML 是被 Vue CLI 自动生成的。如果你无法使用 Vue CLI 生成的 index HTML，你可以通过将这个选项设为 false 来关闭文件名哈希。</span><br><span class="line">    filenameHashing:true,</span><br><span class="line">    // 多页面</span><br><span class="line">    pages:undefined,</span><br><span class="line">    // 编译警告</span><br><span class="line">    lintOnSave:false,</span><br><span class="line">    // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。</span><br><span class="line">    runtimeCompiler:false,</span><br><span class="line">    // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来。</span><br><span class="line">    transpileDependencies:[],</span><br><span class="line">    // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。</span><br><span class="line">    productionSourceMap:false,</span><br><span class="line">    // 设置生成的 HTML 中 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签的 crossorigin 属性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。</span><br><span class="line">    crossorigin:undefined,</span><br><span class="line">    // 在生成的 HTML 中的 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签上启用 Subresource Integrity (SRI)。如果你构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。另外，当启用 SRI 时，preload resource hints 会被禁用，因为 Chrome 的一个 bug 会导致文件被下载两次。</span><br><span class="line">    integrity:false,</span><br><span class="line">    // 反向代理</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        // devServer: &#123;</span><br><span class="line">        //     proxy: &#123;</span><br><span class="line">        //       &apos;/api&apos;: &#123;</span><br><span class="line">        //         target: &apos;1&apos;,</span><br><span class="line">        //         ws: true,</span><br><span class="line">        //         changeOrigin: true</span><br><span class="line">        //       &#125;</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>* cd xxx(项目名称)
+* yarn serve
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/工具函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,6 +476,11 @@
 <h5 id="创建一个纯净的空对象"><a href="#创建一个纯净的空对象" class="headerlink" title="创建一个纯净的空对象"></a>创建一个纯净的空对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let dict = Object.create(null);</span><br><span class="line">dict.__proto__ === &quot;undefined&quot;</span><br></pre></td></tr></table></figure>
 <h5 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a>合并对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const page = &#123;</span><br><span class="line">    current: 1,</span><br><span class="line">    pageSize: 10</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;&apos;,</span><br><span class="line">    sex: &apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line">const params = &#123;...obj, ...page&#125;;</span><br></pre></td></tr></table></figure>
 <h5 id="解构赋值使用别名"><a href="#解构赋值使用别名" class="headerlink" title="解构赋值使用别名"></a>解构赋值使用别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123; x: 1 &#125;;</span><br><span class="line">// Grabs obj.x as &#123; x &#125;</span><br><span class="line">const &#123; x &#125; = obj;</span><br><span class="line"></span><br><span class="line">// Grabs obj.x as &#123; otherName &#125;</span><br><span class="line">const &#123; x: otherName &#125; = obj;</span><br></pre></td></tr></table></figure>
+<h5 id="数组map方法，抽离数组对象中的某个属性"><a href="#数组map方法，抽离数组对象中的某个属性" class="headerlink" title="数组map方法，抽离数组对象中的某个属性"></a>数组map方法，抽离数组对象中的某个属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const cities = [</span><br><span class="line">    &#123; name: &apos;Paris&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Lyon&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Marseille&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Rome&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Milan&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Palermo&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Genoa&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Berlin&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Hamburg&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;New York&apos;, visited: &apos;yes&apos; &#125;</span><br><span class="line">];</span><br><span class="line">const cityNames = Array.from(cities, (&#123; name&#125;) =&gt; name);</span><br><span class="line">console.log(cityNames);</span><br></pre></td></tr></table></figure>
+<h5 id="有条件的对象属性"><a href="#有条件的对象属性" class="headerlink" title="有条件的对象属性"></a>有条件的对象属性</h5><ul>
+<li>根据一个条件创建两个不同的对象，可以使用展开运算符号来处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const getUser = (emailIncluded) =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    name: &apos;John&apos;,</span><br><span class="line">    surname: &apos;Doe&apos;,</span><br><span class="line">    ...emailIncluded &amp;&amp; &#123; email : &apos;john@doe.com&apos; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const user = getUser(true);</span><br><span class="line">console.log(user); // outputs &#123; name: &quot;John&quot;, surname: &quot;Doe&quot;, email: &quot;john@doe.com&quot; &#125;</span><br><span class="line">const userWithoutEmail = getUser(false);</span><br><span class="line">console.log(userWithoutEmail); // outputs &#123; name: &quot;John&quot;, surname: &quot;Doe&quot; &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
           
         
       
@@ -1792,157 +1930,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/vertical-center/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/vertical-center/" itemprop="url">实现垂直居中、flex</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-04T21:49:01+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="实现垂直居中"><a href="#实现垂直居中" class="headerlink" title="实现垂直居中"></a>实现垂直居中</h4><ul>
-<li>如果父元素.parent的height未知，只需要<strong>padding: 10px 0</strong>; 就能将子元素.child垂直居中</li>
-<li>如果父元素.parent的height已知，就很难把子元素.child居中</li>
-</ul>
-<h5 id="以下是垂直居中的方法"><a href="#以下是垂直居中的方法" class="headerlink" title="以下是垂直居中的方法"></a>以下是垂直居中的方法</h5><ol>
-<li><p>table布局实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  height: 500px;</span><br><span class="line">  border: 1px solid #ff9400;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br><span class="line">&lt;table class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td class=&quot;child&quot;&gt;居中元素&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给父元素添加伪元素（100% 高度的 afrer before 加上 inline block）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  height: 500px;</span><br><span class="line">  border: 1px solid #ff9400;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.parent:after,</span><br><span class="line">.parent:before &#123;</span><br><span class="line">  content: &apos;&apos;;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  height: 100%;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line"> &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;垂直居中元素&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>table属性应用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: table;</span><br><span class="line">  height: 500px;</span><br><span class="line">  border: 1px solid #ff9400;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.parent &gt; div &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div class=&quot;child&quot;&gt;垂直居中元素&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>position定位实现，margin设置负值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  height: 500px;</span><br><span class="line">  position: relative;</span><br><span class="line">  border: 1px solid #ff9400;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: 50%;</span><br><span class="line">  top: 50%;</span><br><span class="line">  margin-left: -150px;</span><br><span class="line">  margin-top: -50px;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;垂直居中元素&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也是定位，只是应用了css3 的 translate</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: 50%;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translate(-50%,-50%);</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>同样是定位，不过巧妙的用了margin: auto</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  height: 50px;</span><br><span class="line">  position: absolute;</span><br><span class="line">  margin: auto;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>是不是终于到大家常用的flex啦</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  height: 500px;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">  border: 1px solid #ff9400;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  border: 1px solid #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>想快速看到效果：<a href="https://jsbin.com/fayekiwita/edit?html,css,output" style="color: blue;" target="_blank" rel="noopener">自己动手吧:)</a><br><strong>能不写 height 就千万别写 height吧</strong><br>    欢迎👏贡献更多方法</p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><ul>
-<li>flex的属性还是需要多实践操作，才会知道具体效果</li>
-<li>不妨看看阮一峰老师的教程<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" style="color: blue;" target="_blank" rel="noopener">flex-语法</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" style="color: blue;" target="_blank" rel="noopener">flex-实例</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1995,7 +1982,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
