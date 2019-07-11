@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="anluofly">
 <meta property="og:description" content="vue3(指vue-cli3)与vue2差异创建项目，vue3比起vue2简单很多* vue create xxx(项目名称) 或者vue ui     * 选择安装模式     * ts-sass自己安装过的模板     * default系统默认     * Manually select features自己选配置     * 注意的是     * 卸载 npm uninstall vue-">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T05:52:25.045Z">
+<meta property="og:updated_time" content="2019-07-11T03:17:13.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue3与vue2">
 <meta name="twitter:description" content="vue3(指vue-cli3)与vue2差异创建项目，vue3比起vue2简单很多* vue create xxx(项目名称) 或者vue ui     * 选择安装模式     * ts-sass自己安装过的模板     * default系统默认     * Manually select features自己选配置     * 注意的是     * 卸载 npm uninstall vue-">
@@ -349,7 +349,14 @@
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// vue.config.js的配置</span><br><span class="line">// vue.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    // 选项...</span><br><span class="line">    // 当使用基于 HTML5 history.pushState 的路由时；</span><br><span class="line">    // 当使用 pages 选项构建多页面应用时。</span><br><span class="line">    baseUrl:&quot;&quot;,</span><br><span class="line">    // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。</span><br><span class="line">    outputDir:&quot;webApp&quot;,</span><br><span class="line">    // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。</span><br><span class="line">    assetsDir:&quot;assets&quot;,</span><br><span class="line">    // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。</span><br><span class="line">    indexPath:&quot;index.html&quot;,</span><br><span class="line">    // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。然而，这也要求 index 的 HTML 是被 Vue CLI 自动生成的。如果你无法使用 Vue CLI 生成的 index HTML，你可以通过将这个选项设为 false 来关闭文件名哈希。</span><br><span class="line">    filenameHashing:true,</span><br><span class="line">    // 多页面</span><br><span class="line">    pages:undefined,</span><br><span class="line">    // 编译警告</span><br><span class="line">    lintOnSave:false,</span><br><span class="line">    // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。</span><br><span class="line">    runtimeCompiler:false,</span><br><span class="line">    // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来。</span><br><span class="line">    transpileDependencies:[],</span><br><span class="line">    // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。</span><br><span class="line">    productionSourceMap:false,</span><br><span class="line">    // 设置生成的 HTML 中 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签的 crossorigin 属性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。</span><br><span class="line">    crossorigin:undefined,</span><br><span class="line">    // 在生成的 HTML 中的 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签上启用 Subresource Integrity (SRI)。如果你构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。另外，当启用 SRI 时，preload resource hints 会被禁用，因为 Chrome 的一个 bug 会导致文件被下载两次。</span><br><span class="line">    integrity:false,</span><br><span class="line">    // 反向代理</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        // devServer: &#123;</span><br><span class="line">        //     proxy: &#123;</span><br><span class="line">        //       &apos;/api&apos;: &#123;</span><br><span class="line">        //         target: &apos;1&apos;,</span><br><span class="line">        //         ws: true,</span><br><span class="line">        //         changeOrigin: true</span><br><span class="line">        //       &#125;</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>* cd xxx(项目名称)
 * yarn serve
-</code></pre>
+</code></pre><h5 id="vue开发技巧"><a href="#vue开发技巧" class="headerlink" title="vue开发技巧"></a>vue开发技巧</h5><ul>
+<li><a href="https://juejin.im/post/5ce3b519f265da1bb31c0d5f#heading-1" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> </li>
+<li>长列表性能优化<ul>
+<li>vue会通过Object.defineProperty对数据进行劫持，来实现视图响应数据的变化，有些时候我们的组件就是纯粹的数据展示，不会有任何改变，就不需要vue来劫持我们的数据，在大量数据展示的情况下，能够很明显的减少组件初始化的时间，如何禁止vue劫持我们的数据呢？<br><strong>可以通过object.freeze方法来冻结一个对象，一旦被冻结的对象就再也不能被修改了</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data: () =&gt; (&#123;</span><br><span class="line">    users: &#123;&#125;</span><br><span class="line">  &#125;),</span><br><span class="line">  async created() &#123;</span><br><span class="line">    const users = await axios.get(&quot;/api/users&quot;);</span><br><span class="line">    this.users = Object.freeze(users);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// 冻结了users的值，引用不会被冻结，当需要reactive数据的时候，可以重新给users赋值</span><br><span class="line">export default &#123;</span><br><span class="line">  data: () =&gt; (&#123;</span><br><span class="line">    users: []</span><br><span class="line">  &#125;),</span><br><span class="line">  async created() &#123;</span><br><span class="line">    const users = await axios.get(&quot;/api/users&quot;);</span><br><span class="line">    this.users = Object.freeze(users);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    // 改变值不会触发视图响应</span><br><span class="line">    this.users[0] = newValue</span><br><span class="line">    // 改变引用依然会触发视图响应</span><br><span class="line">    this.users = newArray</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -382,6 +389,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/08/npm与yarn/" rel="prev" title="npm与yarn">
+                npm与yarn <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -460,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -497,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue3-指vue-cli3-与vue2差异"><span class="nav-number">1.</span> <span class="nav-text">vue3(指vue-cli3)与vue2差异</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建项目，vue3比起vue2简单很多"><span class="nav-number">1.1.</span> <span class="nav-text">创建项目，vue3比起vue2简单很多</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue3-指vue-cli3-与vue2差异"><span class="nav-number">1.</span> <span class="nav-text">vue3(指vue-cli3)与vue2差异</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建项目，vue3比起vue2简单很多"><span class="nav-number">1.1.</span> <span class="nav-text">创建项目，vue3比起vue2简单很多</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue开发技巧"><span class="nav-number">1.2.</span> <span class="nav-text">vue开发技巧</span></a></li></ol></li></ol></div>
             
 
           </div>

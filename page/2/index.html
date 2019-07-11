@@ -268,6 +268,852 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/06/http/" itemprop="url">HTTP协议与安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T11:16:48+08:00">
+                2019-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="HTTP协议的主要特点"><a href="#HTTP协议的主要特点" class="headerlink" title="HTTP协议的主要特点"></a>HTTP协议的主要特点</h5><ul>
+<li>简单快速（每个资源是固定的url） </li>
+<li>灵活（通过头部type会有不同结果） </li>
+<li>无连接（连接一次就会断掉） </li>
+<li>无状态（客户端和服务端）</li>
+</ul>
+<h5 id="HTTP报文的组成部分"><a href="#HTTP报文的组成部分" class="headerlink" title="HTTP报文的组成部分"></a>HTTP报文的组成部分</h5><ol>
+<li>请求报文<ul>
+<li>请求行 （http方法 页面地址 http协议 http版本）</li>
+<li>请求头 （key val 值告诉服务端需要什么内容 注意类型）</li>
+<li>空行   （遇到空行时，下一个当着请求体）</li>
+<li>请求体</li>
+</ul>
+</li>
+<li>响应报文（状态行，响应头，空行，响应体） </li>
+</ol>
+<h5 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h5><ul>
+<li>1xx:指示信息，请求已接收，继续处理</li>
+<li>2xx 表示成功，请求已被成功接收</li>
+<li>3xx 表示需要进一步操作，重定向，完成请求必须进行进一步的操作</li>
+<li>4xx 表示浏览器方面出错，客户端错误，请求有语法错误或者请求无法实现</li>
+<li>5xx 表示服务器方面出错，服务端错误，服务器未能实现合法的请求</li>
+</ul>
+<h5 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h5><ul>
+<li>200 客户端请求成功</li>
+<li>206 客户发送一个带有range(范围)头的GET请求，服务器完成它（用于视频）    </li>
+<li>301 所请求的页面已经转移至新的url</li>
+<li>302 所请求的页面已经临时转移至新的url</li>
+<li>304 客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用</li>
+<li>400 客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 请求未经授权，这个状态码必须和WWW-Authenticate报文域一起使用 </li>
+<li>403 对被请求页面的访问被禁止</li>
+<li>404 请求资源不存在</li>
+<li>500 服务器发生不可预期的错误原来缓冲的文档还可以继续使用</li>
+<li>503 请求未完成，服务器临时过载或当机，一段时间后可能恢复正常<br><a href="http://www.runoob.com/http/http-status-codes.html" style="color: blue;" target="_blank" rel="noopener">想了解更多</a> </li>
+</ul>
+<h5 id="HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘"><a href="#HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘" class="headerlink" title="HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)"></a>HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)</h5><ul>
+<li>缓存分类<ul>
+<li>强缓存(以下两个缓存都下发，以后者为准)<ul>
+<li>Expires Expires:THu,21 Jan 2017 23:39/;02 GMT（绝对时间，客服端和服务器时间不一致，比较的时候，是一浏览器时间，下发是服务器时间）</li>
+<li>Cache-Control Cache-Control:max-age=3600（3600是相对时间）</li>
+</ul>
+</li>
+<li>协商缓存（和服务器协商）<ul>
+<li>Last-Modified If-Modified-Since Last-Modified: Web, 26 Jan 2017 23:39/;02 GMT</li>
+<li>Etag If-None-Match</li>
+</ul>
+</li>
+<li>与浏览器缓存相关的http头有哪些，就是以上几个</li>
+</ul>
+</li>
+<li>总结：<ul>
+<li>ETag 是通过对比浏览器和服务器资源的特征值（如MD5）来决定是否要发送文件内容，如果一样就只发送 304（not modified）</li>
+<li>Expires 是设置过期时间（绝对时间），但是如果用户的本地时间错乱了，可能会有问题</li>
+<li>CacheControl: max-age=3600 是设置过期时长（相对时间），跟本地时间无关<br><a href="https://imweb.io/topic/5795dcb6fb312541492eda8c" style="color: blue;" target="_blank" rel="noopener">详细了解 ETag、CacheControl、Expires 的异同</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h5><ul>
+<li>一般理解<ol>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求</li>
+<li>GET产生的URL地址可以被加入收藏栏，而POST不可以</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</li>
+<li>GET参数通过URL传递，POST放在Request body中</li>
+</ol>
+</li>
+<li>核心<ul>
+<li>就一个区别：语义——GET 用于获取资源，POST 用于提交资源<br><a href="https://zhuanlan.zhihu.com/p/22536382" style="color: blue;" target="_blank" rel="noopener"> 请参考 </a></li>
+</ul>
+</li>
+</ul>
+<h5 id="Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session"><a href="#Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session" class="headerlink" title="Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session"></a>Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session</h5><ul>
+<li>Cookie V.S. LocalStorage<ul>
+<li>主要区别是 Cookie 会被发送到服务器，而 LocalStorage 不会</li>
+<li>Cookie 一般最大 4k，LocalStorage 可以用 5Mb 甚至 10Mb（各浏览器不同）</li>
+</ul>
+</li>
+<li>LocalStorage V.S. SessionStorage<ul>
+<li>LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在会话结束时过期（如关闭浏览器）</li>
+</ul>
+</li>
+<li>Cookie V.S. Session<ul>
+<li>Cookie 存在浏览器的文件里，Session 存在服务器的文件里</li>
+<li>Session 是基于 Cookie 实现的，具体做法就是把 SessionID 存在 Cookie 里</li>
+</ul>
+</li>
+</ul>
+<h5 id="XSS（Cross-Site-Scripting）：跨越脚本攻击"><a href="#XSS（Cross-Site-Scripting）：跨越脚本攻击" class="headerlink" title="XSS（Cross-Site Scripting）：跨越脚本攻击"></a>XSS（Cross-Site Scripting）：跨越脚本攻击</h5><ul>
+<li>原理<ul>
+<li>不需要做任何的登录验证，核心原理向页面注入脚本</li>
+</ul>
+</li>
+<li>造成 XSS 有几个要点：<ol>
+<li>恶意用户可以提交内容</li>
+<li>提交的内容可以显示在另一个用户的页面上</li>
+<li>这些内容未经过滤，直接运行在另一个用户的页面上</li>
+</ol>
+</li>
+<li>XSS 的成因以及防御措施<ol>
+<li>后台模板问题：要后台输出的时候，将可疑的符号 &lt; 符号变成 &lt; （HTML实体）就行。</li>
+<li>前端代码问题：就是不要自己拼 HTML，尽量使用 text 方法。如果一定要使用 HTML，就把可疑符号变成 HTML 实体</li>
+</ol>
+</li>
+</ul>
+<h5 id="CSRF（Cross-Site-Request-Forgery）：跨站请求伪造"><a href="#CSRF（Cross-Site-Request-Forgery）：跨站请求伪造" class="headerlink" title="CSRF（Cross Site Request Forgery）：跨站请求伪造"></a>CSRF（Cross Site Request Forgery）：跨站请求伪造</h5><ul>
+<li>原理<ul>
+<li>攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面。</li>
+</ul>
+</li>
+<li>使用anti-csrf-token的方案。 具体方案如下：<ol>
+<li>服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面（一般埋入 form 表单内，<input type="hidden" name="_csrf_token" value="xxxx">）</li>
+<li>服务端设置setCookie，把该随机数作为cookie或者session种入用户浏览器</li>
+<li>当用户发送 GET 或者 POST 请求时带上_csrf_token参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括_csrf_token）</li>
+<li>后台在接受到请求后解析请求的cookie获取_csrf_token的值，然后和用户请求提交的_csrf_token做个比较，如果相等表示请求是合法的。</li>
+</ol>
+</li>
+<li>总结：<ol>
+<li>CSRF<ul>
+<li>(网站中某个接口存在漏洞，用户在这个注册网站确实登录过) </li>
+<li>防御措施 <ul>
+<li>Token验证：用户请求之后，会返回cookie信息，并且服务器向本地存储Token</li>
+<li>Referer验证: 页面来源，服务器判断页面来源是否是当前站点下的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>xss: 向xss注入的js不可执行  </li>
+</ol>
+</li>
+<li>两者区别<ul>
+<li>xss向页面注入js运行，js函数体去做想做的</li>
+<li>CSRF是利用本身的漏洞，帮你去执行相应的接口</li>
+</ul>
+</li>
+<li>推荐查阅资料<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/22521378" style="color: blue;" target="_blank" rel="noopener"> 文章 xsrf </a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22500730" style="color: blue;" target="_blank" rel="noopener"> 文章 xss </a></li>
+<li><a href="http://www.imooc.com/learn/812" style="color: blue;" target="_blank" rel="noopener"> 视频 csrf xss </a></li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/ cross-domain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/ cross-domain/" itemprop="url">跨域</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T22:08:28+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="跨域的几种解决方案"><a href="#跨域的几种解决方案" class="headerlink" title="跨域的几种解决方案"></a>跨域的几种解决方案</h4><h5 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h5><p><a href="https://zhuanlan.zhihu.com/p/22600501" style="color: blue;" target="_blank" rel="noopener">来龙去脉啦</a></p>
+<ul>
+<li>同源策略(Same origin Policy)：浏览器出于安全方面的考虑，只允许与同域下的接口交互。</li>
+<li>同域指的是？<ul>
+<li>同协议：都是http或者https</li>
+<li>同域名：都是<a href="http://baidu.com/a" target="_blank" rel="noopener">http://baidu.com/a</a> 和<a href="http://baidu.com/b" target="_blank" rel="noopener">http://baidu.com/b</a></li>
+<li>同端口：都是80端口</li>
+</ul>
+</li>
+<li>JSONP的原理<ol>
+<li>JSONP是通过 script 标签加载数据的方式去获取数据当做 JS 代码来执行</li>
+<li>提前在页面上声明一个函数，函数名通过<strong>接口传参</strong>的方式传给后台，后台解析到函数名后在原始数据上「包裹」这个函数名，发送给前端。换句话说，JSONP 需要对应接口的后端的配合才能实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// 简单的实现原理就是</span><br><span class="line"> &lt;script src=&quot;http://www.abc.com/?data=name&amp;callback=jsonp&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    jsonp showData(res) &#123;</span><br><span class="line">        console.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">// 借用大佬封装的代码</span><br><span class="line">function jsonp(setting) &#123;</span><br><span class="line">  setting.data = setting.data || &#123;&#125;;</span><br><span class="line">  setting.key = setting.key || &apos;callback&apos;;</span><br><span class="line">  setting.callback = setting.callback || function() &#123;&#125;;</span><br><span class="line">  setting.data[setting.key] = &apos;__onGetData__&apos;;</span><br><span class="line"></span><br><span class="line">  window.__onGetData__ = function(data) &#123;</span><br><span class="line">    setting.callback (data);</span><br><span class="line">  &#125;</span><br><span class="line">  var script = document.createElement(&apos;script&apos;);</span><br><span class="line">  var query = [];</span><br><span class="line">  for(var key in setting.data) &#123;</span><br><span class="line">    query.push( key + &apos;=&apos; + encodeURIComponent(setting.data[key]));</span><br><span class="line">  &#125;</span><br><span class="line">  script.src = setting.url + &apos;?&apos; + query.join(&apos;&amp;&apos;);</span><br><span class="line">  document.head.appendChild(script);</span><br><span class="line">  document.head.removeChild(script);</span><br><span class="line">&#125;</span><br><span class="line">jsonp(&#123;</span><br><span class="line">  url: &apos;http://api.baidu.com/weather.php&apos;,</span><br><span class="line">  callback: function(res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">jsonp(&#123;</span><br><span class="line">  url: &apos;http://photo.sina.cn/aj/index&apos;,</span><br><span class="line">  key: &apos;jsoncallback&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    cate: &apos;recommend&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  callback: function(res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" style="color: blue;" target="_blank" rel="noopener">CORS</a></h5><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" style="color: blue;" target="_blank" rel="noopener">阮一峰教程</a></p>
+<ul>
+<li>CORS需要浏览器和服务器同时支持</li>
+<li>实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。<br>在header信息中添加Origin<br>CORS与JSONP的使用目的相同，但是比JSONP更强大。<br>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</li>
+</ul>
+<h5 id="闭包（Closure）"><a href="#闭包（Closure）" class="headerlink" title="闭包（Closure）"></a>闭包（Closure）</h5><p><a href="https://zhuanlan.zhihu.com/p/22486908" style="color: blue;" target="_blank" rel="noopener">还是老师厉害</a></p>
+<ul>
+<li><strong>「函数」和「函数内部能访问到的变量」（也叫环境）的总和，就是一个闭包</strong></li>
+<li>平时我们的认知的闭包:「需要函数套函数，然后 return 一个函数的呀！」<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var local = 1;</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    local++;</span><br><span class="line">    return local;</span><br><span class="line">  &#125;</span><br><span class="line">  return bar; // return  window.bar = bar;</span><br><span class="line">&#125;</span><br><span class="line">var func = foo();</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="为什么要函数套函数呢？"><a href="#为什么要函数套函数呢？" class="headerlink" title="为什么要函数套函数呢？"></a>为什么要函数套函数呢？</h5><ul>
+<li>因为需要局部变量，所以才把 local 放在一个函数里，如果不把 local 放在一个函数里，local 就是一个全局变量了，达不到使用闭包的目的——隐藏变量<br>闭包的原文是 Closure，跟「包」没有任何关系。<br>所以函数套函数只是为了造出一个局部变量，跟闭包无关。</li>
+</ul>
+<h5 id="为什么要-return-bar-呢？"><a href="#为什么要-return-bar-呢？" class="headerlink" title="为什么要 return bar 呢？"></a>为什么要 return bar 呢？</h5><ul>
+<li>因为如果不 return，你就无法使用这个闭包。把 return bar 改成 window.bar = bar 也是一样的，只要让外面可以访问到这个 bar 函数就行了。</li>
+<li>所以 return bar 只是为了 bar 能被使用，也跟闭包无关。</li>
+</ul>
+<h5 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h5><ul>
+<li>闭包常常用来「间接访问一个变量」。换句话说，「隐藏一个变量」</li>
+<li>暴露一个访问器（函数），让别人可以「间接访问」</li>
+</ul>
+<h5 id="你们闭包会造成内存泄漏？"><a href="#你们闭包会造成内存泄漏？" class="headerlink" title="你们闭包会造成内存泄漏？"></a>你们闭包会造成内存泄漏？</h5><ul>
+<li>内存泄露是指你用不到（访问不到）的变量，依然占居着内存空间，不能被再次利用起来</li>
+<li>闭包里面的变量明明就是我们需要的变量，凭什么说是内存泄露？<ul>
+<li>因为 IE。IE 有 bug，IE 在我们使用完闭包之后，依然回收不了闭包里面引用的变量</li>
+<li>这是 IE 的问题，不是闭包的问题。<a href="http://www.cnblogs.com/rubylouvre/p/3345294.html#undefined" style="color: blue;" target="_blank" rel="noopener">参见司徒正美的这篇文章</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h5><ul>
+<li>声明一个匿名函数</li>
+<li>马上调用这个匿名函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125;)()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="那么为什么还要用另一对括号把匿名函数包起来呢？"><a href="#那么为什么还要用另一对括号把匿名函数包起来呢？" class="headerlink" title="那么为什么还要用另一对括号把匿名函数包起来呢？"></a>那么为什么还要用另一对括号把匿名函数包起来呢？</h5><ul>
+<li>为了兼容 JS 的语法</li>
+<li>不加的话，览器会报语法错误。想要通过浏览器的语法检查，必须加点小东西，比如下面几种都OK👌<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125; ()) // 用括号把整个表达式包起来</span><br><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125;) () //用括号把函数包起来</span><br><span class="line">!function()&#123;alert(&apos;我是匿名函数&apos;)&#125;() // 求反，我们不在意值是多少，只想通过语法检查</span><br><span class="line">+function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">-function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">~function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">void function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">new function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="立即执行函数有什么用？"><a href="#立即执行函数有什么用？" class="headerlink" title="立即执行函数有什么用？"></a>立即执行函数有什么用？</h5><ul>
+<li>创建一个独立的作用域。使这个作用域里面的变量，外面访问不到（即避免「变量污染」）</li>
+<li>以下经典案列<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var liList = ul.getElementsByTagName(&apos;li&apos;)</span><br><span class="line">for(var i = 0; i &lt; 6; i++) &#123;</span><br><span class="line">  liList[i].onclick = function() &#123;</span><br><span class="line">    alert(i); // 为什么 alert 出来的总是 6，而不是 0、1、2、3、4、5</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>i 是贯穿整个作用域的，而不是给每个 li 分配了一个 i，用户一定是在for运行完之后才点击，此时都i为6<br>用立即执行函数给每个 li 创造一个独立作用域即可（当然还有其他办法: 如 let）：<br><a href="https://jsbin.com/gicusajoqi/edit?html,js,output" style="color: blue;" target="_blank" rel="noopener">还原效果，click me!</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var ul = document.getElementsByTagName(&apos;ul&apos;)[0]</span><br><span class="line">var liList = ul.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">for(var i = 0; i &lt; 6; i++) &#123;</span><br><span class="line">  !function(ii) &#123;</span><br><span class="line">    liList[ii].onclick = function() &#123;</span><br><span class="line">      alert(ii); // 0、1、2、3、4、5</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在立即执行函数执行的时候，i 的值被赋值给 ii，此后 ii 的值一直不变。<br>i 的值从 0 变化到 5，对应 6 个立即执行函数，这 6 个立即执行函数里面的 ii 「分别」是 0、1、2、3、4、5。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/this/" itemprop="url">this</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T15:31:36+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="this到底指向谁呢？"><a href="#this到底指向谁呢？" class="headerlink" title="this到底指向谁呢？"></a>this到底指向谁呢？</h4><p><a href="https://zhuanlan.zhihu.com/p/25991271" style="color: blue;" target="_blank" rel="noopener">惊喜在这里</a></p>
+<h5 id="看自己平时积累了"><a href="#看自己平时积累了" class="headerlink" title="看自己平时积累了"></a>看自己平时积累了</h5><ol>
+<li>fn()           this =&gt; window/global</li>
+<li>obj.fn()       this =&gt; obj</li>
+<li>fn.call(xx)    this =&gt; xx</li>
+<li>fn.apply(xx)   this =&gt; xx</li>
+<li>fn.bind(xx)    this =&gt; xx</li>
+<li>new Fn()       this =&gt; 新创建的对象</li>
+<li>fn = ()=&gt; {}   this =&gt; 外面的 this</li>
+</ol>
+<h5 id="看调用"><a href="#看调用" class="headerlink" title="看调用"></a>看调用</h5><ul>
+<li>函数调用</li>
+<li>JS（ES5）里面有三种函数调用形式<ul>
+<li>func(p1, p2) </li>
+<li>obj.child.method(p1, p2)</li>
+<li>func.call(context, p1, p2)</li>
+</ul>
+</li>
+<li>一般我们都比较倾向于使用前两种，第三种不知道什么鬼东西呀<br>其他两种都是语法糖，可以等价地变为 call 形式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func(p1, p2) 等价于 func.call(undefined, p1, p2)</span><br><span class="line">obj.child.method(p1, p2) 等价于 obj.child.method.call(obj.child, p1, p2)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>函数调用只有一种形式</strong> ： func.call(context, p1, p2), context就是this</p>
+<h5 id="看看下面的举例"><a href="#看看下面的举例" class="headerlink" title="看看下面的举例"></a>看看下面的举例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function func() &#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;</span><br><span class="line">func();</span><br><span class="line">// 等价转化一下</span><br><span class="line">func.call(undefined) // 可简写为 func.call()， 结果就是window</span><br></pre></td></tr></table></figure>
+<p>是不是疑问应该是undefined呢？可不能忘记<strong>浏览器</strong>里有一条规则：</p>
+<ul>
+<li>如果你传的context是 null 或者 undefined，那window 对象就是默认的 context（但严格模式下（’use strict’）默认 context 是 undefined）</li>
+</ul>
+<p>如果你不想this是window，好说，那就这样吧： func.call(obj) // 那么里面的 this 就是 obj 对象了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  foo: function() &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.foo(); // 等价转化为obj.foo.call(obj) ，结果就是obj</span><br></pre></td></tr></table></figure></p>
+<p>看看下面的代码，是不是so easy! :(<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  foo: function() &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var bar = obj.foo;</span><br><span class="line">obj.foo(); // 转换为 obj.foo.call(obj)，this 就是 obj</span><br><span class="line">bar() </span><br><span class="line">// 转换为 bar.call(), 没有传 context, 所以 this 就是 undefined</span><br><span class="line">// 最后浏览器给你一个默认的 this —— window 对象</span><br></pre></td></tr></table></figure></p>
+<h5 id="类似-的，this怎么指向呢"><a href="#类似-的，this怎么指向呢" class="headerlink" title="类似 [] 的，this怎么指向呢"></a>类似 [] 的，this怎么指向呢</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function fn () &#123; </span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line">var arr = [fn, fn2];</span><br><span class="line">arr[0]() // arr 转换为 arr.0() arr.0.call(arr) (语法是有问题的，这样推理木有问题呀)</span><br></pre></td></tr></table></figure>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><strong>this 就是你 call 一个函数时，传入的第一个参数</strong></li>
+<li>如果你的函数调用形式不是 call 形式，请<strong>[转换代码]</strong>将其转换为 call 形式。</li>
+</ul>
+<h5 id="问题又来了，Event-Handler-中的-this-指什么呢？"><a href="#问题又来了，Event-Handler-中的-this-指什么呢？" class="headerlink" title="问题又来了，Event Handler 中的 this 指什么呢？"></a>问题又来了，Event Handler 中的 this 指什么呢？</h5><p>不知道ddEventListener 的源代码，怎么办呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(&apos;click&apos; ,function handler()&#123;</span><br><span class="line">  console.log(this) // 请问这里的 this 是什么</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#The_value_of_this_within_the_handler" style="color: blue;" target="_blank" rel="noopener">MDN 对this解释</a></p>
+<ul>
+<li>通常来说this的值是触发事件的元素的引用，这种特性在多个相似的元素使用同一个通用事件监听器时非常让人满意。 </li>
+<li>当使用 addEventListener() 为一个元素注册事件的时候，句柄里的 this 值是该元素的引用。其与传递给句柄的 event 参数的 currentTarget 属性的值一样。<br>所以你可以想浏览器的源码是这样写的：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 当事件被触发时</span><br><span class="line">handler.call(event.currentTarget, event) </span><br><span class="line">// 那么 this 是什么不言而喻</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="jQuery-Event-Handler-中的-this"><a href="#jQuery-Event-Handler-中的-this" class="headerlink" title="jQuery Event Handler 中的 this"></a>jQuery Event Handler 中的 this</h5><p>下面代码中的 this 是什么呢：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ul.on(&apos;click&apos;, &apos;li&apos; , function()&#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.jquery123.com/on/" style="color: blue;" target="_blank" rel="noopener">jQuery 文档是这样写的:</a></p>
+<ul>
+<li>当jQuery的调用处理程序时，this关键字指向的是当前正在执行事件的元素。对于直接事件而言，this 代表绑定事件的元素。</li>
+<li><strong>对于代理事件而言，this 则代表了与 selector 相匹配的元素</strong>。(注意，如果事件是从后代元素冒泡上来的话，那么 this 就有可能不等于 event.target。)若要使用 jQuery 的相关方法，可以根据当前元素创建一个 jQuery 对象，即使用 $(this)。</li>
+</ul>
+<h5 id="总结一下如何确定-this-的值"><a href="#总结一下如何确定-this-的值" class="headerlink" title="总结一下如何确定 this 的值"></a>总结一下如何确定 this 的值</h5><ol>
+<li>看源码中对应的函数是怎么被 call 的（这是最靠谱的办法）</li>
+<li>看文档</li>
+<li>console.log(this)</li>
+<li>不要瞎猜，你猜不到的:(</li>
+</ol>
+<h5 id="如何强制指定-this-的值，call-apply-即可："><a href="#如何强制指定-this-的值，call-apply-即可：" class="headerlink" title="如何强制指定 this 的值，call/apply 即可："></a>如何强制指定 this 的值，call/apply 即可：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function handlerWrapper(event) &#123;</span><br><span class="line">  function handler() &#123;</span><br><span class="line">    console.log(this); // 请问这里的 this 是什么</span><br><span class="line">  &#125;</span><br><span class="line">  handler.call(&#123;name: &apos;xlc&apos;&#125;, event)</span><br><span class="line">&#125;</span><br><span class="line">btn.addEventListener(&apos;click&apos;, handlerWrapper);</span><br><span class="line">// 也可以直接使用bind</span><br><span class="line">function handler() &#123;</span><br><span class="line">  console.log(this); // 请问这里的 this 是什么</span><br><span class="line">&#125;</span><br><span class="line">var handlerWrapper = handler.bind(&#123;name: &apos;xlc&apos;&#125;)</span><br><span class="line">btn.addEventListener(&apos;click&apos;, handlerWrapper);</span><br><span class="line">// 上面代码可以简化为</span><br><span class="line">btn.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(this); // 请问这里的 this 是什么</span><br><span class="line">&#125;.bind(&#123;name: &apos;xlc&apos;&#125;))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/es6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/es6/" itemprop="url">ES6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T10:03:29+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="ES6-语法及应用"><a href="#ES6-语法及应用" class="headerlink" title="ES6 语法及应用"></a>ES6 语法及应用</h4><p><a href="https://fangyinghang.com/es-6-tutorials/" style="color: blue;" target="_blank" rel="noopener">es6学习可参照</a></p>
+<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ul>
+<li>块级作用域： 由一对大括号{}界定</li>
+<li>块级变量 let：声明一个块级作用域的本地变量，可选的将其初始化为一个值</li>
+<li>块级常量 const: 常量的值不能通过重新赋值来改变，并且不能重新声明(<strong> 是否指向同一个内存地址 </strong>)</li>
+</ul>
+<h5 id="let、const与var的区别"><a href="#let、const与var的区别" class="headerlink" title="let、const与var的区别"></a>let、const与var的区别</h5><ul>
+<li>var<ul>
+<li>可以重复定义</li>
+<li>可以随意更改</li>
+<li>没有块级作用域</li>
+</ul>
+</li>
+<li>let与const<ul>
+<li>在同一个块级作用域中，不允许重复定义</li>
+<li>const定义的变量不允许二次修改</li>
+<li>let和const定义的变量会形成块级作用域</li>
+<li>它们定义的变量不存在变量提升，以及存在暂时性死区</li>
+</ul>
+</li>
+</ul>
+<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><ul>
+<li>sum = (a, b) =&gt; a + b</li>
+<li>nums.forEach( v =&gt; { console.log(v) })</li>
+<li>强大之处 this指向不会更改</li>
+</ul>
+<h5 id="参数处理"><a href="#参数处理" class="headerlink" title="参数处理"></a>参数处理</h5><ul>
+<li><p>默认参数值: 允许在没有值或undefined被传入时使用默认形参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function multiply(a, b = 1) &#123;</span><br><span class="line">  return a * b;</span><br><span class="line">&#125;</span><br><span class="line">console.log(multiply(5, 2)); // 10</span><br><span class="line">console.log(multiply(5)); // 5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>剩余参数: 允许将一个不定数量的参数（theArgs）表示为一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function sum(...theArgs) &#123;</span><br><span class="line">  return theArgs.reduce((previous, current) =&gt; &#123;</span><br><span class="line">    return previous + current;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(sum(1, 2, 3)); // 6</span><br><span class="line">console.log(sum(1, 2, 3, 4)); // 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>展开运算符: 函数调用时，将表达式(数组/对象-简单的数据类型)做对应语法的展开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function sum(x, y, z) &#123;</span><br><span class="line">  return x + y + z;</span><br><span class="line">&#125;</span><br><span class="line">const numbers = [1, 2, 3];</span><br><span class="line">console.log(sum(...numbers)); // 6</span><br><span class="line">console.log(sum.apply(null, numbers)); // 6</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="模板字面量：允许嵌入表达式的字符串字面量-反引号包裹字符串"><a href="#模板字面量：允许嵌入表达式的字符串字面量-反引号包裹字符串" class="headerlink" title="模板字面量：允许嵌入表达式的字符串字面量, 反引号包裹字符串"></a>模板字面量：允许嵌入表达式的字符串字面量, 反引号包裹字符串</h5><ul>
+<li>多行字符串 <code>字符串内容</code></li>
+<li>字符串插值 <code>${字符串变量}</code></li>
+<li>带标签的模板字面量</li>
+<li>原始字符串</li>
+</ul>
+<h5 id="解构赋值-将值从数组，或属性从对象，提取到不同的变量中"><a href="#解构赋值-将值从数组，或属性从对象，提取到不同的变量中" class="headerlink" title="解构赋值: 将值从数组，或属性从对象，提取到不同的变量中"></a>解构赋值: 将值从数组，或属性从对象，提取到不同的变量中</h5><ul>
+<li>数组匹配 [ b, a ] = [ a, b ]</li>
+<li>对象匹配 let obj = {a: 1, b: 23}; let { a, b, c } = obj;  </li>
+<li>参数匹配 function fun({ name: n, val: v }) {}</li>
+</ul>
+<h5 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h5><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import" style="color: blue;" target="_blank" rel="noopener">导入import</a> ：导入由另一个模块导出的绑定<ul>
+<li>import {foo, bar as b} from ‘/xxx.js’;</li>
+<li>常使用导入多个接口，或者重命名接口名称都很实用</li>
+</ul>
+</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export" style="color: blue;" target="_blank" rel="noopener">导出export</a></li>
+<li>默认导出 export default: export default function(){} / export default class {}</li>
+</ul>
+<h5 id="类"><a href="#类" class="headerlink" title="类"></a>类</h5><ul>
+<li>使用 extends 实现继承</li>
+<li>重写构造器</li>
+<li>super 关键字</li>
+</ul>
+<h6 id="是否有class关键字实现继承"><a href="#是否有class关键字实现继承" class="headerlink" title="是否有class关键字实现继承"></a>是否有class关键字实现继承</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Animal(color)&#123;</span><br><span class="line">    this.color = color</span><br><span class="line">&#125;</span><br><span class="line">Animal.prototype.move = function() &#123;&#125;</span><br><span class="line">function Dog(color, name) &#123;</span><br><span class="line">    Animal.call(this, color); // 或者 Animal.apply(this, arguments)</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">// 下面三行实现 Dog.prototype.__proto__ = Animal.prototype</span><br><span class="line">function temp() &#123;&#125;</span><br><span class="line">temp.prototye = Animal.prototype;</span><br><span class="line">Dog.prototype = new temp();</span><br><span class="line">Dog.prototype.constuctor = Dog;</span><br><span class="line">Dog.prototype.say = function()&#123; console.log(&apos;汪&apos;)&#125;</span><br><span class="line">var dog = new Dog(&apos;白色&apos;,&apos;咪汪&apos;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">    constructor(color) &#123;</span><br><span class="line">        this.color = color</span><br><span class="line">    &#125;</span><br><span class="line">    move()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Dog extends Animal &#123;</span><br><span class="line">    constructor(color, name) &#123;</span><br><span class="line">        super(color)</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    say() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="原有内置对象-API-增强"><a href="#原有内置对象-API-增强" class="headerlink" title="原有内置对象 API 增强"></a>原有内置对象 API 增强</h5><ul>
+<li>常用<ul>
+<li>Object.assign：将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。Object.assign(target, …source);</li>
+<li>Array.from: 从一个类似数组或可迭代对象中创建一个新的数组实例。Array.from(arrayLike[, mapFn[, thisArg]])</li>
+</ul>
+</li>
+</ul>
+<h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><h6 id="Promise-一个异步操作的最终状态（完成或失败），以及该异步操作的结果值"><a href="#Promise-一个异步操作的最终状态（完成或失败），以及该异步操作的结果值" class="headerlink" title="Promise: 一个异步操作的最终状态（完成或失败），以及该异步操作的结果值"></a>Promise: 一个异步操作的最终状态（完成或失败），以及该异步操作的结果值</h6><pre><code>* pending: 初始状态，既不是成功，也不是失败状态。
+* fulfilled: 操作成功完成。
+* rejected: 操作失败。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    return new Promise((resolve, reject)=&gt;&#123;</span><br><span class="line">        成功时调用 resolve(数据)</span><br><span class="line">        失败时调用 reject(错误)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">fn().then(success, fail).then(success2, fail2)</span><br></pre></td></tr></table></figure>
+<h6 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h6><ul>
+<li>promise1和promise2<strong>都成功</strong>，才会调用success1</li>
+<li>promise1和promise2有<strong>一个失败</strong>，都会调用fail1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([promise1, promise2]).then(success1, fail1)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h6><ul>
+<li>promise1和promise2只要有<strong>一个成功</strong>就会调用success1</li>
+<li>promise1和promise2<strong>都失败</strong>，才会调用fail1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.race([promise1, promise2]).then(success1, fail1)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="手写一个-Promise-参考"><a href="#手写一个-Promise-参考" class="headerlink" title="手写一个 Promise 参考"></a>手写一个 Promise <a href="https://juejin.im/post/5aafe3edf265da238f125c0a" style="color: blue;" target="_blank" rel="noopener">参考</a></h5><h5 id="async-与-await"><a href="#async-与-await" class="headerlink" title="async 与 await"></a>async 与 await</h5><ul>
+<li>与Promise相关，</li>
+<li>如果是异步函数， 它的语法和结构会更像是标准的<strong>同步函数</strong></li>
+</ul>
+<ol>
+<li><p>promise实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      let n = parseInt(Math.random() * 6 + 1, 10); // [0, 5)</span><br><span class="line">      resolve(n);</span><br><span class="line">    &#125;, 3000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">fn().then(</span><br><span class="line">  (n) =&gt; &#123;</span><br><span class="line">    console.log(&apos;成功返回骰子数&apos; + n);</span><br><span class="line">  &#125;,</span><br><span class="line">  (err) =&gt; &#123;</span><br><span class="line">    console.log(&apos;失败返回!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>await的简单使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">  // test的执行，或者n的赋值一定是在3s之后才执行</span><br><span class="line">  let n = await fn();</span><br><span class="line">  console.log(n);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>await语法中error错误处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function fn(params) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      let n = parseInt(Math.random() * 6 + 1, 10); // [0, 6)</span><br><span class="line">      if (n &gt; 3) &#123;</span><br><span class="line">        if (params === ‘大’) &#123;</span><br><span class="line">          resolve(n);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(n);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        if (params === ‘小’) &#123;</span><br><span class="line">          resolve(n);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(n);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 3000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">async function test() &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    let n = await fn(&apos;大&apos;);</span><br><span class="line">    console.log(&apos;猜中了&apos; + n);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(&apos;输了&apos; + error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时调用fn函数，Promise处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([fn(&apos;大&apos;), fn(&apos;大&apos;)]).then(</span><br><span class="line">  res =&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error =&gt; &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时调用fn函数，await处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">  // test的执行，或者n的赋值一定是在3s之后才执行</span><br><span class="line">  try &#123;</span><br><span class="line">    let n = await Promise.all([fn(&apos;大&apos;), fn(&apos;大&apos;)]);</span><br><span class="line">    console.log(&apos;猜中了&apos; + n);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(&apos;输了&apos; + error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p> async与await返回的都是Promise,async与await可理解为Promise的语法糖<br> <a href="http://es6.ruanyifeng.com/?search=async&x=0&y=0#docs/async" style="color: blue;" target="_blank" rel="noopener">想了解更多，看阮一峰-es6教程</a></p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/vertical-center/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1225,286 +2071,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/三栏布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/29/三栏布局/" itemprop="url">页面布局-三栏布局实现方案</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T15:52:19+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应"><a href="#假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应" class="headerlink" title="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应"></a>假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应</h3><h4 id="以下五种实现方案"><a href="#以下五种实现方案" class="headerlink" title="以下五种实现方案"></a>以下五种实现方案</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 公共的css样式`</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    html * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout &#123;</span><br><span class="line">        margin-top: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout article div &#123;</span><br><span class="line">        min-height: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="float实现"><a href="#float实现" class="headerlink" title="float实现"></a>float实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.float .left &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .right &#123;</span><br><span class="line">            float: right;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .center &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-right-center&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;浮动解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="position实现"><a href="#position实现" class="headerlink" title="position实现"></a>position实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.absolute .left-center-right &gt; div &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .left &#123;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .center&#123;</span><br><span class="line">            left: 300px;</span><br><span class="line">            right: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;绝对定位解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="flex实现"><a href="#flex实现" class="headerlink" title="flex实现"></a>flex实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout flexbox&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.flexbox &#123;</span><br><span class="line">            margin-top: 140px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left-center-right &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .center&#123;</span><br><span class="line">            flex: 1;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;flexbox解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="table实现"><a href="#table实现" class="headerlink" title="table实现"></a>table实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">     &lt;style&gt;</span><br><span class="line">        .layout.table .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: table;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left-center-right &gt; div &#123;</span><br><span class="line">            display: table-cell;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;table表格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="grid实现"><a href="#grid实现" class="headerlink" title="grid实现"></a>grid实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.grid .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: grid;</span><br><span class="line">            grid-template-rows: 100px;</span><br><span class="line">            grid-template-columns: 300px auto 300px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .left &#123;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .right &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;grid网格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="五种方案比较"><a href="#五种方案比较" class="headerlink" title="五种方案比较"></a>五种方案比较</h4><ul>
-<li>float：清除浮动，脱离文档流，处理不好，带来很多问题，本身的局限性，兼容性比较好</li>
-<li>position：快捷，不容易出现问题，布局已经脱离文档流，下面的子元素也要脱离文档流，导致可使用性、有效性差</li>
-<li>flex：解决上面float、position的不足，兼容性不好，主要应用移动端</li>
-<li>table：table-cell,很多场景中适用，兼容性好</li>
-<li>grid：网格布局，新技术，可做很多复杂事情</li>
-<li><strong>flex与table-cell</strong>两种看应用场景使用</li>
-</ul>
-<h4 id="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"><a href="#如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用" class="headerlink" title="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"></a>如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用</h4><ul>
-<li>推荐flex与table</li>
-<li>float 需要创建bfc</li>
-</ul>
-<h4 id="大家也可以扩展延伸"><a href="#大家也可以扩展延伸" class="headerlink" title="大家也可以扩展延伸"></a>大家也可以扩展延伸</h4><h5 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h5><ul>
-<li>左右宽度固定，中间自适应</li>
-<li>上下高度固定，中间自适应</li>
-</ul>
-<h5 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h5><ul>
-<li>左宽度固定，右自适应</li>
-<li>右宽度固定，左自适应</li>
-<li>上高度固定，下自适应</li>
-<li>下高度固定，上自适应</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/29/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T10:58:14+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1552,7 +2123,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

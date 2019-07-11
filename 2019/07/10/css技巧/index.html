@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="css的一些使用技巧（含css3）按钮渐变动画效果 改变渐变的位置123456789button &amp;#123;    background-image: linear-gradient(#5187c4, #1c2f45);    background-size: auto 200%;    background-position: 0 100%;    transition: background">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css技巧">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/css技巧/index.html">
+<meta property="og:site_name" content="anluofly">
+<meta property="og:description" content="css的一些使用技巧（含css3）按钮渐变动画效果 改变渐变的位置123456789button &amp;#123;    background-image: linear-gradient(#5187c4, #1c2f45);    background-size: auto 200%;    background-position: 0 100%;    transition: background">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-10T02:28:55.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css技巧">
+<meta name="twitter:description" content="css的一些使用技巧（含css3）按钮渐变动画效果 改变渐变的位置123456789button &amp;#123;    background-image: linear-gradient(#5187c4, #1c2f45);    background-size: auto 200%;    background-position: 0 100%;    transition: background">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/css技巧/">
+
+
+
+
+
+  <title>css技巧 | anluofly</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">anluofly</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小懒虫，其实你并不懒</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/css技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-10T09:43:41+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="css的一些使用技巧（含css3）"><a href="#css的一些使用技巧（含css3）" class="headerlink" title="css的一些使用技巧（含css3）"></a>css的一些使用技巧（含css3）</h4><h5 id="按钮渐变动画效果"><a href="#按钮渐变动画效果" class="headerlink" title="按钮渐变动画效果"></a>按钮渐变动画效果</h5><ul>
+<li>改变渐变的位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">    background-image: linear-gradient(#5187c4, #1c2f45);</span><br><span class="line">    background-size: auto 200%;</span><br><span class="line">    background-position: 0 100%;</span><br><span class="line">    transition: background-position 0.5s;</span><br><span class="line">&#125;    </span><br><span class="line">button:hover &#123;</span><br><span class="line">    background-position: 0 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="包裹长文本（不确定长度）"><a href="#包裹长文本（不确定长度）" class="headerlink" title="包裹长文本（不确定长度）"></a>包裹长文本（不确定长度）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pre &#123;</span><br><span class="line">    white-space: pre-line;</span><br><span class="line">    word-wrap: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css设置模糊文本"><a href="#css设置模糊文本" class="headerlink" title="css设置模糊文本"></a>css设置模糊文本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.blurry-text &#123;</span><br><span class="line">   color: transparent;</span><br><span class="line">   text-shadow: 0 0 5px rgba(0,0,0,0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="用css实现省略号动画"><a href="#用css实现省略号动画" class="headerlink" title="用css实现省略号动画"></a>用css实现省略号动画</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.loading:after &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    content:  &quot;\2026&quot;; /* ascii code for the ellipsis character */</span><br><span class="line">    animation: ellipsis 2s infinite;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes ellipsis &#123;</span><br><span class="line">    from &#123;</span><br><span class="line">        width: 2px;</span><br><span class="line">    &#125;</span><br><span class="line">    to &#123;</span><br><span class="line">        width: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="样式重置"><a href="#样式重置" class="headerlink" title="样式重置"></a>样式重置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">    border: 0;</span><br><span class="line">    font-size: 100%;</span><br><span class="line">    font: inherit;</span><br><span class="line">    vertical-align: baseline;</span><br><span class="line">    outline: none;</span><br><span class="line">    -webkit-box-sizing: border-box;</span><br><span class="line">    -moz-box-sizing: border-box;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line">html &#123; height: 101%; &#125;</span><br><span class="line">body &#123; font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, sans-serif; &#125;</span><br><span class="line">article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section &#123; display: block; &#125;</span><br><span class="line">ol, ul &#123; list-style: none; &#125;</span><br><span class="line">blockquote, q &#123; quotes: none; &#125;</span><br><span class="line">blockquote:before, blockquote:after, q:before, q:after &#123; content: &apos;&apos;; content: none; &#125;</span><br><span class="line">strong &#123; font-weight: bold; &#125; </span><br><span class="line">table &#123; border-collapse: collapse; border-spacing: 0; &#125;</span><br><span class="line">img &#123; border: 0; max-width: 100%; &#125;</span><br><span class="line">p &#123; font-size: 1.2em; line-height: 1.0em; color: #333; &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css清除浮动"><a href="#css清除浮动" class="headerlink" title="css清除浮动"></a>css清除浮动</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &quot;.&quot;; </span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">    line-height: 0;</span><br><span class="line">    height: 0; </span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123; display: inline-block; &#125;</span><br><span class="line">html[xmlns] .clearfix &#123; display: block; &#125;</span><br><span class="line">* html .clearfix &#123; height: 1%; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .container:after &#123; content: &quot;&quot;; display: table; &#125;</span><br><span class="line">.clearfix:after &#123; clear: both; &#125;</span><br><span class="line">/* IE 6/7 */</span><br><span class="line">.clearfix &#123; zoom: 1; &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="自定义文本选中后的颜色"><a href="#自定义文本选中后的颜色" class="headerlink" title="自定义文本选中后的颜色"></a>自定义文本选中后的颜色</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.txt::selection &#123; </span><br><span class="line">    background: #e2eae2; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css设置背景渐变"><a href="#css设置背景渐变" class="headerlink" title="css设置背景渐变"></a>css设置背景渐变</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.colorbox &#123;</span><br><span class="line">    background: #629721;</span><br><span class="line">    background-image: -webkit-gradient(linear, left top, left bottom, from(#83b842), to(#629721));</span><br><span class="line">    background-image: -webkit-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -moz-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -ms-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -o-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: linear-gradient(top, #83b842, #629721);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css原图案"><a href="#css原图案" class="headerlink" title="css原图案"></a>css原图案</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background: radial-gradient(circle, white 10%, transparent 10%),</span><br><span class="line">    radial-gradient(circle, white 10%, black 10%) 50px 50px;</span><br><span class="line">    background-size: 100px 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://juejin.im/post/5b1f41246fb9a01e725131fb" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/09/grid/" rel="next" title="grid">
+                <i class="fa fa-chevron-left"></i> grid
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">小懒虫</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#css的一些使用技巧（含css3）"><span class="nav-number">1.</span> <span class="nav-text">css的一些使用技巧（含css3）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#按钮渐变动画效果"><span class="nav-number">1.1.</span> <span class="nav-text">按钮渐变动画效果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包裹长文本（不确定长度）"><span class="nav-number">1.2.</span> <span class="nav-text">包裹长文本（不确定长度）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css设置模糊文本"><span class="nav-number">1.3.</span> <span class="nav-text">css设置模糊文本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用css实现省略号动画"><span class="nav-number">1.4.</span> <span class="nav-text">用css实现省略号动画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样式重置"><span class="nav-number">1.5.</span> <span class="nav-text">样式重置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css清除浮动"><span class="nav-number">1.6.</span> <span class="nav-text">css清除浮动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义文本选中后的颜色"><span class="nav-number">1.7.</span> <span class="nav-text">自定义文本选中后的颜色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css设置背景渐变"><span class="nav-number">1.8.</span> <span class="nav-text">css设置背景渐变</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css原图案"><span class="nav-number">1.9.</span> <span class="nav-text">css原图案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
