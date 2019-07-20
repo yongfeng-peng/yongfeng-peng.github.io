@@ -1912,6 +1912,25 @@
 <li>javascript 在定义数组的时候允许最后一个元素后跟一个,(分号)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let str = [,,,].join(); // ,,</span><br><span class="line">let str = [,,1,].join(&apos;.&apos;).length;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h5 id="普通函数与箭头函数的区别"><a href="#普通函数与箭头函数的区别" class="headerlink" title="普通函数与箭头函数的区别"></a>普通函数与箭头函数的区别</h5><ul>
+<li>this指向的问题，会捕获其所在上下文的this值，作为自己的this值</li>
+<li><p>箭头函数不绑定arguments，取而代之用reset参数解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 箭头函数</span><br><span class="line">let foo = (...args) =&gt; &#123;</span><br><span class="line">  return args[0];</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo(1));</span><br><span class="line">// 普通函数</span><br><span class="line">fun() &#123;</span><br><span class="line">    console.log(argument[0]);</span><br><span class="line">&#125;</span><br><span class="line">console.log(fun(1, 34));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数不能用作构造器，和new一起用就会抛出错误</p>
+</li>
+<li>箭头函数没有原型属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var foo = () =&gt; &#123;&#125;;</span><br><span class="line">console.log(foo.prototype) // undefined</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="js常见的自认为正确的问题"><a href="#js常见的自认为正确的问题" class="headerlink" title="js常见的自认为正确的问题"></a>js常见的自认为正确的问题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var array = [];</span><br><span class="line">for(var i = 0; i &lt;3; i++) &#123;</span><br><span class="line">    array.push(() =&gt; i);</span><br><span class="line">console.log(array);</span><br><span class="line">&#125;</span><br><span class="line">var newArray = array.map(el =&gt; el());</span><br><span class="line">console.log(newArray); // [3, 3, 3]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解决问题为什么不是0,1,2</li>
+<li>var声明变量，三个箭头函数体中的每个i，都指向<strong>相同的绑定</strong>，所以它们在循环结束时返回相同的值3</li>
+<li>解决方法1，把var改为let（let 声明一个具有块级作用域的变量，每个循环迭代创建一个新的绑定）</li>
+<li>解决方式2，使用闭包<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var array = [];</span><br><span class="line">for(var i = 0; i &lt;3; i++) &#123;</span><br><span class="line">    array[i] = (function(x) &#123;</span><br><span class="line">        return function() &#123;</span><br><span class="line">            return x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i);</span><br><span class="line">&#125;</span><br><span class="line">var newArray = array.map(el =&gt; el());</span><br><span class="line">console.log(newArray); // [3, 3, 3]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##### </p>
 
           
         
