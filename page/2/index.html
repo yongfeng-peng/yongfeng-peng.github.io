@@ -268,6 +268,145 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/小程序引入iconfont踩坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anluofly">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/03/小程序引入iconfont踩坑/" itemprop="url">小程序引入iconfont踩坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-03T16:48:26+08:00">
+                2019-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="小程序引入iconfont踩坑"><a href="#小程序引入iconfont踩坑" class="headerlink" title="小程序引入iconfont踩坑"></a>小程序引入iconfont踩坑</h4><ul>
+<li>在<a href="https://www.iconfont.cn/" style="color: blue;" target="_blank" rel="noopener">阿里巴巴</a>把需要的图标加入购物车</li>
+<li>添加到项目，没项目新建一个</li>
+<li>下载到本地</li>
+<li><p>找到iconfont.css把代码复制到小程序项目到app.wxss或者拷贝到static,通过css方式引入<strong>不想全局引用，可单独在对应wxss中使用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;./static/iconfont/iconfont.wxss&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换iconfont.css中的@font-face为上面的生成代码</p>
+</li>
+<li><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text class=&apos;iconfont icon-jiazai&apos;&gt;&lt;/text&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>注意是iconfont不是icon</strong> 坑了我几个小时，还是踩坑太少</p>
+</li>
+<li><p>每次重新添加icon到项目需要<strong>重新替换</strong>@font-face为上面的生成代码，并且把新添加的图标加入iconfont.wxss</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &apos;iconfont&apos;;  /* project id 1274544 */</span><br><span class="line">  src: url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.eot&apos;);</span><br><span class="line">  src: url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.woff2&apos;) format(&apos;woff2&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.woff&apos;) format(&apos;woff&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.ttf&apos;) format(&apos;truetype&apos;),</span><br><span class="line">  url(&apos;//at.alicdn.com/t/font_1274544_5eej6szwu1j.svg#iconfont&apos;) format(&apos;svg&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>看起来很简单，可自己就是犯了很多低级错误rve</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1966,167 +2105,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/class-bfc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="anluofly">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/02/class-bfc/" itemprop="url">BFC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-02T10:58:55+08:00">
-                2019-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h4><ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">详细概念 MDN</a></li>
-<li>BFC全称为Block Formatting Context,即块级格式化上下文，就是<strong>一个独立的渲染区域</strong></li>
-<li>可以简单理解为： BFC为<strong>某个元素的一个CSS属性</strong>，只不过这个属性不能<strong>被开发者显式的修改</strong>，拥有这个属性的元素对内部元素和外部元素会表现出一些特性，这就是BFC。</li>
-</ul>
-<h4 id="BFC特点："><a href="#BFC特点：" class="headerlink" title="BFC特点："></a>BFC特点：</h4><ul>
-<li>BFC这个元素垂直方向的边距会发生重叠</li>
-<li>BFC的区域不会与浮动元素的box重叠</li>
-<li>BFC在页面上是一个独立的元素，内外元素不会互相影响</li>
-<li>BFC计算高度的时候，浮动元素也会计算</li>
-</ul>
-<h4 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h4><ul>
-<li>float: 值不为none</li>
-<li>overflow: 值为hidden或atuo给父元素</li>
-<li>position：值不为static或relative</li>
-<li>display：值为table(table、table-cell、table-caption等)相关的属性</li>
-</ul>
-<h4 id="BFC应用场景"><a href="#BFC应用场景" class="headerlink" title="BFC应用场景"></a>BFC应用场景</h4><ul>
-<li>了解BFC主要知道它的应用场景就可以了<br>1.防止垂直margin重叠：<ul>
-<li>父子元素的边界重叠解决方案：在父元素上加上overflow:hidden;使其成为BFC<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;style&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        background: #E7A1C5;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    .parent .child &#123;</span><br><span class="line">        background: #C8CDF5;</span><br><span class="line">        height: 100px;</span><br><span class="line">        margin-top: 10px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;section class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;article class=&quot;child&quot;&gt;&lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li><p>兄弟元素的边界重叠，在第二个子元素创建一个BFC上下文</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    #margin &#123;</span><br><span class="line">        background: #E7A1C5;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        width: 300px;</span><br><span class="line">    &#125;</span><br><span class="line">    #margin  p &#123;</span><br><span class="line">        background: #C8CDF5;</span><br><span class="line">        margin: 20px auto 30px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;section id=&quot;margin&quot;&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div style=&quot;overflow:hidden;&quot;&gt;</span><br><span class="line">        &lt;p&gt;2&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;p&gt;3&lt;/p&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自适应两栏布局 </p>
-</li>
-</ol>
-<ul>
-<li>BFC不会与float元素发生重叠<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;layout&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #layout &#123;</span><br><span class="line">            background: red;</span><br><span class="line">        &#125;</span><br><span class="line">        #layout .left &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background: pink;</span><br><span class="line">        &#125;</span><br><span class="line">        #layout .right &#123;</span><br><span class="line">            height: 110px;</span><br><span class="line">            background: #ccc;</span><br><span class="line">            overflow: auto;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="4">
-<li>BFC清除内部浮动</li>
-</ol>
-<ul>
-<li>父元素#float的高度为0，解决方案为为父元素#float创建BFC，这样浮动子元素的高度也会参与到父元素的高度计算<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section id=&quot;float&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #float &#123;</span><br><span class="line">            overflow: auto;</span><br><span class="line">            background: red;</span><br><span class="line">        &#125;</span><br><span class="line">        #float .child &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            font-size: 30px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;我是浮动元素&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2179,7 +2157,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
