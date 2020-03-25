@@ -8,7 +8,7 @@ subtitle: 生活百般滋味，你要笑着面对😊
 description: (女英
 keywords:
 author: yongfeng.peng
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -21,7 +21,7 @@ permalink_defaults:
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: 标签
+tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
@@ -31,7 +31,7 @@ skip_render:
 # menu:
 Home: /
 Archives: /archives
-About: /about
+About: /404.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
