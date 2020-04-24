@@ -13,6 +13,7 @@ tags:
 ##### VScode快捷键
 * <a href="https://juejin.im/post/5d34fdfff265da1b897b0c8d">To Learn More...</a>
 * ctrl + shift + f(command + shift + f)项目目录中，搜索任何匹配的文本
+* 合并行 Control + J
 **左侧可以单击小箭头，出现第二框，即替换的内容**
 
 * 为 tabs 设置强调色（Material Theme）（Command + K 再 Command + T）
@@ -28,7 +29,7 @@ tags:
 * 重新打开关闭的编辑页面（Windows: Ctrl + Shift + T Mac: command + Shift + T）
 
 * 通过匹配文本打开文件
-    * Windows: Ctrl + T Mac: command + T
+    * Windows: Ctrl + T Mac: command + Tconsole.log();
     
 * 集成终端
     * Windows: Ctrl + Mac: control +

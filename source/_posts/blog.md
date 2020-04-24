@@ -10,5 +10,5 @@ tags:
 * 新建页面 hexo new page "about"
 * 提交发布
     * hexo generate
-    * hexo deploy
+    * hexo deploy (提交不上时， git config --global user.email/user.name, 删除根目录.deploy_git,重新执行指令)
 * 结束，可以去看你的博客啦

@@ -147,4 +147,6 @@ tags:
 * flex的属性还是需要多实践操作，才会知道具体效果
 * 不妨看看阮一峰老师的教程
 <a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" style="color: blue;">flex-语法</a>
-<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" style="color: blue;">flex-实例</a>
+ <a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" style="color: blue;">flex-实例</a>
+
+
