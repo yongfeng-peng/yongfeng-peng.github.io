@@ -1,6 +1,8 @@
 ---
 title: npm与yarn
 date: 2019-07-08 13:59:28
+categories:
+- tool
 tags:
 ---
 

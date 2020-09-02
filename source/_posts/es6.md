@@ -1,6 +1,8 @@
 ---
 title: ES6
 date: 2019-05-05 10:03:29
+categories:
+- JS
 tags:
 ---
 

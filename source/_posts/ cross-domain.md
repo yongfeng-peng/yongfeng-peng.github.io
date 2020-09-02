@@ -1,6 +1,8 @@
 ---
 title: 跨域
 date: 2019-05-05 22:08:28
+categories:
+- JS
 tags:
 ---
 

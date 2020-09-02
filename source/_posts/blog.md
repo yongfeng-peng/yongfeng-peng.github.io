@@ -1,6 +1,8 @@
 ---
 title: blog
 date: 2019-07-03 17:21:26
+categories:
+- blog
 tags:
 ---
 

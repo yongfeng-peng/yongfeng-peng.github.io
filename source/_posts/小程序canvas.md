@@ -1,6 +1,8 @@
 ---
 title: 小程序canvas
 date: 2019-07-13 11:10:24
+categories:
+- 微信小程序
 tags:
 ---
 

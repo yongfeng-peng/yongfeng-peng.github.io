@@ -1,6 +1,8 @@
 ---
 title: webpack
 date: 2019-05-06 22:00:00
+categories:
+- tool
 tags:
 ---
 

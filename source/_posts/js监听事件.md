@@ -1,6 +1,8 @@
 ---
 title: js监听事件
 date: 2020-04-24 10:19:02
+categories:
+- JS
 tags:
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: CSS经典布局
 date: 2020-08-26 14:39:21
+categories:
+- CSS
 tags: 一行代码实现（主要基于flex、grid布局）
 ---
 

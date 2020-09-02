@@ -1,6 +1,8 @@
 ---
 title: interviewSummary
 date: 2019-07-09 09:51:36
+categories:
+- JS
 tags:
 ---
 

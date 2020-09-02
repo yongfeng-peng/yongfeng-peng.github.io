@@ -1,6 +1,8 @@
 ---
 title: window下git bash 命令行实用技巧
 date: 2019-05-04 11:43:59
+categories:
+- tool
 tags:
 ---
 

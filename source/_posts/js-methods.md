@@ -1,6 +1,8 @@
 ---
 title: js常使用的函数总结
 date: 2019-05-03 14:52:07
+categories:
+- JS
 tags:
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: 类与继承
 date: 2019-04-30 10:17:53
+categories:
+- JS
 tags:
 ---
 

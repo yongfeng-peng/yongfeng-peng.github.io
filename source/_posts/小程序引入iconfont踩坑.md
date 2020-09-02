@@ -1,6 +1,8 @@
 ---
 title: 小程序引入iconfont踩坑
 date: 2019-07-03 16:48:26
+categories:
+- 微信小程序
 tags:
 ---
 
