@@ -14,3 +14,4 @@ tags:
     * hexo generate
     * hexo deploy (提交不上时， git config --global user.email/user.name, 删除根目录.deploy_git,重新执行指令)
 * 结束，可以去看你的博客啦
+* git push origin dev -u  把本地dev push到origin的dev -u表示同时建立关联，以后再推送到远程只需git push origin
