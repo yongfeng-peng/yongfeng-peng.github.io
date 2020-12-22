@@ -193,7 +193,29 @@ config = injectBabelPlugin(
 * 这种模式下有两个角色，Provider和Consumer
 * Provider为外层组件，用来提供 数据；内部需要数据时用Consumer来读取
 ```
+const FormContext = React.createContext()
+const FormProvider = FormContext.Provider
+const FormConsumer = FormContext.Consumer
+let store = { 
+  name: '学习', 
+  sayHi() { 
+    console.log(this.name);
+  } 
+}
+let withForm = Component=> { 
+  const NewComponent = (props) => { 
+    return <FormProvider value={store}> <Component {...props} /> </FormProvider> 
+  };
+  return NewComponent; 
+}
+@withForm class App extends Component { 
+  render() { 
+    return <FormConsumer> { 
+      store=> { 
+        return <Button onClick={()=>store.sayHi()}> {store.name} </Button> 
+      } 
+    } </FormConsumer> 
+  } 
+}
+
 ```
-
-
-
