@@ -31,6 +31,8 @@ tags:
 #### 虚拟dom
 * 用JavaScript对象表示DOM信息和结构，当状态变更的时候，重新渲染这个JavaScript的对象结构。这个JavaScript对象称为virtual dom
 * 简单的说虚拟dom就是js对象，可以描述dom
+![Image text](https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/vdom.jpg)
+<!-- * ![Image text](/../images/vdom.jpg) -->
 
 #### diff算法
 * diff策略
