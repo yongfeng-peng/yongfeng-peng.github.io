@@ -91,4 +91,4 @@ handleChange = () => {} // 第一种
 * rcep 快速创建一个组件（使用extends方式）
 * rcredux 快速创建一个 redux格式的类模板
 * clg 是 console.log()的快捷键
-<a href="https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets">To Learn More...</a>
+[To Learn More...](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
