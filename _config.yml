@@ -84,4 +84,6 @@ theme: hexo-theme-next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/yongfeng-peng/yongfeng-peng.github.io.git
+  # repository: https://github.com/yongfeng-peng/yongfeng-peng.github.io.git
+  repository: git@github.com:yongfeng-peng/yongfeng-peng.github.io.git
+

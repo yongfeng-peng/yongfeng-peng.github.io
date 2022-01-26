@@ -757,3 +757,88 @@ function getScrollOffset() {
 ```
 ```
 
+##### 简短函数调用
+* 三元操作符来实现多个函数调用
+```
+// Longhand
+function test1() {
+  console.log('test1');
+};
+function test2() {
+  console.log('test2');
+};
+var test3 = 1;
+if (test3 == 1) {
+  test1();
+} else {
+  test2();
+}
+// Shorthand
+(test3 === 1? test1:test2)();
+```
+
+##### switch 简化
+* 将条件保存在键值对象中，并根据条件来调用它们
+```
+// Longhand
+switch (data) {
+  case 1:
+    test1();
+  break;
+  case 2:
+    test2();
+  break;
+  case 3:
+    test();
+  break;
+  // And so on...
+}
+// Shorthand
+var data = {
+  1: test1,
+  2: test2,
+  3: test
+};
+data[something] && data[something]();
+```
+
+##### 延展操作符简化
+```
+//longhand
+// joining arrays using concat
+const data = [1, 2, 3];
+const test = [4 ,5 , 6].concat(data);
+//shorthand
+// joining arrays
+const data = [1, 2, 3];
+const test = [4 ,5 , 6, ...data];
+console.log(test); // [ 4, 5, 6, 1, 2, 3]
+```
+* 延展操作符进行克隆
+```
+//longhand
+// cloning arrays
+const test1 = [1, 2, 3];
+const test2 = test1.slice()
+//shorthand
+// cloning arrays
+const test1 = [1, 2, 3];
+const test2 = [...test1];
+```
+
+* 如何将浮点数点左边的数每三位添加一个逗号，如 12000000.11 转化为『12,000,000.11』?
+```
+// 方法一
+function format(number) {
+  return number && number.replace(/(?!^)(?=(\d{3})+\.)/g, ",");
+}
+// 方法二
+function format1(number) {
+  return Intl.NumberFormat().format(number)
+}
+// 方法三
+function format2(number) {
+  return number.toLocaleString('en')
+}
+
+```
