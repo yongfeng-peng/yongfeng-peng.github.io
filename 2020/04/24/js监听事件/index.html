@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="js监听事件的叠加和移除监听事件 html DOM元素有很多on开头的监听事件，如onload、onclick等，见DOM事件列表。但是同一种事件，后面注册的会覆盖前面的1234567window.onresize = () =&amp;gt; &amp;#123;    alert(1);&amp;#125;window.onresize = () =&amp;gt; &amp;#123;    alert(2);&amp;#125;// 改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js监听事件">
+<meta property="og:url" content="http://yoursite.com/2020/04/24/js监听事件/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="js监听事件的叠加和移除监听事件 html DOM元素有很多on开头的监听事件，如onload、onclick等，见DOM事件列表。但是同一种事件，后面注册的会覆盖前面的1234567window.onresize = () =&amp;gt; &amp;#123;    alert(1);&amp;#125;window.onresize = () =&amp;gt; &amp;#123;    alert(2);&amp;#125;// 改">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-02T08:36:46.766Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js监听事件">
+<meta name="twitter:description" content="js监听事件的叠加和移除监听事件 html DOM元素有很多on开头的监听事件，如onload、onclick等，见DOM事件列表。但是同一种事件，后面注册的会覆盖前面的1234567window.onresize = () =&amp;gt; &amp;#123;    alert(1);&amp;#125;window.onresize = () =&amp;gt; &amp;#123;    alert(2);&amp;#125;// 改">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/24/js监听事件/">
+
+
+
+
+
+  <title>js监听事件 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/24/js监听事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js监听事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-24T10:19:02+08:00">
+                2020-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="js监听事件的叠加和移除"><a href="#js监听事件的叠加和移除" class="headerlink" title="js监听事件的叠加和移除"></a>js监听事件的叠加和移除</h4><h5 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h5><ul>
+<li>html DOM元素有很多on开头的监听事件，如onload、onclick等，<a href="https://www.runoob.com/jsref/dom-obj-event.html" target="_blank" rel="noopener">见DOM事件列表</a>。但是<strong>同一种事件</strong>，后面注册的<strong>会覆盖前面</strong>的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window.onresize = () =&gt; &#123;</span><br><span class="line">    alert(1);</span><br><span class="line">&#125;</span><br><span class="line">window.onresize = () =&gt; &#123;</span><br><span class="line">    alert(2);</span><br><span class="line">&#125;</span><br><span class="line">// 改变窗口大小时，只会弹出2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="addEventListener监听"><a href="#addEventListener监听" class="headerlink" title="addEventListener监听"></a>addEventListener监听</h5><ul>
+<li><p>element.addEventListener(type，handler，false/true)</p>
+<ul>
+<li>type: 事件类型</li>
+<li>handler: 事件执行触发的函数</li>
+<li>false/true: false为冒泡/ture为捕获，参数是true，表示在捕获阶段调用事件处理程序；参数是false，表示在冒泡阶段调用事件处理程序。</li>
+<li>事件捕获：父级元素先触发，子集元素后触发；</li>
+<li>事件冒泡：子集元素先触发，父级元素后触发；</li>
+<li>一般的绑定事件，都是采用冒泡方式，即false</li>
+</ul>
+</li>
+<li><p>利用addEventListener添加监听事件，可以<strong>重复添加</strong>，但是并不会<strong>互相覆盖</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&apos;resize&apos;, () =&gt; &#123;</span><br><span class="line">    alert(1);</span><br><span class="line">&#125;)</span><br><span class="line">window.addEventListener(&apos;resize&apos;, () =&gt; &#123;</span><br><span class="line">    alert(2);</span><br><span class="line">&#125;)</span><br><span class="line">// 改变窗口大小时，先后弹出1和2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="removeEventListener移除监听"><a href="#removeEventListener移除监听" class="headerlink" title="removeEventListener移除监听"></a>removeEventListener移除监听</h5><ul>
+<li>removeEventListener跟addEventListener相对应，用于移除事件监听</li>
+<li>如果要移除事件句柄，addEventListener() 的执行函数必须使用<strong>外部具名函数</strong>，<strong>匿名函数事件是无法移除哒</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 匿名函数事件无法移除</span><br><span class="line">window.addEventListener(&apos;resize&apos;, () =&gt; &#123;</span><br><span class="line">    alert(1);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">// 监听具名函数事件</span><br><span class="line">function myResize() &#123;</span><br><span class="line">    alert(2);</span><br><span class="line">&#125;</span><br><span class="line">window.addEventListener(&apos;resize&apos;, myResize);</span><br><span class="line"></span><br><span class="line">// 移除事件监听</span><br><span class="line">window.removeEventListener(&apos;resize&apos;, myResize);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="dispatchEvent-允许发送事件到监听器上"><a href="#dispatchEvent-允许发送事件到监听器上" class="headerlink" title="dispatchEvent() 允许发送事件到监听器上"></a>dispatchEvent() 允许发送事件到监听器上</h5><ul>
+<li>标准浏览器中使用dispatchEvent派发自定义事件：element.dispatchEvent()，除此之外，还有创建和初始化事件：</li>
+<li>一般的流程是：创建 &gt;&gt; 初始化 &gt;&gt; 派发。</li>
+<li>对应的事件流程：document.createEvent() &gt;&gt; event.initEvent() &gt;&gt; element.dispatchEvent()<ul>
+<li>createEvent()方法返回新创建的Event对象，支持一个参数，表示事件类型</li>
+<li>initEvent()方法用于初始化通过DocumentEvent接口创建的Event的值。 支持三个参数：initEvent(eventName, canBubble, preventDefault). 分别表示： 事件名称，是否可以冒泡，是否阻止事件的默认操作</li>
+<li>dispatchEvent()就是触发执行了，element.dispatchEvent(eventObject), 参数eventObject表示事件对象，是createEvent()方法返回的创建的Event对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- let el = document.getElementById(&quot;eventId&quot;);</span><br><span class="line">el.addEventListener(&apos;customEvent&apos;, () =&gt; &#123;</span><br><span class="line">  alert(&apos;弹弹弹，弹走鱼尾纹~~&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">// 创建</span><br><span class="line">let evt = document.createEvent(&apos;eventName&apos;);</span><br><span class="line">// 初始化</span><br><span class="line">evt.initEvent(&apos;alert&apos;, false, false);</span><br><span class="line">// 触发</span><br><span class="line">dom.dispatchEvent(evt); --&gt;</span><br><span class="line"></span><br><span class="line">// document上绑定自定义事件oneating  </span><br><span class="line">document.addEventListener(&apos;customEvent&apos;, (event) =&gt;  &#123;  </span><br><span class="line">  alert(`$&#123;event.mingzi&#125;, $&#123;event.message&#125;`);</span><br><span class="line">&#125;, false);  </span><br><span class="line">// 创建event的对象实例。  </span><br><span class="line">var event = document.createEvent(&apos;HTMLEvents&apos;);  </span><br><span class="line">// 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为  </span><br><span class="line">event.initEvent(&apos;customEvent&apos;, true, true);  </span><br><span class="line">/*属性，随便自己定义*/  </span><br><span class="line">event.mingzi = &apos;hello,我是xx&apos;;  </span><br><span class="line">event.message = &apos;我今天18岁&apos;;  </span><br><span class="line">// 触发自定义事件oneating  </span><br><span class="line">document.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/23/布局方式/" rel="next" title="布局方式">
+                <i class="fa fa-chevron-left"></i> 布局方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/28/数组去重/" rel="prev" title="简单的函数方法">
+                简单的函数方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js监听事件的叠加和移除"><span class="nav-number">1.</span> <span class="nav-text">js监听事件的叠加和移除</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#监听事件"><span class="nav-number">1.1.</span> <span class="nav-text">监听事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#addEventListener监听"><span class="nav-number">1.2.</span> <span class="nav-text">addEventListener监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#removeEventListener移除监听"><span class="nav-number">1.3.</span> <span class="nav-text">removeEventListener移除监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatchEvent-允许发送事件到监听器上"><span class="nav-number">1.4.</span> <span class="nav-text">dispatchEvent() 允许发送事件到监听器上</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

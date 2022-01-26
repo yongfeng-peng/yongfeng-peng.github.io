@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="面试指南HTMLhtml5语义化 为什么需要语义化 易修改、易维护 无障碍阅读支持 搜索引擎友好，利于 SEO 面向未来的 HTML，浏览器在未来可能提供更丰富的支持   结构语义化 语义元素均有一个共同特点——他们均不做任何事情。换句话说，语义元素仅仅是页面结构的规范化，并不会对内容有本质的影响 eg:     CSScss常见面试题   标准盒模型与低版本IE盒模型 标准盒模型 宽度 = 内容">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试指南">
+<meta property="og:url" content="http://yoursite.com/2020/11/17/面试指南/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="面试指南HTMLhtml5语义化 为什么需要语义化 易修改、易维护 无障碍阅读支持 搜索引擎友好，利于 SEO 面向未来的 HTML，浏览器在未来可能提供更丰富的支持   结构语义化 语义元素均有一个共同特点——他们均不做任何事情。换句话说，语义元素仅仅是页面结构的规范化，并不会对内容有本质的影响 eg:     CSScss常见面试题   标准盒模型与低版本IE盒模型 标准盒模型 宽度 = 内容">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-17T06:19:24.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试指南">
+<meta name="twitter:description" content="面试指南HTMLhtml5语义化 为什么需要语义化 易修改、易维护 无障碍阅读支持 搜索引擎友好，利于 SEO 面向未来的 HTML，浏览器在未来可能提供更丰富的支持   结构语义化 语义元素均有一个共同特点——他们均不做任何事情。换句话说，语义元素仅仅是页面结构的规范化，并不会对内容有本质的影响 eg:     CSScss常见面试题   标准盒模型与低版本IE盒模型 标准盒模型 宽度 = 内容">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/11/17/面试指南/">
+
+
+
+
+
+  <title>面试指南 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/面试指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T10:00:25+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML、CSS、JS/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML、CSS、JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="面试指南"><a href="#面试指南" class="headerlink" title="面试指南"></a>面试指南</h3><h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><h5 id="html5语义化"><a href="#html5语义化" class="headerlink" title="html5语义化"></a>html5语义化</h5><ul>
+<li>为什么需要语义化<ul>
+<li>易修改、易维护</li>
+<li>无障碍阅读支持</li>
+<li>搜索引擎友好，利于 SEO</li>
+<li>面向未来的 HTML，浏览器在未来可能提供更丰富的支持</li>
+</ul>
+</li>
+<li>结构语义化<ul>
+<li>语义元素均有一个共同特点——他们<strong>均不做任何事情</strong>。换句话说，语义元素仅仅是<strong>页面结构的规范化</strong>，并不会对内容有本质的影响</li>
+<li>eg: <header> <nav> <aside> <section> <article><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><h5 id="css常见面试题"><a href="#css常见面试题" class="headerlink" title="css常见面试题"></a>css常见面试题</h5></article></section></aside></nav></header></li>
+</ul>
+</li>
+<li>标准盒模型与低版本IE盒模型<ul>
+<li>标准盒模型 宽度 = 内容的宽度（content）+ border+ padding + margin</li>
+<li>低版本IE盒模型 宽度 = 内容的宽度（content+ border+ padding）+ margin</li>
+</ul>
+</li>
+<li>box-sizing属性<ul>
+<li>用来控制元素的盒子模型的解析模式，默认为content-box</li>
+<li>context-box：W3C的标准盒子模型，设置元素的 height/width 属性指的是content部分的高/宽</li>
+<li>border-box：IE传统盒子模型。设置元素的height/width属性指的是border + padding + content部分的高/宽</li>
+</ul>
+</li>
+<li>CSS选择器有哪些？哪些属性可以继承？<ul>
+<li>CSS选择符：id选择器(#myid)、类选择器(.myclassname)、标签选择器(div, h1, p)、相邻选择器(h1 + p)、子选择器（ul &gt; li）、后代选择器（li a）、通配符选择器（*）、属性选择器（a[rel=”external”]）、伪类选择器（a:hover, li:nth-child）</li>
+<li>可继承的属性：font-size, font-family, color</li>
+<li>不可继承的样式：border, padding, margin, width, height</li>
+<li>优先级（就近原则）：!important &gt; [ id &gt; class &gt; tag ]</li>
+<li>!important 比内联优先级高</li>
+</ul>
+</li>
+<li><p>CSS优先级算法如何计算？</p>
+<ul>
+<li>元素选择符： 1</li>
+<li>class选择符： 10</li>
+<li>id选择符：100</li>
+<li>元素标签：1000</li>
+<li>!important声明的样式优先级最高，如果冲突再进行计算</li>
+<li>如果优先级相同，则选择最后出现的样式</li>
+<li>继承得到的样式的优先级最低</li>
+</ul>
+</li>
+<li><p>CSS3新增伪类有那些?</p>
+<ul>
+<li>p:first-of-type 选择属于其父元素的首个元素</li>
+<li>p:last-of-type 选择属于其父元素的最后元素</li>
+<li>p:only-of-type 选择属于其父元素唯一的元素</li>
+<li>p:only-child 选择属于其父元素的唯一子元素</li>
+<li>p:nth-child(2) 选择属于其父元素的第二个子元素</li>
+<li>:enabled :disabled 表单控件的禁用状态</li>
+<li>:checked 单选框或复选框被选中</li>
+</ul>
+</li>
+<li><p>如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？（更优方法flexbox）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid red;</span><br><span class="line">margin: 0 auto; </span><br><span class="line">height: 50px;</span><br><span class="line">width: 80px;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid red;</span><br><span class="line">float: left;</span><br><span class="line">position: absolute;</span><br><span class="line">width: 200px;</span><br><span class="line">height: 100px;</span><br><span class="line">left: 50%;</span><br><span class="line">top: 50%;</span><br><span class="line">margin: -50px 0 0 -100px;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid black;</span><br><span class="line">position: absolute;</span><br><span class="line">width: 200px;</span><br><span class="line">height: 100px;</span><br><span class="line">margin: 0 auto;</span><br><span class="line">left: 0;</span><br><span class="line">right: 0;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>display有哪些值？说明他们的作用?</p>
+<ul>
+<li>inline（默认）–内联</li>
+<li>none–隐藏</li>
+<li>block–块显示</li>
+<li>table–表格显示</li>
+<li>list-item–项目列表</li>
+<li>inline-block</li>
+<li>flex grid</li>
+</ul>
+</li>
+<li><p>position的值？</p>
+<ul>
+<li>static（默认）：按照正常文档流进行排列；</li>
+<li>relative（相对定位）：不脱离文档流，参考自身静态位置通过 top, bottom, left, right 定位；</li>
+<li>absolute(绝对定位)：参考距其最近一个不为static的父级元素通过top, bottom, left, right 定位；</li>
+<li>fixed(固定定位)：所固定的参照对像是可视窗口。<br><a href="https://segmentfault.com/a/1190000013325778" style="color: blue;" target="_blank" rel="noopener">more…</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><h5 id="js常见面试题"><a href="#js常见面试题" class="headerlink" title="js常见面试题"></a>js常见面试题</h5><ul>
+<li><p>浅拷贝和深拷贝的区别</p>
+<ul>
+<li><p>浅拷贝：一般指的是把对象的第一层拷贝到一个新对象上去，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123; count: 1, deep: &#123; count: 2 &#125; &#125;;</span><br><span class="line">let b = Object.assign(&#123;&#125;, a);</span><br><span class="line">// 或者</span><br><span class="line">let b = &#123;...a&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>深拷贝：一般需要借助递归实现，如果对象的值还是个对象，要进一步的深入拷贝，完全替换掉每一个复杂类型的引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let deepCopy = (obj) =&gt; &#123;</span><br><span class="line">  let ret = &#123;&#125;;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    let value = obj[key];</span><br><span class="line">    ret[key] = typeof value === &apos;object&apos; ? deepCopy(value) : value;</span><br><span class="line">  &#125;</span><br><span class="line">  return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/21/每日面试题/" rel="next" title="每日面试题">
+                <i class="fa fa-chevron-left"></i> 每日面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/02/nrm/" rel="prev" title="nrm">
+                nrm <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面试指南"><span class="nav-number">1.</span> <span class="nav-text">面试指南</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#html5语义化"><span class="nav-number">1.1.1.</span> <span class="nav-text">html5语义化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#css常见面试题"><span class="nav-number">1.2.1.</span> <span class="nav-text">css常见面试题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#js常见面试题"><span class="nav-number">1.3.1.</span> <span class="nav-text">js常见面试题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

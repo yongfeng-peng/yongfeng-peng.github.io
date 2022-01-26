@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应以下五种实现方案12345678910111213// 公共的css样式`&amp;lt;style&amp;gt;    html * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;    .layout &amp;#123;        margin-top: 30px;    &amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面布局-三栏布局实现方案">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/三栏布局/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应以下五种实现方案12345678910111213// 公共的css样式`&amp;lt;style&amp;gt;    html * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;    .layout &amp;#123;        margin-top: 30px;    &amp;#125;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-02T08:40:17.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="页面布局-三栏布局实现方案">
+<meta name="twitter:description" content="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应以下五种实现方案12345678910111213// 公共的css样式`&amp;lt;style&amp;gt;    html * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;    .layout &amp;#123;        margin-top: 30px;    &amp;#125;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/三栏布局/">
+
+
+
+
+
+  <title>页面布局-三栏布局实现方案 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/三栏布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">页面布局-三栏布局实现方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T15:52:19+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应"><a href="#假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应" class="headerlink" title="假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应"></a>假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应</h3><h4 id="以下五种实现方案"><a href="#以下五种实现方案" class="headerlink" title="以下五种实现方案"></a>以下五种实现方案</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 公共的css样式`</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    html * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout &#123;</span><br><span class="line">        margin-top: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">    .layout article div &#123;</span><br><span class="line">        min-height: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="float实现"><a href="#float实现" class="headerlink" title="float实现"></a>float实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.float .left &#123;</span><br><span class="line">            float: left;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .right &#123;</span><br><span class="line">            float: right;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.float .center &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-right-center&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;浮动解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="position实现"><a href="#position实现" class="headerlink" title="position实现"></a>position实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.absolute .left-center-right &gt; div &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .left &#123;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .center&#123;</span><br><span class="line">            left: 300px;</span><br><span class="line">            right: 300px;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.absolute .right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;绝对定位解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="flex实现"><a href="#flex实现" class="headerlink" title="flex实现"></a>flex实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout flexbox&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.flexbox &#123;</span><br><span class="line">            margin-top: 140px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left-center-right &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .center&#123;</span><br><span class="line">            flex: 1;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.flexbox .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;flexbox解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="table实现"><a href="#table实现" class="headerlink" title="table实现"></a>table实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">     &lt;style&gt;</span><br><span class="line">        .layout.table .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: table;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left-center-right &gt; div &#123;</span><br><span class="line">            display: table-cell;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .left &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.table .right &#123;</span><br><span class="line">            width: 300px;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;table表格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="grid实现"><a href="#grid实现" class="headerlink" title="grid实现"></a>grid实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .layout.grid .left-center-right &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: grid;</span><br><span class="line">            grid-template-rows: 100px;</span><br><span class="line">            grid-template-columns: 300px auto 300px;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .left &#123;</span><br><span class="line">            background: #ff0000;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .center&#123;</span><br><span class="line">            background: #ff9400;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout.grid .right &#123;</span><br><span class="line">            background: #c40;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;article class=&quot;left-center-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;grid网格解决方案&lt;/h1&gt;</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">            1.这是三栏布局中间buf部分</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="五种方案比较"><a href="#五种方案比较" class="headerlink" title="五种方案比较"></a>五种方案比较</h4><ul>
+<li>float：清除浮动，脱离文档流，处理不好，带来很多问题，本身的局限性，兼容性比较好</li>
+<li>position：快捷，不容易出现问题，布局已经脱离文档流，下面的子元素也要脱离文档流，导致可使用性、有效性差</li>
+<li>flex：解决上面float、position的不足，兼容性不好，主要应用移动端</li>
+<li>table：table-cell,很多场景中适用，兼容性好</li>
+<li>grid：网格布局，新技术，可做很多复杂事情</li>
+<li><strong>flex与table-cell</strong>两种看应用场景使用</li>
+</ul>
+<h4 id="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"><a href="#如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用" class="headerlink" title="如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"></a>如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用</h4><ul>
+<li>推荐flex与table</li>
+<li>float 需要创建bfc</li>
+</ul>
+<h4 id="大家也可以扩展延伸"><a href="#大家也可以扩展延伸" class="headerlink" title="大家也可以扩展延伸"></a>大家也可以扩展延伸</h4><h5 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h5><ul>
+<li>左右宽度固定，中间自适应</li>
+<li>上下高度固定，中间自适应</li>
+</ul>
+<h5 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h5><ul>
+<li>左宽度固定，右自适应</li>
+<li>右宽度固定，左自适应</li>
+<li>上高度固定，下自适应</li>
+<li>下高度固定，上自适应</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/29/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/30/class-inherit/" rel="prev" title="类与继承">
+                类与继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#假设高度已知，请写出三栏布局，左右栏宽度各300px-中间自适应"><span class="nav-number">1.</span> <span class="nav-text">假设高度已知，请写出三栏布局，左右栏宽度各300px,中间自适应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下五种实现方案"><span class="nav-number">1.1.</span> <span class="nav-text">以下五种实现方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#float实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">float实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#position实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">position实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#flex实现"><span class="nav-number">1.1.3.</span> <span class="nav-text">flex实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#table实现"><span class="nav-number">1.1.4.</span> <span class="nav-text">table实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grid实现"><span class="nav-number">1.1.5.</span> <span class="nav-text">grid实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五种方案比较"><span class="nav-number">1.2.</span> <span class="nav-text">五种方案比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用"><span class="nav-number">1.3.</span> <span class="nav-text">如果已知高度去掉，中间的高度变化，左右同时变化，那个方案不实用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大家也可以扩展延伸"><span class="nav-number">1.4.</span> <span class="nav-text">大家也可以扩展延伸</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#三栏布局"><span class="nav-number">1.4.1.</span> <span class="nav-text">三栏布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#两栏布局"><span class="nav-number">1.4.2.</span> <span class="nav-text">两栏布局</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

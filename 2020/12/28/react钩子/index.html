@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="react钩子（hooks）react组件 React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class） Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性 任何一个组件都可以用类和钩子来写 类 12345class Welcome extends React.Component &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react钩子">
+<meta property="og:url" content="http://yoursite.com/2020/12/28/react钩子/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="react钩子（hooks）react组件 React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class） Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性 任何一个组件都可以用类和钩子来写 类 12345class Welcome extends React.Component &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-28T09:12:13.426Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react钩子">
+<meta name="twitter:description" content="react钩子（hooks）react组件 React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class） Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性 任何一个组件都可以用类和钩子来写 类 12345class Welcome extends React.Component &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/28/react钩子/">
+
+
+
+
+
+  <title>react钩子 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/28/react钩子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react钩子</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-28T15:23:21+08:00">
+                2020-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="react钩子（hooks）"><a href="#react钩子（hooks）" class="headerlink" title="react钩子（hooks）"></a>react钩子（hooks）</h3><h4 id="react组件"><a href="#react组件" class="headerlink" title="react组件"></a>react组件</h4><ul>
+<li>React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class）</li>
+<li>Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性</li>
+<li>任何一个组件都可以用类和钩子来写</li>
+<li><p>类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>钩子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Welcome(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大部分看到上面两段代码都会选择使用钩子，更简洁、代码量少、用起来也较轻，也更符合react<em>函数式都本质</em></p>
+<ul>
+<li>类有很多强制性的语法约束、不易混乱，更适合初学者</li>
+<li>真实的 React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂</li>
+</ul>
+</li>
+<li>而类就比较重，官方也推荐使用钩子（函数），而不是类<ul>
+<li>钩子的灵活性比较大</li>
+<li>react 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组合管道即可。 组件的最佳写法应该是函数，而不是类</li>
+</ul>
+</li>
+</ul>
+<h4 id="类、函数的差异"><a href="#类、函数的差异" class="headerlink" title="类、函数的差异"></a>类、函数的差异</h4><ul>
+<li>毕竟写法不同，还是存在不同的编程方法论</li>
+<li>类是<strong>数据和逻辑的封装</strong>，即组件的状态和操作方法是封装在一起的</li>
+<li>函数一般来说，只应该做一件事，就是返回一个值，如：react 的函数组件只应该做一件事情=》返回组件的 HTML 代码，而没有其他的功能</li>
+<li>这种只进行单纯的数据计算（换算）的函数，在函数式编程里面称为 “纯函数”（pure function）</li>
+</ul>
+<h4 id="副效应"><a href="#副效应" class="headerlink" title="副效应"></a>副效应</h4><ul>
+<li>函数式编程将那些跟数据计算无关的操作，都称为 “副效应” （side effect） ，</li>
+<li>如果函数内部直接包含产生副效应的操作，就不再是纯函数了，我们称之为不纯的函数，如（生成日志、储存数据、改变应用状态等等）</li>
+<li>纯函数内部只有通过间接的手段（即通过其他函数调用），才能包含副效应，如（钩子）</li>
+</ul>
+<h4 id="钩子（hook）"><a href="#钩子（hook）" class="headerlink" title="钩子（hook）"></a>钩子（hook）</h4><ul>
+<li><strong>react函数组件的副效应解决方案，用来为函数组件引入副效应</strong>. 函数组件的主体只应该用来返回组件的 HTML 代码，所有的其他操作（副效应）都必须通过钩子引入</li>
+<li><p>React 为许多常见的操作（副效应），都提供了专用的钩子。</p>
+<ul>
+<li>useState()：保存状态</li>
+<li><p>useContext()：保存上下文（共享状态钩子）</p>
+<ul>
+<li>组件之间共享状态，可以使用useContext()</li>
+<li><p>使用 React Context API，在组件外部建立一个 Context</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const AppContext = React.createContext(&#123;&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AppContext.Provider提供了一个 Context 对象，这个对象可以被子组件共享</p>
+</li>
+<li>useContext()钩子函数用来引入 Context 对象，从中获取username属性</li>
+</ul>
+</li>
+<li>useRef()：保存引用</li>
+<li><p>useReducer()：action 钩子</p>
+<ul>
+<li>React 本身不提供状态管理功能，通常需要使用外部库。这方面最常用的库是 Redux</li>
+<li>Redux 的核心概念是，组件发出 action 与状态管理器通信。状态管理器收到 action 以后，使用 Reducer 函数算出新的状态，Reducer 函数的形式是(state, action) =&gt; newState</li>
+<li><p>useReducer()的基本用法，它接受 Reducer 函数和状态的初始值作为参数，返回一个数组。数组的第一个值是状态的当前值，第二个值是发送 action 的dispatch函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useContext &#125; from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line">const [state, dispatch] = useReducer(reducer, initialState);</span><br><span class="line">const myReducer = (state, action) =&gt; &#123;</span><br><span class="line">  switch(action.type)  &#123;</span><br><span class="line">    case(&apos;countUp&apos;):</span><br><span class="line">      return  &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        count: state.count + 1</span><br><span class="line">      &#125;</span><br><span class="line">    default:</span><br><span class="line">      return  state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function App() &#123;</span><br><span class="line">  const [state, dispatch] = useReducer(myReducer, &#123; count:   0 &#125;);</span><br><span class="line">  return  (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &apos;countUp&apos; &#125;)&#125;&gt;</span><br><span class="line">        +1</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">      &lt;p&gt;Count: &#123;state.count&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Hooks 可以提供共享状态和 Reducer 函数，所以它在这些方面可以取代 Redux。但是，它没法提供中间件（middleware）和时间旅行（time travel），如果你需要这两个功能，还是要用 Redux</p>
+</li>
+</ul>
+</li>
+<li>以上钩子都是引入某种特定的副效应，而 useEffect()是通用的副效应钩</li>
+<li><a href="https://react.docschina.org/docs/hooks-reference.html" target="_blank" rel="noopener">……</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="useEffect-的用法"><a href="#useEffect-的用法" class="headerlink" title="useEffect() 的用法"></a>useEffect() 的用法</h4><ul>
+<li>useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合</li>
+<li>useEffect()本身是一个函数，由 React 框架提供，在函数组件内部调用即可</li>
+<li><p>useEffect()的作用就是指定一个副效应函数，组件每渲染一次，该函数就自动执行一次。组件首次在网页 DOM 加载后，副效应函数也会执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Welcome(props) &#123;</span><br><span class="line">  let [count, setCount] = useState(1); // 数组解构</span><br><span class="line">  // 以上代码等价于</span><br><span class="line">  // let countStateVariable = React.useState(1); // 返回一个有两个元素的数组</span><br><span class="line">  // let count = countStateVariable[0]; // 数组里的第一个值 当前的state</span><br><span class="line">  // let setCount = countStateVariable[1]; // 数组里的第二个值 更新state的函数</span><br><span class="line">  // 使用 [0] 和 [1] 来访问有点令人困惑，因为它们有特定的含义。这就是我们使用数组解构的原因。</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    document.title = `you click $&#123;count&#125; times`;</span><br><span class="line">  &#125;,)</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;hello, &#123; props.title &#125;,&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;累加&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>useEffect() 的第二个参数,不希望useEffect()每次渲染都执行，这时可以使用它的第二个参数，使用一个数组指定副效应函数的依赖项，只有依赖项发生变化，才会重新渲染</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Welcome(props) &#123;</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    document.title = `Hello, $&#123;props.name&#125;`;</span><br><span class="line">  &#125;, [props.name]);</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="useEffect-的用途"><a href="#useEffect-的用途" class="headerlink" title="useEffect() 的用途"></a>useEffect() 的用途</h3><ul>
+<li>只要是副效应，都可以使用useEffect()引入。它的常见用途有下面几种。<ul>
+<li>获取数据（data fetching）</li>
+<li>事件监听或订阅（setting up a subscription）</li>
+<li>改变 DOM（changing the DOM）</li>
+<li>输出日志（logging）</li>
+</ul>
+</li>
+</ul>
+<h4 id="useEffect-的返回值"><a href="#useEffect-的返回值" class="headerlink" title="useEffect() 的返回值"></a>useEffect() 的返回值</h4><ul>
+<li>副效应是随着组件加载而发生的，那么组件卸载时，可能需要清理这些副效应</li>
+<li>useEffect()允许返回一个函数，在组件卸载时，执行该函数，清理副效应。如果不需要清理副效应，useEffect()就不用返回任何值</li>
+<li>useEffect()在组件加载时订阅了一个事件，并且返回一个清理函数，在组件卸载时取消订阅。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">  const subscription = props.source.subscribe();</span><br><span class="line">  return () =&gt; &#123;</span><br><span class="line">    subscription.unsubscribe();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;, [props.source]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="useEffect-的注意点"><a href="#useEffect-的注意点" class="headerlink" title="useEffect() 的注意点"></a>useEffect() 的注意点</h4><ul>
+<li><a href="https://react.docschina.org/docs/hooks-rules.html" target="_blank" rel="noopener">了解Hook规则</a></li>
+<li>使用useEffect()时，有一点需要注意。如果有多个副效应，应该调用多个useEffect()，而不应该合并写在一起<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  const [varA, setVarA] = useState(0);</span><br><span class="line">  const [varB, setVarB] = useState(0);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    const timeout = setTimeout(() =&gt; setVarA(varA + 1), 1000);</span><br><span class="line">    return () =&gt; clearTimeout(timeout);</span><br><span class="line">  &#125;, [varA]);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    const timeout = setTimeout(() =&gt; setVarB(varB + 2), 2000);</span><br><span class="line"></span><br><span class="line">    return () =&gt; clearTimeout(timeout);</span><br><span class="line">  &#125;, [varB]);</span><br><span class="line"></span><br><span class="line">  return &lt;span&gt;&#123;varA&#125;, &#123;varB&#125;&lt;/span&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="learn-more…"><a href="#learn-more…" class="headerlink" title="learn more…"></a><a href="http://www.ruanyifeng.com/blog/2020/09/react-hooks-useeffect-tutorial.html" target="_blank" rel="noopener">learn more…</a></h4><h4 id="learn-more…-1"><a href="#learn-more…-1" class="headerlink" title="learn more…"></a><a href="http://www.ruanyifeng.com/blog/2019/09/react-hooks.html" target="_blank" rel="noopener">learn more…</a></h4><h3 id="code"><a href="#code" class="headerlink" title="code"></a><a href="https://github.com/yongfeng-peng/react-simple-sCode" target="_blank" rel="noopener">code</a></h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/23/react原理/" rel="next" title="react原理">
+                <i class="fa fa-chevron-left"></i> react原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/05/vue自定义指令/" rel="prev" title="vue自定义指令">
+                vue自定义指令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#react钩子（hooks）"><span class="nav-number">1.</span> <span class="nav-text">react钩子（hooks）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#react组件"><span class="nav-number">1.1.</span> <span class="nav-text">react组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类、函数的差异"><span class="nav-number">1.2.</span> <span class="nav-text">类、函数的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#副效应"><span class="nav-number">1.3.</span> <span class="nav-text">副效应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#钩子（hook）"><span class="nav-number">1.4.</span> <span class="nav-text">钩子（hook）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#useEffect-的用法"><span class="nav-number">1.5.</span> <span class="nav-text">useEffect() 的用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-的用途"><span class="nav-number">2.</span> <span class="nav-text">useEffect() 的用途</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#useEffect-的返回值"><span class="nav-number">2.1.</span> <span class="nav-text">useEffect() 的返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#useEffect-的注意点"><span class="nav-number">2.2.</span> <span class="nav-text">useEffect() 的注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#learn-more…"><span class="nav-number">2.3.</span> <span class="nav-text">learn more…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#learn-more…-1"><span class="nav-number">2.4.</span> <span class="nav-text">learn more…</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">3.</span> <span class="nav-text">code</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

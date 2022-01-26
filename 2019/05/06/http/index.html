@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTTPHTTP协议的主要特点 简单快速（每个资源是固定的url）  灵活（通过头部type会有不同结果）  无连接（连接一次就会断掉）  无状态（客户端和服务端）  HTTP报文的组成部分 请求报文 请求行 （http方法 页面地址 http协议 http版本） 请求头 （key val 值告诉服务端需要什么内容 注意类型） 空行   （遇到空行时，下一个当着请求体） 请求体   响应报文（状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议与安全">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/http/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="HTTPHTTP协议的主要特点 简单快速（每个资源是固定的url）  灵活（通过头部type会有不同结果）  无连接（连接一次就会断掉）  无状态（客户端和服务端）  HTTP报文的组成部分 请求报文 请求行 （http方法 页面地址 http协议 http版本） 请求头 （key val 值告诉服务端需要什么内容 注意类型） 空行   （遇到空行时，下一个当着请求体） 请求体   响应报文（状态">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-02T08:45:10.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP协议与安全">
+<meta name="twitter:description" content="HTTPHTTP协议的主要特点 简单快速（每个资源是固定的url）  灵活（通过头部type会有不同结果）  无连接（连接一次就会断掉）  无状态（客户端和服务端）  HTTP报文的组成部分 请求报文 请求行 （http方法 页面地址 http协议 http版本） 请求头 （key val 值告诉服务端需要什么内容 注意类型） 空行   （遇到空行时，下一个当着请求体） 请求体   响应报文（状态">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/06/http/">
+
+
+
+
+
+  <title>HTTP协议与安全 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP协议与安全</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T11:16:48+08:00">
+                2019-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="HTTP协议的主要特点"><a href="#HTTP协议的主要特点" class="headerlink" title="HTTP协议的主要特点"></a>HTTP协议的主要特点</h5><ul>
+<li>简单快速（每个资源是固定的url） </li>
+<li>灵活（通过头部type会有不同结果） </li>
+<li>无连接（连接一次就会断掉） </li>
+<li>无状态（客户端和服务端）</li>
+</ul>
+<h5 id="HTTP报文的组成部分"><a href="#HTTP报文的组成部分" class="headerlink" title="HTTP报文的组成部分"></a>HTTP报文的组成部分</h5><ol>
+<li>请求报文<ul>
+<li>请求行 （http方法 页面地址 http协议 http版本）</li>
+<li>请求头 （key val 值告诉服务端需要什么内容 注意类型）</li>
+<li>空行   （遇到空行时，下一个当着请求体）</li>
+<li>请求体</li>
+</ul>
+</li>
+<li>响应报文（状态行，响应头，空行，响应体） </li>
+</ol>
+<h5 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h5><ul>
+<li>1xx:指示信息，请求已接收，继续处理</li>
+<li>2xx 表示成功，请求已被成功接收</li>
+<li>3xx 表示需要进一步操作，重定向，完成请求必须进行进一步的操作</li>
+<li>4xx 表示浏览器方面出错，客户端错误，请求有语法错误或者请求无法实现</li>
+<li>5xx 表示服务器方面出错，服务端错误，服务器未能实现合法的请求</li>
+</ul>
+<h5 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h5><ul>
+<li>200 客户端请求成功</li>
+<li>206 客户发送一个带有range(范围)头的GET请求，服务器完成它（用于视频）    </li>
+<li>301 所请求的页面已经转移至新的url</li>
+<li>302 所请求的页面已经临时转移至新的url</li>
+<li>304 客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用</li>
+<li>400 客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 请求未经授权，这个状态码必须和WWW-Authenticate报文域一起使用 </li>
+<li>403 对被请求页面的访问被禁止</li>
+<li>404 请求资源不存在</li>
+<li>500 服务器发生不可预期的错误原来缓冲的文档还可以继续使用</li>
+<li>503 请求未完成，服务器临时过载或当机，一段时间后可能恢复正常<br><a href="http://www.runoob.com/http/http-status-codes.html" style="color: blue;" target="_blank" rel="noopener">想了解更多</a> </li>
+</ul>
+<h5 id="HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘"><a href="#HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘" class="headerlink" title="HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)"></a>HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)</h5><ul>
+<li>缓存分类<ul>
+<li>强缓存(以下两个缓存都下发，以后者为准)<ul>
+<li>Expires Expires:THu,21 Jan 2017 23:39/;02 GMT（绝对时间，客服端和服务器时间不一致，比较的时候，是一浏览器时间，下发是服务器时间）</li>
+<li>Cache-Control Cache-Control:max-age=3600（3600是相对时间）</li>
+</ul>
+</li>
+<li>协商缓存（和服务器协商）<ul>
+<li>Last-Modified If-Modified-Since Last-Modified: Web, 26 Jan 2017 23:39/;02 GMT</li>
+<li>Etag If-None-Match</li>
+</ul>
+</li>
+<li>与浏览器缓存相关的http头有哪些，就是以上几个</li>
+</ul>
+</li>
+<li>总结：<ul>
+<li>ETag 是通过对比浏览器和服务器资源的特征值（如MD5）来决定是否要发送文件内容，如果一样就只发送 304（not modified）</li>
+<li>Expires 是设置过期时间（绝对时间），但是如果用户的本地时间错乱了，可能会有问题</li>
+<li>CacheControl: max-age=3600 是设置过期时长（相对时间），跟本地时间无关<br><a href="https://imweb.io/topic/5795dcb6fb312541492eda8c" style="color: blue;" target="_blank" rel="noopener">详细了解 ETag、CacheControl、Expires 的异同</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h5><ul>
+<li>一般理解<ol>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求</li>
+<li>GET产生的URL地址可以被加入收藏栏，而POST不可以</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</li>
+<li>GET参数通过URL传递，POST放在Request body中</li>
+</ol>
+</li>
+<li>核心<ul>
+<li>就一个区别：语义——GET 用于获取资源，POST 用于提交资源<br><a href="https://zhuanlan.zhihu.com/p/22536382" style="color: blue;" target="_blank" rel="noopener"> 请参考 </a></li>
+</ul>
+</li>
+</ul>
+<h5 id="Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session"><a href="#Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session" class="headerlink" title="Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session"></a>Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session</h5><ul>
+<li>Cookie V.S. LocalStorage<ul>
+<li>主要区别是 Cookie 会被发送到服务器，而 LocalStorage 不会</li>
+<li>Cookie 一般最大 4k，LocalStorage 可以用 5Mb 甚至 10Mb（各浏览器不同）</li>
+</ul>
+</li>
+<li>LocalStorage V.S. SessionStorage<ul>
+<li>LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在会话结束时过期（如关闭浏览器）</li>
+</ul>
+</li>
+<li>Cookie V.S. Session<ul>
+<li>Cookie 存在浏览器的文件里，Session 存在服务器的文件里</li>
+<li>Session 是基于 Cookie 实现的，具体做法就是把 SessionID 存在 Cookie 里</li>
+</ul>
+</li>
+</ul>
+<h5 id="XSS（Cross-Site-Scripting）：跨越脚本攻击"><a href="#XSS（Cross-Site-Scripting）：跨越脚本攻击" class="headerlink" title="XSS（Cross-Site Scripting）：跨越脚本攻击"></a>XSS（Cross-Site Scripting）：跨越脚本攻击</h5><ul>
+<li>原理<ul>
+<li>不需要做任何的登录验证，核心原理向页面注入脚本</li>
+</ul>
+</li>
+<li>造成 XSS 有几个要点：<ol>
+<li>恶意用户可以提交内容</li>
+<li>提交的内容可以显示在另一个用户的页面上</li>
+<li>这些内容未经过滤，直接运行在另一个用户的页面上</li>
+</ol>
+</li>
+<li>XSS 的成因以及防御措施<ol>
+<li>后台模板问题：要后台输出的时候，将可疑的符号 &lt; 符号变成 &lt; （HTML实体）就行。</li>
+<li>前端代码问题：就是不要自己拼 HTML，尽量使用 text 方法。如果一定要使用 HTML，就把可疑符号变成 HTML 实体</li>
+</ol>
+</li>
+</ul>
+<h5 id="CSRF（Cross-Site-Request-Forgery）：跨站请求伪造"><a href="#CSRF（Cross-Site-Request-Forgery）：跨站请求伪造" class="headerlink" title="CSRF（Cross Site Request Forgery）：跨站请求伪造"></a>CSRF（Cross Site Request Forgery）：跨站请求伪造</h5><ul>
+<li>原理<ul>
+<li>攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面。</li>
+</ul>
+</li>
+<li>使用anti-csrf-token的方案。 具体方案如下：<ol>
+<li>服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面（一般埋入 form 表单内，<input type="hidden" name="_csrf_token" value="xxxx">）</li>
+<li>服务端设置setCookie，把该随机数作为cookie或者session种入用户浏览器</li>
+<li>当用户发送 GET 或者 POST 请求时带上_csrf_token参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括_csrf_token）</li>
+<li>后台在接受到请求后解析请求的cookie获取_csrf_token的值，然后和用户请求提交的_csrf_token做个比较，如果相等表示请求是合法的。</li>
+</ol>
+</li>
+<li>总结：<ol>
+<li>CSRF<ul>
+<li>(网站中某个接口存在漏洞，用户在这个注册网站确实登录过) </li>
+<li>防御措施 <ul>
+<li>Token验证：用户请求之后，会返回cookie信息，并且服务器向本地存储Token</li>
+<li>Referer验证: 页面来源，服务器判断页面来源是否是当前站点下的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>xss: 向xss注入的js不可执行  </li>
+</ol>
+</li>
+<li>两者区别<ul>
+<li>xss向页面注入js运行，js函数体去做想做的</li>
+<li>CSRF是利用本身的漏洞，帮你去执行相应的接口</li>
+</ul>
+</li>
+<li>推荐查阅资料<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/22521378" style="color: blue;" target="_blank" rel="noopener"> 文章 xsrf </a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22500730" style="color: blue;" target="_blank" rel="noopener"> 文章 xss </a></li>
+<li><a href="http://www.imooc.com/learn/812" style="color: blue;" target="_blank" rel="noopener"> 视频 csrf xss </a></li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/ cross-domain/" rel="next" title="跨域">
+                <i class="fa fa-chevron-left"></i> 跨域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/06/webpack/" rel="prev" title="webpack">
+                webpack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP协议的主要特点"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP协议的主要特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP报文的组成部分"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP报文的组成部分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-状态码"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP 状态码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常见状态码"><span class="nav-number">1.4.</span> <span class="nav-text">常见状态码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GET-和-POST-的区别"><span class="nav-number">1.6.</span> <span class="nav-text">GET 和 POST 的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session"><span class="nav-number">1.7.</span> <span class="nav-text">Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XSS（Cross-Site-Scripting）：跨越脚本攻击"><span class="nav-number">1.8.</span> <span class="nav-text">XSS（Cross-Site Scripting）：跨越脚本攻击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CSRF（Cross-Site-Request-Forgery）：跨站请求伪造"><span class="nav-number">1.9.</span> <span class="nav-text">CSRF（Cross Site Request Forgery）：跨站请求伪造</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
