@@ -268,6 +268,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/ cross-domain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/ cross-domain/" itemprop="url">跨域</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T22:08:28+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="跨域的几种解决方案"><a href="#跨域的几种解决方案" class="headerlink" title="跨域的几种解决方案"></a>跨域的几种解决方案</h4><h5 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h5><p><a href="https://zhuanlan.zhihu.com/p/22600501" style="color: blue;" target="_blank" rel="noopener">来龙去脉啦</a></p>
+<ul>
+<li>同源策略(Same origin Policy)：浏览器出于安全方面的考虑，只允许与同域下的接口交互。</li>
+<li>同域指的是？<ul>
+<li>同协议：都是http或者https</li>
+<li>同域名：都是<a href="http://baidu.com/a" target="_blank" rel="noopener">http://baidu.com/a</a> 和<a href="http://baidu.com/b" target="_blank" rel="noopener">http://baidu.com/b</a></li>
+<li>同端口：都是80端口</li>
+</ul>
+</li>
+<li>JSONP的原理<ol>
+<li>JSONP是通过 script 标签加载数据的方式去获取数据当做 JS 代码来执行</li>
+<li>提前在页面上声明一个函数，函数名通过<strong>接口传参</strong>的方式传给后台，后台解析到函数名后在原始数据上「包裹」这个函数名，发送给前端。换句话说，JSONP 需要对应接口的后端的配合才能实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// 简单的实现原理就是</span><br><span class="line"> &lt;script src=&quot;http://www.abc.com/?data=name&amp;callback=jsonp&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    jsonp showData(res) &#123;</span><br><span class="line">        console.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">// 借用大佬封装的代码</span><br><span class="line">function jsonp(setting) &#123;</span><br><span class="line">  setting.data = setting.data || &#123;&#125;;</span><br><span class="line">  setting.key = setting.key || &apos;callback&apos;;</span><br><span class="line">  setting.callback = setting.callback || function() &#123;&#125;;</span><br><span class="line">  setting.data[setting.key] = &apos;__onGetData__&apos;;</span><br><span class="line"></span><br><span class="line">  window.__onGetData__ = function(data) &#123;</span><br><span class="line">    setting.callback (data);</span><br><span class="line">  &#125;</span><br><span class="line">  var script = document.createElement(&apos;script&apos;);</span><br><span class="line">  var query = [];</span><br><span class="line">  for(var key in setting.data) &#123;</span><br><span class="line">    query.push( key + &apos;=&apos; + encodeURIComponent(setting.data[key]));</span><br><span class="line">  &#125;</span><br><span class="line">  script.src = setting.url + &apos;?&apos; + query.join(&apos;&amp;&apos;);</span><br><span class="line">  document.head.appendChild(script);</span><br><span class="line">  document.head.removeChild(script);</span><br><span class="line">&#125;</span><br><span class="line">jsonp(&#123;</span><br><span class="line">  url: &apos;http://api.baidu.com/weather.php&apos;,</span><br><span class="line">  callback: function(res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">jsonp(&#123;</span><br><span class="line">  url: &apos;http://photo.sina.cn/aj/index&apos;,</span><br><span class="line">  key: &apos;jsoncallback&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    cate: &apos;recommend&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  callback: function(res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" style="color: blue;" target="_blank" rel="noopener">CORS</a></h5><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" style="color: blue;" target="_blank" rel="noopener">阮一峰教程</a></p>
+<ul>
+<li>CORS需要浏览器和服务器同时支持</li>
+<li>实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。<br>在header信息中添加Origin<br>CORS与JSONP的使用目的相同，但是比JSONP更强大。<br>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</li>
+</ul>
+<h5 id="闭包（Closure）"><a href="#闭包（Closure）" class="headerlink" title="闭包（Closure）"></a>闭包（Closure）</h5><p><a href="https://zhuanlan.zhihu.com/p/22486908" style="color: blue;" target="_blank" rel="noopener">还是老师厉害</a></p>
+<ul>
+<li><strong>「函数」和「函数内部能访问到的变量」（也叫环境）的总和，就是一个闭包</strong></li>
+<li>平时我们的认知的闭包:「需要函数套函数，然后 return 一个函数的呀！」<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var local = 1;</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    local++;</span><br><span class="line">    return local;</span><br><span class="line">  &#125;</span><br><span class="line">  return bar; // return  window.bar = bar;</span><br><span class="line">&#125;</span><br><span class="line">var func = foo();</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="为什么要函数套函数呢？"><a href="#为什么要函数套函数呢？" class="headerlink" title="为什么要函数套函数呢？"></a>为什么要函数套函数呢？</h5><ul>
+<li>因为需要局部变量，所以才把 local 放在一个函数里，如果不把 local 放在一个函数里，local 就是一个全局变量了，达不到使用闭包的目的——隐藏变量<br>闭包的原文是 Closure，跟「包」没有任何关系。<br>所以函数套函数只是为了造出一个局部变量，跟闭包无关。</li>
+</ul>
+<h5 id="为什么要-return-bar-呢？"><a href="#为什么要-return-bar-呢？" class="headerlink" title="为什么要 return bar 呢？"></a>为什么要 return bar 呢？</h5><ul>
+<li>因为如果不 return，你就无法使用这个闭包。把 return bar 改成 window.bar = bar 也是一样的，只要让外面可以访问到这个 bar 函数就行了。</li>
+<li>所以 return bar 只是为了 bar 能被使用，也跟闭包无关。</li>
+</ul>
+<h5 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h5><ul>
+<li>闭包常常用来「间接访问一个变量」。换句话说，「隐藏一个变量」</li>
+<li>暴露一个访问器（函数），让别人可以「间接访问」</li>
+</ul>
+<h5 id="你们闭包会造成内存泄漏？"><a href="#你们闭包会造成内存泄漏？" class="headerlink" title="你们闭包会造成内存泄漏？"></a>你们闭包会造成内存泄漏？</h5><ul>
+<li>内存泄露是指你用不到（访问不到）的变量，依然占居着内存空间，不能被再次利用起来</li>
+<li>闭包里面的变量明明就是我们需要的变量，凭什么说是内存泄露？<ul>
+<li>因为 IE。IE 有 bug，IE 在我们使用完闭包之后，依然回收不了闭包里面引用的变量</li>
+<li>这是 IE 的问题，不是闭包的问题。<a href="http://www.cnblogs.com/rubylouvre/p/3345294.html#undefined" style="color: blue;" target="_blank" rel="noopener">参见司徒正美的这篇文章</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h5><ul>
+<li>声明一个匿名函数</li>
+<li>马上调用这个匿名函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125;)()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="那么为什么还要用另一对括号把匿名函数包起来呢？"><a href="#那么为什么还要用另一对括号把匿名函数包起来呢？" class="headerlink" title="那么为什么还要用另一对括号把匿名函数包起来呢？"></a>那么为什么还要用另一对括号把匿名函数包起来呢？</h5><ul>
+<li>为了兼容 JS 的语法</li>
+<li>不加的话，览器会报语法错误。想要通过浏览器的语法检查，必须加点小东西，比如下面几种都OK👌<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125; ()) // 用括号把整个表达式包起来</span><br><span class="line">(function()&#123;alert(&apos;我是匿名函数&apos;)&#125;) () //用括号把函数包起来</span><br><span class="line">!function()&#123;alert(&apos;我是匿名函数&apos;)&#125;() // 求反，我们不在意值是多少，只想通过语法检查</span><br><span class="line">+function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">-function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">~function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">void function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br><span class="line">new function()&#123;alert(&apos;我是匿名函数&apos;)&#125;()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="立即执行函数有什么用？"><a href="#立即执行函数有什么用？" class="headerlink" title="立即执行函数有什么用？"></a>立即执行函数有什么用？</h5><ul>
+<li>创建一个独立的作用域。使这个作用域里面的变量，外面访问不到（即避免「变量污染」）</li>
+<li>以下经典案列<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var liList = ul.getElementsByTagName(&apos;li&apos;)</span><br><span class="line">for(var i = 0; i &lt; 6; i++) &#123;</span><br><span class="line">  liList[i].onclick = function() &#123;</span><br><span class="line">    alert(i); // 为什么 alert 出来的总是 6，而不是 0、1、2、3、4、5</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>i 是贯穿整个作用域的，而不是给每个 li 分配了一个 i，用户一定是在for运行完之后才点击，此时都i为6<br>用立即执行函数给每个 li 创造一个独立作用域即可（当然还有其他办法: 如 let）：<br><a href="https://jsbin.com/gicusajoqi/edit?html,js,output" style="color: blue;" target="_blank" rel="noopener">还原效果，click me!</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var ul = document.getElementsByTagName(&apos;ul&apos;)[0]</span><br><span class="line">var liList = ul.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">for(var i = 0; i &lt; 6; i++) &#123;</span><br><span class="line">  !function(ii) &#123;</span><br><span class="line">    liList[ii].onclick = function() &#123;</span><br><span class="line">      alert(ii); // 0、1、2、3、4、5</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在立即执行函数执行的时候，i 的值被赋值给 ii，此后 ii 的值一直不变。<br>i 的值从 0 变化到 5，对应 6 个立即执行函数，这 6 个立即执行函数里面的 ii 「分别」是 0、1、2、3、4、5。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/this/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2008,161 +2212,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/29/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T10:58:14+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blog/" itemprop="url" rel="index">
-                    <span itemprop="name">blog</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2210,7 +2264,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

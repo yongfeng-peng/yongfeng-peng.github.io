@@ -268,6 +268,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/react组件化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/21/react组件化/" itemprop="url">react组件化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-21T10:46:03+08:00">
+                2020-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="react组件化"><a href="#react组件化" class="headerlink" title="react组件化"></a>react组件化</h3><h4 id="使用antd的yarn-create-react-app-antd-demo创建的项目，使用组件配置按需加载"><a href="#使用antd的yarn-create-react-app-antd-demo创建的项目，使用组件配置按需加载" class="headerlink" title="使用antd的yarn create react-app antd-demo创建的项目，使用组件配置按需加载"></a>使用antd的yarn create react-app antd-demo创建的项目，使用组件配置按需加载</h4><ul>
+<li>安装react-app-rewired取代react-scripts(package.json)，可以扩展webpack的配置 ，类似vue.config.js</li>
+<li><p>项目根目录创建 config-overrides.js，配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const &#123; injectBabelPlugin &#125; = require(&quot;react-app-rewired&quot;);</span><br><span class="line">module.exports = function override(config, env) &#123;</span><br><span class="line">  config = injectBabelPlugin(</span><br><span class="line">    // 在默认配置基础上注入</span><br><span class="line">    // 插件名，插件配置</span><br><span class="line">    [&quot;import&quot;, &#123; libraryName: &quot;antd&quot;, libraryDirectory: &quot;es&quot;, style: &quot;css&quot; &#125;],</span><br><span class="line">    config</span><br><span class="line">  );</span><br><span class="line">  // 高级组件、可使用装饰器配置 ES7 -&gt; ES5</span><br><span class="line">  config = injectBabelPlugin(</span><br><span class="line">    [&quot;@babel/plugin-proposal-decorators&quot;, &#123; legacy: true &#125;],</span><br><span class="line">    config</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  return config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Button实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;</span><br><span class="line">// antd.css都加载</span><br><span class="line">// import Button from &apos;antd/lib/button&apos;</span><br><span class="line">// import &apos;antd/dist/antd.css&apos;</span><br><span class="line">// 按需加载</span><br><span class="line">import &#123;Button&#125; from &apos;antd&apos;</span><br><span class="line"></span><br><span class="line">export default class AntdTest extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Button type=&quot;primary&quot;&gt;按钮&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="容器组件、函数组件，react渲染数据的深浅比较"><a href="#容器组件、函数组件，react渲染数据的深浅比较" class="headerlink" title="容器组件、函数组件，react渲染数据的深浅比较"></a>容器组件、函数组件，react渲染数据的深浅比较</h4><ul>
+<li>容器组件负责数据获取，展示组件负责根据props显示信息</li>
+<li>shouldComponentUpdate</li>
+<li><p>PureComponent (定制了shouldComponentUpdate后的Component（浅比较）)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Comp extends React.PureComponent &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>memo高阶组件(React v16.6.0 之后的版本，可以使用 React.memo 让函数式的组件也有PureComponent的功能)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const Demo = React.memo(() =&gt; ( &lt;div&gt;&#123;this.props.value || &apos;loading...&apos; &#125; &lt;/div&gt; ));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; func &#125; from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">// 容器组件</span><br><span class="line">export default class CommentList extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      comments: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    // 不断轮询比较、耗费🆓</span><br><span class="line">    // setInterval(() =&gt; &#123; // 每次生成的是全新数组</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        comments: [</span><br><span class="line">          &#123; body: &quot;react is very good&quot;, author: &quot;facebook&quot; &#125;,</span><br><span class="line">          &#123; body: &quot;vue is very good&quot;, author: &quot;youyuxi&quot; &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;this.state.comments.map((c, i) =&gt; (</span><br><span class="line">          &lt;Comment key=&#123;i&#125; data=&#123;c&#125; /&gt;</span><br><span class="line">          // &lt;Comment key=&#123;i&#125; body=&#123;c.body&#125; author=&#123;c.author&#125; /&gt;</span><br><span class="line">          // &lt;Comment key=&#123;i&#125; &#123;...c&#125; /&gt;</span><br><span class="line">        ))&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 展示组件</span><br><span class="line">// memo高阶组件（也是一个函数，接收一个组件、返回一个全新的组件）,也是浅比较（实现原理和使用PureComponent一样，解决了以前函数组件不能使用PureComponent）</span><br><span class="line">// React v16.6.0 之后的版本，可以使用 React.memo 让函数式的组件也有PureComponent的功能</span><br><span class="line">// const Comment = React.memo(function(props) &#123;</span><br><span class="line">//   console.log(&quot;render Comment&quot;); // 执行两次</span><br><span class="line">//   return (</span><br><span class="line">//     &lt;div&gt;</span><br><span class="line">//       &lt;p&gt;&#123;props.body&#125;&lt;/p&gt;</span><br><span class="line">//       &lt;p&gt; --- &#123;props.author&#125;&lt;/p&gt;</span><br><span class="line">//     &lt;/div&gt;</span><br><span class="line">//   );</span><br><span class="line">// &#125;);</span><br><span class="line"></span><br><span class="line">// 使用PureComponent （15.3 版本） 浅比较，避免对象比较（引用类型），挖掘太深，也没有达到效果</span><br><span class="line">// 解决 数据没有变 render函数不执行</span><br><span class="line">// 传值类型、或者避免引用类型的地址不变（尽量一层）</span><br><span class="line">// class Comment extends React.PureComponent&#123;</span><br><span class="line">//   render() &#123;</span><br><span class="line">//     console.log(&quot;render comment&quot;);</span><br><span class="line">//     return (</span><br><span class="line">//       &lt;div&gt;</span><br><span class="line">//         &lt;p&gt;&#123;this.props.body&#125;&lt;/p&gt;</span><br><span class="line">//         &lt;p&gt; --- &#123;this.props.author&#125;&lt;/p&gt;</span><br><span class="line">//       &lt;/div&gt;</span><br><span class="line">//     );</span><br><span class="line">//   &#125;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">// class Comment extends React.Component&#123;</span><br><span class="line">//   // 生命周期进行比较 新状态nextProps 与 data比较</span><br><span class="line">//   // 弊端： 比较累赘</span><br><span class="line">//   shouldComponentUpdate(nextProps)&#123;</span><br><span class="line">//       if (nextProps.data.body === this.props.data.body &amp;&amp;</span><br><span class="line">//         nextProps.data.author === this.props.data.author) &#123;</span><br><span class="line">//           return false;</span><br><span class="line">//       &#125;</span><br><span class="line">//       return true;</span><br><span class="line">//   &#125;</span><br><span class="line"></span><br><span class="line">//   render() &#123;</span><br><span class="line">//     console.log(&quot;render comment&quot;); // 执行了2次</span><br><span class="line">//     return (</span><br><span class="line">//       &lt;div&gt;</span><br><span class="line">//         &lt;p&gt;&#123;this.props.data.body&#125;&lt;/p&gt;</span><br><span class="line">//         &lt;p&gt; --- &#123;this.props.data.author&#125;&lt;/p&gt;</span><br><span class="line">//       &lt;/div&gt;</span><br><span class="line">//     );</span><br><span class="line">//   &#125;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">function Comment(&#123;data&#125;)&#123;</span><br><span class="line">  console.log(&quot;render comment&quot;); // 执行了4次</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;&#123;data.body&#125;&lt;/p&gt;</span><br><span class="line">      &lt;p&gt; --- &#123;data.author&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h4><ul>
+<li>在React里就有了HOC（Higher-Order Components）的概念</li>
+<li>高阶组件也是一个组件，但是他返回另外一个组件，产生新的组件可以对属性进行包装，甚至重写部分生命周期<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const demoComp = (Component) =&gt; &#123; </span><br><span class="line">  const NewComponent = (props) =&gt; &#123; </span><br><span class="line">    return &lt;Component &#123;...props&#125; name=&apos;demo组件&apos; /&gt;; </span><br><span class="line">  &#125;;</span><br><span class="line">    return NewComponent; </span><br><span class="line">  &#125;;</span><br><span class="line">// 上面demoComp组件，其实就是代理了Component，只是多传递了一个name参数</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="高阶链式调用"><a href="#高阶链式调用" class="headerlink" title="高阶链式调用"></a>高阶链式调用</h4><ul>
+<li>高阶组件最巧妙的一点，是可以链式调用</li>
+</ul>
+<h4 id="高阶组件装饰器写法"><a href="#高阶组件装饰器写法" class="headerlink" title="高阶组件装饰器写法"></a>高阶组件装饰器写法</h4><ul>
+<li>ES7装饰器可用于简化高阶组件写法</li>
+<li>npm install –save-dev babel-plugin-transform-decorators-legacy</li>
+<li>同上，项目根目录创建 config-overrides.js，配置</li>
+<li>参考源码 <a href="https://github.com/yongfeng-peng/my-react-demo/blob/master/src/components/Hoc.js" target="_blank" rel="noopener">https://github.com/yongfeng-peng/my-react-demo/blob/master/src/components/Hoc.js</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 高级组件、可使用装饰器配置 ES7 -&gt; ES5</span><br><span class="line">config = injectBabelPlugin(</span><br><span class="line">  [&quot;@babel/plugin-proposal-decorators&quot;, &#123; legacy: true &#125;],</span><br><span class="line">  config</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="组件跨层级通信-上下文"><a href="#组件跨层级通信-上下文" class="headerlink" title="组件跨层级通信 - 上下文"></a>组件跨层级通信 - 上下文</h4><ul>
+<li>组件跨层级通信可使用Context</li>
+<li>这种模式下有两个角色，Provider和Consumer</li>
+<li>Provider为外层组件，用来提供 数据；内部需要数据时用Consumer来读取<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const FormContext = React.createContext()</span><br><span class="line">const FormProvider = FormContext.Provider</span><br><span class="line">const FormConsumer = FormContext.Consumer</span><br><span class="line">let store = &#123; </span><br><span class="line">  name: &apos;学习&apos;, </span><br><span class="line">  sayHi() &#123; </span><br><span class="line">    console.log(this.name);</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line">let withForm = Component=&gt; &#123; </span><br><span class="line">  const NewComponent = (props) =&gt; &#123; </span><br><span class="line">    return &lt;FormProvider value=&#123;store&#125;&gt; &lt;Component &#123;...props&#125; /&gt; &lt;/FormProvider&gt; </span><br><span class="line">  &#125;;</span><br><span class="line">  return NewComponent; </span><br><span class="line">&#125;</span><br><span class="line">@withForm class App extends Component &#123; </span><br><span class="line">  render() &#123; </span><br><span class="line">    return &lt;FormConsumer&gt; &#123; </span><br><span class="line">      store=&gt; &#123; </span><br><span class="line">        return &lt;Button onClick=&#123;()=&gt;store.sayHi()&#125;&gt; &#123;store.name&#125; &lt;/Button&gt; </span><br><span class="line">      &#125; </span><br><span class="line">    &#125; &lt;/FormConsumer&gt; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a><a href="https://github.com/yongfeng-peng/my-react-demo" target="_blank" rel="noopener">code</a></h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/19/react/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1739,172 +1923,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序兼容性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/02/小程序兼容性/" itemprop="url">微信小程序兼容性</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-02T09:53:23+08:00">
-                2020-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="IOS常见兼容性"><a href="#IOS常见兼容性" class="headerlink" title="IOS常见兼容性"></a>IOS常见兼容性</h4><h5 id="iOS中input的placeholder属性字体不居中"><a href="#iOS中input的placeholder属性字体不居中" class="headerlink" title="iOS中input的placeholder属性字体不居中"></a>iOS中input的placeholder属性字体不居中</h5><ul>
-<li>对placeholder设置line-height及font-size</li>
-<li>对input设置高度</li>
-</ul>
-<h5 id="iOS中滚动卡顿"><a href="#iOS中滚动卡顿" class="headerlink" title="iOS中滚动卡顿"></a>iOS中滚动卡顿</h5><ul>
-<li>设置-webkit-overflow-scrolling:touch<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-webkit-overflow-scrolling: touch</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="iOS中new-Date-时间格式不兼容"><a href="#iOS中new-Date-时间格式不兼容" class="headerlink" title="iOS中new Date() 时间格式不兼容"></a>iOS中new Date() 时间格式不兼容</h5><ul>
-<li>在实现倒计时，根据后台返回的时间格式转换时，后台返回了时间格式为”2018-11-12 11:12:11”，然后利用new Date() 转换时，ios中无法展示，安卓中显示正常<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let time = &apos;2018-12-10 11:11:11&apos;;</span><br><span class="line">let formateTIme = new Date(time);</span><br><span class="line">this.setData(&#123;</span><br><span class="line">  formateTIme</span><br><span class="line">&#125;)</span><br><span class="line">/* 利用正则表达式替换时间中的”-”为”/”即可 */</span><br><span class="line">let time = &apos;2018-12-10 11:11:11&apos;;</span><br><span class="line">let temporaryTime = new Date(time.replace(/-/g,&apos;/&apos;));</span><br><span class="line">let temporaryTime1 = new Date(time);</span><br><span class="line">this.setData(&#123;</span><br><span class="line">  timeRemain: temporaryTime,</span><br><span class="line">  timeRemain1: temporaryTime1,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="scroll-view隐藏滚动条方法"><a href="#scroll-view隐藏滚动条方法" class="headerlink" title="scroll-view隐藏滚动条方法"></a>scroll-view隐藏滚动条方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  width: 0;</span><br><span class="line">  height: 0;</span><br><span class="line">  color: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="图片本地资源名称，尽量使用小写命名"><a href="#图片本地资源名称，尽量使用小写命名" class="headerlink" title="图片本地资源名称，尽量使用小写命名"></a>图片本地资源名称，尽量使用小写命名</h5><ul>
-<li><p>在解决iPhone X适配时，底部多余部分使用图片时</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image class=&apos;iphonexImg&apos; src=&quot;/imgs/iphoneBGT.png&quot; mode=&quot;aspectFill&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>路径是 src=’imgs/iphoneBGT.png’(发现在pc IDE上面可以显示出来，但是真机调试时，图片找不到)，将图片名称改为iphonex.png真机调试就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image class=&apos;iphonexImg&apos; src=&quot;/imgs/iphonex.png&quot; mode=&quot;aspectFill&quot; /&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1952,7 +1975,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
