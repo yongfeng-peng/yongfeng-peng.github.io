@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Shero.">
 <meta property="og:description" content="开发工具插件VScode常有插件 To Learn More… 安装javascript console utils （crtl + shift + l）快捷console语句 安装Path Autocomplete 路径自动补全  VScode快捷键 To Learn More… ctrl + shift + f(command + shift + f)项目目录中，搜索任何匹配的文本 合并行 C">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-02T08:46:19.414Z">
+<meta property="og:updated_time" content="2022-02-10T03:21:42.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="front-tool前端开发工具">
 <meta name="twitter:description" content="开发工具插件VScode常有插件 To Learn More… 安装javascript console utils （crtl + shift + l）快捷console语句 安装Path Autocomplete 路径自动补全  VScode快捷键 To Learn More… ctrl + shift + f(command + shift + f)项目目录中，搜索任何匹配的文本 合并行 C">
@@ -453,9 +453,23 @@
 </li>
 <li><p>复制光标向上或者向上批量添加内容</p>
 <ul>
-<li>Mac：Command + option + 上下箭头  Windows: Ctrl + Alt + 上下箭头</li>
+<li>Mac：Command + option + 上下箭头  Windows: Ctrl + Alt + 上下箭头<h5 id="vscode注释插件推荐"><a href="#vscode注释插件推荐" class="headerlink" title="vscode注释插件推荐"></a>vscode注释插件推荐</h5></li>
 </ul>
 </li>
+<li>Better Comments：特点是可以改变注释的颜色，通过不同颜色来表示不同情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">文件顶部的注释，包括描述、作者、日期、最后编辑时间，最后编辑人</span><br><span class="line"></span><br><span class="line"> ```typescript</span><br><span class="line"> /*</span><br><span class="line">  * @Description: app im菜单配置列表中的表格模块</span><br><span class="line">  * @Author: maoyuyu</span><br><span class="line">  * @Date: 2019-08-05 10:31:12</span><br><span class="line">  * @LastEditTime: 2019-08-14 17:08:33</span><br><span class="line">  * @LastEditors: Please set LastEditors</span><br><span class="line">  */</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><strong>文件头部添加注释快捷键</strong>：<code>window</code>：<code>ctrl+alt+i</code>,<code>mac</code>：<code>ctrl+cmd+i</code></p>
+<p><strong>在光标处添加函数注释</strong>：<code>window</code>：<code>ctrl+alt+t</code>,<code>mac</code>：<code>ctrl+cmd+t</code></p>
+<p><strong>vscode setting 配置如下</strong></p>
+</blockquote>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">"fileheader.configObj": &#123;</span><br><span class="line">  "autoAdd": false, // 自动添加头部注释开启才能自动添加</span><br><span class="line">&#125;,</span><br><span class="line">"fileheader.customMade": &#123;</span><br><span class="line">  "Author":"[you name]",</span><br><span class="line">  "Date": "Do not edit", // 文件创建时间(不变)</span><br><span class="line">  "LastEditors": "[you name]", // 文件最后编辑者</span><br><span class="line">  "LastEditTime": "Do not edit", // 文件最后编辑时间</span><br><span class="line">  "Description":""</span><br><span class="line">&#125;,</span><br><span class="line">"fileheader.cursorMode": &#123;</span><br><span class="line">  "Author":"[you name]",</span><br><span class="line">  "description": "", </span><br><span class="line">  "param": "", </span><br><span class="line">  "return":""</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* koroFileHeader：特点是可以在文件头部快捷添加注释和函数注释</span><br></pre></td></tr></table></figure>
+<p>  ！ ， 红色注释<br>  ? , 蓝色注释<br>  // , 灰色删除线注释<br>  todo ,橘红色注释</p>
+<ul>
+<li>, 浅绿色注释</li>
+<li>setting.json配置<br>“better-comments.tags”: [<br>{<br>  “tag”: “!”,<br>  “color”: “#FF2D00”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “?”,<br>  “color”: “#3498DB”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “//“,<br>  “color”: “#474747”,<br>  “strikethrough”: true,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “todo”,<br>  “color”: “#FF8C00”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “*”,<br>  “color”: “#98C379”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>}<br>]<br><code>`</code></li>
 </ul>
 
       
@@ -627,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发工具插件"><span class="nav-number">1.</span> <span class="nav-text">开发工具插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#VScode常有插件"><span class="nav-number">1.1.</span> <span class="nav-text">VScode常有插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VScode快捷键"><span class="nav-number">1.2.</span> <span class="nav-text">VScode快捷键</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发工具插件"><span class="nav-number">1.</span> <span class="nav-text">开发工具插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#VScode常有插件"><span class="nav-number">1.1.</span> <span class="nav-text">VScode常有插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VScode快捷键"><span class="nav-number">1.2.</span> <span class="nav-text">VScode快捷键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vscode注释插件推荐"><span class="nav-number">1.3.</span> <span class="nav-text">vscode注释插件推荐</span></a></li></ol></li></ol></div>
             
 
           </div>
