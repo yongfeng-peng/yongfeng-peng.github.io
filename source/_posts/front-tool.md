@@ -72,3 +72,84 @@ tags:
     
 * 复制光标向上或者向上批量添加内容
     * Mac：Command + option + 上下箭头  Windows: Ctrl + Alt + 上下箭头
+##### vscode注释插件推荐
+* Better Comments：特点是可以改变注释的颜色，通过不同颜色来表示不同情况
+```
+ 文件顶部的注释，包括描述、作者、日期、最后编辑时间，最后编辑人
+ 
+  ```typescript
+  /*
+   * @Description: app im菜单配置列表中的表格模块
+   * @Author: maoyuyu
+   * @Date: 2019-08-05 10:31:12
+   * @LastEditTime: 2019-08-14 17:08:33
+   * @LastEditors: Please set LastEditors
+   */
+  ```
+ 
+  > **文件头部添加注释快捷键**：`window`：`ctrl+alt+i`,`mac`：`ctrl+cmd+i`
+  >
+  > **在光标处添加函数注释**：`window`：`ctrl+alt+t`,`mac`：`ctrl+cmd+t`
+  >
+  > **vscode setting 配置如下**
+ 
+  ```json
+  "fileheader.configObj": {
+    "autoAdd": false, // 自动添加头部注释开启才能自动添加
+  },
+  "fileheader.customMade": {
+    "Author":"[you name]",
+    "Date": "Do not edit", // 文件创建时间(不变)
+    "LastEditors": "[you name]", // 文件最后编辑者
+    "LastEditTime": "Do not edit", // 文件最后编辑时间
+    "Description":""
+  },
+  "fileheader.cursorMode": {
+    "Author":"[you name]",
+    "description": "", 
+    "param": "", 
+    "return":""
+  }
+  ```
+```
+* koroFileHeader：特点是可以在文件头部快捷添加注释和函数注释
+```
+  ！ ， 红色注释
+  ? , 蓝色注释
+  // , 灰色删除线注释
+  todo ,橘红色注释
+  * , 浅绿色注释
+  * setting.json配置
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    }
+  ]
+```

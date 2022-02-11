@@ -53,3 +53,10 @@ tags:
  }]
 
 ```
+
+#### echarts案例大全
+* 强大社区Make A Pie展示各类的ECharts案例被关闭
+* 新的资源库
+  * http://192.144.199.210/forum.php?mod=forumdisplay&fid=2
+  * http://analysis.datains.cn/finance-admin/#/chartLib/all
+  * http://ppchart.com/#/
