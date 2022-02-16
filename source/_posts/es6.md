@@ -211,6 +211,34 @@ async function test() {
 }
 test();
 ```
+* 处理错误2（更优雅 try、catch搞太多代码难看些）
+  * 使用库async-to-js await-to-js
+  * 库async-to-js的to函数返回一个Promise且值是一个数组，数组之中有两个元素，如果索引为0的元素不为空值，说明该请求报错，如果索引0的元素为空值说明该请求没有报错，也就是成功
+  * ？错误在0的位置（错误优先的原则）
+```
+const handleLogin = async () => {
+  const [resErr, res] = await to(request('/xx/xx', {
+    usename: '',
+    password: ''
+  }))
+  if (resErr) {
+    // fail do somthing
+    return
+  }
+  const [userErr, info] = await to(request('/xx/xx', {
+    id: res.id
+  }))
+  if (userErr) {
+    // fail do somthing
+    return
+  }
+  this.userInfo = info
+}
+```
+* 处理async/await中的错误用try/catch是有什么不好的地方
+  * 有时候需要在上一条 await 语句 reject 的时候，不中断 async 函数的执行，继续执行后续的 await，try...catch 捕获的粒度没办法做到很细，除非给每个 await 语句都加上 try...catch，这样太麻烦，所以用了下这个库，这种风格实际上是参考了 Golang 中的异常处理机制，因为 Golang 里面没有 try...catch，抛一个 panic 直接中断程序执行了
+* ?多个await呢？而且每个await的错误处理都不同的话，那try catch咋做
+  * 写一个工具函数来await执行异步方法，在它内部通过try-catch处理异常，外部通过返回值来获取异常
 4. 同时调用fn函数，Promise处理
 ```
 Promise.all([fn('大'), fn('大')]).then(
