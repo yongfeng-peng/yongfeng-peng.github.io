@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Shero.">
 <meta property="og:description" content="ES6 语法及应用es6学习可参照 作用域 块级作用域： 由一对大括号{}界定 块级变量 let：声明一个块级作用域的本地变量，可选的将其初始化为一个值 块级常量 const: 常量的值不能通过重新赋值来改变，并且不能重新声明( 是否指向同一个内存地址 )  let、const与var的区别 var 可以重复定义 可以随意更改 没有块级作用域   let与const 在同一个块级作用域中，不允许重">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-02T08:36:18.374Z">
+<meta property="og:updated_time" content="2022-02-16T02:05:50.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6">
 <meta name="twitter:description" content="ES6 语法及应用es6学习可参照 作用域 块级作用域： 由一对大括号{}界定 块级变量 let：声明一个块级作用域的本地变量，可选的将其初始化为一个值 块级常量 const: 常量的值不能通过重新赋值来改变，并且不能重新声明( 是否指向同一个内存地址 )  let、const与var的区别 var 可以重复定义 可以随意更改 没有块级作用域   let与const 在同一个块级作用域中，不允许重">
@@ -456,6 +456,27 @@
 <li><p>await语法中error错误处理</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function fn(params) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      let n = parseInt(Math.random() * 6 + 1, 10); // [0, 6)</span><br><span class="line">      if (n &gt; 3) &#123;</span><br><span class="line">        if (params === ‘大’) &#123;</span><br><span class="line">          resolve(n);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(n);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        if (params === ‘小’) &#123;</span><br><span class="line">          resolve(n);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(n);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 3000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">async function test() &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    let n = await fn(&apos;大&apos;);</span><br><span class="line">    console.log(&apos;猜中了&apos; + n);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(&apos;输了&apos; + error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<ul>
+<li><p>处理错误2（更优雅 try、catch搞太多代码难看些）</p>
+<ul>
+<li>使用库async-to-js await-to-js</li>
+<li>库async-to-js的to函数返回一个Promise且值是一个数组，数组之中有两个元素，如果索引为0的元素不为空值，说明该请求报错，如果索引0的元素为空值说明该请求没有报错，也就是成功</li>
+<li>？错误在0的位置（错误优先的原则）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const handleLogin = async () =&gt; &#123;</span><br><span class="line">  const [resErr, res] = await to(request(&apos;/xx/xx&apos;, &#123;</span><br><span class="line">    usename: &apos;&apos;,</span><br><span class="line">    password: &apos;&apos;</span><br><span class="line">  &#125;))</span><br><span class="line">  if (resErr) &#123;</span><br><span class="line">    // fail do somthing</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line">  const [userErr, info] = await to(request(&apos;/xx/xx&apos;, &#123;</span><br><span class="line">    id: res.id</span><br><span class="line">  &#125;))</span><br><span class="line">  if (userErr) &#123;</span><br><span class="line">    // fail do somthing</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line">  this.userInfo = info</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>处理async/await中的错误用try/catch是有什么不好的地方</p>
+<ul>
+<li>有时候需要在上一条 await 语句 reject 的时候，不中断 async 函数的执行，继续执行后续的 await，try…catch 捕获的粒度没办法做到很细，除非给每个 await 语句都加上 try…catch，这样太麻烦，所以用了下这个库，这种风格实际上是参考了 Golang 中的异常处理机制，因为 Golang 里面没有 try…catch，抛一个 panic 直接中断程序执行了</li>
+</ul>
+</li>
+<li>?多个await呢？而且每个await的错误处理都不同的话，那try catch咋做<ul>
+<li>写一个工具函数来await执行异步方法，在它内部通过try-catch处理异常，外部通过返回值来获取异常</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
 <li><p>同时调用fn函数，Promise处理</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([fn(&apos;大&apos;), fn(&apos;大&apos;)]).then(</span><br><span class="line">  res =&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error =&gt; &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 </li>
