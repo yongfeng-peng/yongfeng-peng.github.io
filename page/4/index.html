@@ -268,6 +268,392 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/小程序canvas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/13/小程序canvas/" itemprop="url">小程序canvas</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T11:10:24+08:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="在小程序某一个页面使用canvas绘制多个动态圆环"><a href="#在小程序某一个页面使用canvas绘制多个动态圆环" class="headerlink" title="在小程序某一个页面使用canvas绘制多个动态圆环"></a>在小程序某一个页面使用canvas绘制多个动态圆环</h4><ul>
+<li><p>封装的公共的canvas.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">// 绘制圆环动画共有方法</span><br><span class="line">export default&#123; </span><br><span class="line">  // data: &#123;</span><br><span class="line">  //   percentage: &apos;&apos;, //百分比</span><br><span class="line">  //   animTime: &apos;&apos;, // 动画执行时间</span><br><span class="line">  // &#125;,</span><br><span class="line">  options:&#123;</span><br><span class="line">    /*  @description &#123;绘制圆形进度条方法&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param c: 绘制动画进度, id: canvas画板id, w,h: 圆心的横纵坐标</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    run(c, w, h, id) &#123;</span><br><span class="line">      // 需要在这里重新获取一下id，不然只能绘制一次</span><br><span class="line">      let context = wx.createCanvasContext(id);</span><br><span class="line">      let num = (2 * Math.PI / 100 * c) - 0.5 * Math.PI;</span><br><span class="line">      context.arc(w, h, w - 8, -0.5 * Math.PI, num); // 每个间隔绘制的弧度</span><br><span class="line">      // 设置为渐变的颜色</span><br><span class="line">      var gradient = context.createLinearGradient(200, 100, 100, 200);</span><br><span class="line">      gradient.addColorStop(&apos;0&apos;, &apos;#2661DD&apos;);</span><br><span class="line">      gradient.addColorStop(&apos;0.5&apos;, &apos;#40ED94&apos;);</span><br><span class="line">      gradient.addColorStop(&apos;1.0&apos;, &apos;#5956CC&apos;);</span><br><span class="line">      context.setStrokeStyle(gradient);</span><br><span class="line">      // 设置单一的颜色</span><br><span class="line">      // context.setStrokeStyle(&apos;#5ba2b6&apos;);</span><br><span class="line">      context.setLineWidth(&apos;16&apos;);</span><br><span class="line">      context.setLineCap(&apos;butt&apos;);</span><br><span class="line">      context.stroke();</span><br><span class="line">      context.beginPath();</span><br><span class="line">      context.setFontSize(20); // 注意不要加引号</span><br><span class="line">      context.setFillStyle(&apos;#ffef00&apos;);</span><br><span class="line">      context.setTextAlign(&apos;center&apos;);</span><br><span class="line">      context.setTextBaseline(&apos;middle&apos;);</span><br><span class="line">      context.fillText(c + &apos;%&apos;, w, h);</span><br><span class="line">      context.draw();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    /*  @description &#123;绘制圆环的动画效果实现&#125;&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param start: 起始百分比, end: 结束百分比, </span><br><span class="line">               w,h: 圆心的横纵坐标, id: canvas画板id</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    canvasTap(start, end, time, w, h, id) &#123;</span><br><span class="line">      start++;</span><br><span class="line">      if (start &gt; end) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">      this.run(start, w, h, id);</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        this.canvasTap(start, end, time, w, h, id);</span><br><span class="line">      &#125;, time);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    /*  @description &#123;绘制圆环&#125;&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param id: canvas画板id, percent: 进度条百分比,time: 画图动画执行时间</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    draw(id, percent, animTime) &#123;</span><br><span class="line">      let time = animTime / percent;</span><br><span class="line">      wx.createSelectorQuery().select(&apos;#&apos; + id).boundingClientRect((rect) =&gt; &#123;</span><br><span class="line">        //监听canvas的宽高</span><br><span class="line">        let w = parseInt(rect.width / 2); // 获取canvas宽的的一半</span><br><span class="line">        let h = parseInt(rect.height / 2); // 获取canvas高的一半，</span><br><span class="line">        this.canvasTap(0, percent, time, w, h, id);</span><br><span class="line">      &#125;).exec();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在page页面使用<br><strong>使用了grid布局</strong></p>
+</li>
+<li><p>wxml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&quot;contain&quot;&gt;</span><br><span class="line">  &lt;view class=&quot;data&quot;&gt;</span><br><span class="line">    &lt;view class=&quot;row&quot; wx:for=&quot;&#123;&#123;canvasList&#125;&#125;&quot; wx:key=&quot;&#123;&#123;index&#125;&#125;&quot;&gt;</span><br><span class="line">      &lt;view class=&apos;bigCircle pos-center&apos;&gt;&lt;/view&gt;</span><br><span class="line">      &lt;view class=&apos;littleCircle pos-center&apos;&gt;&lt;/view&gt;</span><br><span class="line">      &lt;canvas canvas-id=&quot;&#123;&#123;item.id&#125;&#125;&quot; id=&quot;&#123;&#123;item.id&#125;&#125;&quot; class=&apos;canvas pos-center&apos;&gt;&lt;/canvas&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>wxss</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">.data &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  /* display: flex;</span><br><span class="line">  flex-wrap: wrap; */</span><br><span class="line">  display: grid;</span><br><span class="line">  grid-gap: 5px;</span><br><span class="line">  grid-template-columns: repeat(auto-fit, minmax(350rpx, 1fr));</span><br><span class="line">  grid-template-rows: repeat(2, 350rpx);</span><br><span class="line">&#125;</span><br><span class="line">.data .row &#123;</span><br><span class="line">  /* flex: 1; */</span><br><span class="line">  /* width: 350rpx;</span><br><span class="line">  height: 500rpx; */</span><br><span class="line">  position: relative;</span><br><span class="line">  background-color: #f5f5f5;</span><br><span class="line">  border: 1rpx solid #ddd;</span><br><span class="line">&#125;</span><br><span class="line">/* .canvasBox&#123;</span><br><span class="line">  height: 500rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">  background-color: #f5f5f5;</span><br><span class="line">&#125; */</span><br><span class="line">.pos-center &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top:0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  margin: auto;</span><br><span class="line">&#125;</span><br><span class="line">.bigCircle&#123;</span><br><span class="line">  width: 320rpx;</span><br><span class="line">  height: 320rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: #313250;</span><br><span class="line">&#125;</span><br><span class="line">.littleCircle&#123;</span><br><span class="line">  width: 256rpx;</span><br><span class="line">  height: 256rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: #171a3b;</span><br><span class="line">&#125;</span><br><span class="line">.canvas&#123;</span><br><span class="line">  width: 320rpx;</span><br><span class="line">  height: 320rpx;</span><br><span class="line">  z-index: 99;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import Canvas from &apos;../../utils/canvas.js&apos;</span><br><span class="line">Page(&#123;</span><br><span class="line">  ...Canvas.options, // 通过解构赋值，将共有文件中的方法和数据传递到要使用方法的文件</span><br><span class="line">  /**</span><br><span class="line">   * 页面的初始数据</span><br><span class="line">   */</span><br><span class="line">  data: &#123;</span><br><span class="line">    canvasList: [&#123;</span><br><span class="line">      id: &apos;circle-one&apos;,</span><br><span class="line">      percent: 60</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &apos;circle-second&apos;,</span><br><span class="line">      percent: 45</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &apos;circle-three&apos;,</span><br><span class="line">      percent: 30</span><br><span class="line">    &#125;],</span><br><span class="line">  &#125;,</span><br><span class="line">  /**</span><br><span class="line">   * 生命周期函数--监听页面加载</span><br><span class="line">   */</span><br><span class="line">  onLoad: function (options) &#123;</span><br><span class="line">    const _canvasList= this.data.canvasList;</span><br><span class="line">    const len = _canvasList.length;</span><br><span class="line">    for(let i = 0; i &lt; len; i++) &#123;</span><br><span class="line">      this.draw(_canvasList[i].id, _canvasList[i].percent, 1000);</span><br><span class="line">    &#125;</span><br><span class="line">    // this.draw(canvasList[0], this.data.percent2, 1000);</span><br><span class="line">    // this.draw(&apos;three&apos;, this.data.percent2, 1000);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>`</code></p>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_41257563/article/details/83542225" style="color: blue;" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+<h5 id="使用wx-charts画图"><a href="#使用wx-charts画图" class="headerlink" title="使用wx-charts画图"></a>使用wx-charts画图</h5><ul>
+<li><a href="https://blog.csdn.net/m0_37938910/article/details/80744562" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
+<li><a href="https://blog.csdn.net/Che_rish/article/details/78932945" style="color: blue;" target="_blank" rel="noopener">参考实例2</a></li>
+<li><a href="https://www.oschina.net/p/wx-charts" style="color: blue;" target="_blank" rel="noopener">参考实例3</a></li>
+<li>支持图标类型<ul>
+<li>饼图 pie</li>
+<li>圆环图 ring</li>
+<li>线图 line</li>
+<li>柱状图 column</li>
+<li>区域图 area</li>
+<li>雷达图 radar</li>
+</ul>
+</li>
+</ul>
+<h5 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h5><ul>
+<li>inMap</li>
+<li><a href="https://juejin.im/post/5a41f3a451882560b76c6d05" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
+<li><a href="https://moweide.com/2019/01/10/vue_inaction_toolkits/" style="color: blue;" target="_blank" rel="noopener">涉及的Blog</a></li>
+</ul>
+<h5 id="微信小程序里面评论功能"><a href="#微信小程序里面评论功能" class="headerlink" title="微信小程序里面评论功能"></a>微信小程序里面评论功能</h5><ul>
+<li><a href="https://www.oschina.net/p/wxcomment" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
+</ul>
+<h5 id="微信小程序图片预加载"><a href="#微信小程序图片预加载" class="headerlink" title="微信小程序图片预加载"></a>微信小程序图片预加载</h5><ul>
+<li><a href="https://www.oschina.net/p/wxapp-img-loader" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
+</ul>
+<h5 id="微信小程序分享相关"><a href="#微信小程序分享相关" class="headerlink" title="微信小程序分享相关"></a>微信小程序分享相关</h5><ul>
+<li>action-sheet 底部弹窗<ul>
+<li><a href="https://blog.csdn.net/weixin_42567361/article/details/81329926" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
+<li><a href="https://gitee.com/ZhongBangKeJi/CRMEB" style="color: blue;" target="_blank" rel="noopener">参考实例2</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/css技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/10/css技巧/" itemprop="url">css技巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T09:43:41+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="css的一些使用技巧（含css3）"><a href="#css的一些使用技巧（含css3）" class="headerlink" title="css的一些使用技巧（含css3）"></a>css的一些使用技巧（含css3）</h4><h5 id="按钮渐变动画效果"><a href="#按钮渐变动画效果" class="headerlink" title="按钮渐变动画效果"></a>按钮渐变动画效果</h5><ul>
+<li>改变渐变的位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">    background-image: linear-gradient(#5187c4, #1c2f45);</span><br><span class="line">    background-size: auto 200%;</span><br><span class="line">    background-position: 0 100%;</span><br><span class="line">    transition: background-position 0.5s;</span><br><span class="line">&#125;    </span><br><span class="line">button:hover &#123;</span><br><span class="line">    background-position: 0 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="包裹长文本（不确定长度）"><a href="#包裹长文本（不确定长度）" class="headerlink" title="包裹长文本（不确定长度）"></a>包裹长文本（不确定长度）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pre &#123;</span><br><span class="line">    white-space: pre-line;</span><br><span class="line">    word-wrap: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css设置模糊文本"><a href="#css设置模糊文本" class="headerlink" title="css设置模糊文本"></a>css设置模糊文本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.blurry-text &#123;</span><br><span class="line">   color: transparent;</span><br><span class="line">   text-shadow: 0 0 5px rgba(0,0,0,0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="用css实现省略号动画"><a href="#用css实现省略号动画" class="headerlink" title="用css实现省略号动画"></a>用css实现省略号动画</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.loading:after &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    content:  &quot;\2026&quot;; /* ascii code for the ellipsis character */</span><br><span class="line">    animation: ellipsis 2s infinite;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes ellipsis &#123;</span><br><span class="line">    from &#123;</span><br><span class="line">        width: 2px;</span><br><span class="line">    &#125;</span><br><span class="line">    to &#123;</span><br><span class="line">        width: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="样式重置"><a href="#样式重置" class="headerlink" title="样式重置"></a>样式重置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">    border: 0;</span><br><span class="line">    font-size: 100%;</span><br><span class="line">    font: inherit;</span><br><span class="line">    vertical-align: baseline;</span><br><span class="line">    outline: none;</span><br><span class="line">    -webkit-box-sizing: border-box;</span><br><span class="line">    -moz-box-sizing: border-box;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line">html &#123; height: 101%; &#125;</span><br><span class="line">body &#123; font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, sans-serif; &#125;</span><br><span class="line">article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section &#123; display: block; &#125;</span><br><span class="line">ol, ul &#123; list-style: none; &#125;</span><br><span class="line">blockquote, q &#123; quotes: none; &#125;</span><br><span class="line">blockquote:before, blockquote:after, q:before, q:after &#123; content: &apos;&apos;; content: none; &#125;</span><br><span class="line">strong &#123; font-weight: bold; &#125; </span><br><span class="line">table &#123; border-collapse: collapse; border-spacing: 0; &#125;</span><br><span class="line">img &#123; border: 0; max-width: 100%; &#125;</span><br><span class="line">p &#123; font-size: 1.2em; line-height: 1.0em; color: #333; &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css清除浮动"><a href="#css清除浮动" class="headerlink" title="css清除浮动"></a>css清除浮动</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &quot;.&quot;; </span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">    line-height: 0;</span><br><span class="line">    height: 0; </span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123; display: inline-block; &#125;</span><br><span class="line">html[xmlns] .clearfix &#123; display: block; &#125;</span><br><span class="line">* html .clearfix &#123; height: 1%; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .container:after &#123; content: &quot;&quot;; display: table; &#125;</span><br><span class="line">.clearfix:after &#123; clear: both; &#125;</span><br><span class="line">/* IE 6/7 */</span><br><span class="line">.clearfix &#123; zoom: 1; &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="自定义文本选中后的颜色"><a href="#自定义文本选中后的颜色" class="headerlink" title="自定义文本选中后的颜色"></a>自定义文本选中后的颜色</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.txt::selection &#123; </span><br><span class="line">    background: #e2eae2; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css设置背景渐变"><a href="#css设置背景渐变" class="headerlink" title="css设置背景渐变"></a>css设置背景渐变</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.colorbox &#123;</span><br><span class="line">    background: #629721;</span><br><span class="line">    background-image: -webkit-gradient(linear, left top, left bottom, from(#83b842), to(#629721));</span><br><span class="line">    background-image: -webkit-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -moz-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -ms-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -o-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: linear-gradient(top, #83b842, #629721);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="css原图案"><a href="#css原图案" class="headerlink" title="css原图案"></a>css原图案</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background: radial-gradient(circle, white 10%, transparent 10%),</span><br><span class="line">    radial-gradient(circle, white 10%, black 10%) 50px 50px;</span><br><span class="line">    background-size: 100px 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://juejin.im/post/5b1f41246fb9a01e725131fb" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+<h5 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h5><ul>
+<li>遇到问题自动换行木有效果<br><strong>子元素需要设置具体的宽度</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flex-wrap: wrap; // 父元素设置</span><br><span class="line">flex: 1; // 子元素不能这样设置，必须是具体的宽度</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h5><ul>
+<li>ul&gt;li*3&gt;{hello$}</li>
+</ul>
+<h5 id="css实现边框齿轮效果"><a href="#css实现边框齿轮效果" class="headerlink" title="css实现边框齿轮效果"></a>css实现边框齿轮效果</h5><ul>
+<li><a href="http://www.fly63.com/article/detial/521" target="_blank" rel="noopener">To Learn More…</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .toothbg &#123;</span><br><span class="line">        width: 100%;</span><br><span class="line">        height: 20px;</span><br><span class="line">        background: #ff94000;</span><br><span class="line">        background-image:-webkit-gradient(linear,50% 0,0 100%,from(transparent), color-stop(.5,transparent),color-stop(.5,#e5e5e5),to(#e5e5e5)),</span><br><span class="line">                        -webkit-gradient(linear,50% 0,100% 100%,from(transparent), color-stop(.5,transparent),color-stop(.5,#e5e5e5),to(#e5e5e5));</span><br><span class="line">        background-image:-moz-linear-gradient(50% 0 -45deg,transparent,transparent 50%,#e5e5e5 50%,#e5e5e5),</span><br><span class="line">                        -moz-linear-gradient(50% 0 -135deg,transparent,transparent 50%,#e5e5e5 50%,#e5e5e5);                                </span><br><span class="line">        background-size:30px 15px;</span><br><span class="line">        background-repeat:repeat-x;</span><br><span class="line">        background-position:0 100%;                    </span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;toothbg&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="css实现动画效果"><a href="#css实现动画效果" class="headerlink" title="css实现动画效果"></a>css实现动画效果</h5><ul>
+<li>国外网站参考</li>
+<li><a href="https://reeoo.com/" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+<h5 id="css边框"><a href="#css边框" class="headerlink" title="css边框"></a>css边框</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-style: none | solid | dashed | dotted | double;</span><br></pre></td></tr></table></figure>
+<h5 id="css文本控制"><a href="#css文本控制" class="headerlink" title="css文本控制"></a>css文本控制</h5><ul>
+<li><p>first-letter 选中首个字符(针对块元素有作用)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.txt &#123;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    border: 1px double #ff9400;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.txt::first-letter &#123;</span><br><span class="line">    font-size: 40px;</span><br><span class="line">    color: #ff0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;txt&quot;&gt;¥ 200&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>text-transform 指定文本大小写(应用在假设输入框只能输入大小写)</p>
+</li>
+<li><p>capitalize 首字母大写 | uppercase 全部大写 lowercase 全部小写 none</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform: capitalize | uppercase | lowercase | none;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>word-spacing 指定空格间隙（前后空格没有用，设置的是<strong>字符</strong>之间空格）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word-spacing: 10px;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>white-space 空白符处理</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/white-space" style="color: blue;" target="_blank" rel="noopener">To Learn More…</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">white-space: normal | nowrap | pre | pre-wrap | pre-line;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>text-align: justify 设置两端对齐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">div &#123;</span><br><span class="line">  outline: 1px solid;</span><br><span class="line">&#125;</span><br><span class="line">span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-bottom: 1px solid lightcyan;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: cyan;</span><br><span class="line">&#125;</span><br><span class="line">i &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  outline: 1px dashed;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;1&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;2&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;3&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;4&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;5&lt;/span&gt;</span><br><span class="line">    &lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;x</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/grid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1674,478 +2060,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/webpack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/06/webpack/" itemprop="url">webpack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T22:00:00+08:00">
-                2019-05-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><h5 id="有哪些常见-loader-和-plugin，你用过哪些？"><a href="#有哪些常见-loader-和-plugin，你用过哪些？" class="headerlink" title="有哪些常见 loader 和 plugin，你用过哪些？"></a>有哪些常见 loader 和 plugin，你用过哪些？</h5><ol>
-<li>loader<ul>
-<li>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件</li>
-<li>url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去</li>
-<li>source-map-loader：加载额外的 Source Map 文件，以方便断点调试</li>
-<li>image-loader：加载并且压缩图片文件</li>
-<li>babel-loader：把 ES6 转换成 ES5</li>
-<li>css-loader：加载 CSS，支持模块化、压缩、文件导入等特性</li>
-<li>style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。</li>
-<li>eslint-loader：通过 ESLint 检查 JavaScript 代码</li>
-</ul>
-</li>
-<li>plugin<ul>
-<li>define-plugin：定义环境变量</li>
-<li>commons-chunk-plugin：提取公共代码</li>
-<li>uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</li>
-</ul>
-</li>
-</ol>
-<h5 id="loader-和-plugin-的区别是什么？"><a href="#loader-和-plugin-的区别是什么？" class="headerlink" title="loader 和 plugin 的区别是什么？"></a>loader 和 plugin 的区别是什么？</h5><ol>
-<li>不同的作用<ul>
-<li>Loader直译为”加载器”。Webpack将一切文件视为模块，但是webpack原生是只能解析js文件，如果想将其他文件也打包的话，就会用到loader。 所以Loader的作用是让webpack拥有了加载和解析非JavaScript文件的能力。<br>Plugin直译为”插件”。Plugin可以扩展webpack的功能，让webpack具有更多的灵活性。 在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。</li>
-</ul>
-</li>
-<li>不同的用法<ul>
-<li>Loader在module.rules中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个Object，里面描述了对于什么类型的文件（test），使用什么加载(loader)和使用的参数（options）<br>Plugin在plugins中单独配置。 类型为数组，每一项是一个plugin的实例，参数都通过构造函数传入。</li>
-</ul>
-</li>
-</ol>
-<h5 id="如何按需加载代码？"><a href="#如何按需加载代码？" class="headerlink" title="如何按需加载代码？"></a>如何按需加载代码？</h5><ol>
-<li><p>Vue UI组件库的按需加载 为了快速开发前端项目，经常会引入现成的UI组件库如ElementUI、iView等，但是他们的体积和他们所提供的功能一样，是很庞大的。 而通常情况下，我们仅仅需要少量的几个组件就足够了，但是我们却将庞大的组件库打包到我们的源码中，造成了不必要的开销。<br>不过很多组件库已经提供了现成的解决方案，如Element出品的babel-plugin-component和AntDesign出品的babel-plugin-import 安装以上插件后，在.babelrc配置中或babel-loader的参数中进行设置，即可实现组件按需加载了。</p>
-</li>
-<li><p>单页应用的按需加载 现在很多前端项目都是通过单页应用的方式开发的，但是随着业务的不断扩展，会面临一个严峻的问题——首次加载的代码量会越来越多，影响用户的体验。<br>通过import(<em>)语句来控制加载时机，webpack内置了对于import(</em>)的解析，会将import(<em>)中引入的模块作为一个新的入口在生成一个chunk。 当代码执行到import(</em>)语句时，会去加载Chunk对应生成的文件。import()会返回一个Promise对象，所以为了让浏览器支持，需要事先注入Promise polyfill</p>
-</li>
-</ol>
-<h5 id="如何提高构建速度？"><a href="#如何提高构建速度？" class="headerlink" title="如何提高构建速度？"></a>如何提高构建速度？</h5><ol>
-<li>多入口情况下，使用CommonsChunkPlugin来提取公共代码</li>
-<li>通过externals配置来提取常用库</li>
-<li>利用DllPlugin和DllReferencePlugin预编译资源模块 通过DllPlugin来对那些我们引用但是绝对不会修改的npm包来进行预编译，再通过DllReferencePlugin将预编译的模块加载进来。</li>
-<li>使用Happypack 实现多线程加速编译</li>
-<li>使用webpack-uglify-parallel来提升uglifyPlugin的压缩速度。 原理上webpack-uglify-parallel采用了多核并行压缩来提升压缩速度</li>
-<li>使用Tree-shaking和Scope Hoisting来剔除多余代码</li>
-</ol>
-<h5 id="转义出的文件过大怎么办？"><a href="#转义出的文件过大怎么办？" class="headerlink" title="转义出的文件过大怎么办？"></a>转义出的文件过大怎么办？</h5><p><a href="https://zhuanlan.zhihu.com/p/44438844" style="color: blue" target="_blank" rel="noopener">更多资源</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/http/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/06/http/" itemprop="url">HTTP协议与安全</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T11:16:48+08:00">
-                2019-05-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="HTTP协议的主要特点"><a href="#HTTP协议的主要特点" class="headerlink" title="HTTP协议的主要特点"></a>HTTP协议的主要特点</h5><ul>
-<li>简单快速（每个资源是固定的url） </li>
-<li>灵活（通过头部type会有不同结果） </li>
-<li>无连接（连接一次就会断掉） </li>
-<li>无状态（客户端和服务端）</li>
-</ul>
-<h5 id="HTTP报文的组成部分"><a href="#HTTP报文的组成部分" class="headerlink" title="HTTP报文的组成部分"></a>HTTP报文的组成部分</h5><ol>
-<li>请求报文<ul>
-<li>请求行 （http方法 页面地址 http协议 http版本）</li>
-<li>请求头 （key val 值告诉服务端需要什么内容 注意类型）</li>
-<li>空行   （遇到空行时，下一个当着请求体）</li>
-<li>请求体</li>
-</ul>
-</li>
-<li>响应报文（状态行，响应头，空行，响应体） </li>
-</ol>
-<h5 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h5><ul>
-<li>1xx:指示信息，请求已接收，继续处理</li>
-<li>2xx 表示成功，请求已被成功接收</li>
-<li>3xx 表示需要进一步操作，重定向，完成请求必须进行进一步的操作</li>
-<li>4xx 表示浏览器方面出错，客户端错误，请求有语法错误或者请求无法实现</li>
-<li>5xx 表示服务器方面出错，服务端错误，服务器未能实现合法的请求</li>
-</ul>
-<h5 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h5><ul>
-<li>200 客户端请求成功</li>
-<li>206 客户发送一个带有range(范围)头的GET请求，服务器完成它（用于视频）    </li>
-<li>301 所请求的页面已经转移至新的url</li>
-<li>302 所请求的页面已经临时转移至新的url</li>
-<li>304 客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用</li>
-<li>400 客户端请求有语法错误，不能被服务器所理解</li>
-<li>401 请求未经授权，这个状态码必须和WWW-Authenticate报文域一起使用 </li>
-<li>403 对被请求页面的访问被禁止</li>
-<li>404 请求资源不存在</li>
-<li>500 服务器发生不可预期的错误原来缓冲的文档还可以继续使用</li>
-<li>503 请求未完成，服务器临时过载或当机，一段时间后可能恢复正常<br><a href="http://www.runoob.com/http/http-status-codes.html" style="color: blue;" target="_blank" rel="noopener">想了解更多</a> </li>
-</ul>
-<h5 id="HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘"><a href="#HTTP-缓存-缓存就是资源文件在浏览器中存在的备份或者副本-如：网上请求的图片，去存在本地磁盘" class="headerlink" title="HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)"></a>HTTP 缓存 (缓存就是资源文件在浏览器中存在的备份或者副本,如：网上请求的图片，去存在本地磁盘)</h5><ul>
-<li>缓存分类<ul>
-<li>强缓存(以下两个缓存都下发，以后者为准)<ul>
-<li>Expires Expires:THu,21 Jan 2017 23:39/;02 GMT（绝对时间，客服端和服务器时间不一致，比较的时候，是一浏览器时间，下发是服务器时间）</li>
-<li>Cache-Control Cache-Control:max-age=3600（3600是相对时间）</li>
-</ul>
-</li>
-<li>协商缓存（和服务器协商）<ul>
-<li>Last-Modified If-Modified-Since Last-Modified: Web, 26 Jan 2017 23:39/;02 GMT</li>
-<li>Etag If-None-Match</li>
-</ul>
-</li>
-<li>与浏览器缓存相关的http头有哪些，就是以上几个</li>
-</ul>
-</li>
-<li>总结：<ul>
-<li>ETag 是通过对比浏览器和服务器资源的特征值（如MD5）来决定是否要发送文件内容，如果一样就只发送 304（not modified）</li>
-<li>Expires 是设置过期时间（绝对时间），但是如果用户的本地时间错乱了，可能会有问题</li>
-<li>CacheControl: max-age=3600 是设置过期时长（相对时间），跟本地时间无关<br><a href="https://imweb.io/topic/5795dcb6fb312541492eda8c" style="color: blue;" target="_blank" rel="noopener">详细了解 ETag、CacheControl、Expires 的异同</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h5><ul>
-<li>一般理解<ol>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求</li>
-<li>GET产生的URL地址可以被加入收藏栏，而POST不可以</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</li>
-<li>GET参数通过URL传递，POST放在Request body中</li>
-</ol>
-</li>
-<li>核心<ul>
-<li>就一个区别：语义——GET 用于获取资源，POST 用于提交资源<br><a href="https://zhuanlan.zhihu.com/p/22536382" style="color: blue;" target="_blank" rel="noopener"> 请参考 </a></li>
-</ul>
-</li>
-</ul>
-<h5 id="Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session"><a href="#Cookie-V-S-LocalStorage-V-S-SessionStorage-V-S-Session" class="headerlink" title="Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session"></a>Cookie V.S. LocalStorage V.S. SessionStorage V.S. Session</h5><ul>
-<li>Cookie V.S. LocalStorage<ul>
-<li>主要区别是 Cookie 会被发送到服务器，而 LocalStorage 不会</li>
-<li>Cookie 一般最大 4k，LocalStorage 可以用 5Mb 甚至 10Mb（各浏览器不同）</li>
-</ul>
-</li>
-<li>LocalStorage V.S. SessionStorage<ul>
-<li>LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在会话结束时过期（如关闭浏览器）</li>
-</ul>
-</li>
-<li>Cookie V.S. Session<ul>
-<li>Cookie 存在浏览器的文件里，Session 存在服务器的文件里</li>
-<li>Session 是基于 Cookie 实现的，具体做法就是把 SessionID 存在 Cookie 里</li>
-</ul>
-</li>
-</ul>
-<h5 id="XSS（Cross-Site-Scripting）：跨越脚本攻击"><a href="#XSS（Cross-Site-Scripting）：跨越脚本攻击" class="headerlink" title="XSS（Cross-Site Scripting）：跨越脚本攻击"></a>XSS（Cross-Site Scripting）：跨越脚本攻击</h5><ul>
-<li>原理<ul>
-<li>不需要做任何的登录验证，核心原理向页面注入脚本</li>
-</ul>
-</li>
-<li>造成 XSS 有几个要点：<ol>
-<li>恶意用户可以提交内容</li>
-<li>提交的内容可以显示在另一个用户的页面上</li>
-<li>这些内容未经过滤，直接运行在另一个用户的页面上</li>
-</ol>
-</li>
-<li>XSS 的成因以及防御措施<ol>
-<li>后台模板问题：要后台输出的时候，将可疑的符号 &lt; 符号变成 &lt; （HTML实体）就行。</li>
-<li>前端代码问题：就是不要自己拼 HTML，尽量使用 text 方法。如果一定要使用 HTML，就把可疑符号变成 HTML 实体</li>
-</ol>
-</li>
-</ul>
-<h5 id="CSRF（Cross-Site-Request-Forgery）：跨站请求伪造"><a href="#CSRF（Cross-Site-Request-Forgery）：跨站请求伪造" class="headerlink" title="CSRF（Cross Site Request Forgery）：跨站请求伪造"></a>CSRF（Cross Site Request Forgery）：跨站请求伪造</h5><ul>
-<li>原理<ul>
-<li>攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面。</li>
-</ul>
-</li>
-<li>使用anti-csrf-token的方案。 具体方案如下：<ol>
-<li>服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面（一般埋入 form 表单内，<input type="hidden" name="_csrf_token" value="xxxx">）</li>
-<li>服务端设置setCookie，把该随机数作为cookie或者session种入用户浏览器</li>
-<li>当用户发送 GET 或者 POST 请求时带上_csrf_token参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括_csrf_token）</li>
-<li>后台在接受到请求后解析请求的cookie获取_csrf_token的值，然后和用户请求提交的_csrf_token做个比较，如果相等表示请求是合法的。</li>
-</ol>
-</li>
-<li>总结：<ol>
-<li>CSRF<ul>
-<li>(网站中某个接口存在漏洞，用户在这个注册网站确实登录过) </li>
-<li>防御措施 <ul>
-<li>Token验证：用户请求之后，会返回cookie信息，并且服务器向本地存储Token</li>
-<li>Referer验证: 页面来源，服务器判断页面来源是否是当前站点下的</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>xss: 向xss注入的js不可执行  </li>
-</ol>
-</li>
-<li>两者区别<ul>
-<li>xss向页面注入js运行，js函数体去做想做的</li>
-<li>CSRF是利用本身的漏洞，帮你去执行相应的接口</li>
-</ul>
-</li>
-<li>推荐查阅资料<ol>
-<li><a href="https://zhuanlan.zhihu.com/p/22521378" style="color: blue;" target="_blank" rel="noopener"> 文章 xsrf </a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/22500730" style="color: blue;" target="_blank" rel="noopener"> 文章 xss </a></li>
-<li><a href="http://www.imooc.com/learn/812" style="color: blue;" target="_blank" rel="noopener"> 视频 csrf xss </a></li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2198,7 +2112,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2209,7 +2123,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

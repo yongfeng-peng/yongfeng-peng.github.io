@@ -268,6 +268,443 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/23/react原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/23/react原理/" itemprop="url">react原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-23T14:25:09+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="react原理剖析"><a href="#react原理剖析" class="headerlink" title="react原理剖析"></a>react原理剖析</h3><h4 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a><a href="https://github.com/facebook/react/blob/master/packages/react/src/React.js" target="_blank" rel="noopener">核心API</a></h4><ul>
+<li>React.createElement：创建虚拟的DOM</li>
+<li>React.Component: 实现自定义组件</li>
+<li>ReactDOM.render: 渲染真实DOM</li>
+</ul>
+<ul>
+<li><a href="https://github.com/facebook/react/blob/master/packages/react-dom/src/client/ReactDOM.js" target="_blank" rel="noopener">react-dom</a>：主要是render逻辑</li>
+</ul>
+<h4 id="JSX是什么"><a href="#JSX是什么" class="headerlink" title="JSX是什么"></a>JSX是什么</h4><ul>
+<li><a href="https://reactjs.org/" target="_blank" rel="noopener">在线JSX预编译</a></li>
+<li>react使用JSX来替代常规的JavaScript，JSX是一个看起来很像XML的JavaScript语法扩展<h4 id="为什么需要JXS"><a href="#为什么需要JXS" class="headerlink" title="为什么需要JXS"></a>为什么需要JXS</h4></li>
+<li>JSX执行更快，因为它在编译为JavaScript代码后进行了优化（在react里面可以用它描述视图）</li>
+<li>它是<strong>类型安全</strong>的，在编译过程中就能发现错误（编译器可以对它进行规范处理、一系列严谨转换、类型检测）</li>
+<li>使用JSX编写模版更加简单快捷（开发效率）<h4 id="JXS怎么用"><a href="#JXS怎么用" class="headerlink" title="JXS怎么用"></a>JXS怎么用</h4></li>
+<li>原理：babel-loader会预编译JSX为React.createElement(…)</li>
+</ul>
+<h4 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h4><ul>
+<li>class组件的特点，就是拥有特殊状态并且可以通过setState更新状态，从而重新渲染视图，是学习React中最重要的api</li>
+<li>setState并没有直接操作去渲染，而是执行了一个异步的updater队列,使用一个类来专门管理</li>
+</ul>
+<h4 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h4><ul>
+<li>用JavaScript对象表示DOM信息和结构，当状态变更的时候，重新渲染这个JavaScript的对象结构。这个JavaScript对象称为virtual dom</li>
+<li>简单的说虚拟dom就是js对象，可以描述dom<br><img src="https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/vdom.jpg" alt="Image text"><!-- * ![Image text](/../images/vdom.jpg) -->
+</li>
+</ul>
+<h4 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h4><ul>
+<li>diff策略<ul>
+<li>同级比较，Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计</li>
+<li>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。例如：div-&gt;p, CompA-&gt;CompB</li>
+<li>对于同一层级的一组子节点，通过唯一的key进行区分</li>
+</ul>
+</li>
+<li>基于以上三个前提策略，React 分别对 tree diff、component diff 以及 element diff 进行算法优化，事实也证明，这三个前提策略是合理且准确的，它保证了整体界面构建的性能</li>
+<li>element diff 差异类型：<ul>
+<li>替换原来的节点，例如把div换成了p，Comp1换成Comp2</li>
+<li>移动、删除、新增子节点， 例如ul中的多个子节点li中出现了顺序互换</li>
+<li>修改了节点的属性，例如节点类名发生了变化</li>
+<li>对于文本节点，文本内容可能会改变</li>
+</ul>
+</li>
+<li>重排（reorder）操作：INSERT_MARKUP（插入）、MOVE_EXISTING（移动）和 REMOVE_NODE（删除）<ul>
+<li>INSERT_MARKUP，新的 component 类型不在老集合里， 即是全新的节点，需要对新节点执行插入操作</li>
+<li>MOVE_EXISTING，在老集合有新 component 类型，且 element 是可更新的类型，generateComponentChildren 已调用 receiveComponent，这种情况下 prevChild=nextChild，就需要做移动操作，可以复用以前的   DOM 节点</li>
+<li>REMOVE_NODE，老 component 类型，在新集合里也有，但对应的 element 不同则不能直接复用和更新，需要执行删除操作，或者老 component 不在新集合里的，也需要执行删除操作</li>
+</ul>
+</li>
+<li>为什么需要虚拟dom和对diff算法理解<ul>
+<li>抽象出虚拟dom层，减少重布局、重排、重绘次数，不直接更新真实dom</li>
+<li>比较出应不应该更新dom，即使更新，尽可能的一次性、批量的更新</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/react生命周期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/22/react生命周期/" itemprop="url">react生命周期</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-22T09:52:44+08:00">
+                2020-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="react生命周期-图谱"><a href="#react生命周期-图谱" class="headerlink" title="react生命周期 图谱"></a>react生命周期 <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank" rel="noopener">图谱</a></h3><h4 id="react-v16-0前的生命周期"><a href="#react-v16-0前的生命周期" class="headerlink" title="react v16.0前的生命周期"></a>react v16.0前的生命周期</h4><ul>
+<li>大部分团队不见得会跟进升到16版本，所以16前的生命周期还是很有必要掌握的，何况16也是基于之前的修改</li>
+<li><p>第一组件初始化(initialization)阶段</p>
+<ul>
+<li>类的构造方法( constructor() ),Test类继承了react Component这个基类，即继承这个<strong>react的基类</strong>，才能有render(),生命周期等方法可以使用， 也是函数组件不能使用这些方法的原因。</li>
+<li>super(props) 用来调用基类的构造方法( constructor() ), 也将父组件的props注入给子组件，供子组件读取(组件中props只读不可变，state可变)。 而 constructor() 用来做一些组件的初始化工作，如定义this.state的初始内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">class Test extends Component &#123; </span><br><span class="line">  constructor(props) &#123; </span><br><span class="line">    super(props); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>第二组件的挂载(Mounting)阶段</p>
+<ul>
+<li>此阶段分为componentWillMount，render，componentDidMount三个时期</li>
+<li>componentWillMount<ul>
+<li>在组件挂载到DOM前调用，且只会被调用一次，在这边调用<strong>this.setState不会引起组件重新渲染</strong>，可把这里的内容提前到constructor()中，所以项目中很少用</li>
+</ul>
+</li>
+<li>render<ul>
+<li>根据组件的props和state（无两者的重传递和重赋值，论值是否有变化，都可以引起组件重新render） ，return一个React元素（描述组件，即UI），不负责组件实际渲染工作，之后由React自身根据此元素去渲染出页面<br>DOM。render是纯函数（Pure function：函数的返回结果只依赖于它的参数；函数执行过程里面没有副作用），不能在里面执行this.setState，会有改变组件状态的副作用</li>
+</ul>
+</li>
+<li>componentDidMount<ul>
+<li>组件挂载到DOM后调用，且只会被调用一次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三组件的更新(update)阶段</p>
+<ul>
+<li>此阶段分为componentWillReceiveProps，shouldComponentUpdate，componentWillUpdate，render，componentDidUpdate</li>
+<li>componentWillReceiveProps(nextProps)<ul>
+<li>只调用于props引起的组件更新过程中，参数nextProps是父组件传给当前组件的新props。但父组件render方法的调用不能保证重传给当前组件的props是有变化的，所以在此方法中根据nextProps和this.props来查明重传的props是否改变，以及如果改变了要执行啥，比如根据新的props调用this.setState出发当前组件的重新render</li>
+</ul>
+</li>
+<li>shouldComponentUpdate(nextProps, nextState)<ul>
+<li>通过比较nextProps，nextState及当前组件的this.props，this.state，返回true时当前组件将继续执行更新过程，返回false则当前组件更新停止，以此可用来减少组件的不必要渲染，优化组件性能</li>
+<li>ps：这边也可以看出，就算componentWillReceiveProps()中执行了this.setState，更新了state，但在render前（如shouldComponentUpdate，componentWillUpdate），this.state依然指向更新前的state，不然nextState及当前组件的this.state的对比就一直是true了</li>
+</ul>
+</li>
+<li>componentWillUpdate(nextProps, nextState)<ul>
+<li>在调用render方法前执行，在这边可执行一些组件更新发生前的工作，一般较少用</li>
+</ul>
+</li>
+<li>render<ul>
+<li>render方法在上文讲过，这边只是重新调用</li>
+</ul>
+</li>
+<li>componentDidUpdate(prevProps, prevState)<ul>
+<li>在组件更新后被调用，可以操作组件更新的DOM，prevProps和prevState这两个参数指的是组件更新前的props和state</li>
+</ul>
+</li>
+<li><p>了解此阶段前需要先明确下react组件更新机制。setState引起的state更新或父组件重新render引起的props更新，更新后的state和props相对之前无论是否有变化，都将引起子组件的重新render。详细可看<a href="https://www.cnblogs.com/penghuwan/p/6707254.html&#39;" target="_blank" rel="noopener">这篇文章</a>造成组件更新有两类（三种）情况：<br>1.父组件重新render（父组件重新render引起子组件重新render的情况有两种）<br>a. 直接使用,每当父组件重新render导致的重传props，子组件将直接跟着重新渲染，无论props是否有变化。可通过shouldComponentUpdate方法优化</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Child extends Component &#123; </span><br><span class="line">  shouldComponentUpdate(nextProps)&#123; // 应该使用这个方法，否则无论props是否有变化都将会导致组件 跟着重新渲染</span><br><span class="line">    if(nextProps.someThings === this.props.someThings) &#123; </span><br><span class="line">      return false;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123; </span><br><span class="line">    return &lt;div&gt;&#123;this.props.someThings&#125;&lt;/div&gt; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.在componentWillReceiveProps方法中，将props转换成自己的state</p>
+<ul>
+<li>函数(componentWillReceiveProps)中调用 this.setState() 将不会引起第二次渲染</li>
+<li>componentWillReceiveProps中判断props是否变化了，若变化了，this.setState将引起state变化，从而引起render，此时就没必要再做第二次因重传props引起的render了，不然重复做一样的渲染了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Child extends Component &#123; </span><br><span class="line">  constructor(props) &#123; </span><br><span class="line">    super(props); </span><br><span class="line">    this.state = &#123; </span><br><span class="line">      someThings: props.someThings </span><br><span class="line">    &#125;; </span><br><span class="line">  &#125;</span><br><span class="line">  componentWillReceiveProps(nextProps) &#123; // 父组件重传props时就会调用这个方法 </span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      someThings: nextProps.someThings</span><br><span class="line">    &#125;); </span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123; </span><br><span class="line">    return &lt;div&gt;&#123;this.state.someThings&#125;&lt;/div&gt; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>2.组件本身调用setState，无论state有没有变化。可通过shouldComponentUpdate方法优化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Child extends Component &#123; </span><br><span class="line">  constructor(props) &#123; </span><br><span class="line">    super(props); </span><br><span class="line">    this.state = &#123; </span><br><span class="line">      someThings:1 </span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  shouldComponentUpdate(nextStates) &#123; // 应该使用这个方法，否则无论state是否有变化都将会导致组 件重新渲染</span><br><span class="line">    if(nextStates.someThings === this.state.someThings) &#123; </span><br><span class="line">      return false;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  handleClick = () =&gt; &#123; // 虽然调用了setState ，但state并无变化 </span><br><span class="line">    const preSomeThings = this.state.someThings;</span><br><span class="line">    this.setState(&#123; </span><br><span class="line">      someThings: preSomeThings </span><br><span class="line">    &#125;) </span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123; </span><br><span class="line">    return &lt;div onClick = &#123;this.handleClick&#125;&gt;&#123;this.state.someThings&#125;&lt;/div&gt; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>第四卸载阶段</p>
+<ul>
+<li>只有一个生命周期方法：componentWillUnmount</li>
+<li>componentWillUnmount<ul>
+<li>在组件被卸载前调用，可以在这里执行一些清理工作，比如清除组件中使用的定时器，清除componentDidMount中手动创建的DOM元素等，以避免引起内存泄漏</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="react-v16-4-的生命周期"><a href="#react-v16-4-的生命周期" class="headerlink" title="react v16.4 的生命周期"></a>react v16.4 的生命周期</h4><ul>
+<li>变更缘由<ul>
+<li>原来（React v16.0前）的生命周期在React v16推出的<a href="https://zhuanlan.zhihu.com/p/26027085" target="_blank" rel="noopener">Fiber</a>之后就不合适了，因为如果要开启async rendering， 在render函数之前的所有函数，都有可能被执行多次</li>
+</ul>
+</li>
+<li>原来（React v16.0前）的生命周期有哪些是在render前执行的呢？<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+</ul>
+</li>
+<li>如果开发者开了async rendering，而且又在以上这些render前执行的生命周期方法做AJAX请求的话，那AJAX将被无谓地多次调用。明显不是我们期望的结果。而且在componentWillMount里发起AJAX，不管多快得到结果也赶不上首次render，而且componentWillMount在服务器端渲染也会被调用到（当然，也许这是预期的结果），这样的IO操作放在componentDidMount里更合适。禁止不能用比劝导开发者不要这样用的效果更好，所以除了shouldComponentUpdate，其他在render函数之前的所有函数(componentWillMount，componentWillReceiveProps，componentWillUpdate)都被getDerivedStateFromProps替代。也就是用一个静态函数getDerivedStateFromProps来取代被deprecate的几个生命周期函数，就是强制开发者在render之前只做无副作用的操作，而且能做的操作局限在根据props和state决定新的stateReact v16.0刚推出的时候，是增加了一个componentDidCatch生命周期函数，这只是一个增量式修改，完全不影响原有生命周期函数；但是，到了React v16.3，大改动来了，引入了两个新的生命周期函数</li>
+<li>新引入了两个新的生命周期函数： getDerivedStateFromProps ， getSnapshotBeforeUpdate<ul>
+<li>getDerivedStateFromProps<ul>
+<li>getDerivedStateFromProps 本来（React v16.3中）是只在创建和更新（由父组件引发部分），也就是不是不由父组件引发，那么getDerivedStateFromProps也不会被调用，如自身setState引发或者forceUpdate引发</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>React v16.3 这样的话理解起来有点乱，在React v16.4中改正了这一点，让getDerivedStateFromProps无论是Mounting还是Updating，也无论是因为什么引起的Updating，全部都会被调用，具体可看React v16.4 的生命周期图</li>
+<li>React v16.4后的getDerivedStateFromProps<ul>
+<li>static getDerivedStateFromProps(props, state) 在组件创建时和更新时的render方法之前调用，它应该返回一个对象来更新状态，或者返回null来不更新任何内容</li>
+</ul>
+</li>
+<li>getSnapshotBeforeUpdate<ul>
+<li>getSnapshotBeforeUpdate() 被调用于render之后，可以读取但无法使用DOM的时候。它使您的组件可以在可能更改之前从DOM捕获一些信息（例如滚动位置）。此生命周期返回的任何值都将作为参数传递给componentDidUpdate（）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class ScrollingList extends React.Component &#123; </span><br><span class="line">  constructor(props) &#123; </span><br><span class="line">    super(props); </span><br><span class="line">    this.listRef = React.createRef(); </span><br><span class="line">  &#125;</span><br><span class="line">  getSnapshotBeforeUpdate(prevProps, prevState) &#123; //我们是否要添加新的 items 到列表? // 捕捉滚动位置，以便我们可以稍后调整滚动</span><br><span class="line">    if (prevProps.list.length &lt; this.props.list.length) &#123; </span><br><span class="line">      const list = this.listRef.current; </span><br><span class="line">      return list.scrollHeight - list.scrollTop; </span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate(prevProps, prevState, snapshot) &#123; </span><br><span class="line">    //如果我们有snapshot值, 我们已经添加了 新的items </span><br><span class="line">    // 调整滚动以至于这些新的items 不会将旧items推出视图</span><br><span class="line">    // (这边的snapshot是 getSnapshotBeforeUpdate方法的返回值) </span><br><span class="line">    if (snapshot !== null) &#123; </span><br><span class="line">      const list = this.listRef.current; </span><br><span class="line">      list.scrollTop = list.scrollHeight - snapshot; </span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123; </span><br><span class="line">    return ( &lt;div ref=&#123;this.listRef&#125;&gt;&#123;/* ...contents... */&#125;&lt;/div&gt; ); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/react组件化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1612,317 +2049,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/css特效/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/css特效/" itemprop="url">css特效</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T11:32:21+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="CSS特效"><a href="#CSS特效" class="headerlink" title="CSS特效"></a>CSS特效</h4><h5 id="search-搜索"><a href="#search-搜索" class="headerlink" title="search 搜索"></a>search 搜索</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;search&quot; type=&quot;text&quot; placeholder=&quot;搜索...&quot;&gt;</span><br><span class="line">.search&#123;</span><br><span class="line">  width:80px;</span><br><span class="line">  height:40px;</span><br><span class="line">  border-radius:40px;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position: absolute;</span><br><span class="line">  right:200px;</span><br><span class="line">  outline:none;</span><br><span class="line">  text-indent:12px;</span><br><span class="line">  color:#666;</span><br><span class="line">  font-size:16px;</span><br><span class="line">  padding:0;</span><br><span class="line">  -webkit-transition:width 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">.search:focus&#123;</span><br><span class="line">  width:200px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="若隐若现，鼠标放上显示"><a href="#若隐若现，鼠标放上显示" class="headerlink" title="若隐若现，鼠标放上显示"></a>若隐若现，鼠标放上显示</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">.banner&#123;</span><br><span class="line">  width:234px;</span><br><span class="line">  height:34px;</span><br><span class="line">  border-radius:40px;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:400px;</span><br><span class="line">  left:600px;</span><br><span class="line">&#125;</span><br><span class="line">.banner a&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:30px;</span><br><span class="line">  height:30px;</span><br><span class="line">  line-height:30px;</span><br><span class="line">  border-radius:50%;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position:absolute;</span><br><span class="line">  left:0px;top:0px;</span><br><span class="line">  background:lightgreen;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-align:center;</span><br><span class="line">  text-decoration:none;</span><br><span class="line">  cursor:pointer;</span><br><span class="line">  z-index:2;</span><br><span class="line">&#125;</span><br><span class="line">.banner a:hover + span&#123;</span><br><span class="line">  -webkit-transform:translateX(40px);</span><br><span class="line">  opacity:1;</span><br><span class="line">&#125;</span><br><span class="line">.banner span&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:auto;</span><br><span class="line">  padding:0 20px;</span><br><span class="line">  height:30px;line-height:30px;</span><br><span class="line">  background:lightblue;</span><br><span class="line">  border-radius:30px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color:#fff;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:2px;</span><br><span class="line">  opacity:0;</span><br><span class="line">  -webkit-transition:all 1s;</span><br><span class="line">  -webkit-transform:translateX(80px);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;banner&quot;&gt;</span><br><span class="line">  &lt;a href=&quot;javascript:;&quot;&gt;博&lt;/a&gt;</span><br><span class="line">  &lt;span&gt;这是我的个人博客&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="博客可用效果1"><a href="#博客可用效果1" class="headerlink" title="博客可用效果1"></a>博客可用效果1</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">.banner&#123;</span><br><span class="line">  width:234px;</span><br><span class="line">  height:34px;</span><br><span class="line">  border-radius:34px;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:400px;</span><br><span class="line">  left:200px;</span><br><span class="line">&#125;</span><br><span class="line">.banner a&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:30px;</span><br><span class="line">  height:30px;</span><br><span class="line">  line-height:30px;</span><br><span class="line">  border-radius:50%;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position:absolute;</span><br><span class="line">  left:0px;top:0px;</span><br><span class="line">  background:lightgreen;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-align:center;</span><br><span class="line">  text-decoration:none;</span><br><span class="line">  cursor:pointer;</span><br><span class="line">  z-index:2;</span><br><span class="line">&#125;</span><br><span class="line">.banner a:hover + span&#123;</span><br><span class="line">  -webkit-transform:rotate(360deg);</span><br><span class="line">  opacity:1;</span><br><span class="line">&#125;</span><br><span class="line">.banner span&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:auto;</span><br><span class="line">  padding:0 20px;</span><br><span class="line">  height:34px;</span><br><span class="line">  line-height:34px;</span><br><span class="line">  background:lightblue;</span><br><span class="line">  border-radius:34px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  position:absolute;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-indent:25px;</span><br><span class="line">  opacity:0;</span><br><span class="line">  -webkit-transform-origin:8% center;</span><br><span class="line">  -webkit-transition:all 1s;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;banner&quot;&gt;</span><br><span class="line">  &lt;a href=&quot;javascript:;&quot;&gt;博&lt;/a&gt;</span><br><span class="line">  &lt;span&gt;这是我的个人博客&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="博客可用效果2"><a href="#博客可用效果2" class="headerlink" title="博客可用效果2"></a>博客可用效果2</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  background: lightblue;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 200px;</span><br><span class="line">  left: 400px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper:after &#123;</span><br><span class="line">  content: &apos;你猜&apos;;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #fff;</span><br><span class="line">  font-size: 24px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper:hover .round &#123;</span><br><span class="line">  -webkit-transform: scale(1);</span><br><span class="line">  opacity: 1;</span><br><span class="line">  -webkit-animation: rotating 6s 1.2s linear infinite alternate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@-webkit-keyframes rotating &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -webkit-transform: rotate(0deg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  100% &#123;</span><br><span class="line">    -webkit-transform: rotate(180deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round &#123;</span><br><span class="line">  width: 240px;</span><br><span class="line">  height: 240px;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: -70px;</span><br><span class="line">  left: -70px;</span><br><span class="line">  -webkit-transition: all 1s;</span><br><span class="line">  -webkit-transform: scale(0.35);</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span &#123;</span><br><span class="line">  width: 40px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  line-height: 40px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: lightblue;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  color: #fff;</span><br><span class="line">  text-align: center;</span><br><span class="line">  position: absolute;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(1) &#123;</span><br><span class="line">  right: -22px;</span><br><span class="line">  top: 50%;</span><br><span class="line">  margin-top: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(2) &#123;</span><br><span class="line">  left: -22px;</span><br><span class="line">  top: 50%;</span><br><span class="line">  margin-top: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(3) &#123;</span><br><span class="line">  left: 50%;</span><br><span class="line">  bottom: -22px;</span><br><span class="line">  margin-left: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(4) &#123;</span><br><span class="line">  left: 50%;</span><br><span class="line">  top: -22px;</span><br><span class="line">  margin-left: -22px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;round&quot;&gt;</span><br><span class="line">    &lt;span&gt;东&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;南&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;西&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;北&lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="hover效果"><a href="#hover效果" class="headerlink" title="hover效果"></a>hover效果</h5><p><a href="https://mp.weixin.qq.com/s/jVgvphBIIuZj1b8x0BfjZw" style="color: blue;" target="_blank" rel="noopener">more…</a> </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序数据过滤的实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/02/小程序数据过滤的实现/" itemprop="url">小程序数据过滤的实现</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-02T10:30:42+08:00">
-                2020-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h4><ul>
-<li>微信小程序的wxml和js的内部实现机制是分开编译的，在wxml是没办法调用js的函数的。导致WXML缺少一个我们常用的功能，没有办法在视图层对数据进行格式化处理。</li>
-<li>比如我们从后端获取到一个包含了时间戳数据的数组，需要在界面上把这些日期都格式化显示为2017-01-01这种格式的日期形式，在Vue, Angular之类的前端Web框架中，一般在视图层都提供了如filter之类相应比较好用的方案。微信小程序推出了wxs类型文件解决这类问题的</li>
-</ul>
-<h5 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h5><ul>
-<li><p>新建filter.wxs文件(一般作为公共方法存在)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var formatDate = function (timestamp, option) &#123;</span><br><span class="line">  var date = getDate(parseInt(timestamp));</span><br><span class="line">  var year = date.getFullYear();</span><br><span class="line">  var month = date.getMonth() + 1;</span><br><span class="line">  var day = date.getDate();</span><br><span class="line">  var hour = date.getHours();</span><br><span class="line">  var minute = date.getMinutes();</span><br><span class="line">  var second = date.getSeconds();</span><br><span class="line">  if (option == &apos;notime&apos;) &#123;  //不需要时间</span><br><span class="line">    return [year, month, day].map(formatNumber).join(&apos;-&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">  return [year, month, day].map(formatNumber).join(&apos;-&apos;) + &apos; &apos; + [hour, minute, second].map(formatNumber).join(&apos;:&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var formatNumber = function(n) &#123;</span><br><span class="line">  n = n.toString();</span><br><span class="line">  return n[1] ? n : &apos;0&apos; + n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  formatDate: formatDate,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在wxml文件中使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs src=&apos;../../utils/filter.wxs&apos; module=&apos;filter&apos; /&gt;</span><br><span class="line">&lt;view&gt;日期：&#123;&#123;filter.formatDate(&apos;1599013002483&apos;)&#125;&#125;&lt;/view&gt;</span><br><span class="line">&lt;view&gt;日期：&#123;&#123;filter.formatDate(&apos;1599013002483&apos;, &apos;notime&apos;)&#125;&#125;&lt;/view&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="在-wxs模块中引用其他-wxs-文件模块，可以使用-require-函数"><a href="#在-wxs模块中引用其他-wxs-文件模块，可以使用-require-函数" class="headerlink" title="在.wxs模块中引用其他 wxs 文件模块，可以使用 require 函数"></a>在.wxs模块中引用其他 wxs 文件模块，可以使用 require 函数</h5><ul>
-<li>引用的时候，要注意如下几点：<ul>
-<li>只能引用 .wxs 文件模块，且必须使用相对路径。</li>
-<li>wxs 模块均为单例，wxs 模块在第一次被引用时，会自动初始化为单例对象。多个页面，多个地方，多次引用，使用的都是同一个 wxs 模块对象。</li>
-<li>如果一个 wxs 模块在定义之后，一直没有被引用，则该模块不会被解析与运行</li>
-</ul>
-</li>
-<li>了解更多，参照小程序官方文档(wxs是不同于js文件的。所以很多js的api是不支持的)<ul>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/" target="_blank" rel="noopener">To Learn More…</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1975,7 +2101,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1986,7 +2112,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
