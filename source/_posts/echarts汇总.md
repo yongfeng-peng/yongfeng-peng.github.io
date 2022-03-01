@@ -7,6 +7,7 @@ tags:
 ---
 
 ### echarts汇总
+* <a href="https://echarts.apache.org/zh/index.html" style="color: blue;">To Learn More</a> 
 #### setOption
 ```
   // main.js

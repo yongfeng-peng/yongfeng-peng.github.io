@@ -840,5 +840,54 @@ function format1(number) {
 function format2(number) {
   return number.toLocaleString('en')
 }
+```
 
+##### 求和，最小值和最大值
+```
+const array  = [5,4,7,8,9,2];
+array.reduce((a, b) => a + b); // 输出: 35
+array.reduce((a, b) => a > b ? a : b); // 输出: 9
+array.reduce((a, b) => a < b ? a : b); // 输出: 2
+```
+
+##### 排序字符串，数字或对象等数组
+* 内置的方法sort()和reverse()来排序字符串
+```
+const stringArr = ["Joe", "Kapil", "Steve", "Musk"]
+stringArr.sort();
+// 输出 ["Joe", "Kapil", "Musk", "Steve"]
+
+stringArr.reverse();
+// 输出 ["Steve", "Musk", "Kapil", "Joe"]
+```
+* 数字数组排序
+```
+const array  = [40, 100, 1, 5, 25, 10];
+array.sort((a,b) => a-b);
+// 输出 [1, 5, 10, 25, 40, 100]
+
+array.sort((a,b) => b-a);
+// 输出 [100, 40, 25, 10, 5, 1]
+```
+* 对象数组排序
+```
+const objectArr = [ 
+  { first_name: 'Lazslo', last_name: 'Jamf'     },
+  { first_name: 'Pig',    last_name: 'Bodine'   },
+  { first_name: 'Pirate', last_name: 'Prentice' }
+];
+objectArr.sort((a, b) => a.last_name.localeCompare(b.last_name));
+// 输出 
+(3) [{…}, {…}, {…}]
+0: {first_name: "Pig", last_name: "Bodine"}
+1: {first_name: "Lazslo", last_name: "Jamf"}
+2: {first_name: "Pirate", last_name: "Prentice"}
+length: 3
+```
+
+##### 从数组中过滤到虚值 (0, undefined, null, false, "", '')
+```
+const array = [3, 0, 6, 7, '', false];
+array.filter(Boolean);
+// 输出 [3, 6, 7]
 ```
