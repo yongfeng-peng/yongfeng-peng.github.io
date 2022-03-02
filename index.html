@@ -268,6 +268,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/03/正则常用表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/03/正则常用表达式/" itemprop="url">正则常用表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-03T15:20:22+08:00">
+                2022-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="正则常用表达式"><a href="#正则常用表达式" class="headerlink" title="正则常用表达式"></a>正则常用表达式</h3><h4 id="数字价格千分位分割"><a href="#数字价格千分位分割" class="headerlink" title="数字价格千分位分割"></a>数字价格千分位分割</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function numSplit(str) &#123;</span><br><span class="line">  return str.replace(/(?!^)(?=(\d&#123;3&#125;)+$)/g, &apos;,&apos;);  // 123,456,789</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="补充小数千分位支持"><a href="#补充小数千分位支持" class="headerlink" title="补充小数千分位支持"></a>补充小数千分位支持</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const formatNum = (numStr) =&gt; &#123;</span><br><span class="line">  const reg = new RegExp(`(?!^)(?=(\\d&#123;3&#125;)+$&#123;numStr.includes(&apos;.&apos;) ? &apos;\\.&apos; : &apos;$&apos;&#125;)`, &apos;g&apos;)</span><br><span class="line">  return numStr.replace(reg, &apos;,&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="手机号3-4-4分割"><a href="#手机号3-4-4分割" class="headerlink" title="手机号3-4-4分割"></a>手机号3-4-4分割</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function formatMobile(mobile) &#123;</span><br><span class="line">  let mobileReg = /(?=(\d&#123;4&#125;)+$)/g;</span><br><span class="line">  return mobile.replace(mobileReg, &apos;-&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="将字符串首字母转化为大写，剩下为小写"><a href="#将字符串首字母转化为大写，剩下为小写" class="headerlink" title="将字符串首字母转化为大写，剩下为小写"></a>将字符串首字母转化为大写，剩下为小写</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const capitalize = (string) =&gt; &#123;</span><br><span class="line">  const capitalizeRegex = /(?:^|\s+)\w/g</span><br><span class="line">  return string.toLowerCase().replace(capitalizeRegex, (match) =&gt; match.toUpperCase())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="将字符串驼峰化"><a href="#将字符串驼峰化" class="headerlink" title="将字符串驼峰化"></a>将字符串驼峰化</h4><ol>
+<li>foo Bar =&gt; fooBar</li>
+<li>foo-bar—- =&gt; fooBar</li>
+<li>foo_bar__ =&gt; fooBar<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const camelCase = (string) =&gt; &#123;</span><br><span class="line">  const camelCaseRegex = /[-_\s]+(.)?/g</span><br><span class="line">  return string.replace(camelCaseRegex, (match, char) =&gt; &#123;</span><br><span class="line">    return char ? char.toUpperCase() : &apos;&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="实现一个trim函数"><a href="#实现一个trim函数" class="headerlink" title="实现一个trim函数"></a>实现一个trim函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 去除空格法</span><br><span class="line">const trim = (str) =&gt; &#123;</span><br><span class="line">  return str.replace(/^\s*|\s*$/g, &apos;&apos;)    </span><br><span class="line">&#125;</span><br><span class="line">// 提取非空格法</span><br><span class="line">const trim = (str) =&gt; &#123;</span><br><span class="line">  return str.replace(/^\s*(.*?)\s*$/g, &apos;$1&apos;)    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="表单验证常用正则"><a href="#表单验证常用正则" class="headerlink" title="表单验证常用正则"></a>表单验证常用正则</h3><ul>
+<li><p>用户名正则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//用户名正则，4到16位（字母，数字，下划线，减号）</span><br><span class="line">var uPattern = /^[a-zA-Z0-9_-]&#123;4,16&#125;$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(uPattern.test(&quot;caibaojian&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密码强度正则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span><br><span class="line">var pPattern = /^.*(?=.&#123;6,&#125;)(?=.*d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(&quot;==&quot;+pPattern.test(&quot;caibaojian#&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>整数正则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//正整数正则</span><br><span class="line">var posPattern = /^d+$/;</span><br><span class="line">//负整数正则</span><br><span class="line">var negPattern = /^-d+$/;</span><br><span class="line">//整数正则</span><br><span class="line">var intPattern = /^-?d+$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(posPattern.test(&quot;42&quot;));</span><br><span class="line">//输出 true</span><br><span class="line">console.log(negPattern.test(&quot;-42&quot;));</span><br><span class="line">//输出 true</span><br><span class="line">console.log(intPattern.test(&quot;-42&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数字正则(可以是整数也可以是浮点数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//正数正则</span><br><span class="line">var posPattern = /^d*.?d+$/;</span><br><span class="line">//负数正则</span><br><span class="line">var negPattern = /^-d*.?d+$/;</span><br><span class="line">//数字正则</span><br><span class="line">var numPattern = /^-?d*.?d+$/;</span><br><span class="line">console.log(posPattern.test(&quot;42.2&quot;));</span><br><span class="line">console.log(negPattern.test(&quot;-42.2&quot;));</span><br><span class="line">console.log(numPattern.test(&quot;-42.2&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Email正则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var ePattern = /^([A-Za-z0-9_-.])+@([A-Za-z0-9_-.])+.([A-Za-z]&#123;2,4&#125;)$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(ePattern.test(&quot;99154507@qq.com&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>手机号正则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var mPattern = /^1[34578]d&#123;9&#125;$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(mPattern.test(&quot;15507621888&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/H1lrKM9x1ZaMxwU2r3xaCw" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/使用秋云-ucharts-echarts踩坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,6 +548,10 @@
 </li>
 </ul>
 <h4 id="区域图设置渐变-自定义颜色color、graphicColor"><a href="#区域图设置渐变-自定义颜色color、graphicColor" class="headerlink" title="区域图设置渐变,自定义颜色color、graphicColor"></a>区域图设置渐变,自定义颜色color、graphicColor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">initColor() &#123;</span><br><span class="line">  this.colorList = this.color.map((item, index) =&gt; &#123;</span><br><span class="line">    return  &#123;</span><br><span class="line">      color: item,</span><br><span class="line">      areaStyle: &#123;</span><br><span class="line">        color: &#123;</span><br><span class="line">          type: &apos;linear&apos;,</span><br><span class="line">          x: 0,</span><br><span class="line">          y: 0,</span><br><span class="line">          x2: 0,</span><br><span class="line">          y2: 1,</span><br><span class="line">          colorStops: [&#123;</span><br><span class="line">            offset: 0,</span><br><span class="line">            color: this.graphicColor[index] // 0% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 0.4,</span><br><span class="line">            color: this.graphicColor[index] // 100% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 1,</span><br><span class="line">            color: &quot;#ffffff&quot;,</span><br><span class="line">          &#125;],</span><br><span class="line">          global: false // 缺省为 false</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="tab切换数据合并问题，设置eopts参数"><a href="#tab切换数据合并问题，设置eopts参数" class="headerlink" title="tab切换数据合并问题，设置eopts参数"></a>tab切换数据合并问题，设置eopts参数</h4><ul>
+<li>eopts不能传递function，如果option配置参数需要function，请将option写在config-echarts.js中即可实现。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lineEopts: &#123;</span><br><span class="line">   notMerge: true, // 是否不跟之前设置的 option 进行合并。默认为false。即表示合并</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
           
         
@@ -1685,243 +1863,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/28/react钩子/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/28/react钩子/" itemprop="url">react钩子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-28T15:23:21+08:00">
-                2020-12-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="react钩子（hooks）"><a href="#react钩子（hooks）" class="headerlink" title="react钩子（hooks）"></a>react钩子（hooks）</h3><h4 id="react组件"><a href="#react组件" class="headerlink" title="react组件"></a>react组件</h4><ul>
-<li>React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class）</li>
-<li>Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性</li>
-<li>任何一个组件都可以用类和钩子来写</li>
-<li><p>类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>钩子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Welcome(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>大部分看到上面两段代码都会选择使用钩子，更简洁、代码量少、用起来也较轻，也更符合react<em>函数式都本质</em></p>
-<ul>
-<li>类有很多强制性的语法约束、不易混乱，更适合初学者</li>
-<li>真实的 React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂</li>
-</ul>
-</li>
-<li>而类就比较重，官方也推荐使用钩子（函数），而不是类<ul>
-<li>钩子的灵活性比较大</li>
-<li>react 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组合管道即可。 组件的最佳写法应该是函数，而不是类</li>
-</ul>
-</li>
-</ul>
-<h4 id="类、函数的差异"><a href="#类、函数的差异" class="headerlink" title="类、函数的差异"></a>类、函数的差异</h4><ul>
-<li>毕竟写法不同，还是存在不同的编程方法论</li>
-<li>类是<strong>数据和逻辑的封装</strong>，即组件的状态和操作方法是封装在一起的</li>
-<li>函数一般来说，只应该做一件事，就是返回一个值，如：react 的函数组件只应该做一件事情=》返回组件的 HTML 代码，而没有其他的功能</li>
-<li>这种只进行单纯的数据计算（换算）的函数，在函数式编程里面称为 “纯函数”（pure function）</li>
-</ul>
-<h4 id="副效应"><a href="#副效应" class="headerlink" title="副效应"></a>副效应</h4><ul>
-<li>函数式编程将那些跟数据计算无关的操作，都称为 “副效应” （side effect） ，</li>
-<li>如果函数内部直接包含产生副效应的操作，就不再是纯函数了，我们称之为不纯的函数，如（生成日志、储存数据、改变应用状态等等）</li>
-<li>纯函数内部只有通过间接的手段（即通过其他函数调用），才能包含副效应，如（钩子）</li>
-</ul>
-<h4 id="钩子（hook）"><a href="#钩子（hook）" class="headerlink" title="钩子（hook）"></a>钩子（hook）</h4><ul>
-<li><strong>react函数组件的副效应解决方案，用来为函数组件引入副效应</strong>. 函数组件的主体只应该用来返回组件的 HTML 代码，所有的其他操作（副效应）都必须通过钩子引入</li>
-<li><p>React 为许多常见的操作（副效应），都提供了专用的钩子。</p>
-<ul>
-<li>useState()：保存状态</li>
-<li><p>useContext()：保存上下文（共享状态钩子）</p>
-<ul>
-<li>组件之间共享状态，可以使用useContext()</li>
-<li><p>使用 React Context API，在组件外部建立一个 Context</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const AppContext = React.createContext(&#123;&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>AppContext.Provider提供了一个 Context 对象，这个对象可以被子组件共享</p>
-</li>
-<li>useContext()钩子函数用来引入 Context 对象，从中获取username属性</li>
-</ul>
-</li>
-<li>useRef()：保存引用</li>
-<li><p>useReducer()：action 钩子</p>
-<ul>
-<li>React 本身不提供状态管理功能，通常需要使用外部库。这方面最常用的库是 Redux</li>
-<li>Redux 的核心概念是，组件发出 action 与状态管理器通信。状态管理器收到 action 以后，使用 Reducer 函数算出新的状态，Reducer 函数的形式是(state, action) =&gt; newState</li>
-<li><p>useReducer()的基本用法，它接受 Reducer 函数和状态的初始值作为参数，返回一个数组。数组的第一个值是状态的当前值，第二个值是发送 action 的dispatch函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useContext &#125; from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line">const [state, dispatch] = useReducer(reducer, initialState);</span><br><span class="line">const myReducer = (state, action) =&gt; &#123;</span><br><span class="line">  switch(action.type)  &#123;</span><br><span class="line">    case(&apos;countUp&apos;):</span><br><span class="line">      return  &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        count: state.count + 1</span><br><span class="line">      &#125;</span><br><span class="line">    default:</span><br><span class="line">      return  state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function App() &#123;</span><br><span class="line">  const [state, dispatch] = useReducer(myReducer, &#123; count:   0 &#125;);</span><br><span class="line">  return  (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &apos;countUp&apos; &#125;)&#125;&gt;</span><br><span class="line">        +1</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">      &lt;p&gt;Count: &#123;state.count&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Hooks 可以提供共享状态和 Reducer 函数，所以它在这些方面可以取代 Redux。但是，它没法提供中间件（middleware）和时间旅行（time travel），如果你需要这两个功能，还是要用 Redux</p>
-</li>
-</ul>
-</li>
-<li>以上钩子都是引入某种特定的副效应，而 useEffect()是通用的副效应钩</li>
-<li><a href="https://react.docschina.org/docs/hooks-reference.html" target="_blank" rel="noopener">……</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="useEffect-的用法"><a href="#useEffect-的用法" class="headerlink" title="useEffect() 的用法"></a>useEffect() 的用法</h4><ul>
-<li>useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合</li>
-<li>useEffect()本身是一个函数，由 React 框架提供，在函数组件内部调用即可</li>
-<li><p>useEffect()的作用就是指定一个副效应函数，组件每渲染一次，该函数就自动执行一次。组件首次在网页 DOM 加载后，副效应函数也会执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Welcome(props) &#123;</span><br><span class="line">  let [count, setCount] = useState(1); // 数组解构</span><br><span class="line">  // 以上代码等价于</span><br><span class="line">  // let countStateVariable = React.useState(1); // 返回一个有两个元素的数组</span><br><span class="line">  // let count = countStateVariable[0]; // 数组里的第一个值 当前的state</span><br><span class="line">  // let setCount = countStateVariable[1]; // 数组里的第二个值 更新state的函数</span><br><span class="line">  // 使用 [0] 和 [1] 来访问有点令人困惑，因为它们有特定的含义。这就是我们使用数组解构的原因。</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    document.title = `you click $&#123;count&#125; times`;</span><br><span class="line">  &#125;,)</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;hello, &#123; props.title &#125;,&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;累加&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>useEffect() 的第二个参数,不希望useEffect()每次渲染都执行，这时可以使用它的第二个参数，使用一个数组指定副效应函数的依赖项，只有依赖项发生变化，才会重新渲染</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Welcome(props) &#123;</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    document.title = `Hello, $&#123;props.name&#125;`;</span><br><span class="line">  &#125;, [props.name]);</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="useEffect-的用途"><a href="#useEffect-的用途" class="headerlink" title="useEffect() 的用途"></a>useEffect() 的用途</h3><ul>
-<li>只要是副效应，都可以使用useEffect()引入。它的常见用途有下面几种。<ul>
-<li>获取数据（data fetching）</li>
-<li>事件监听或订阅（setting up a subscription）</li>
-<li>改变 DOM（changing the DOM）</li>
-<li>输出日志（logging）</li>
-</ul>
-</li>
-</ul>
-<h4 id="useEffect-的返回值"><a href="#useEffect-的返回值" class="headerlink" title="useEffect() 的返回值"></a>useEffect() 的返回值</h4><ul>
-<li>副效应是随着组件加载而发生的，那么组件卸载时，可能需要清理这些副效应</li>
-<li>useEffect()允许返回一个函数，在组件卸载时，执行该函数，清理副效应。如果不需要清理副效应，useEffect()就不用返回任何值</li>
-<li>useEffect()在组件加载时订阅了一个事件，并且返回一个清理函数，在组件卸载时取消订阅。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">  const subscription = props.source.subscribe();</span><br><span class="line">  return () =&gt; &#123;</span><br><span class="line">    subscription.unsubscribe();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;, [props.source]);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="useEffect-的注意点"><a href="#useEffect-的注意点" class="headerlink" title="useEffect() 的注意点"></a>useEffect() 的注意点</h4><ul>
-<li><a href="https://react.docschina.org/docs/hooks-rules.html" target="_blank" rel="noopener">了解Hook规则</a></li>
-<li>使用useEffect()时，有一点需要注意。如果有多个副效应，应该调用多个useEffect()，而不应该合并写在一起<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  const [varA, setVarA] = useState(0);</span><br><span class="line">  const [varB, setVarB] = useState(0);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    const timeout = setTimeout(() =&gt; setVarA(varA + 1), 1000);</span><br><span class="line">    return () =&gt; clearTimeout(timeout);</span><br><span class="line">  &#125;, [varA]);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    const timeout = setTimeout(() =&gt; setVarB(varB + 2), 2000);</span><br><span class="line"></span><br><span class="line">    return () =&gt; clearTimeout(timeout);</span><br><span class="line">  &#125;, [varB]);</span><br><span class="line"></span><br><span class="line">  return &lt;span&gt;&#123;varA&#125;, &#123;varB&#125;&lt;/span&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="learn-more…"><a href="#learn-more…" class="headerlink" title="learn more…"></a><a href="http://www.ruanyifeng.com/blog/2020/09/react-hooks-useeffect-tutorial.html" target="_blank" rel="noopener">learn more…</a></h4><h4 id="learn-more…-1"><a href="#learn-more…-1" class="headerlink" title="learn more…"></a><a href="http://www.ruanyifeng.com/blog/2019/09/react-hooks.html" target="_blank" rel="noopener">learn more…</a></h4><h3 id="code"><a href="#code" class="headerlink" title="code"></a><a href="https://github.com/yongfeng-peng/react-simple-sCode" target="_blank" rel="noopener">code</a></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1974,7 +1915,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1985,7 +1926,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
