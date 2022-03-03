@@ -268,6 +268,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/04/小程序踩坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/04/小程序踩坑/" itemprop="url">小程序踩坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-04T11:18:48+08:00">
+                2019-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="容易忽视的小程序细节"><a href="#容易忽视的小程序细节" class="headerlink" title="容易忽视的小程序细节"></a>容易忽视的小程序细节</h4><h5 id="wx-for属性"><a href="#wx-for属性" class="headerlink" title="wx:for属性"></a>wx:for属性</h5><pre><code>* 绑定一个数组，默认数组当前项的下标变量名为index，数组当前项默认为 item
+* 实质是遍历Array数组，但在开发中经常会遇到遍历**Object对象**,会使用在多层嵌套的循环中，不可避免的会重定义item与index
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wx:for-item=&quot;xxx&quot;</span><br><span class="line">wx:for-index=&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>针对对象Object,以上两个属性木有用呀</strong></p>
+<ul>
+<li>一般复杂的逻辑，尽量数据结构都是键值对key-value的显示吧，可以让不认真看文档的我，开发效率提高哟</li>
+</ul>
+<h5 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h5><ul>
+<li><p>可滚动视图区域 <strong>值得注意的是，行内样式的设置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width: 100%;</span><br><span class="line">white-space: nowrap; // 不进行换行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>会遇到需求就是滚动区域内的布局，可换行，<strong>两者之间会冲突，取舍去吧</strong></p>
+</li>
+<li>微信小程序之Android环境下的横向滚动，当遇到不能滚动时，加上overflow-x: auto</li>
+</ul>
+<h5 id="wx-navigator-不可跳转到pages是底部tab"><a href="#wx-navigator-不可跳转到pages是底部tab" class="headerlink" title="wx.navigator 不可跳转到pages是底部tab"></a>wx.navigator 不可跳转到pages是底部tab</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;</span><br><span class="line">    url: &apos;/pages/xxx/xxx&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="wx-getSystemInfoSync获取windowHeight不准确"><a href="#wx-getSystemInfoSync获取windowHeight不准确" class="headerlink" title="wx.getSystemInfoSync获取windowHeight不准确"></a>wx.getSystemInfoSync获取windowHeight不准确</h5><ul>
+<li>主要原因在于获取是时机，wx.getSystemInfoSync是在页面初始化的时候就计算了，基本上可以理解为是屏幕高度。所以，最好的方法是使用异步接口，并且在onReady函数中调用。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onReady() &#123;</span><br><span class="line">  wx.getSystemInfo(&#123;</span><br><span class="line">    success(&#123;windowHeight&#125;) &#123;</span><br><span class="line">      // todo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="无法获取UnionID的问题"><a href="#无法获取UnionID的问题" class="headerlink" title="无法获取UnionID的问题"></a>无法获取UnionID的问题</h5><ul>
+<li>login获取UID必须满足两个条件：<ul>
+<li>把小程序和公众号都绑定在开放平台</li>
+<li>用户必须已经关注公众号</li>
+</ul>
+</li>
+<li>用wx.getUserInfo获取满足一个条件：<ul>
+<li>把小程序和公众号都绑定在开放平台</li>
+</ul>
+</li>
+</ul>
+<h5 id="wx-getUserInfo-接口更改问题"><a href="#wx-getUserInfo-接口更改问题" class="headerlink" title="wx.getUserInfo()接口更改问题"></a>wx.getUserInfo()接口更改问题</h5><p>*微信小程序最近被吐槽最多的一个更改，就是用户使用wx.getUserInfo（开发和体验版）时不会弹出授权，正式版不受影响。现在授权方式是需要引导用户点击一个授权按钮，然后再弹出授权。</p>
+<ul>
+<li>解法很长，请参考:</li>
+<li><a href="http://caibaojian.com/wx-getuserinfo.html" style="color: blue;" target="_blank" rel="noopener">微信小程序不支持wx.getUserInfo授权的解决方法</a></li>
+<li><a href="https://developers.weixin.qq.com/community/develop/doc/000aacd65388b86a44c69fd9a52804" style="color: blue;" target="_blank" rel="noopener">getUserInfo兼容解决方案</a></li>
+</ul>
+<ul>
+<li><a href="http://www.wxappclub.com/topic/596" style="color: blue;" target="_blank" rel="noopener">想了解more跳转</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2125,161 +2306,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/window-quick/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/window-quick/" itemprop="url">window下git bash 命令行实用技巧</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T11:43:59+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="命令窗口，使用快捷键快速跳转"><a href="#命令窗口，使用快捷键快速跳转" class="headerlink" title="命令窗口，使用快捷键快速跳转"></a>命令窗口，使用快捷键快速跳转</h4><ol>
-<li>新建一个文件目录，mkdir ~/repos</li>
-<li>切换目录 cd ~/repos</li>
-<li>克隆 git clone <a href="https://github.com/rupa/z.git" target="_blank" rel="noopener">https://github.com/rupa/z.git</a></li>
-<li>新建bashrc文件，如果<strong>已经存在这个文件，可忽略这步</strong>，touch ~/.bashrc</li>
-<li>打开bashrc文件，start ~/.bashrc</li>
-<li><p>在文件里写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">. ~/repos/z/z.sh</span><br><span class="line">alias j=&apos;z&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启 Git Bash</p>
-</li>
-<li>验证你的配置，使用 j XXX 就可以快速到达之前去过的目录了</li>
-<li>使用 j 可以查看所有去过的目录，使用z也可以调整目录，调整目录名都可以不用写文件名全称，如：d/document 使用快速调整 z doc 或 j doc<br> <strong>注意，~/repos/z/z.sh 不能删除，删除了就不能用了</strong></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2332,7 +2358,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2343,7 +2369,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

@@ -268,6 +268,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/typescript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/14/typescript/" itemprop="url">typescript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-14T10:14:12+08:00">
+                2021-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="typeScript"><a href="#typeScript" class="headerlink" title="typeScript"></a>typeScript</h3><h4 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h4><ul>
+<li>任何能有js实现的应用最终都会使用js实现</li>
+<li>从移动终端到后端服务</li>
+<li>从IOT到神经网络，它几乎无处不在，如此广阔的应用领域，自然对语言的安全性、健壮行、可维护性有更高的要求，尽管ES标准在近几年有长足的进步，但在类型检查方面依然无所建树</li>
+<li>你是否经常遇到这样但场景<ul>
+<li>调用一个别人写但函数，很不幸，没有留下任何注释，为了搞清楚参数类型，硬着头皮看逻辑</li>
+<li>为了保证代码的健壮性，对一个函数的输入参数进行各种假设</li>
+<li>领导看好你，维护一个重要的底层类库，你殚精竭虑优化了一个参数类型，但不知道有多少处引用，是否在提交代码前，感到脊背发凉</li>
+<li>明明定义好接口，可一联调就报错了，不能阅读到length</li>
+</ul>
+</li>
+<li>以上归根结底，js是一门动态弱类型语言，对变量的类型非常宽容，不会在这些变量和他们的调用者之间建立结构化的契约，如果长期在没有类型约束的环境下开发，造成类型思维的缺失</li>
+</ul>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>官方定义：拥有类型系统的JavaScript的超集，可以编译成纯的JavaScript</li>
+<li>类型检查：编译代码时，进行严格的静态类型检查，即编码阶段发现一些可避免的隐患，不必带到生产</li>
+<li>语言扩展：包括ES6、未来提案中的特性，如异步操作、装饰器，也会从其它语言借鉴某些特性，如接口、抽象类</li>
+<li>工具属性：ts可以编译成标准的js，可以在任何浏览器、操作系统上运行，无需任何运行时的额外开销，从这个角度讲，ts更像一个工具而非语言<h4 id="使用ts好处"><a href="#使用ts好处" class="headerlink" title="使用ts好处"></a>使用ts好处</h4></li>
+<li>vs code具有强大的自动补全、导航、重构功能，使得接口定义可以直接代替文档，同时可以提高开发效率，降低维护成本，更重要的是ts可以帮助团队，重塑<strong>类型思维</strong>，接口的提供方将被迫去思考API的边界，将从代码的编写者蜕变为代码的设计者</li>
+<li>如果js是野马，ts就是束缚这匹野马的缰绳，作为骑士的你，自然可以张开双臂、放飞自我，但如果不是技艺超群，恐怕会摔得很惨，然而如果抓住缰绳，你即可闲庭信步，亦可策马扬鞭，这就是ts的价值，它可让你在前端开发路上走得更稳，更远</li>
+</ul>
+<h4 id="安装-TypeScript-并运行-ts-文件"><a href="#安装-TypeScript-并运行-ts-文件" class="headerlink" title="安装 TypeScript 并运行 ts 文件"></a>安装 TypeScript 并运行 ts 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">* npm install typescript -g</span><br><span class="line">* yarn global add typescript</span><br><span class="line">* 使用 tsc 命令转成 js 文件</span><br><span class="line">  * tsc xx.ts</span><br><span class="line">  * node xx.js</span><br><span class="line">* 直接运行ts文件可以使用ts-node</span><br><span class="line">  * 安装ts-node</span><br><span class="line">  * npm install ts-node -g</span><br><span class="line">  * 使用</span><br><span class="line">  * ts-node xx.ts</span><br></pre></td></tr></table></figure>
+<h4 id="TS基础数据类型"><a href="#TS基础数据类型" class="headerlink" title="TS基础数据类型"></a>TS基础数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// string</span><br><span class="line">let s: string = &apos;aaa&apos;;</span><br><span class="line">console.log(s)</span><br><span class="line"></span><br><span class="line">// number</span><br><span class="line">let num: number = 123;</span><br><span class="line">console.log(num)</span><br><span class="line"></span><br><span class="line">// 不声明具体数据类型，由代码推断出数据类型</span><br><span class="line">let a = &apos;122&apos;;</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">// 布尔</span><br><span class="line">let b: boolean = false;</span><br><span class="line">console.log(b)</span><br><span class="line"></span><br><span class="line">// 数组 数据类型[]</span><br><span class="line">let arr: string[] = [&apos;11&apos;, &apos;22&apos;];</span><br><span class="line">console.log(arr)</span><br><span class="line"></span><br><span class="line">// void</span><br><span class="line">function funA(): void &#123;</span><br><span class="line">  console.log(&apos;定义了一个没有返回值的函数&apos;)</span><br><span class="line">&#125;</span><br><span class="line">funA();</span><br><span class="line"></span><br><span class="line">// function funNum(): number &#123;</span><br><span class="line">//   console.log(&apos;定义了一个有返回值的函数&apos;)</span><br><span class="line">//   return 1;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">// null</span><br><span class="line">// undefined</span><br></pre></td></tr></table></figure>
+<h4 id="TS接口"><a href="#TS接口" class="headerlink" title="TS接口"></a>TS接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 接口的声明</span><br><span class="line">interface inf &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 接口必须的成员变量</span><br><span class="line">interface inf &#123;</span><br><span class="line">  name: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 接口可选的成员变量，可以有，可以没有</span><br><span class="line">interface inf &#123;</span><br><span class="line">  age?: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 复杂的接口定义</span><br><span class="line">interface inf &#123;</span><br><span class="line">  name: string</span><br><span class="line">  age?: number</span><br><span class="line">  say: () =&gt; void</span><br><span class="line">  userList: string[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 接口的继承</span><br><span class="line">interface child extends inf &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="TS泛型"><a href="#TS泛型" class="headerlink" title="TS泛型"></a>TS泛型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class fx &#123;</span><br><span class="line">  name: string</span><br><span class="line">  age: number</span><br><span class="line">  say() &#123;</span><br><span class="line">    console.log(`$&#123;this.name&#125;---$&#123;this.age&#125;岁`)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let f = new fx();</span><br><span class="line">f.name = &apos;heihei&apos;;</span><br><span class="line">f.age = 18;</span><br><span class="line">f.say();</span><br><span class="line"></span><br><span class="line">class fx1&lt;IProps = &#123;&#125;&gt; &#123;</span><br><span class="line">  user: IProps</span><br><span class="line">  say() &#123;</span><br><span class="line">    console.log(this.user);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface IUser &#123;</span><br><span class="line">  name: string</span><br><span class="line">  age: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 泛型只关注为需要的数据，不关注具体的数据格式</span><br><span class="line">let f1 = new fx1&lt;IUser&gt;();</span><br><span class="line">f1.user = &#123;age: 18, name: &apos;aa&apos;&#125;;</span><br><span class="line">f1.say();</span><br></pre></td></tr></table></figure>
+<h4 id="TS枚举"><a href="#TS枚举" class="headerlink" title="TS枚举"></a>TS枚举</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">enum Direction &#123;</span><br><span class="line">  UP = &apos;up&apos;,</span><br><span class="line">  DOWN = &apos;down&apos;,</span><br><span class="line">  LEFT = &apos;left&apos;,</span><br><span class="line">  RIght = &apos;right&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum User &#123;</span><br><span class="line">  UP = &apos;up&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(Direction.UP)</span><br><span class="line">// 简单理解 有自己的独立作用域</span><br><span class="line">// console.log(Direction.UP === User.UP)</span><br><span class="line"></span><br><span class="line">const a = 1;</span><br><span class="line">const b = 1;</span><br><span class="line">console.log(a == b)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/05/vue自定义指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1925,240 +2091,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/面试指南/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/11/17/面试指南/" itemprop="url">面试指南</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T10:00:25+08:00">
-                2020-11-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTML、CSS、JS/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML、CSS、JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="面试指南"><a href="#面试指南" class="headerlink" title="面试指南"></a>面试指南</h3><h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><h5 id="html5语义化"><a href="#html5语义化" class="headerlink" title="html5语义化"></a>html5语义化</h5><ul>
-<li>为什么需要语义化<ul>
-<li>易修改、易维护</li>
-<li>无障碍阅读支持</li>
-<li>搜索引擎友好，利于 SEO</li>
-<li>面向未来的 HTML，浏览器在未来可能提供更丰富的支持</li>
-</ul>
-</li>
-<li>结构语义化<ul>
-<li>语义元素均有一个共同特点——他们<strong>均不做任何事情</strong>。换句话说，语义元素仅仅是<strong>页面结构的规范化</strong>，并不会对内容有本质的影响</li>
-<li>eg: <header> <nav> <aside> <section> <article><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><h5 id="css常见面试题"><a href="#css常见面试题" class="headerlink" title="css常见面试题"></a>css常见面试题</h5></article></section></aside></nav></header></li>
-</ul>
-</li>
-<li>标准盒模型与低版本IE盒模型<ul>
-<li>标准盒模型 宽度 = 内容的宽度（content）+ border+ padding + margin</li>
-<li>低版本IE盒模型 宽度 = 内容的宽度（content+ border+ padding）+ margin</li>
-</ul>
-</li>
-<li>box-sizing属性<ul>
-<li>用来控制元素的盒子模型的解析模式，默认为content-box</li>
-<li>context-box：W3C的标准盒子模型，设置元素的 height/width 属性指的是content部分的高/宽</li>
-<li>border-box：IE传统盒子模型。设置元素的height/width属性指的是border + padding + content部分的高/宽</li>
-</ul>
-</li>
-<li>CSS选择器有哪些？哪些属性可以继承？<ul>
-<li>CSS选择符：id选择器(#myid)、类选择器(.myclassname)、标签选择器(div, h1, p)、相邻选择器(h1 + p)、子选择器（ul &gt; li）、后代选择器（li a）、通配符选择器（*）、属性选择器（a[rel=”external”]）、伪类选择器（a:hover, li:nth-child）</li>
-<li>可继承的属性：font-size, font-family, color</li>
-<li>不可继承的样式：border, padding, margin, width, height</li>
-<li>优先级（就近原则）：!important &gt; [ id &gt; class &gt; tag ]</li>
-<li>!important 比内联优先级高</li>
-</ul>
-</li>
-<li><p>CSS优先级算法如何计算？</p>
-<ul>
-<li>元素选择符： 1</li>
-<li>class选择符： 10</li>
-<li>id选择符：100</li>
-<li>元素标签：1000</li>
-<li>!important声明的样式优先级最高，如果冲突再进行计算</li>
-<li>如果优先级相同，则选择最后出现的样式</li>
-<li>继承得到的样式的优先级最低</li>
-</ul>
-</li>
-<li><p>CSS3新增伪类有那些?</p>
-<ul>
-<li>p:first-of-type 选择属于其父元素的首个元素</li>
-<li>p:last-of-type 选择属于其父元素的最后元素</li>
-<li>p:only-of-type 选择属于其父元素唯一的元素</li>
-<li>p:only-child 选择属于其父元素的唯一子元素</li>
-<li>p:nth-child(2) 选择属于其父元素的第二个子元素</li>
-<li>:enabled :disabled 表单控件的禁用状态</li>
-<li>:checked 单选框或复选框被选中</li>
-</ul>
-</li>
-<li><p>如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？（更优方法flexbox）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid red;</span><br><span class="line">margin: 0 auto; </span><br><span class="line">height: 50px;</span><br><span class="line">width: 80px;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid red;</span><br><span class="line">float: left;</span><br><span class="line">position: absolute;</span><br><span class="line">width: 200px;</span><br><span class="line">height: 100px;</span><br><span class="line">left: 50%;</span><br><span class="line">top: 50%;</span><br><span class="line">margin: -50px 0 0 -100px;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid black;</span><br><span class="line">position: absolute;</span><br><span class="line">width: 200px;</span><br><span class="line">height: 100px;</span><br><span class="line">margin: 0 auto;</span><br><span class="line">left: 0;</span><br><span class="line">right: 0;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>display有哪些值？说明他们的作用?</p>
-<ul>
-<li>inline（默认）–内联</li>
-<li>none–隐藏</li>
-<li>block–块显示</li>
-<li>table–表格显示</li>
-<li>list-item–项目列表</li>
-<li>inline-block</li>
-<li>flex grid</li>
-</ul>
-</li>
-<li><p>position的值？</p>
-<ul>
-<li>static（默认）：按照正常文档流进行排列；</li>
-<li>relative（相对定位）：不脱离文档流，参考自身静态位置通过 top, bottom, left, right 定位；</li>
-<li>absolute(绝对定位)：参考距其最近一个不为static的父级元素通过top, bottom, left, right 定位；</li>
-<li>fixed(固定定位)：所固定的参照对像是可视窗口。<br><a href="https://segmentfault.com/a/1190000013325778" style="color: blue;" target="_blank" rel="noopener">more…</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><h5 id="js常见面试题"><a href="#js常见面试题" class="headerlink" title="js常见面试题"></a>js常见面试题</h5><ul>
-<li><p>浅拷贝和深拷贝的区别</p>
-<ul>
-<li><p>浅拷贝：一般指的是把对象的第一层拷贝到一个新对象上去，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123; count: 1, deep: &#123; count: 2 &#125; &#125;;</span><br><span class="line">let b = Object.assign(&#123;&#125;, a);</span><br><span class="line">// 或者</span><br><span class="line">let b = &#123;...a&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>深拷贝：一般需要借助递归实现，如果对象的值还是个对象，要进一步的深入拷贝，完全替换掉每一个复杂类型的引用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let deepCopy = (obj) =&gt; &#123;</span><br><span class="line">  let ret = &#123;&#125;;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    let value = obj[key];</span><br><span class="line">    ret[key] = typeof value === &apos;object&apos; ? deepCopy(value) : value;</span><br><span class="line">  &#125;</span><br><span class="line">  return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2211,7 +2143,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2222,7 +2154,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
