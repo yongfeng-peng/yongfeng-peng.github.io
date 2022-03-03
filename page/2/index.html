@@ -268,6 +268,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/05/vue自定义指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/05/vue自定义指令/" itemprop="url">vue自定义指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-05T11:49:15+08:00">
+                2021-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vue自定义指令"><a href="#vue自定义指令" class="headerlink" title="vue自定义指令"></a><a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">vue自定义指令</a></h3><h4 id="vue自定义指令有全局注册和局部注册两种方式"><a href="#vue自定义指令有全局注册和局部注册两种方式" class="headerlink" title="vue自定义指令有全局注册和局部注册两种方式"></a>vue自定义指令有全局注册和局部注册两种方式</h4><ul>
+<li><p>全局注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(id, [definition])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>局部注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 批量注册 --&gt;</span><br><span class="line">import copy from &apos;./copy&apos;</span><br><span class="line">import longpress from &apos;./longpress&apos;</span><br><span class="line">// 自定义指令</span><br><span class="line">const directives = &#123;</span><br><span class="line">  copy,</span><br><span class="line">  longpress,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install(Vue) &#123;</span><br><span class="line">    Object.keys(directives).forEach((key) =&gt; &#123;</span><br><span class="line">      Vue.directive(key, directives[key])</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册之后使用在main.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- main.js使用 --&gt;</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Directives from &apos;./directives/index&apos;</span><br><span class="line">Vue.use(Directives)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="指令函数中提供的几个钩子函数（可选）："><a href="#指令函数中提供的几个钩子函数（可选）：" class="headerlink" title="指令函数中提供的几个钩子函数（可选）："></a>指令函数中提供的几个钩子函数（可选）：</h4><ul>
+<li>bind: 只调用一次，指令第一次绑定到元素时调用，可以定义一个在绑定时执行一次的初始化动作</li>
+<li>inserted: 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）</li>
+<li>update: 被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值</li>
+<li>componentUpdated: 被绑定元素所在模板完成一次更新周期时调用</li>
+<li>unbind: 只调用一次， 指令与元素解绑时调用</li>
+</ul>
+<h4 id="常使用的自定义指令"><a href="#常使用的自定义指令" class="headerlink" title="常使用的自定义指令"></a>常使用的自定义指令</h4><ul>
+<li><p>防抖指令 v-debounce</p>
+<ul>
+<li>防止按钮在短时间内被多次点击，使用防抖函数限制规定时间内只能点击一次<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">const debounce = &#123;</span><br><span class="line">  inserted: function (el, binding) &#123;</span><br><span class="line">    let timer;</span><br><span class="line">    &lt;!-- keyup --&gt;</span><br><span class="line">    el.addEventListener(&apos;click&apos;, () =&gt; &#123;</span><br><span class="line">      if (timer) &#123;</span><br><span class="line">        clearTimeout(timer)</span><br><span class="line">      &#125;</span><br><span class="line">      timer = setTimeout(() =&gt; &#123;</span><br><span class="line">        binding.value()</span><br><span class="line">      &#125;, 1000)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">export default debounce;</span><br><span class="line"></span><br><span class="line">&lt;!-- dom中使用 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button v-debounce=&quot;debounceClick&quot;&gt;防抖&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt; </span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    debounceClick () &#123;</span><br><span class="line">      console.log(&apos;只触发一次&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>实现一个图片懒加载指令，只加载浏览器可见区域的图片</p>
+<ul>
+<li>实现一个图片懒加载指令，只加载浏览器可见区域的图片。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">const LazyLoad = &#123;</span><br><span class="line">  // install方法</span><br><span class="line">  install(Vue, options) &#123;</span><br><span class="line">    const defaultSrc = options.default</span><br><span class="line">    Vue.directive(&apos;lazy&apos;, &#123;</span><br><span class="line">      bind(el, binding) &#123;</span><br><span class="line">        LazyLoad.init(el, binding.value, defaultSrc)</span><br><span class="line">      &#125;,</span><br><span class="line">      inserted(el) &#123;</span><br><span class="line">        if (IntersectionObserver) &#123;</span><br><span class="line">          LazyLoad.observe(el)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          LazyLoad.listenerScroll(el)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  // 初始化</span><br><span class="line">  init(el, val, def) &#123;</span><br><span class="line">    el.setAttribute(&apos;src&apos;, val)</span><br><span class="line">    el.setAttribute(&apos;src&apos;, def)</span><br><span class="line">  &#125;,</span><br><span class="line">  // 利用IntersectionObserver监听el</span><br><span class="line">  observe(el) &#123;</span><br><span class="line">    var io = new IntersectionObserver((entries) =&gt; &#123;</span><br><span class="line">      const realSrc = el.dataset.src</span><br><span class="line">      if (entries[0].isIntersecting) &#123;</span><br><span class="line">        if (realSrc) &#123;</span><br><span class="line">          el.src = realSrc</span><br><span class="line">          el.removeAttribute(&apos;src&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    io.observe(el)</span><br><span class="line">  &#125;,</span><br><span class="line">  // 监听scroll事件</span><br><span class="line">  listenerScroll(el) &#123;</span><br><span class="line">    const handler = LazyLoad.throttle(LazyLoad.load, 300)</span><br><span class="line">    LazyLoad.load(el)</span><br><span class="line">    window.addEventListener(&apos;scroll&apos;, () =&gt; &#123;</span><br><span class="line">      handler(el)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  // 加载真实图片</span><br><span class="line">  load(el) &#123;</span><br><span class="line">    const windowHeight = document.documentElement.clientHeight</span><br><span class="line">    const elTop = el.getBoundingClientRect().top</span><br><span class="line">    const elBtm = el.getBoundingClientRect().bottom</span><br><span class="line">    const realSrc = el.dataset.src</span><br><span class="line">    if (elTop - windowHeight &lt; 0 &amp;&amp; elBtm &gt; 0) &#123;</span><br><span class="line">      if (realSrc) &#123;</span><br><span class="line">        el.src = realSrc</span><br><span class="line">        el.removeAttribute(&apos;src&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 节流</span><br><span class="line">  throttle(fn, delay) &#123;</span><br><span class="line">    let timer</span><br><span class="line">    let prevTime</span><br><span class="line">    return function (...args) &#123;</span><br><span class="line">      const currTime = Date.now()</span><br><span class="line">      const context = this</span><br><span class="line">      if (!prevTime) prevTime = currTime</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line"></span><br><span class="line">      if (currTime - prevTime &gt; delay) &#123;</span><br><span class="line">        prevTime = currTime</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">        clearTimeout(timer)</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        prevTime = Date.now()</span><br><span class="line">        timer = null</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">      &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default LazyLoad;</span><br><span class="line">&lt;!-- dom中使用 --&gt;</span><br><span class="line">&lt;img v-LazyLoad=&quot;xxx.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://mp.weixin.qq.com/s/DwmUqgD-y3qXKZ87-RdEDA" target="_blank" rel="noopener">分享8个非常实用的Vue自定义指令</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/28/react钩子/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1985,153 +2159,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/21/每日面试题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/10/21/每日面试题/" itemprop="url">每日面试题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-21T16:33:41+08:00">
-                2020-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="每日面试题"><a href="#每日面试题" class="headerlink" title="每日面试题"></a>每日面试题</h4><h5 id="输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法"><a href="#输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法" class="headerlink" title="输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法"></a>输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const list = [1, 2, 3]</span><br><span class="line">const square = num =&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      resolve(num * num)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function test() &#123;</span><br><span class="line">  list.forEach(async x =&gt; &#123;</span><br><span class="line">    const res = await square(x)</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>forEach是不能阻塞的，默认是请求并行发起，所以是同时输出1、4、9</li>
-<li>解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">  for (let i = 0; i &lt; list.length; i++) &#123;</span><br><span class="line">    let x = list[i]</span><br><span class="line">    const res = await square(x)</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">async function test() &#123;</span><br><span class="line">  for (let x of list) &#123;</span><br><span class="line">    const res = await square(x)</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">## axios 源码里所用到的，利用 promise 本身的链式调用来实现串行</span><br><span class="line">let promise = Promise.resolve()</span><br><span class="line">function test(i = 0) &#123;</span><br><span class="line">  if (i === list.length) return</span><br><span class="line">  promise = promise.then(() =&gt; square(list[i])).then((res) =&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">  test(i + 1)</span><br><span class="line">&#125;</span><br><span class="line">## 利用promise的链式调用</span><br><span class="line">function test() &#123;</span><br><span class="line">  let promise = Promise.resolve()</span><br><span class="line"></span><br><span class="line">  list.forEach(x =&gt; &#123;</span><br><span class="line">    promise = promise.then(() =&gt; square(x)).then((res) =&gt; &#123;</span><br><span class="line">      console.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="标记的模板字符串"><a href="#标记的模板字符串" class="headerlink" title="标记的模板字符串"></a>标记的模板字符串</h5><ul>
-<li>第一个参数包含所有的静态字符串，以表达式变量进行分割成数组（类似split(‘$’)的效果）；然后逐一解析变量表达式，传到对应的参数第二个参数、第三个参数</li>
-<li>拓展：<strong>参数传递的对象</strong>和我们用于<strong>检查相等性的对象</strong>在内存中位于不同位置，所以它们的引用是不同的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getPersonInfo(one, two, three) &#123;</span><br><span class="line">  console.log(one);</span><br><span class="line">  console.log(two);</span><br><span class="line">  console.log(three);</span><br><span class="line">&#125;</span><br><span class="line">const person = &quot;Lydia&quot;;</span><br><span class="line">const age = 21;</span><br><span class="line">getPersonInfo`$&#123;person&#125; is $&#123;age&#125; years old`; </span><br><span class="line">* [&quot;&quot;, &quot;is&quot;, &quot;years old&quot;] Lydia 21</span><br><span class="line">* 第一个参数&apos;$&#123;person&#125; is $&#123;age&#125; years old&apos;.split(&apos;$&apos;) =》 [&quot;&quot;, &quot;&#123;person&#125; is &quot;, &quot;&#123;age&#125; years old&quot;]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h5><ul>
-<li>eval会为字符串传递的代码求值。 如果它是一个表达式，它会计算表达式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const sum = eval(&quot;10*10+5&quot;); // 105</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="对象键"><a href="#对象键" class="headerlink" title="对象键"></a>对象键</h5><ul>
-<li>所有对象键（不包括<strong>Symbols</strong>）都会被存储为字符串，即使你没有给定字符串类型的键</li>
-<li>拓展<ul>
-<li>如果对象有两个具有相同名称的键，则将替换前面的键。它仍将处于最开始的位置，但具有最后指定的值。</li>
-<li>JavaScript全局执行上下文为你创建了两个东西:全局对象和this关键字.</li>
-<li>基本执行上下文是全局执行上下文:它是代码中随处可访问的内容。</li>
-<li>对象键自动转换为字符串,它变成了[object Object]</li>
-<li>JavaScript只有<strong>原始类型和对象</strong>,原始类型是boolean，null，undefined，bigint，number，string和symbol。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123; 1: &quot;a&quot;, 2: &quot;b&quot;, 3: &quot;c&quot; &#125;;</span><br><span class="line">const set = new Set([1, 2, 3, 4, 5]);</span><br><span class="line"></span><br><span class="line">obj.hasOwnProperty(&quot;1&quot;); // true</span><br><span class="line">obj.hasOwnProperty(1); // true</span><br><span class="line">set.has(&quot;1&quot;); // false</span><br><span class="line">set.has(1); // true</span><br><span class="line"></span><br><span class="line">const obj = &#123; a: &quot;one&quot;, b: &quot;two&quot;, a: &quot;three&quot; &#125;;</span><br><span class="line">console.log(obj); // &#123; a: &quot;three&quot;, b: &quot;two&quot; &#125;</span><br><span class="line"></span><br><span class="line">const a = &#123;&#125;;</span><br><span class="line">const b = &#123; key: &quot;b&quot; &#125;;</span><br><span class="line">const c = &#123; key: &quot;c&quot; &#125;;</span><br><span class="line"></span><br><span class="line">a[b] = 123;</span><br><span class="line">a[c] = 456;</span><br><span class="line"></span><br><span class="line">console.log(a[b]); // 456</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="continue-声明终止当前循环或标记循环的当前迭代中的语句执行，并在下一次迭代时继续执行循环"><a href="#continue-声明终止当前循环或标记循环的当前迭代中的语句执行，并在下一次迭代时继续执行循环" class="headerlink" title="continue 声明终止当前循环或标记循环的当前迭代中的语句执行，并在下一次迭代时继续执行循环"></a>continue 声明终止当前循环或标记循环的当前迭代中的语句执行，并在下一次迭代时继续执行循环</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let text = &apos;&apos;;</span><br><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  if (i === 3) &#123;</span><br><span class="line">    continue;</span><br><span class="line">  &#125;</span><br><span class="line">  text = text + i;</span><br><span class="line">&#125;</span><br><span class="line">console.log(text);</span><br><span class="line">// expected output: &quot;012456789&quot;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2184,7 +2211,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
