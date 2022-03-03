@@ -107,4 +107,13 @@ initColor() {
 },
 ```
 
+#### tab切换数据合并问题，设置eopts参数
+* eopts不能传递function，如果option配置参数需要function，请将option写在config-echarts.js中即可实现。
+```
+ lineEopts: {
+    notMerge: true, // 是否不跟之前设置的 option 进行合并。默认为false。即表示合并
+ }
+
+```
+
 
