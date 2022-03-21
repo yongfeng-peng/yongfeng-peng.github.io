@@ -268,6 +268,320 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/14/小程序中手机号识别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/14/小程序中手机号识别/" itemprop="url">小程序中手机号识别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-14T16:38:48+08:00">
+                2020-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="小程序中手机号识别"><a href="#小程序中手机号识别" class="headerlink" title="小程序中手机号识别"></a>小程序中手机号识别</h3><h4 id="后端返回字符串包好手机号，点击可拨打电话"><a href="#后端返回字符串包好手机号，点击可拨打电话" class="headerlink" title="后端返回字符串包好手机号，点击可拨打电话"></a>后端返回字符串包好手机号，点击可拨打电话</h4><ul>
+<li>split技巧</li>
+<li>注意的点是这个正则regPhone，里面加了有括号，如果separator是包含捕获括号的正则表达式()，则匹配结果包含在数组中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let _str = &quot;xxx，联系电话：18839687266。稍后与您联系。xxx。&quot;;</span><br><span class="line">parseStr (str) &#123;</span><br><span class="line">  const regPhone = /(1\d&#123;10&#125;)/;</span><br><span class="line">  const list = str.split(regPhone);</span><br><span class="line">  const result = [];</span><br><span class="line">  return list.map(item =&gt; &#123;</span><br><span class="line">    let tag;</span><br><span class="line">    regPhone.test(item) ? tag = &apos;phone&apos; : tag = &apos;text&apos;;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: tag,</span><br><span class="line">      text: item</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/03/google扩展程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/03/google扩展程序/" itemprop="url">google扩展程序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-03T11:41:43+08:00">
+                2020-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tool/" itemprop="url" rel="index">
+                    <span itemprop="name">tool</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h4 id="google扩展程序安装"><a href="#google扩展程序安装" class="headerlink" title="google扩展程序安装"></a>google扩展程序安装</h4><h5 id="vue-devtools工具的安装"><a href="#vue-devtools工具的安装" class="headerlink" title="vue-devtools工具的安装"></a>vue-devtools工具的安装</h5><ul>
+<li>创建一个新的文件夹，名为vue-devtools</li>
+<li>sudo npm install vue-devtools</li>
+<li>进入vender文件夹，打开manifest.json,进行编辑</li>
+<li>persistent修改成true</li>
+<li>打开扩展程序,把刚刚修改的vender文件夹拖拽进来就可以了(记得开启开发者模式)</li>
+</ul>
+<h5 id="react-devtools工具的安装"><a href="#react-devtools工具的安装" class="headerlink" title="react-devtools工具的安装"></a>react-devtools工具的安装</h5><ul>
+<li>git clone <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">https://github.com/facebook/react-devtools</a></li>
+<li>cd react-devtools</li>
+<li>yarn install</li>
+<li>yarn build:extension(具体命令，在package.json文件中的script下查找以下命令)</li>
+<li>打开扩展程序,把生成的shells/chrome/build/unpacked文件夹拖拽进来就可以了(记得开启开发者模式)</li>
+</ul>
+<h5 id="redux-devtools工具的安装"><a href="#redux-devtools工具的安装" class="headerlink" title="redux-devtools工具的安装"></a>redux-devtools工具的安装</h5><ul>
+<li>git clone <a href="https://github.com/zalmoxisus/redux-devtools-extension.git" target="_blank" rel="noopener">https://github.com/zalmoxisus/redux-devtools-extension.git</a></li>
+<li>npm i &amp;&amp; npm run build:extension (npm install chromedriver –chromedriver_cdnurl=<a href="http://cdn.npm.taobao.org/dist/chromedriver" target="_blank" rel="noopener">http://cdn.npm.taobao.org/dist/chromedriver</a>)</li>
+<li>打开扩展程序,把生成的./build/extension文件夹添加到压缩程序(记得开启开发者模式)</li>
+</ul>
+<h5 id="其他好用扩展程序"><a href="#其他好用扩展程序" class="headerlink" title="其他好用扩展程序"></a>其他好用扩展程序</h5><ul>
+<li>WEB前端助手(FeHelper)<ul>
+<li>一款国产的、超级实用的前端开发工具合集，之前扩展迷也用专文介绍过这款插件。</li>
+<li>WEB前端助手(FeHelper)包含多个独立小应用，比如：Json工具、代码美化、代码压缩、二维码、Postman、markdown、网页油猴、便签笔记、信息加密与解密、随机密码生成、Crontab等等。</li>
+<li><a href="https://www.extfans.com/web-development/pkgccpejnmalmdinmhkkfafefagiiiad/" style="color: blue;" target="_blank" rel="noopener">down…</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/nrm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1570,318 +1884,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/27/css常见功能代码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/27/css常见功能代码/" itemprop="url">css常见功能代码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T10:39:44+08:00">
-                2020-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="CSS3-animation实现点点点loading动画"><a href="#CSS3-animation实现点点点loading动画" class="headerlink" title="CSS3 animation实现点点点loading动画"></a>CSS3 animation实现点点点loading动画</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@supports (display:none) &#123;</span><br><span class="line">  dot &#123;</span><br><span class="line">    display: inline-block; </span><br><span class="line">    width: 3ch;</span><br><span class="line">    text-indent: -1ch;</span><br><span class="line">    vertical-align: bottom; </span><br><span class="line">    overflow: hidden;</span><br><span class="line">    animation: dot 3s infinite step-start both;</span><br><span class="line">    font-family: Consolas, Monaco, monospace;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes dot &#123;</span><br><span class="line">  33% &#123; text-indent: 0; &#125;</span><br><span class="line">  66% &#123; text-indent: -2ch; &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;a href=&quot;javascript:&quot; class=&quot;grebtn&quot;&gt;订单提交中&lt;dot&gt;...&lt;/dot&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="按钮加一个类名自动变菊花loading状态无图片版"><a href="#按钮加一个类名自动变菊花loading状态无图片版" class="headerlink" title="按钮加一个类名自动变菊花loading状态无图片版"></a>按钮加一个类名自动变菊花loading状态无图片版</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/* 按钮loading */</span><br><span class="line">a[class*=-btn].loading, </span><br><span class="line">label[class*=-btn].loading &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">a[class*=-btn].loading::first-line, </span><br><span class="line">label[class*=-btn].loading::first-line &#123;</span><br><span class="line">  color: transparent;</span><br><span class="line">&#125;</span><br><span class="line">a[class*=-btn].loading::before, </span><br><span class="line">label[class*=-btn].loading::before &#123;</span><br><span class="line">  width: 4px; height: 4px;</span><br><span class="line">  margin: auto;</span><br><span class="line">  content: &apos;&apos;;</span><br><span class="line">  -webkit-animation: spinZoom 1s steps(8) infinite;</span><br><span class="line">  animation: spinZoom 1s steps(8) infinite;</span><br><span class="line">  border-radius: 100%;</span><br><span class="line">  box-shadow: 0 -10px 0 1px currentColor, 10px 0 currentColor, 0 10px currentColor, -10px 0 currentColor, -7px -7px 0 .5px currentColor, 7px -7px 0 1.5px currentColor, 7px 7px currentColor, -7px 7px currentColor;</span><br><span class="line">  /* center */</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 0; right: 0; bottom: 0; left: 0;</span><br><span class="line">&#125;</span><br><span class="line">/* loading动画 */</span><br><span class="line">@-webkit-keyframes spinZoom &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -webkit-transform: scale(.75) rotate(0);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    -webkit-transform: scale(.75) rotate(360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes spinZoom &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    transform: scale(.75) rotate(0);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    transform: scale(.75) rotate(360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;button&gt;&lt;a class=&quot;a-btn loading&quot;&gt;&lt;/a&gt;3445&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/CSS经典布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/26/CSS经典布局/" itemprop="url">CSS经典布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T14:39:21+08:00">
-                2020-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="CSS经典布局"><a href="#CSS经典布局" class="headerlink" title="CSS经典布局"></a>CSS经典布局</h4><h5 id="空间居中对齐"><a href="#空间居中对齐" class="headerlink" title="空间居中对齐"></a>空间居中对齐</h5><ul>
-<li>空间居中布局指的是，不管容器的大小，项目总是占据中心点。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: grid;</span><br><span class="line">  place-items: center/end/start;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* place-items: &lt;align-items&gt; &lt;justify-items&gt;; */</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="并列式布局"><a href="#并列式布局" class="headerlink" title="并列式布局"></a>并列式布局</h5><ul>
-<li><p>并列式布局就是多个项目并列。如果宽度不够，放不下的项目就自动折行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">  justify-content: center;</span><br><span class="line">&#125;</span><br><span class="line">.item&#123;</span><br><span class="line">  flex: 0 1 150px;</span><br><span class="line">  margin: 5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>flex属性是flex-grow、flex-shrink、flex-basis这三个属性的简写形式。</p>
-</li>
-<li>flex: <flex-grow> <flex-shrink> <flex-basis>;<ul>
-<li>flex-basis：项目的初始宽度。</li>
-<li>flex-grow：指定如果有多余宽度，项目是否可以扩大。</li>
-<li>flex-shrink：指定如果宽度不足，项目是否可以缩小。</li>
-<li>flex: 0 1 150px;的意思就是，项目的初始宽度是150px，且不可以扩大，但是当容器宽度不足150px时，项目可以缩小。</li>
-</ul>
-</flex-basis></flex-shrink></flex-grow></li>
-<li>如果写成flex: 1 1 150px;，就表示项目始终会占满所有宽度</li>
-</ul>
-<h5 id="两栏式布局"><a href="#两栏式布局" class="headerlink" title="两栏式布局"></a>两栏式布局</h5><ul>
-<li>两栏式布局就是一个边栏，一个主栏。</li>
-<li>边栏始终存在，主栏根据设备宽度，变宽或者变窄。如果希望主栏自动换到下一行，可以参考上面的”并列式布局”。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: grid;</span><br><span class="line">  grid-template-columns: minmax(150px, 25%) 1fr;</span><br><span class="line">&#125;</span><br><span class="line">/* grid-template-columns指定页面分成两列。第一列的宽度是minmax(150px, 25%)，即最小宽度为150px，最大宽度为总宽度的25%；第二列为1fr，即所有剩余宽度。 */</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="三明治布局"><a href="#三明治布局" class="headerlink" title="三明治布局"></a>三明治布局</h5><ul>
-<li>三明治布局指的是，页面在垂直方向上，分成三部分：页眉、内容区、页脚。</li>
-<li>这个布局会根据设备宽度，自动适应，并且不管内容区有多少内容，页脚始终在容器底部（粘性页脚）。也就是说，这个布局总是会占满整个页面高度。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: grid;</span><br><span class="line">  grid-template-rows: auto 1fr auto;</span><br><span class="line">&#125;</span><br><span class="line">/* 指定采用 Grid 布局。核心代码是grid-template-rows那一行，指定垂直高度怎么划分，这里是从上到下分成三部分。第一部分（页眉）和第三部分（页脚）的高度都为auto，即本来的内容高度；第二部分（内容区）的高度为1fr，即剩余的所有高度，这可以保证页脚始终在容器的底部。 */</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1934,7 +1936,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

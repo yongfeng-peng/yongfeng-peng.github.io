@@ -268,6 +268,468 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/21/vite-vue3-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/21/vite-vue3-03/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T16:33:58+08:00">
+                2022-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/18/vite-vue3-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/18/vite-vue3-02/" itemprop="url">vite-vue3-02</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-18T16:20:54+08:00">
+                2022-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><h4 id="插槽slot-占位符"><a href="#插槽slot-占位符" class="headerlink" title="插槽slot(占位符)"></a>插槽slot(占位符)</h4><ul>
+<li>子组件中的提供给父组件使用的一个占位符，用<slot></slot> 表示，父组件可以在这个占位符中填充任何模板代码，如 HTML、组件等，填充的内容会替换子组件的<slot></slot>标签</li>
+<li>匿名插槽</li>
+<li><p>在子组件放置一个插槽</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父组件使用插槽</p>
+<ul>
+<li>在父组件给这个插槽填充内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2132&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>具名插槽</p>
+<ul>
+<li>具名插槽其实就是给插槽取个名字。一个子组件可以放多个插槽，而且可以放在不同的地方，而父组件填充内容时，可以根据这个名字把内容填充到对应插槽中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>父组件使用需对应名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插槽简写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template #header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #default&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用域插槽</p>
+<ul>
+<li><p>在子组件动态绑定参数 派发给父组件的slot去使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-for=&quot;item in 100&quot;&gt;</span><br><span class="line">            &lt;slot :data=&quot;item&quot;&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过结构方式取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">  &lt;template #header&gt;</span><br><span class="line">      &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #default=&quot;&#123; data &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; data &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #footer&gt;</span><br><span class="line">      &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>动态插槽</p>
+<ul>
+<li>插槽可以是一个变量名<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template #[name]&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            23</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br><span class="line">const name = ref(&apos;header&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="异步组件-amp-代码分包-amp-suspense"><a href="#异步组件-amp-代码分包-amp-suspense" class="headerlink" title="异步组件&amp;代码分包&amp;suspense"></a>异步组件&amp;代码分包&amp;suspense</h4><ul>
+<li>异步组件</li>
+<li>在大型应用中，我们可能需要将应用分割成小一些的代码块,并且减少主包的体积</li>
+<li>就可以使用异步组件</li>
+<li>顶层 await,在setup语法糖里面 使用方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt; 中可以使用顶层 await 结果代码会被编译成 async setup()</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">const post = await fetch(`/api/post/1`).then(r =&gt; r.json())</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>父组件引用子组件 通过defineAsyncComponent加载异步配合import 函数模式便可以分包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; reactive, ref, markRaw, toRaw, defineAsyncComponent &#125; from &apos;vue&apos;</span><br><span class="line">const Dialog = defineAsyncComponent(() =&gt; import(&apos;../../components/Dialog/index.vue&apos;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>suspense</p>
+<ul>
+<li><suspense> 组件有两个插槽。它们都只接收一个直接子节点。default 插槽里的节点会尽可能展示出来。如果不能，则展示 fallback 插槽里的节点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense&gt;</span><br><span class="line">  &lt;template #default&gt;</span><br><span class="line">    &lt;Dialog&gt;</span><br><span class="line">      &lt;template #default&gt;</span><br><span class="line">          &lt;div&gt;接口请求动态数据&lt;/div&gt;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/Dialog&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">  &lt;template #fallback&gt;</span><br><span class="line">     &lt;div&gt;loading...&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Suspense&gt;</span><br></pre></td></tr></table></figure>
+</suspense></li>
+</ul>
+</li>
+</ul>
+<h4 id="Teleport传送组件"><a href="#Teleport传送组件" class="headerlink" title="Teleport传送组件"></a>Teleport传送组件</h4><ul>
+<li><p>Teleport Vue 3.0新特性之一</p>
+<ul>
+<li>Teleport 是一种能够将我们的模板渲染至指定DOM节点，不受父级style、v-show等属性影响，但data、prop数据依旧能够共用的技术；类似于 React 的 Portal</li>
+<li>主要解决的问题 因为Teleport节点挂载在其他指定的DOM节点下，完全不受父级style样式影响</li>
+<li>使用方法<ul>
+<li>通过to 属性 插入指定元素位置 to=”body” 便可以将Teleport 内容传送到指定位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Teleport to=&quot;body&quot;&gt;</span><br><span class="line">  &lt;Loading&gt;&lt;/Loading&gt;</span><br><span class="line">&lt;/Teleport&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>也可以自定义传送位置 支持 class id等 选择器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;modal&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;Teleport to=&quot;.modal&quot;&gt;</span><br><span class="line">  &lt;Loading&gt;&lt;/Loading&gt;</span><br><span class="line">&lt;/Teleport&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>也可以使用多个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Teleport to=&quot;.modal1&quot;&gt;</span><br><span class="line">  &lt;Loading&gt;&lt;/Loading&gt;</span><br><span class="line">&lt;/Teleport&gt;</span><br><span class="line">&lt;Teleport to=&quot;.modal2&quot;&gt;</span><br><span class="line">  &lt;Loading&gt;&lt;/Loading&gt;</span><br><span class="line">&lt;/Teleport&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="keep-alive缓存组件"><a href="#keep-alive缓存组件" class="headerlink" title="keep-alive缓存组件"></a>keep-alive缓存组件</h4><ul>
+<li>内置组件keep-alive<ul>
+<li>有时候我们不希望组件被重新渲染影响使用体验；或者处于性能考虑，避免多次重复渲染降低性能。而是希望组件可以缓存下来,维持当前的状态。这时候就需要用到keep-alive组件</li>
+</ul>
+</li>
+<li><p>开启keep-alive 生命周期的变化</p>
+<ul>
+<li>初次进入时： onMounted&gt; onActivated</li>
+<li>退出后触发 deactivated</li>
+<li>再次进入：</li>
+<li>只会触发 onActivated</li>
+<li>事件挂载的方法等，只执行一次的放在 onMounted中；组件每次进去执行的方法放在 onActivated中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 基本 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- 多个条件判断的子组件 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;comp-a v-if=&quot;a &gt; 1&quot;&gt;&lt;/comp-a&gt;</span><br><span class="line">  &lt;comp-b v-else&gt;&lt;/comp-b&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- 和 `&lt;transition&gt;` 一起使用 --&gt;</span><br><span class="line">&lt;transition&gt;</span><br><span class="line">  &lt;keep-alive&gt;</span><br><span class="line">    &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</span><br><span class="line">  &lt;/keep-alive&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>include 和 exclude</p>
+<ul>
+<li>include 和 exclude prop 允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive :include=&quot;&quot; :exclude=&quot;&quot; :max=&quot;&quot;&gt;&lt;/keep-alive&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>max</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive :max=&quot;10&quot;&gt;</span><br><span class="line">  &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="transition动画组件"><a href="#transition动画组件" class="headerlink" title="transition动画组件"></a>transition动画组件</h4><ul>
+<li>Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加进入/离开过渡:<ul>
+<li>条件渲染 (使用 v-if)</li>
+<li>条件展示 (使用 v-show)</li>
+<li>动态组件</li>
+<li>组件根节点</li>
+<li>自定义 transition 过度效果，你需要对transition组件的name属性自定义。并在css中写入对应的样式</li>
+<li>过渡的类名<ul>
+<li>在进入/离开的过渡中，会有 6 个 class 切换。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>过渡 class<ul>
+<li>在进入/离开的过渡中，会有 6 个 class 切换。</li>
+<li>v-enter-from：定义进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。</li>
+<li>v-enter-active：定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。</li>
+<li>v-enter-to：定义进入过渡的结束状态。在元素被插入之后下一帧生效 (与此同时  v-enter-from 被移除)，在过渡/动画完成之后移除。</li>
+<li>v-leave-from：定义离开过渡的开始状态。在离开过渡被触发时立刻生效，下一帧被移除。</li>
+<li>v-leave-active：定义离开过渡生效时的状态。在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。</li>
+<li>v-leave-to：离开过渡的结束状态。在离开过渡被触发之后下一帧生效 (与此同时 v-leave-from 被移除)，在过渡/动画完成之后移除。</li>
+</ul>
+</li>
+<li><p>自定义过渡 class 类名</p>
+<ul>
+<li>trasnsition props</li>
+<li>enter-from-class</li>
+<li>enter-active-class</li>
+<li>enter-to-class</li>
+<li>leave-from-class</li>
+<li>leave-active-class</li>
+<li>leave-to-class</li>
+<li>自定义过度时间 单位毫秒<ul>
+<li>你也可以分别指定进入和离开的持续时间：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition :duration=&quot;1000&quot;&gt;...&lt;/transition&gt;</span><br><span class="line">&lt;transition :duration=&quot;&#123; enter: 500, leave: 800 &#125;&quot;&gt;...&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>通过自定义class 结合css动画库animate css</p>
+</li>
+<li>安装库 npm install animate.css</li>
+<li>引入 import ‘animate.css’</li>
+<li>使用方法</li>
+<li><p><a href="https://animate.style/" style="color: blue;" target="_blank" rel="noopener">官方文档 </a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition</span><br><span class="line">    leave-active-class=&quot;animate__animated animate__bounceInLeft&quot;</span><br><span class="line">    enter-active-class=&quot;animate__animated animate__bounceInRight&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;div v-if=&quot;flag&quot; class=&quot;box&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transition 生命周期8个</p>
+<ul>
+<li>@before-enter=”beforeEnter” //对应enter-from</li>
+<li>@enter=”enter”//对应enter-active</li>
+<li>@after-enter=”afterEnter”//对应enter-to</li>
+<li>@enter-cancelled=”enterCancelled”//显示过度打断</li>
+<li>@before-leave=”beforeLeave”//对应leave-from</li>
+<li>@leave=”leave”//对应enter-active</li>
+<li>@after-leave=”afterLeave”//对应leave-to</li>
+<li>@leave-cancelled=”leaveCancelled”//离开过度打断</li>
+<li>当只用 JavaScript 过渡的时候，在 enter 和 leave 钩子中必须使用 done 进行回调</li>
+<li>结合gsap 动画库使用(npm install gsap -S) <ul>
+<li>import gsap from ‘gsap’</li>
+<li><a href="https://greensock.com/" style="color: blue;" target="_blank" rel="noopener">GreenSock</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const beforeEnter = (el: Element) =&gt; &#123;</span><br><span class="line">    console.log(&apos;进入之前from&apos;, el);</span><br><span class="line">&#125;</span><br><span class="line">const Enter = (el: Element,done:Function) =&gt; &#123;</span><br><span class="line">    console.log(&apos;过度曲线&apos;);</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">       done()</span><br><span class="line">    &#125;,3000)</span><br><span class="line">&#125;</span><br><span class="line">const AfterEnter = (el: Element) =&gt; &#123;</span><br><span class="line">    console.log(&apos;to&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>appear</p>
+<ul>
+<li>通过这个属性可以设置初始节点过度 就是页面加载完成就开始动画 对应三个状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">appear-active-class=&quot;&quot;</span><br><span class="line">appear-from-class=&quot;&quot;</span><br><span class="line">appear-to-class=&quot;&quot;</span><br><span class="line">appear</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="transition-group过度列表"><a href="#transition-group过度列表" class="headerlink" title="transition-group过度列表"></a>transition-group过度列表</h4><ul>
+<li>单个节点</li>
+<li>多个节点，每次只渲染一个</li>
+<li>那么怎么同时渲染整个列表，比如使用 v-for？在这种场景下，我们会使用 <transition-group> 组件。在我们深入例子之前，先了解关于这个组件的几个特点：<ul>
+<li>默认情况下，它不会渲染一个包裹元素，但是你可以通过 tag attribute 指定渲染一个元素。</li>
+<li>过渡模式不可用，因为我们不再相互切换特有的元素。</li>
+<li>内部元素总是需要提供唯一的 key attribute 值。</li>
+<li>CSS 过渡的类将会应用在内部的元素中，而不是这个组/容器本身。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition-group&gt;</span><br><span class="line">     &lt;div style=&quot;margin: 10px;&quot; :key=&quot;item&quot; v-for=&quot;item in list&quot;&gt;&#123;&#123; item &#125;&lt;/div&gt;</span><br><span class="line">&lt;/transition-group&gt;</span><br><span class="line">const list = reactive&lt;number[]&gt;([1, 2, 4, 5, 6, 7, 8, 9])</span><br><span class="line">const Push = () =&gt; &#123;</span><br><span class="line">    list.push(123)</span><br><span class="line">&#125;</span><br><span class="line">const Pop = () =&gt; &#123;</span><br><span class="line">    list.pop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</transition-group></li>
+</ul>
+<ul>
+<li>列表的移动过渡<ul>
+<li><transition-group> 组件还有一个特殊之处。除了进入和离开，它还可以为定位的改变添加动画。只需了解新增的 v-move 类就可以使用这个新功能，它会应用在元素改变定位的过程中。像之前的类名一样，它的前缀可以通过 name attribute 来自定义，也可以通过 move-class attribute 手动设置</transition-group></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;button @click=&quot;shuffle&quot;&gt;Shuffle&lt;/button&gt;</span><br><span class="line">        &lt;transition-group class=&quot;wraps&quot; name=&quot;mmm&quot; tag=&quot;ul&quot;&gt;</span><br><span class="line">            &lt;li class=&quot;cell&quot; v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;&#123;&#123; item.number &#125;&#125;&lt;/li&gt;</span><br><span class="line">        &lt;/transition-group&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">  </span><br><span class="line">&lt;script setup  lang=&apos;ts&apos;&gt;</span><br><span class="line">import _ from &apos;lodash&apos;</span><br><span class="line">import &#123; ref &#125; from &apos;vue&apos;</span><br><span class="line">let items = ref(Array.apply(null, &#123; length: 81 &#125; as number[]).map((_, index) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        id: index,</span><br><span class="line">        number: (index % 9) + 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;))</span><br><span class="line">const shuffle = () =&gt; &#123;</span><br><span class="line">    items.value = _.shuffle(items.value)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">  </span><br><span class="line">&lt;style scoped lang=&quot;less&quot;&gt;</span><br><span class="line">.wraps &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">    width: calc(25px * 10 + 9px);</span><br><span class="line">    .cell &#123;</span><br><span class="line">        width: 25px;</span><br><span class="line">        height: 25px;</span><br><span class="line">        border: 1px solid #ccc;</span><br><span class="line">        list-style-type: none;</span><br><span class="line">        display: flex;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">.mmm-move &#123;</span><br><span class="line">    transition: transform 0.8s ease;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>状态过渡<ul>
+<li>Vue 也同样可以给数字 Svg 背景颜色等添加过度动画 今天演示数字变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input step=&quot;20&quot; v-model=&quot;num.current&quot; type=&quot;number&quot; /&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123; num.tweenedNumber.toFixed(0) &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script setup lang=&apos;ts&apos;&gt;</span><br><span class="line">import &#123; reactive, watch &#125; from &apos;vue&apos;</span><br><span class="line">import gsap from &apos;gsap&apos;</span><br><span class="line">const num = reactive(&#123;</span><br><span class="line">    tweenedNumber: 0,</span><br><span class="line">    current:0</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">watch(()=&gt;num.current, (newVal) =&gt; &#123;</span><br><span class="line">    gsap.to(num, &#123;</span><br><span class="line">        duration: 1,</span><br><span class="line">        tweenedNumber: newVal</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">    </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/17/vite-vue3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,57 +1092,21 @@
 <li><p>?.length的语法</p>
 <ul>
 <li>某个对象下的某个数组不存在，读取length会报错，处理方式(是否存在，不存在并赋值为空数组) item.children?.length ?? []</li>
-<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false </li>
+<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false</li>
 </ul>
 </li>
-</ul>
-<h4 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h4><ul>
-<li>子组件中的提供给父组件使用的一个占位符，用<slot></slot> 表示，父组件可以在这个占位符中填充任何模板代码，如 HTML、组件等，填充的内容会替换子组件的<slot></slot>标签</li>
-<li>匿名插槽</li>
-<li><p>在子组件放置一个插槽</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<li><p>vue2 与 vue3使用方式区别</p>
 </li>
-<li><p>父组件使用插槽</p>
-<ul>
-<li>在父组件给这个插槽填充内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2132&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>具名插槽</p>
-<ul>
-<li>具名插槽其实就是给插槽取个名字。一个子组件可以放多个插槽，而且可以放在不同的地方，而父组件填充内容时，可以根据这个名字把内容填充到对应插槽中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>父组件使用需对应名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>插槽简写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template #header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #default&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>作用域插槽</p>
-<ul>
-<li><p>在子组件动态绑定参数 派发给父组件的slot去使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-for=&quot;item in 100&quot;&gt;</span><br><span class="line">            &lt;slot :data=&quot;item&quot;&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过结构方式取值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">  &lt;template #header&gt;</span><br><span class="line">      &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #default=&quot;&#123; data &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; data &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #footer&gt;</span><br><span class="line">      &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>动态插槽</p>
-<ul>
-<li>插槽可以是一个变量名<pre><code>&lt;Dialog&gt;
-&lt;template #[name]&gt;
-    &lt;div&gt;
-        23
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;/Dialog&gt;
-const name = ref(&apos;header&apos;)
+<li><component :is="current.comName"></component></li>
+<li>vue3中 is 如果是字符串，不会被渲染  setup 与 component之间没有建立媒介关系</li>
+<li>改写为vue 2方式没有问题<pre><code>&lt;script lang=&quot;ts&quot;&gt;
+export default {
+components: {
+  A,
+}
+}
+&lt;/script&gt;
 </code></pre></li>
-</ul>
-</li>
 </ul>
 
           
@@ -1869,308 +2295,6 @@ const name = ref(&apos;header&apos;)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/vue项目总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/01/25/vue项目总结/" itemprop="url">vue项目总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-25T10:20:22+08:00">
-                2022-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="vue项目总结"><a href="#vue项目总结" class="headerlink" title="vue项目总结"></a>vue项目总结</h3><h4 id="vue-bus触发-emit-监听-on-关闭-off传值"><a href="#vue-bus触发-emit-监听-on-关闭-off传值" class="headerlink" title="vue bus触发$emit 监听$on 关闭$off传值"></a>vue bus触发$emit 监听$on 关闭$off传值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">Vue.prototype.bus=new Vue()</span><br><span class="line"></span><br><span class="line">// 子组件</span><br><span class="line">this.bus.$emit(&quot;planLineDetail&quot;, false);</span><br><span class="line"></span><br><span class="line">// 父组件</span><br><span class="line">mounted() &#123;</span><br><span class="line">  this.bus.$on(&quot;planLineDetail&quot;, (state, id) =&gt; &#123;</span><br><span class="line">    // 逻辑</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">beforeDestroy() &#123;</span><br><span class="line">  this.bus.$off(&quot;planLineDetail&quot;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<h4 id="vue-混入-mixin"><a href="#vue-混入-mixin" class="headerlink" title="vue 混入 (mixin)"></a>vue 混入 (mixin)</h4><ul>
-<li>混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  // .vue页面使用</span><br><span class="line">  import common from &quot;../mixins/common.js&quot;;</span><br><span class="line">  export default &#123;</span><br><span class="line">    mixins: [screenSize, common, ....], // 混入js名称</span><br><span class="line">  &#125;</span><br><span class="line">  // common.js</span><br><span class="line">  export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">   </span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="vue-css-外部引入"><a href="#vue-css-外部引入" class="headerlink" title="vue css 外部引入"></a>vue css 外部引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 直接页面分离</span><br><span class="line">&lt;style src=&quot;./emergency.scss&quot;  lang=&quot;scss&quot; scoped&gt;&lt;/style&gt;</span><br><span class="line">// import</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">@import &quot;./detial.scss&quot;;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="vue-动态组件-component"><a href="#vue-动态组件-component" class="headerlink" title="vue 动态组件(component)"></a>vue 动态组件(component)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div class=&quot;form-con&quot;&gt;</span><br><span class="line">      &lt;component :is=&quot;currentView&quot;&gt;&lt;/component&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">* currentView 已注册组件的名字，或一个组件的选项对象</span><br></pre></td></tr></table></figure>
-<h3 id="vue-全屏-Fullscreen"><a href="#vue-全屏-Fullscreen" class="headerlink" title="vue 全屏 Fullscreen"></a>vue 全屏 Fullscreen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  const that = this;</span><br><span class="line">  window.onresize = () =&gt; &#123;</span><br><span class="line">    return (() =&gt; &#123;</span><br><span class="line">      this.isFullscreen = this.checkFull(); // 判断是否可以全屏</span><br><span class="line">    &#125;)();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">// 判断浏览器是否处于全屏状态 （需要考虑兼容问题）</span><br><span class="line">function checkFull() &#123;</span><br><span class="line">  //火狐浏览器</span><br><span class="line">  var isFull =</span><br><span class="line">    document.mozFullScreen ||</span><br><span class="line">    document.fullScreen ||</span><br><span class="line">    //谷歌浏览器及Webkit内核浏览器</span><br><span class="line">    document.webkitIsFullScreen ||</span><br><span class="line">    document.webkitRequestFullScreen ||</span><br><span class="line">    document.mozRequestFullScreen ||</span><br><span class="line">    document.msFullscreenEnabled;</span><br><span class="line">  if (isFull === undefined) &#123;</span><br><span class="line">    isFull = false;</span><br><span class="line">  &#125;</span><br><span class="line">  return isFull;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/02/uniapp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/12/02/uniapp/" itemprop="url">uniapp</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-02T10:45:27+08:00">
-                2021-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="uniapp项目总结"><a href="#uniapp项目总结" class="headerlink" title="uniapp项目总结"></a>uniapp项目总结</h3><h4 id="解决手机软键盘弹出挤压页面变形问题"><a href="#解决手机软键盘弹出挤压页面变形问题" class="headerlink" title="解决手机软键盘弹出挤压页面变形问题"></a>解决手机软键盘弹出挤压页面变形问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 统一处理模版页面按钮定位 --&gt;</span><br><span class="line">export const templateHeight = () =&gt; &#123;</span><br><span class="line">  return uni.getSystemInfoSync().windowHeight - uni.upx2px(100);</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 页面布局 --&gt;</span><br><span class="line">&lt;view class=&quot;template-wrap&quot; :style=&quot;&#123;height: height + &apos;px&apos;&#125;&quot;&gt;</span><br><span class="line">  &lt;view class=&quot;template-wrap-con&quot;&gt;</span><br><span class="line">    内容部分</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">  &lt;view class=&quot;bottom&quot;&quot;&gt;</span><br><span class="line">    底部固定按钮部分</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;!-- css部分 --&gt;</span><br><span class="line">.template-wrap &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  .template-wrap-con &#123;</span><br><span class="line">    flex-grow: 1;</span><br><span class="line">    overflow: overlay;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="css布局"><a href="#css布局" class="headerlink" title="css布局"></a>css布局</h4><ul>
-<li>ios个别版本对fixed的属性的支持性不好，需要用absolute替代</li>
-<li>input 的 placeholder会出现文本位置偏上的时候<ul>
-<li>input 的placeholder会出现文本位置偏上的情况：PC端设置line-height等于height能够对齐，而移动端仍然是偏上，解决是设置line-height：normal</li>
-</ul>
-</li>
-</ul>
-<h4 id="使用uview组件"><a href="#使用uview组件" class="headerlink" title="使用uview组件"></a>使用uview组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- iOS 15 搜索框里多一个搜索图标怎么破 --&gt;</span><br><span class="line">[type=&quot;search&quot;]::-webkit-search-decoration &#123;  </span><br><span class="line">  display: none;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- iOS picker 日期 初始化日期无效 修改组件 与 uniapp 日期兼容有点差别 --&gt;</span><br><span class="line">&lt;!-- 格式化时间，在IE浏览器(uni不存在此情况)，无法识别日期间的&quot;-&quot;间隔符号 --&gt;</span><br><span class="line">&lt;!-- 处理IOS不显示问题 --&gt;</span><br><span class="line">&lt;!-- let fdate = this.defaultTime.replace(/\-/g, &apos;/&apos;); // 无需把-改为/ --&gt;</span><br><span class="line">let fdate = this.defaultTime;</span><br><span class="line"></span><br><span class="line">&lt;!-- uniapp iOS手机日期不识别- --&gt;</span><br><span class="line">&lt;!-- 把yyy-mm-dd hh:mm:ss 格式ios不识别 把yyy-mm-dd hh:mm:ss 格式转换成 yyy/mm/dd hh:mm:ss --&gt;</span><br><span class="line">export const iosDataFilter = (time) =&gt; &#123;</span><br><span class="line">  return time.replace(/-/g, &apos;/&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="复制粘贴-直接使用api-在手机app端-样式问题"><a href="#复制粘贴-直接使用api-在手机app端-样式问题" class="headerlink" title="复制粘贴(直接使用api 在手机app端 样式问题)"></a>复制粘贴(直接使用api 在手机app端 样式问题)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">export const copyHandler = (e) =&gt; &#123;</span><br><span class="line">&lt;!-- 直接传入可复制文本，无效 --&gt;</span><br><span class="line">  const &#123; name &#125; = e.currentTarget.dataset;</span><br><span class="line">  let result;</span><br><span class="line">  let textarea = document.createElement(&apos;textarea&apos;);</span><br><span class="line">  textarea.value = name;</span><br><span class="line">  textarea.readOnly = &apos;readOnly&apos;;</span><br><span class="line">  document.body.appendChild(textarea);</span><br><span class="line">  textarea.select(); // 选中文本内容</span><br><span class="line">  textarea.setSelectionRange(0, name.length); // 设置选定区的开始和结束点</span><br><span class="line">  uni.showToast(&#123;</span><br><span class="line">    icon: &apos;none&apos;,</span><br><span class="line">    title: &apos;复制成功&apos;</span><br><span class="line">    </span><br><span class="line">  &#125;)</span><br><span class="line">  result = document.execCommand(&apos;copy&apos;); //将当前选中区复制到剪贴板</span><br><span class="line">  textarea.remove();</span><br><span class="line">  &lt;!-- </span><br><span class="line">  uni.setClipboardData(&#123;</span><br><span class="line">    data: name,</span><br><span class="line">    success: () =&gt; &#123;</span><br><span class="line">        uni.showToast(&#123;</span><br><span class="line">          icon: &apos;none&apos;,</span><br><span class="line">          title: &apos;复制成功&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  --&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="js方法"><a href="#js方法" class="headerlink" title="js方法"></a>js方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 调用async方法 test() --&gt;</span><br><span class="line">  test().then(res=&gt;&#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;).catch(err=&gt;&#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">&lt;!-- 数据没三位使用,分隔 --&gt;</span><br><span class="line">  numSplit(value) &#123;</span><br><span class="line">    if(value != &apos;-&apos;) &#123;</span><br><span class="line">      let val = value &amp;&amp; Number(value);</span><br><span class="line">      return val &amp;&amp; val.toFixed(2).replace(/(\d)(?=(\d&#123;3&#125;)+\.)/g, &apos;$1,&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2223,7 +2347,7 @@ const name = ref(&apos;header&apos;)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

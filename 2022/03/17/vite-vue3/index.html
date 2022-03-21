@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Shero.">
 <meta property="og:description" content="vite vite more首次执行命令(npm init vite@latest)一直报错 解决  修改源地址位淘宝镜像1npm config set registry http://registry.npm.taobao.org/    修改源地址为官方源 1npm config set registry https://registry.npmjs.org/  再使用cnpm  下载淘宝镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-21T01:30:10.711Z">
+<meta property="og:updated_time" content="2022-03-21T08:21:27.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vite+vue3">
 <meta name="twitter:description" content="vite vite more首次执行命令(npm init vite@latest)一直报错 解决  修改源地址位淘宝镜像1npm config set registry http://registry.npm.taobao.org/    修改源地址为官方源 1npm config set registry https://registry.npmjs.org/  再使用cnpm  下载淘宝镜像">
@@ -626,57 +626,21 @@
 <li><p>?.length的语法</p>
 <ul>
 <li>某个对象下的某个数组不存在，读取length会报错，处理方式(是否存在，不存在并赋值为空数组) item.children?.length ?? []</li>
-<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false </li>
+<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false</li>
 </ul>
 </li>
-</ul>
-<h4 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h4><ul>
-<li>子组件中的提供给父组件使用的一个占位符，用<slot></slot> 表示，父组件可以在这个占位符中填充任何模板代码，如 HTML、组件等，填充的内容会替换子组件的<slot></slot>标签</li>
-<li>匿名插槽</li>
-<li><p>在子组件放置一个插槽</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<li><p>vue2 与 vue3使用方式区别</p>
 </li>
-<li><p>父组件使用插槽</p>
-<ul>
-<li>在父组件给这个插槽填充内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2132&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>具名插槽</p>
-<ul>
-<li>具名插槽其实就是给插槽取个名字。一个子组件可以放多个插槽，而且可以放在不同的地方，而父组件填充内容时，可以根据这个名字把内容填充到对应插槽中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>父组件使用需对应名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>插槽简写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template #header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #default&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>作用域插槽</p>
-<ul>
-<li><p>在子组件动态绑定参数 派发给父组件的slot去使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-for=&quot;item in 100&quot;&gt;</span><br><span class="line">            &lt;slot :data=&quot;item&quot;&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过结构方式取值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">  &lt;template #header&gt;</span><br><span class="line">      &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #default=&quot;&#123; data &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; data &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #footer&gt;</span><br><span class="line">      &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>动态插槽</p>
-<ul>
-<li>插槽可以是一个变量名<pre><code>&lt;Dialog&gt;
-&lt;template #[name]&gt;
-    &lt;div&gt;
-        23
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;/Dialog&gt;
-const name = ref(&apos;header&apos;)
+<li><component :is="current.comName"></component></li>
+<li>vue3中 is 如果是字符串，不会被渲染  setup 与 component之间没有建立媒介关系</li>
+<li>改写为vue 2方式没有问题<pre><code>&lt;script lang=&quot;ts&quot;&gt;
+export default {
+components: {
+  A,
+}
+}
+&lt;/script&gt;
 </code></pre></li>
-</ul>
-</li>
 </ul>
 
       
@@ -711,6 +675,10 @@ const name = ref(&apos;header&apos;)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/18/vite-vue3-02/" rel="prev" title="vite-vue3-02">
+                vite-vue3-02 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -789,7 +757,7 @@ const name = ref(&apos;header&apos;)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -844,7 +812,7 @@ const name = ref(&apos;header&apos;)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite"><span class="nav-number">1.</span> <span class="nav-text">vite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首次执行命令-npm-init-vite-latest-一直报错"><span class="nav-number">1.1.</span> <span class="nav-text">首次执行命令(npm init vite@latest)一直报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vite的优势"><span class="nav-number">1.2.</span> <span class="nav-text">vite的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.3.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diff-算法"><span class="nav-number">1.4.</span> <span class="nav-text">diff 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关Ref"><span class="nav-number">1.5.</span> <span class="nav-text">相关Ref</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reactive"><span class="nav-number">1.6.</span> <span class="nav-text">reactive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#to系列"><span class="nav-number">1.7.</span> <span class="nav-text">to系列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#computed计算属性"><span class="nav-number">1.8.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch侦听器"><span class="nav-number">1.9.</span> <span class="nav-text">watch侦听器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watchEffect高级侦听器）"><span class="nav-number">1.10.</span> <span class="nav-text">watchEffect高级侦听器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识组件-amp-Vue3生命周期"><span class="nav-number">1.11.</span> <span class="nav-text">识组件&amp;Vue3生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实操组件和认识less-和-scoped"><span class="nav-number">1.12.</span> <span class="nav-text">实操组件和认识less 和 scoped</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父子组件传参"><span class="nav-number">1.13.</span> <span class="nav-text">父子组件传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态组件"><span class="nav-number">1.14.</span> <span class="nav-text">动态组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插槽slot"><span class="nav-number">1.15.</span> <span class="nav-text">插槽slot</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite"><span class="nav-number">1.</span> <span class="nav-text">vite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首次执行命令-npm-init-vite-latest-一直报错"><span class="nav-number">1.1.</span> <span class="nav-text">首次执行命令(npm init vite@latest)一直报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vite的优势"><span class="nav-number">1.2.</span> <span class="nav-text">vite的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.3.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diff-算法"><span class="nav-number">1.4.</span> <span class="nav-text">diff 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关Ref"><span class="nav-number">1.5.</span> <span class="nav-text">相关Ref</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reactive"><span class="nav-number">1.6.</span> <span class="nav-text">reactive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#to系列"><span class="nav-number">1.7.</span> <span class="nav-text">to系列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#computed计算属性"><span class="nav-number">1.8.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch侦听器"><span class="nav-number">1.9.</span> <span class="nav-text">watch侦听器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watchEffect高级侦听器）"><span class="nav-number">1.10.</span> <span class="nav-text">watchEffect高级侦听器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识组件-amp-Vue3生命周期"><span class="nav-number">1.11.</span> <span class="nav-text">识组件&amp;Vue3生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实操组件和认识less-和-scoped"><span class="nav-number">1.12.</span> <span class="nav-text">实操组件和认识less 和 scoped</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父子组件传参"><span class="nav-number">1.13.</span> <span class="nav-text">父子组件传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态组件"><span class="nav-number">1.14.</span> <span class="nav-text">动态组件</span></a></li></ol></li></ol></div>
             
 
           </div>

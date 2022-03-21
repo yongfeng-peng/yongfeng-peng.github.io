@@ -268,6 +268,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/vue项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/25/vue项目总结/" itemprop="url">vue项目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-25T10:20:22+08:00">
+                2022-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vue项目总结"><a href="#vue项目总结" class="headerlink" title="vue项目总结"></a>vue项目总结</h3><h4 id="vue-bus触发-emit-监听-on-关闭-off传值"><a href="#vue-bus触发-emit-监听-on-关闭-off传值" class="headerlink" title="vue bus触发$emit 监听$on 关闭$off传值"></a>vue bus触发$emit 监听$on 关闭$off传值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">Vue.prototype.bus=new Vue()</span><br><span class="line"></span><br><span class="line">// 子组件</span><br><span class="line">this.bus.$emit(&quot;planLineDetail&quot;, false);</span><br><span class="line"></span><br><span class="line">// 父组件</span><br><span class="line">mounted() &#123;</span><br><span class="line">  this.bus.$on(&quot;planLineDetail&quot;, (state, id) =&gt; &#123;</span><br><span class="line">    // 逻辑</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">beforeDestroy() &#123;</span><br><span class="line">  this.bus.$off(&quot;planLineDetail&quot;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="vue-混入-mixin"><a href="#vue-混入-mixin" class="headerlink" title="vue 混入 (mixin)"></a>vue 混入 (mixin)</h4><ul>
+<li>混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  // .vue页面使用</span><br><span class="line">  import common from &quot;../mixins/common.js&quot;;</span><br><span class="line">  export default &#123;</span><br><span class="line">    mixins: [screenSize, common, ....], // 混入js名称</span><br><span class="line">  &#125;</span><br><span class="line">  // common.js</span><br><span class="line">  export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">   </span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="vue-css-外部引入"><a href="#vue-css-外部引入" class="headerlink" title="vue css 外部引入"></a>vue css 外部引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 直接页面分离</span><br><span class="line">&lt;style src=&quot;./emergency.scss&quot;  lang=&quot;scss&quot; scoped&gt;&lt;/style&gt;</span><br><span class="line">// import</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">@import &quot;./detial.scss&quot;;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="vue-动态组件-component"><a href="#vue-动态组件-component" class="headerlink" title="vue 动态组件(component)"></a>vue 动态组件(component)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div class=&quot;form-con&quot;&gt;</span><br><span class="line">      &lt;component :is=&quot;currentView&quot;&gt;&lt;/component&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">* currentView 已注册组件的名字，或一个组件的选项对象</span><br></pre></td></tr></table></figure>
+<h3 id="vue-全屏-Fullscreen"><a href="#vue-全屏-Fullscreen" class="headerlink" title="vue 全屏 Fullscreen"></a>vue 全屏 Fullscreen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  const that = this;</span><br><span class="line">  window.onresize = () =&gt; &#123;</span><br><span class="line">    return (() =&gt; &#123;</span><br><span class="line">      this.isFullscreen = this.checkFull(); // 判断是否可以全屏</span><br><span class="line">    &#125;)();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">// 判断浏览器是否处于全屏状态 （需要考虑兼容问题）</span><br><span class="line">function checkFull() &#123;</span><br><span class="line">  //火狐浏览器</span><br><span class="line">  var isFull =</span><br><span class="line">    document.mozFullScreen ||</span><br><span class="line">    document.fullScreen ||</span><br><span class="line">    //谷歌浏览器及Webkit内核浏览器</span><br><span class="line">    document.webkitIsFullScreen ||</span><br><span class="line">    document.webkitRequestFullScreen ||</span><br><span class="line">    document.mozRequestFullScreen ||</span><br><span class="line">    document.msFullscreenEnabled;</span><br><span class="line">  if (isFull === undefined) &#123;</span><br><span class="line">    isFull = false;</span><br><span class="line">  &#125;</span><br><span class="line">  return isFull;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/02/uniapp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/12/02/uniapp/" itemprop="url">uniapp</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-02T10:45:27+08:00">
+                2021-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="uniapp项目总结"><a href="#uniapp项目总结" class="headerlink" title="uniapp项目总结"></a>uniapp项目总结</h3><h4 id="解决手机软键盘弹出挤压页面变形问题"><a href="#解决手机软键盘弹出挤压页面变形问题" class="headerlink" title="解决手机软键盘弹出挤压页面变形问题"></a>解决手机软键盘弹出挤压页面变形问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 统一处理模版页面按钮定位 --&gt;</span><br><span class="line">export const templateHeight = () =&gt; &#123;</span><br><span class="line">  return uni.getSystemInfoSync().windowHeight - uni.upx2px(100);</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 页面布局 --&gt;</span><br><span class="line">&lt;view class=&quot;template-wrap&quot; :style=&quot;&#123;height: height + &apos;px&apos;&#125;&quot;&gt;</span><br><span class="line">  &lt;view class=&quot;template-wrap-con&quot;&gt;</span><br><span class="line">    内容部分</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">  &lt;view class=&quot;bottom&quot;&quot;&gt;</span><br><span class="line">    底部固定按钮部分</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;!-- css部分 --&gt;</span><br><span class="line">.template-wrap &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  .template-wrap-con &#123;</span><br><span class="line">    flex-grow: 1;</span><br><span class="line">    overflow: overlay;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="css布局"><a href="#css布局" class="headerlink" title="css布局"></a>css布局</h4><ul>
+<li>ios个别版本对fixed的属性的支持性不好，需要用absolute替代</li>
+<li>input 的 placeholder会出现文本位置偏上的时候<ul>
+<li>input 的placeholder会出现文本位置偏上的情况：PC端设置line-height等于height能够对齐，而移动端仍然是偏上，解决是设置line-height：normal</li>
+</ul>
+</li>
+</ul>
+<h4 id="使用uview组件"><a href="#使用uview组件" class="headerlink" title="使用uview组件"></a>使用uview组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- iOS 15 搜索框里多一个搜索图标怎么破 --&gt;</span><br><span class="line">[type=&quot;search&quot;]::-webkit-search-decoration &#123;  </span><br><span class="line">  display: none;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- iOS picker 日期 初始化日期无效 修改组件 与 uniapp 日期兼容有点差别 --&gt;</span><br><span class="line">&lt;!-- 格式化时间，在IE浏览器(uni不存在此情况)，无法识别日期间的&quot;-&quot;间隔符号 --&gt;</span><br><span class="line">&lt;!-- 处理IOS不显示问题 --&gt;</span><br><span class="line">&lt;!-- let fdate = this.defaultTime.replace(/\-/g, &apos;/&apos;); // 无需把-改为/ --&gt;</span><br><span class="line">let fdate = this.defaultTime;</span><br><span class="line"></span><br><span class="line">&lt;!-- uniapp iOS手机日期不识别- --&gt;</span><br><span class="line">&lt;!-- 把yyy-mm-dd hh:mm:ss 格式ios不识别 把yyy-mm-dd hh:mm:ss 格式转换成 yyy/mm/dd hh:mm:ss --&gt;</span><br><span class="line">export const iosDataFilter = (time) =&gt; &#123;</span><br><span class="line">  return time.replace(/-/g, &apos;/&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复制粘贴-直接使用api-在手机app端-样式问题"><a href="#复制粘贴-直接使用api-在手机app端-样式问题" class="headerlink" title="复制粘贴(直接使用api 在手机app端 样式问题)"></a>复制粘贴(直接使用api 在手机app端 样式问题)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">export const copyHandler = (e) =&gt; &#123;</span><br><span class="line">&lt;!-- 直接传入可复制文本，无效 --&gt;</span><br><span class="line">  const &#123; name &#125; = e.currentTarget.dataset;</span><br><span class="line">  let result;</span><br><span class="line">  let textarea = document.createElement(&apos;textarea&apos;);</span><br><span class="line">  textarea.value = name;</span><br><span class="line">  textarea.readOnly = &apos;readOnly&apos;;</span><br><span class="line">  document.body.appendChild(textarea);</span><br><span class="line">  textarea.select(); // 选中文本内容</span><br><span class="line">  textarea.setSelectionRange(0, name.length); // 设置选定区的开始和结束点</span><br><span class="line">  uni.showToast(&#123;</span><br><span class="line">    icon: &apos;none&apos;,</span><br><span class="line">    title: &apos;复制成功&apos;</span><br><span class="line">    </span><br><span class="line">  &#125;)</span><br><span class="line">  result = document.execCommand(&apos;copy&apos;); //将当前选中区复制到剪贴板</span><br><span class="line">  textarea.remove();</span><br><span class="line">  &lt;!-- </span><br><span class="line">  uni.setClipboardData(&#123;</span><br><span class="line">    data: name,</span><br><span class="line">    success: () =&gt; &#123;</span><br><span class="line">        uni.showToast(&#123;</span><br><span class="line">          icon: &apos;none&apos;,</span><br><span class="line">          title: &apos;复制成功&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  --&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="js方法"><a href="#js方法" class="headerlink" title="js方法"></a>js方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 调用async方法 test() --&gt;</span><br><span class="line">  test().then(res=&gt;&#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;).catch(err=&gt;&#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">&lt;!-- 数据没三位使用,分隔 --&gt;</span><br><span class="line">  numSplit(value) &#123;</span><br><span class="line">    if(value != &apos;-&apos;) &#123;</span><br><span class="line">      let val = value &amp;&amp; Number(value);</span><br><span class="line">      return val &amp;&amp; val.toFixed(2).replace(/(\d)(?=(\d&#123;3&#125;)+\.)/g, &apos;$1,&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/dva-umi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1799,320 +2101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/14/小程序中手机号识别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/14/小程序中手机号识别/" itemprop="url">小程序中手机号识别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-14T16:38:48+08:00">
-                2020-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="小程序中手机号识别"><a href="#小程序中手机号识别" class="headerlink" title="小程序中手机号识别"></a>小程序中手机号识别</h3><h4 id="后端返回字符串包好手机号，点击可拨打电话"><a href="#后端返回字符串包好手机号，点击可拨打电话" class="headerlink" title="后端返回字符串包好手机号，点击可拨打电话"></a>后端返回字符串包好手机号，点击可拨打电话</h4><ul>
-<li>split技巧</li>
-<li>注意的点是这个正则regPhone，里面加了有括号，如果separator是包含捕获括号的正则表达式()，则匹配结果包含在数组中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let _str = &quot;xxx，联系电话：18839687266。稍后与您联系。xxx。&quot;;</span><br><span class="line">parseStr (str) &#123;</span><br><span class="line">  const regPhone = /(1\d&#123;10&#125;)/;</span><br><span class="line">  const list = str.split(regPhone);</span><br><span class="line">  const result = [];</span><br><span class="line">  return list.map(item =&gt; &#123;</span><br><span class="line">    let tag;</span><br><span class="line">    regPhone.test(item) ? tag = &apos;phone&apos; : tag = &apos;text&apos;;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: tag,</span><br><span class="line">      text: item</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/03/google扩展程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/03/google扩展程序/" itemprop="url">google扩展程序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-03T11:41:43+08:00">
-                2020-12-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h4 id="google扩展程序安装"><a href="#google扩展程序安装" class="headerlink" title="google扩展程序安装"></a>google扩展程序安装</h4><h5 id="vue-devtools工具的安装"><a href="#vue-devtools工具的安装" class="headerlink" title="vue-devtools工具的安装"></a>vue-devtools工具的安装</h5><ul>
-<li>创建一个新的文件夹，名为vue-devtools</li>
-<li>sudo npm install vue-devtools</li>
-<li>进入vender文件夹，打开manifest.json,进行编辑</li>
-<li>persistent修改成true</li>
-<li>打开扩展程序,把刚刚修改的vender文件夹拖拽进来就可以了(记得开启开发者模式)</li>
-</ul>
-<h5 id="react-devtools工具的安装"><a href="#react-devtools工具的安装" class="headerlink" title="react-devtools工具的安装"></a>react-devtools工具的安装</h5><ul>
-<li>git clone <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">https://github.com/facebook/react-devtools</a></li>
-<li>cd react-devtools</li>
-<li>yarn install</li>
-<li>yarn build:extension(具体命令，在package.json文件中的script下查找以下命令)</li>
-<li>打开扩展程序,把生成的shells/chrome/build/unpacked文件夹拖拽进来就可以了(记得开启开发者模式)</li>
-</ul>
-<h5 id="redux-devtools工具的安装"><a href="#redux-devtools工具的安装" class="headerlink" title="redux-devtools工具的安装"></a>redux-devtools工具的安装</h5><ul>
-<li>git clone <a href="https://github.com/zalmoxisus/redux-devtools-extension.git" target="_blank" rel="noopener">https://github.com/zalmoxisus/redux-devtools-extension.git</a></li>
-<li>npm i &amp;&amp; npm run build:extension (npm install chromedriver –chromedriver_cdnurl=<a href="http://cdn.npm.taobao.org/dist/chromedriver" target="_blank" rel="noopener">http://cdn.npm.taobao.org/dist/chromedriver</a>)</li>
-<li>打开扩展程序,把生成的./build/extension文件夹添加到压缩程序(记得开启开发者模式)</li>
-</ul>
-<h5 id="其他好用扩展程序"><a href="#其他好用扩展程序" class="headerlink" title="其他好用扩展程序"></a>其他好用扩展程序</h5><ul>
-<li>WEB前端助手(FeHelper)<ul>
-<li>一款国产的、超级实用的前端开发工具合集，之前扩展迷也用专文介绍过这款插件。</li>
-<li>WEB前端助手(FeHelper)包含多个独立小应用，比如：Json工具、代码美化、代码压缩、二维码、Postman、markdown、网页油猴、便签笔记、信息加密与解密、随机密码生成、Crontab等等。</li>
-<li><a href="https://www.extfans.com/web-development/pkgccpejnmalmdinmhkkfafefagiiiad/" style="color: blue;" target="_blank" rel="noopener">down…</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2165,7 +2153,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
