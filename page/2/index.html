@@ -268,6 +268,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/dva-umi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/14/dva-umi/" itemprop="url">dva+umi</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-14T14:28:46+08:00">
+                2021-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="dva-umi理解"><a href="#dva-umi理解" class="headerlink" title="dva+umi理解"></a>dva+umi理解</h3><h4 id="dva"><a href="#dva" class="headerlink" title="dva"></a><a href="https://dvajs.com/" target="_blank" rel="noopener">dva</a></h4><ul>
+<li><a href="https://github.com/dvajs/dva/issues/1" target="_blank" rel="noopener">why dva？</a></li>
+<li>redux数据流的控制可以让应用更控，让逻辑更清晰</li>
+<li>redux同时会有的疑问？概念太多，并且reducer、saga、action都是分离的（文件分离<ul>
+<li>编辑成本高，需要在reducer、saga、action之间来回切换</li>
+<li>不便于组织义务模型（domain models），如：每个模块功能，需要复制很多文件</li>
+<li>saga书写复杂，每监听一个action都要走fork -&gt; watcher -&gt; worker流程</li>
+<li>entry书写麻烦</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/dvajs/dva/issues/1" target="_blank" rel="noopener">what’s dva?</a></p>
+<ul>
+<li>dva是基于现有应用框架(redux + redux-saga + react-router等)的轻量封装，没有引入任何新的概念</li>
+<li>dva是framework，不是library，类似emberjs，会明确的告诉你每个部件应该怎么写，对于团队而言，会更可控。除了react和rect-dom是peerDependencies以外，dva封装了所有其它依赖</li>
+<li>dva实现上尽量不创建新语法，而是依赖库本身的语法</li>
+<li><p>dva的核心是提供了app.model方法，用于把reducer、initialState、saga、action封装到一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">app.model(&#123;</span><br><span class="line">  namespace: &apos;products&apos;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    list: [],</span><br><span class="line">    loading: false,</span><br><span class="line">  &#125;,</span><br><span class="line">  subscriptions: [</span><br><span class="line">    function(dispatch) &#123;</span><br><span class="line">      dispatch(&#123;type: &apos;products/query&apos;&#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  effects: &#123;</span><br><span class="line">    [&apos;products/query&apos;]: function*() &#123;</span><br><span class="line">      yield call(delay(800));</span><br><span class="line">      yield put(&#123;</span><br><span class="line">        type: &apos;products/query/success&apos;,</span><br><span class="line">        payload: [&apos;ant-tool&apos;, &apos;roof&apos;],</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    [&apos;products/query&apos;](state) &#123;</span><br><span class="line">      return &#123; ...state, loading: true, &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    [&apos;products/query/success&apos;](state, &#123; payload &#125;) &#123;</span><br><span class="line">      return &#123; ...state, loading: false, list: payload &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>维护简单、提高开发效率</p>
+</li>
+<li>对原有知识点组合，对API对使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="umi"><a href="#umi" class="headerlink" title="umi"></a><a href="https://umijs.org/zh-CN/docs" target="_blank" rel="noopener">umi</a></h4><ul>
+<li>dva+umi关系<br><img src="https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/dva.png" alt="Image text"></li>
+<li><a href="https://github.com/yongfeng-peng/dva-umi-ts-antd.git" target="_blank" rel="noopener">dva+umi数据共享</a><br><img src="https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/dva-lc.png" alt="Image text"></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/typescript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1944,153 +2113,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/nrm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/02/nrm/" itemprop="url">nrm</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-02T15:23:30+08:00">
-                2020-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h4 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h4><h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><ul>
-<li>npm install -g nrm<h5 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h5></li>
-<li>nrm ls<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5></li>
-<li>nrm use ‘切换的镜像’</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2143,7 +2165,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

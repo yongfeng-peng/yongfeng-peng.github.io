@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="vite vite more首次执行命令(npm init vite@latest)一直报错 解决  修改源地址位淘宝镜像1npm config set registry http://registry.npm.taobao.org/    修改源地址为官方源 1npm config set registry https://registry.npmjs.org/  再使用cnpm  下载淘宝镜像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vite+vue3">
+<meta property="og:url" content="http://yoursite.com/2022/03/17/vite-vue3/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="vite vite more首次执行命令(npm init vite@latest)一直报错 解决  修改源地址位淘宝镜像1npm config set registry http://registry.npm.taobao.org/    修改源地址为官方源 1npm config set registry https://registry.npmjs.org/  再使用cnpm  下载淘宝镜像">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-03-21T01:30:10.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vite+vue3">
+<meta name="twitter:description" content="vite vite more首次执行命令(npm init vite@latest)一直报错 解决  修改源地址位淘宝镜像1npm config set registry http://registry.npm.taobao.org/    修改源地址为官方源 1npm config set registry https://registry.npmjs.org/  再使用cnpm  下载淘宝镜像">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/03/17/vite-vue3/">
+
+
+
+
+
+  <title>vite+vue3 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/17/vite-vue3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vite+vue3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-17T09:59:13+08:00">
+                2022-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><ul>
+<li><a href="https://vitejs.cn/guide/why.html#slow-server-start" style="color: blue;" target="_blank" rel="noopener">vite</a></li>
+<li><a href="https://blog.csdn.net/qq1195566313/category_11618172.html" style="color: blue;" target="_blank" rel="noopener">more</a><h4 id="首次执行命令-npm-init-vite-latest-一直报错"><a href="#首次执行命令-npm-init-vite-latest-一直报错" class="headerlink" title="首次执行命令(npm init vite@latest)一直报错"></a>首次执行命令(npm init vite@latest)一直报错</h4></li>
+<li><p>解决</p>
+<ul>
+<li>修改源地址位淘宝镜像<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>修改源地址为官方源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmjs.org/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再使用cnpm</p>
+</li>
+<li><p>下载淘宝镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm  install -g cnpm --registry==http://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定淘宝镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set  registry  http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="vite的优势"><a href="#vite的优势" class="headerlink" title="vite的优势"></a>vite的优势</h4><ul>
+<li>冷服务 默认构建目标浏览器是能在script标签上支持原生ESM和原生ESM动态导入<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/400573436" style="color: blue;" target="_blank" rel="noopener">更多ESM</a></li>
+</ul>
+</li>
+<li>HMR模块热替换（hot module replacement）速度快 模块热更新（HMR）</li>
+<li>Rollup打包，它使用rollup打包的代码，并且它是预配置的 支持大部分的rollup插件</li>
+</ul>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li>public – 静态文件（不被编译）</li>
+<li>src/assets – 静态文件（被编译）</li>
+</ul>
+<h4 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h4><ul>
+<li>有无key 是否覆盖，及跳过（顺、逆、乱）</li>
+</ul>
+<h4 id="相关Ref"><a href="#相关Ref" class="headerlink" title="相关Ref"></a>相关Ref</h4><ul>
+<li>ref<ul>
+<li>接受一个内部值并返回一个响应式且可变的 ref 对象。ref 对象仅有一个 .value property，指向该内部值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">let mes: string = &quot;初学习vite&quot;</span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  mes = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>以上操作，无法改变mes的值,因为mes并不是响应式的，无法被vue跟踪要改成ref</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123;ref, Ref&#125; from &apos;vue&apos;</span><br><span class="line">let mes:Ref&lt;string&gt; = ref(&quot;我是message&quot;);</span><br><span class="line"> </span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  mes.value = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">// ------------------------------- ts两种方式 ---------------------------------</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; ref &#125; from &apos;vue&apos;</span><br><span class="line">let mes = ref&lt;string | number&gt;(&quot;我是message&quot;)</span><br><span class="line"> </span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  message.value = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isRef</p>
+<ul>
+<li>判断是不是一个ref对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ref, Ref,isRef &#125; from &apos;vue&apos;</span><br><span class="line">let message: Ref&lt;string | number&gt; = ref(&quot;我是message&quot;)</span><br><span class="line">let notRef:number = 123</span><br><span class="line">const changeMsg = () =&gt; &#123;</span><br><span class="line">  message.value = &quot;change msg&quot;</span><br><span class="line">  console.log(isRef(message)); //true</span><br><span class="line">  console.log(isRef(notRef)); //false</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>shallowRef</p>
+<ul>
+<li>创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的</li>
+<li>修改其属性是非响应式的这样是不会改变的</li>
+</ul>
+</li>
+<li><p>triggerRef</p>
+<ul>
+<li>强制更新页面DOM</li>
+</ul>
+</li>
+<li><p>customRef</p>
+<ul>
+<li>customRef 是个工厂函数要求我们返回一个对象 并且实现 get 和 set </li>
+</ul>
+</li>
+</ul>
+<h4 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h4><ul>
+<li>用来绑定复杂的数据类型 例如 对象 数组</li>
+<li>不可以绑定普通的数据类型这样是不允许 会给我们报错</li>
+<li>如果用ref去绑定对象 或者 数组 等复杂的数据类型,看源码里面其实也是 去调用reactive,使用reactive 去修改值无须.value</li>
+<li><p>数组异步赋值问题</p>
+<ul>
+<li>不会变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let person = reactive&lt;number[]&gt;([])</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  person = [1, 2, 3]</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>解决方案1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; reactive &#125; from &apos;vue&apos;</span><br><span class="line">let person = reactive&lt;number[]&gt;([])</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  const arr = [1, 2, 3]</span><br><span class="line">  person.push(...arr)</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Person = &#123;</span><br><span class="line">  list?:Array&lt;number&gt;</span><br><span class="line">&#125;</span><br><span class="line">let person = reactive&lt;Person&gt;(&#123;</span><br><span class="line">  list:[]</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  const arr = [1, 2, 3]</span><br><span class="line">  person.list = arr;</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>readonly</p>
+<ul>
+<li>拷贝一份proxy对象将其设置为只读</li>
+</ul>
+</li>
+<li>shallowReactive<ul>
+<li>只能对浅层的数据 如果是深层的数据只会改变值,不会改变视图</li>
+</ul>
+</li>
+</ul>
+<h4 id="to系列"><a href="#to系列" class="headerlink" title="to系列"></a>to系列</h4><ul>
+<li>toRef<ul>
+<li>原始对象是非响应式的就不会更新视图 数据是会变的</li>
+<li>原始对象是响应式的是会更新视图并且改变数据的</li>
+</ul>
+</li>
+<li>toRefs<ul>
+<li>批量创建ref对象主要是方便我们解构使用</li>
+</ul>
+</li>
+<li>toRaw<ul>
+<li>响应式对象转化为普通对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="computed计算属性"><a href="#computed计算属性" class="headerlink" title="computed计算属性"></a>computed计算属性</h4><ul>
+<li>computed用法<ul>
+<li>计算属性就是当依赖的属性的值发生变化的时候，才会触发他的更改，如果依赖的值，不发生变化的时候，使用的是缓存中的属性值</li>
+<li>参数（函数或对象）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const name = computed(() =&gt; &#123;</span><br><span class="line">  return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">&#125;)</span><br><span class="line">const name = computed(&#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">  &#125;,</span><br><span class="line">  set() &#123;</span><br><span class="line">    return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="watch侦听器"><a href="#watch侦听器" class="headerlink" title="watch侦听器"></a>watch侦听器</h4><ul>
+<li>watch 需要侦听特定的数据源，并在单独的回调函数中执行副作用</li>
+<li><p>watch参数</p>
+<ul>
+<li><p>第一个参数监听源(单个数据源、数组、函数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ref, watch, reactive &#125; from &apos;vue&apos;;</span><br><span class="line">let message = reactive(&#123;</span><br><span class="line">  name: &apos;凤&apos;,</span><br><span class="line">  name2: &apos;凤凤&apos;,</span><br><span class="line">&#125;);</span><br><span class="line">// 只想监听特定的某个属性，可以传入函数</span><br><span class="line">watch(() =&gt; message.name, (newVal, oldVal) =&gt; &#123;</span><br><span class="line">  console.log(&apos;新的&apos;, newVal);</span><br><span class="line">  console.log(&apos;旧的&apos;, oldVal);</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  // deep: true, // reactive类型 是否设置deep 都深度监听</span><br><span class="line">  // immediate: true, // 第一次进入页面是否执行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二个参数回调函数cb（newVal, oldVal）</p>
+</li>
+<li>第三个参数一个options配置项是一个对象，可不传 undefined<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  immediate: true, // 是否立即调用一次</span><br><span class="line">  deep: true // 是否开启深度监听， 如果是reactive类型，是否设置此属性默认深度监听</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="watchEffect高级侦听器）"><a href="#watchEffect高级侦听器）" class="headerlink" title="watchEffect高级侦听器）"></a>watchEffect高级侦听器）</h4><ul>
+<li>立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数</li>
+<li>如果用到message 就只会监听message 就是用到几个监听几个 而且是非惰性 会默认调用一次</li>
+<li>清除副作用<ul>
+<li>就是在触发监听之前会调用一个函数可以处理你的逻辑例如防抖</li>
+</ul>
+</li>
+<li><p>停止跟踪 watchEffect 返回一个函数 调用之后将停止更新</p>
+</li>
+<li><p>更多的配置项</p>
+<ul>
+<li>副作用刷新时机 flush 一般使用post(可以获取到DOM元素)</li>
+<li>更新时机，pre组件更新前执行， sync强制效果始终同步触发， post组件更新后执行</li>
+<li>onTrigger  可以帮助我们调试 watchEffect<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;input id=&quot;inp&quot; v-model=&quot;message&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">  &lt;input v-model=&quot;message2&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">  &lt;button @click=&quot;stopWatch&quot;&gt;停止监听&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">import &#123; ref, watch, watchEffect, reactive &#125; from &apos;vue&apos;;</span><br><span class="line">const message = ref&lt;string&gt;(&apos;凤&apos;);</span><br><span class="line">const message2 = ref&lt;string&gt;(&apos;凤凤&apos;);</span><br><span class="line">// 默认会执行一次 </span><br><span class="line">const stop = watchEffect((oninvalidate) =&gt; &#123;</span><br><span class="line">  const inp:HTMLInputElement = document.querySelector(&apos;#inp&apos;) as HTMLInputElement;</span><br><span class="line">  console.log(&apos;message--------&apos;, message.value);</span><br><span class="line">  // console.log(&apos;message2--------&apos;, message2.value);</span><br><span class="line">  console.log(inp, &apos;进入页面&apos;);</span><br><span class="line">  oninvalidate(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;before&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  flush: &apos;post&apos;,</span><br><span class="line">  onTrigger(e) &#123;</span><br><span class="line">    // dev可以帮助我们调试 watchEffect</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const stopWatch = () =&gt; stop();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="识组件-amp-Vue3生命周期"><a href="#识组件-amp-Vue3生命周期" class="headerlink" title="识组件&amp;Vue3生命周期"></a>识组件&amp;Vue3生命周期</h4><ul>
+<li>每一个.vue 文件都可以充当组件来使用</li>
+<li>每一个组件都可以复用</li>
+<li><p>父组件使用</p>
+<ul>
+<li>引入子组件 xxx 然后直接就可以去当标签去使用 （切记组件名称不能与html元素标签名称一样）</li>
+<li>vue3使用组件无需注册</li>
+</ul>
+</li>
+<li><p>组件的生命周期</p>
+<ul>
+<li>是一个组件从创建到销毁的过程成为生命周期</li>
+<li>在我们使用Vue3 组合式API 是没有 beforeCreate 和 created 这两个生命周期的</li>
+</ul>
+</li>
+<li>onBeforeMount()<ul>
+<li>在组件DOM实际渲染安装之前调用。在这一步中，根元素还不存在</li>
+</ul>
+</li>
+<li>onMounted()<ul>
+<li>在组件的第一次渲染后调用，该元素现在可用，允许直接DOM访问</li>
+</ul>
+</li>
+<li>onBeforeUpdate()<ul>
+<li>数据更新时调用，发生在虚拟 DOM 打补丁之前</li>
+</ul>
+</li>
+<li>updated()<ul>
+<li>DOM更新后，updated的方法即会调用</li>
+</ul>
+</li>
+<li>*nBeforeUnmounted()<ul>
+<li>在卸载组件实例之前调用。在这个阶段，实例仍然是完全正常的</li>
+</ul>
+</li>
+<li>onUnmounted()<ul>
+<li>卸载组件实例后调用。调用此钩子时，组件实例的所有指令都被解除绑定，所有事件侦听器都被移除，所有子组件实例被卸载</li>
+</ul>
+</li>
+</ul>
+<h4 id="实操组件和认识less-和-scoped"><a href="#实操组件和认识less-和-scoped" class="headerlink" title="实操组件和认识less 和 scoped"></a>实操组件和认识less 和 scoped</h4><ul>
+<li><p>less</p>
+<ul>
+<li>Less （Leaner Style Sheets 的缩写） 是一门向后兼容的 CSS 扩展语言。这里呈现的是 Less 的官方文档（中文版），包含了 Less 语言以及利用 JavaScript 开发的用于将 Less 样式转换成 CSS 样式的 Less.js 工具</li>
+<li>Less 和 CSS 非常像，很容易学习。而且 Less 仅对 CSS 语言增加了少许方便的扩展，这就是 Less 如此易学的原因之一 <ul>
+<li><a href="https://zhuanlan.zhihu.com/p/400573436" style="color: blue;" target="_blank" rel="noopener">官方文档 Less 快速入门 | Less.js 中文文档 - Less 中文网</a></li>
+</ul>
+</li>
+<li>在vite中使用less<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install less less-loader -D // 安装即可</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在style标签注明即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;less&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>scoped</p>
+<ul>
+<li>实现组件的私有化, 当前style属性只属于当前模块<ul>
+<li>在DOM结构中可以发现,vue通过在DOM结构以及css样式上加了唯一标记,达到样式私有化,不污染全局的作用</li>
+<li>样式穿透问题学到第三方组件精讲 ::v-deep  &gt;&gt;&gt; /deep/</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="父子组件传参"><a href="#父子组件传参" class="headerlink" title="父子组件传参"></a>父子组件传参</h4><ul>
+<li>父组件通过v-bind绑定一个数据，然后子组件通过defineProps接受传过来的值<ul>
+<li>传递了一个title 字符串类型是不需要v-bind</li>
+<li>传递非字符串类型需要加v-bind  简写 冒号</li>
+</ul>
+</li>
+<li>子组件接受值<ul>
+<li>通过defineProps 来接受 defineProps是无须引入的直接使用即可</li>
+<li>如果我们使用的TypeScript，可以使用传递字面量类型的纯类型语法做为参数</li>
+</ul>
+</li>
+<li>TS 特有的默认值方式</li>
+<li><p>withDefaults是个函数也是无须引入开箱即用接受一个props函数第二个参数是一个对象设置默认值</p>
+</li>
+<li><p>子组件给父组件传参</p>
+<ul>
+<li>是通过defineEmits派发一个事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;menu&quot;&gt;</span><br><span class="line">        &lt;button @click=&quot;clickTap&quot;&gt;派发给父组件&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; reactive &#125; from &apos;vue&apos;</span><br><span class="line">const list = reactive&lt;number[]&gt;([4, 5, 6])</span><br><span class="line"> </span><br><span class="line">const emit = defineEmits([&apos;on-click&apos;])</span><br><span class="line">const clickTap = () =&gt; &#123;</span><br><span class="line">    emit(&apos;on-click&apos;, list)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在子组件绑定了一个click 事件 然后通过defineEmits 注册了一个自定义事件</p>
+<ul>
+<li>点击click 触发 emit 去调用我们注册的事件 然后传递参数</li>
+<li>父组件接受子组件的事件</li>
+</ul>
+</li>
+<li>组件暴露给父组件内部属性<ul>
+<li>通过defineExpose</li>
+<li>父组件获取子组件实例通过ref</li>
+<li>父组件想要读到子组件的属性可以通过 defineExpose暴露</li>
+</ul>
+</li>
+</ul>
+<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><ul>
+<li>让多个组件使用同一个挂载点，并动态切换，这就是动态组件。</li>
+<li><p>在挂载点使用component标签，然后使用v-bind:is=”组件”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;component :is=&quot;A&quot;&gt;&lt;/component&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用场景</p>
+<ul>
+<li>tab切换 居多</li>
+</ul>
+</li>
+<li>注意事项<br>1.在Vue2 的时候is 是通过组件名称切换的 在Vue3 setup 是通过组件实例切换的</li>
+</ul>
+<p>2.如果你把组件实例放到Reactive Vue会给你一个警告runtime-core.esm-bundler.js:38 [Vue warn]: Vue received a Component which was made a reactive object. This can lead to unnecessary performance overhead, and should be avoided by marking the component with <code>markRaw</code> or using <code>shallowRef</code> instead of <code>ref</code>.<br>Component that was made reactive: </p>
+<ul>
+<li><p>这是因为reactive 会进行proxy 代理 而我们组件代理之后毫无用处 节省性能开销 推荐我们使用shallowRef 或者  markRaw 跳过proxy 代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const tab = reactive&lt;Com[]&gt;([&#123;</span><br><span class="line">    name: &quot;A组件&quot;,</span><br><span class="line">    comName: markRaw(A)</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: &quot;B组件&quot;,</span><br><span class="line">    comName: markRaw(B)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>?.length的语法</p>
+<ul>
+<li>某个对象下的某个数组不存在，读取length会报错，处理方式(是否存在，不存在并赋值为空数组) item.children?.length ?? []</li>
+<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false </li>
+</ul>
+</li>
+</ul>
+<h4 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h4><ul>
+<li>子组件中的提供给父组件使用的一个占位符，用<slot></slot> 表示，父组件可以在这个占位符中填充任何模板代码，如 HTML、组件等，填充的内容会替换子组件的<slot></slot>标签</li>
+<li>匿名插槽</li>
+<li><p>在子组件放置一个插槽</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父组件使用插槽</p>
+<ul>
+<li>在父组件给这个插槽填充内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2132&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>具名插槽</p>
+<ul>
+<li>具名插槽其实就是给插槽取个名字。一个子组件可以放多个插槽，而且可以放在不同的地方，而父组件填充内容时，可以根据这个名字把内容填充到对应插槽中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>父组件使用需对应名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插槽简写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">    &lt;template #header&gt;</span><br><span class="line">        &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #default&gt;</span><br><span class="line">        &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #footer&gt;</span><br><span class="line">        &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用域插槽</p>
+<ul>
+<li><p>在子组件动态绑定参数 派发给父组件的slot去使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-for=&quot;item in 100&quot;&gt;</span><br><span class="line">            &lt;slot :data=&quot;item&quot;&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过结构方式取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog&gt;</span><br><span class="line">  &lt;template #header&gt;</span><br><span class="line">      &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #default=&quot;&#123; data &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; data &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template #footer&gt;</span><br><span class="line">      &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Dialog&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>动态插槽</p>
+<ul>
+<li>插槽可以是一个变量名<pre><code>&lt;Dialog&gt;
+&lt;template #[name]&gt;
+    &lt;div&gt;
+        23
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;/Dialog&gt;
+const name = ref(&apos;header&apos;)
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/03/05/for循环和forEach的语法/" rel="next" title="for循环和forEach的语法">
+                <i class="fa fa-chevron-left"></i> for循环和forEach的语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite"><span class="nav-number">1.</span> <span class="nav-text">vite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首次执行命令-npm-init-vite-latest-一直报错"><span class="nav-number">1.1.</span> <span class="nav-text">首次执行命令(npm init vite@latest)一直报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vite的优势"><span class="nav-number">1.2.</span> <span class="nav-text">vite的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.3.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diff-算法"><span class="nav-number">1.4.</span> <span class="nav-text">diff 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关Ref"><span class="nav-number">1.5.</span> <span class="nav-text">相关Ref</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reactive"><span class="nav-number">1.6.</span> <span class="nav-text">reactive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#to系列"><span class="nav-number">1.7.</span> <span class="nav-text">to系列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#computed计算属性"><span class="nav-number">1.8.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch侦听器"><span class="nav-number">1.9.</span> <span class="nav-text">watch侦听器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watchEffect高级侦听器）"><span class="nav-number">1.10.</span> <span class="nav-text">watchEffect高级侦听器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识组件-amp-Vue3生命周期"><span class="nav-number">1.11.</span> <span class="nav-text">识组件&amp;Vue3生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实操组件和认识less-和-scoped"><span class="nav-number">1.12.</span> <span class="nav-text">实操组件和认识less 和 scoped</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父子组件传参"><span class="nav-number">1.13.</span> <span class="nav-text">父子组件传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态组件"><span class="nav-number">1.14.</span> <span class="nav-text">动态组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插槽slot"><span class="nav-number">1.15.</span> <span class="nav-text">插槽slot</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
