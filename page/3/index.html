@@ -268,6 +268,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/19/react/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/19/react/" itemprop="url">react</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-19T10:56:17+08:00">
+                2020-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="react"><a href="#react" class="headerlink" title="react"></a>react</h3><h4 id="React和ReactDOM"><a href="#React和ReactDOM" class="headerlink" title="React和ReactDOM"></a>React和ReactDOM</h4><ul>
+<li>React逻辑控制(义务控制、视图模型控制)，React.createElement()（生成虚拟DOM，React生成的组件或者数据与render渲染的数据进行diff,打补丁）</li>
+</ul>
+<h4 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h4><ul>
+<li><p>表达式: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;expr&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&#123;&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jsx也是表达式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&#123;jsx&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><ul>
+<li><p>函数式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Comp(props) &#123;</span><br><span class="line">  return(...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Comp extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return(...)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Comp name=&apos;&apos; style=&#123;&#123;...&#125;&#125;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Comp &#123;</span><br><span class="line">  state = &#123;&#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      prop: val, // 批量异步的，不会立刻生效</span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState(&#123;state =&gt; (prop: val)&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="条件和循环"><a href="#条件和循环" class="headerlink" title="条件和循环"></a>条件和循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;this.state.isLOgin ? &lt;p&gt;&#123;userInfo.name&#125;&lt;/p&gt; : &apos;登陆&apos;&#125;</span><br><span class="line">&#123;this.state.message &amp;&amp; &lt;p&gt;&#123;this.state.message&#125;&lt;/p&gt;&#125;</span><br><span class="line">&#123;this.state.list.map(u =&gt; &lt;li&gt;&#123;u.name&#125;&lt;/li&gt;)&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">  super(props);</span><br><span class="line">  this.handleChange = this.handleChange.bind(this);</span><br><span class="line">&#125; // 第二种</span><br><span class="line">handleChange = () =&gt; &#123;&#125; // 第一种</span><br><span class="line">&lt;input onChange=&#123;this.handleChange&#125; /&gt; // this指向</span><br><span class="line">&lt;input onChange=&#123;() =&gt; this.handleChange(user)&#125; /&gt; // 第三种</span><br></pre></td></tr></table></figure>
+<h4 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 属性方式通信（父组件复杂，子组件负责调用）</span><br><span class="line">// 父子组件隔代，上下文关系，及redux</span><br><span class="line">&lt;Comp titile=&#123;&#125; onSubmit=&#123;this.onSubmit&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="React-VScode开发快捷键"><a href="#React-VScode开发快捷键" class="headerlink" title="React VScode开发快捷键"></a>React VScode开发快捷键</h4><ul>
+<li>按照扩展插件 <strong> ES7 React/Redux/GraphQL/React-Native snippets </strong></li>
+<li>几个常用命令</li>
+<li>rcc 快速穿件一个组件（使用extends方式）</li>
+<li>rconst 快速创建一个 constuctor</li>
+<li>rcep 快速创建一个组件（使用extends方式）</li>
+<li>rcredux 快速创建一个 redux格式的类模板</li>
+<li>clg 是 console.log()的快捷键<br><a href="https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/14/小程序中手机号识别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1723,167 +1900,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/微信小程序限制转发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/01/微信小程序限制转发/" itemprop="url">微信小程序限制转发</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T11:35:18+08:00">
-                2020-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="义务场景"><a href="#义务场景" class="headerlink" title="义务场景"></a>义务场景</h4><ul>
-<li>用户希望某个页面<strong>只能自己</strong>转发分享，不希望被别人再次分享出去<h4 id="限制用户转发需要解决两个问题："><a href="#限制用户转发需要解决两个问题：" class="headerlink" title="限制用户转发需要解决两个问题："></a>限制用户转发需要解决两个问题：</h4></li>
-<li>关闭系统右上角菜单栏中的转发功能<ul>
-<li>调用微信 API：wx.hideShareMenu({ }) 关闭当前页面转发功能。</li>
-</ul>
-</li>
-<li><p>隐藏群聊会话中长按转发分享的功能</p>
-<ul>
-<li>设置 withShareTicket 参数为 true ，即带有参数的转发卡片，即分享到群聊的小程序卡片，长按就不再有转发功能了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">onShareAppMessage() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    title: &apos;分享标题&apos;,</span><br><span class="line">    path: &apos;分享路径（/pages/index/index）&apos;,</span><br><span class="line">    imageUrl: &apos;分享图片&apos;,</span><br><span class="line">    success: () =&gt; &#123;</span><br><span class="line">      wx.showShareMenu(&#123;</span><br><span class="line">        withShareTicket: true</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    fail: () =&gt; &#123;&#125;,</span><br><span class="line">    complete: () =&gt; &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>只适用于分享到群聊，如果分享给个人用户，个人用户依然是可以通过长按小程序卡片来转发的，这就需要我们再做进一步检测，检测用户进入小程序的场景</p>
-</li>
-<li>用户从带 shareTicet 的小程序消息卡片打开小程序，进入场景值为 1044 ，可以通过判断场景值来判断用户是否通过群聊卡片打开<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 检测用户进入小程序的场景值</span><br><span class="line">if (options.scene == 1044) &#123;</span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><a href="https://github.com/Kujiale-Mobile/MP-Keng" target="_blank" rel="noopener">To Learn More…</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1936,7 +1952,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

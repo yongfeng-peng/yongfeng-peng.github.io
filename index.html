@@ -268,6 +268,276 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/22/Pinia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/22/Pinia/" itemprop="url">Pinia</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-22T16:07:51+08:00">
+                2022-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tool/" itemprop="url" rel="index">
+                    <span itemprop="name">tool</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Pinia"><a href="#Pinia" class="headerlink" title="Pinia"></a>Pinia</h3><ul>
+<li><a href="https://pinia.vuejs.org/" style="color: blue;" target="_blank" rel="noopener">官方文档Pinia</a></li>
+<li><a href="https://github.com/vuejs/pinia" style="color: blue;" target="_blank" rel="noopener">git地址</a></li>
+<li><a href="https://blog.csdn.net/qq1195566313/category_11672479.html" style="color: blue;" target="_blank" rel="noopener">～more</a><h4 id="Pinia-js"><a href="#Pinia-js" class="headerlink" title="Pinia.js"></a>Pinia.js</h4></li>
+<li>有如下特点：<ul>
+<li>全局状态管理工具</li>
+<li>完整的 ts 的支持；</li>
+<li>足够轻量，压缩后的体积只有1kb左右;</li>
+<li>去除 mutations，只有 state，getters，actions；</li>
+<li>actions 支持同步和异步；</li>
+<li>代码扁平化没有模块嵌套，只有 store 的概念，store 之间可以自由使用，每一个store都是独立的</li>
+<li>无需手动添加 store，store 一旦创建便会自动添加；</li>
+<li>支持Vue3 和 Vue2</li>
+</ul>
+</li>
+<li>起步 安装<ul>
+<li>yarn add pinia</li>
+<li>npm install pinia</li>
+</ul>
+</li>
+<li><p>引入注册Vue3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createApp &#125; from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line">import &#123;createPinia&#125; from &apos;pinia&apos;</span><br><span class="line">const store = createPinia()</span><br><span class="line">let app = createApp(App)</span><br><span class="line">app.use(store)</span><br><span class="line">app.mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vue2 使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createPinia, PiniaVuePlugin &#125; from &apos;pinia&apos;</span><br><span class="line">Vue.use(PiniaVuePlugin)</span><br><span class="line">const pinia = createPinia()</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  // other options...</span><br><span class="line">  // ...</span><br><span class="line">  // note the same `pinia` instance can be used across multiple Vue apps on</span><br><span class="line">  // the same page</span><br><span class="line">  pinia,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="初始化仓库Store"><a href="#初始化仓库Store" class="headerlink" title="初始化仓库Store"></a>初始化仓库Store</h4><ul>
+<li>新建一个文件夹Store</li>
+<li><p>新建文件[name].ts （存储是使用定义的defineStore()，并且它需要一个唯一的名称，作为第一个参数传递）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// store-namespace.ts</span><br><span class="line">export const enum Names &#123;</span><br><span class="line">  Test = &apos;TEST&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义仓库Store</p>
+<ul>
+<li>store引入（这个名称，也称为id，是必要的，Pania 使用它来将商店连接到 devtools。将返回的函数命名为use…是可组合项之间的约定，以使其使用习惯）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineStore &#125; from &apos;pinia&apos;</span><br><span class="line">import &#123; Names &#125; from &apos;./store-namespce&apos;</span><br><span class="line">export const useTestStore = defineStore(Names.Test, &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>定义值</p>
+<ul>
+<li><p>State 箭头函数 返回一个对象 在对象里面定义值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineStore &#125; from &apos;pinia&apos;</span><br><span class="line">import &#123; Names &#125; from &apos;./store-namespce&apos;</span><br><span class="line"></span><br><span class="line">export const useTestStore = defineStore(Names.Test, &#123;</span><br><span class="line">    state:()=&gt;&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            current:1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //类似于computed 可以帮我们去修饰我们的值</span><br><span class="line">    getters:&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    //可以操作异步 和 同步提交state</span><br><span class="line">    actions:&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.vue使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    pinia: &#123;&#123; test.current &#125;&#125; ----- &#123;&#123; test.name &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useTestStore &#125; from &apos;./store&apos;</span><br><span class="line">const test = useTestStore();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="State"><a href="#State" class="headerlink" title="State"></a>State</h4><ul>
+<li>State 是允许直接修改值的 例如current++</li>
+<li>批量修改State的值(在他的实例上有$patch方法可以批量修改多个值)</li>
+<li>批量修改函数形式 - 推荐使用函数形式 可以自定义修改逻辑</li>
+<li>通过原始对象修改整个实例 - $state您可以通过将store的属性设置为新对象来替换store的整个状态 - 缺点就是必须修改整个对象的所有属性</li>
+<li><p>通过actions修改 - 定义Actions - 在actions 中直接使用this就可以指到state里面的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineStore &#125; from &apos;pinia&apos;</span><br><span class="line"></span><br><span class="line">import &#123; Names &#125; from &apos;./store-name&apos;</span><br><span class="line"></span><br><span class="line">export const useTestStore =  defineStore(Names.Test, &#123;</span><br><span class="line">  state:()=&gt;&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        current: 1,</span><br><span class="line">        name: &apos;pinia&apos;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  //类似于computed 可以帮我们去修饰我们的值</span><br><span class="line">  getters:&#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  //可以操作异步 和 同步提交state</span><br><span class="line">  actions:&#123;</span><br><span class="line">    setCurrent (num: number): void &#123;</span><br><span class="line">      // this.current++; // 不使用箭头函数，this指向有问题</span><br><span class="line">      this.current = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方法直接在实例调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button @click=&quot;Add&quot;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    pinia: &#123;&#123; test.current &#125;&#125; ----- &#123;&#123; test.name &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useTestStore &#125; from &apos;./store&apos;</span><br><span class="line">let test = useTestStore();</span><br><span class="line">// 修改值</span><br><span class="line">const Add = () =&gt; &#123;</span><br><span class="line">  // 1 直接修改</span><br><span class="line">  // test.current++</span><br><span class="line">  // 2</span><br><span class="line">  // test.$patch(&#123;</span><br><span class="line">  //   current:200,</span><br><span class="line">  //   name: 300</span><br><span class="line">  // &#125;)</span><br><span class="line">  // 3 推荐使用 自定义逻辑</span><br><span class="line">  // test.$patch((state)=&gt;&#123;</span><br><span class="line">  //     state.current++;</span><br><span class="line">  //     state.name = &apos;pini111&apos;</span><br><span class="line">  // &#125;)</span><br><span class="line">  // 4</span><br><span class="line">  // test.$state = &#123;</span><br><span class="line">  //     current: 10,</span><br><span class="line">  //     name: &apos;1111&apos;</span><br><span class="line">  // &#125;  </span><br><span class="line">  // 5</span><br><span class="line">  test.setCurrent(567);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;less&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="解构store"><a href="#解构store" class="headerlink" title="解构store"></a>解构store</h4><ul>
+<li>Pinia是不允许直接解构是会失去响应性的</li>
+<li>差异对比<ul>
+<li>修改Test current 解构完之后的数据不会变</li>
+<li>而源数据是会变的</li>
+</ul>
+</li>
+<li>解决方案可以使用 storeToRefs<ul>
+<li>其原理跟toRefs 一样的给里面的数据包裹一层toref</li>
+<li>源码 通过toRaw使store变回原始数据防止重复代理</li>
+<li>循环store 通过 isRef isReactive 判断 如果是响应式对象直接拷贝一份给refs 对象 将其原始对象包裹toRef 使其变为响应式对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;origin value &#123;&#123;test.current&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button @click=&quot;Add&quot;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    pinia: &#123;&#123; current &#125;&#125; ----- &#123;&#123; name &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useTestStore &#125; from &apos;./store&apos;</span><br><span class="line">import &#123; storeToRefs &#125; from &apos;pinia&apos;</span><br><span class="line"> </span><br><span class="line">let test = useTestStore();</span><br><span class="line">let &#123; current, name&#125; = storeToRefs(test);</span><br><span class="line">// 修改值</span><br><span class="line">// 直接修改</span><br><span class="line">const Add = () =&gt; &#123;</span><br><span class="line">  // console.log(test);</span><br><span class="line">  // test.current++;</span><br><span class="line">  current.value++</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;less&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Actions-getters"><a href="#Actions-getters" class="headerlink" title="Actions,getters"></a>Actions,getters</h4><ul>
+<li>Actions（支持同步异步）<ul>
+<li>同步 直接调用即可</li>
+<li>异步 可以结合async await 修饰</li>
+<li>多个action互相调用getLoginInfo  setName</li>
+</ul>
+</li>
+<li><p>getters</p>
+<ul>
+<li>使用箭头函数不能使用this this指向已经改变指向undefined 修改值请用state</li>
+<li><p>主要作用类似于computed 数据修饰并且有缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getters:&#123;</span><br><span class="line">  newPrice:(state)=&gt;  `$$&#123;state.user.price&#125;`</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通函数形式可以使用this</p>
+</li>
+<li>getters 互相调用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineStore &#125; from &apos;pinia&apos;</span><br><span class="line"></span><br><span class="line">import &#123; Names &#125; from &apos;./store-name&apos;</span><br><span class="line"></span><br><span class="line">type User = &#123;</span><br><span class="line">  name: string,</span><br><span class="line">  age: number</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 同步修改</span><br><span class="line">let result:User = &#123;</span><br><span class="line">  name: &apos;pinia&apos;,</span><br><span class="line">  age: 4</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 模拟异步</span><br><span class="line">const Login = ():Promise&lt;User&gt; =&gt; &#123;</span><br><span class="line">  return new Promise((resolve) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      resolve(&#123;</span><br><span class="line">        name: &apos;pinia&apos;,</span><br><span class="line">        age: 5</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const useTestStore =  defineStore(Names.Test, &#123;</span><br><span class="line">  state:() =&gt; &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        current: 1,</span><br><span class="line">        user: &lt;User&gt;&#123;&#125;,</span><br><span class="line">        name: &apos;凤&apos;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 类似于computed 可以帮我们去修饰我们的值，可以相互调用</span><br><span class="line">  getters: &#123;</span><br><span class="line">    newName():string &#123;</span><br><span class="line">      return `$-$&#123;this.name&#125;---$&#123;this.getUserAge&#125;`</span><br><span class="line">    &#125;,</span><br><span class="line">    getUserAge():number &#123;</span><br><span class="line">      return this.user.age</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  //可以操作异步 和 同步提交state，  可以相互调用</span><br><span class="line">  actions: &#123;</span><br><span class="line">    setCurrent (num: number): void &#123;</span><br><span class="line">      // this.current++; // 不使用箭头函数，this指向有问题</span><br><span class="line">      this.current = num;</span><br><span class="line">    &#125;,</span><br><span class="line">    // setUser() &#123;</span><br><span class="line">    //   this.user = result;</span><br><span class="line">    // &#125;,</span><br><span class="line">    async setUser() &#123;</span><br><span class="line">      const result = await Login();</span><br><span class="line">      this.user = result;</span><br><span class="line">      this.setName(&apos;凤凤&apos;);</span><br><span class="line">    &#125;,</span><br><span class="line">    setName(name: string) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;action-user: &#123;&#123; Test.user &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;hr/&gt;</span><br><span class="line">    &lt;p&gt;action-name: &#123;&#123; Test.name &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;hr/&gt;</span><br><span class="line">    &lt;p&gt;getters:&#123;&#123; Test.newName &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;hr/&gt;</span><br><span class="line">    &lt;button @click=&quot;change&quot;&gt;change&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useTestStore &#125; from &apos;./store&apos;</span><br><span class="line">const Test = useTestStore();</span><br><span class="line">const change = () =&gt; &#123;</span><br><span class="line">  Test.setUser();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;less&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>store-name.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export const enum Names &#123;</span><br><span class="line">  Test = &apos;TEST&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><ul>
+<li><p>$reset - 重置store到他的初始状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state: () =&gt; (&#123;</span><br><span class="line">  user: &lt;Result&gt;&#123;&#125;,</span><br><span class="line">  name: &quot;default&quot;,</span><br><span class="line">  current: 1</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vue 例如我把值改变到了10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const change = () =&gt; &#123;</span><br><span class="line">  Test.current++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用$reset();</p>
+<ul>
+<li>将会把state所有值 重置回 原始状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const reset = () =&gt; &#123;</span><br><span class="line">  Test.$reset();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>订阅state的改变 - 类似于Vuex 的abscribe  只要有state 的变化就会走这个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Test.$subscribe((args,state)=&gt;&#123;</span><br><span class="line">   console.log(args,state);</span><br><span class="line">   </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二个参数 - 如果你的组件卸载之后还想继续调用请设置第二个参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Test.$subscribe((args,state)=&gt;&#123;</span><br><span class="line">   console.log(&apos;=========&apos;, args);</span><br><span class="line">   console.log(&apos;=========&apos;, state);</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">   detached: true</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>订阅Actions的调用 - 只要有actions被调用就会走这个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Test.$onAction((args)=&gt;&#123;</span><br><span class="line">  console.log(args);</span><br><span class="line">  args.after(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;after&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="pinia插件"><a href="#pinia插件" class="headerlink" title="pinia插件"></a>pinia插件</h4><ul>
+<li>pinia 和 vuex 都有一个通病 页面刷新状态会丢失</li>
+<li>写一个pinia 插件缓存他的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const __piniaKey = &apos;__PINIAKEY__&apos;</span><br><span class="line"></span><br><span class="line">type OptPinia = Partial&lt;Options&gt;</span><br><span class="line"></span><br><span class="line">const setStorage = (key: string, value: any): void =&gt; &#123;</span><br><span class="line">  localStorage.setItem(key, JSON.stringify(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const getStorage = (key: string) =&gt; &#123;</span><br><span class="line">  return (localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key) as string) : &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const piniaPlugin = (options: OptPinia) =&gt; &#123;</span><br><span class="line">  return (context: PiniaPluginContext) =&gt; &#123;</span><br><span class="line">    const &#123; store &#125; = context;</span><br><span class="line">    const data = getStorage(`$&#123;options?.key ?? __piniaKey&#125;-$&#123;store.$id&#125;`)</span><br><span class="line">    store.$subscribe(() =&gt; &#123;</span><br><span class="line">      etStorage(`$&#123;options?.key ?? __piniaKey&#125;-$&#123;store.$id&#125;`, toRaw(store.$state));</span><br><span class="line">    &#125;)</span><br><span class="line">    return &#123;</span><br><span class="line">      ...store.$state,</span><br><span class="line">      ...data</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const pinia = createPinia()</span><br><span class="line">pinia.use(piniaPlugin(&#123;</span><br><span class="line">  key: &quot;pinia&quot;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/21/vite-vue3-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -453,7 +723,7 @@
 </li>
 <li><p>配置完成之后使用ref reactive watch 等 无须import 导入 可以直接使用 </p>
 <ul>
-<li><a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;" target="_blank" rel="noopener"> v-model</a></li>
+<li><a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;" target="_blank" rel="noopener">Vue3自动引入插件</a></li>
 </ul>
 </li>
 <li>v-model</li>
@@ -552,7 +822,7 @@
 <li>Vue3 的自定义的hook</li>
 <li>Vue3 的 hook函数 相当于 vue2 的 mixin, 不同在与 hooks 是函数</li>
 <li>Vue3 的 hook函数 可以帮助我们提高代码的复用性, 让我们能在不同的组件中都利用 hooks 函数</li>
-<li>Vue3 hook <a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;" target="_blank" rel="noopener">库Get Started | VueUse</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123; onMounted &#125; from &apos;vue&apos;</span><br><span class="line">type Options = &#123;</span><br><span class="line">    el: string</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">type Return = &#123;</span><br><span class="line">    Baseurl: string | null</span><br><span class="line">&#125;</span><br><span class="line">export default function (option: Options): Promise&lt;Return&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; &#123;</span><br><span class="line">        onMounted(() =&gt; &#123;</span><br><span class="line">            const file: HTMLImageElement = document.querySelector(option.el) as HTMLImageElement;</span><br><span class="line">            file.onload = ():void =&gt; &#123;</span><br><span class="line">                resolve(&#123;</span><br><span class="line">                    Baseurl: toBase64(file)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">        &#125;)</span><br><span class="line">        const toBase64 = (el: HTMLImageElement): string =&gt; &#123;</span><br><span class="line">            const canvas: HTMLCanvasElement = document.createElement(&apos;canvas&apos;)</span><br><span class="line">            const ctx = canvas.getContext(&apos;2d&apos;) as CanvasRenderingContext2D</span><br><span class="line">            canvas.width = el.width</span><br><span class="line">            canvas.height = el.height</span><br><span class="line">            ctx.drawImage(el, 0, 0, canvas.width,canvas.height)</span><br><span class="line">            console.log(el.width);</span><br><span class="line">            </span><br><span class="line">            return canvas.toDataURL(&apos;image/png&apos;)</span><br><span class="line"> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>Vue3 hook <a href="https://vueuse.org/guide/" style="color: blue;" target="_blank" rel="noopener">库Get Started | VueUse</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123; onMounted &#125; from &apos;vue&apos;</span><br><span class="line">type Options = &#123;</span><br><span class="line">    el: string</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">type Return = &#123;</span><br><span class="line">    Baseurl: string | null</span><br><span class="line">&#125;</span><br><span class="line">export default function (option: Options): Promise&lt;Return&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; &#123;</span><br><span class="line">        onMounted(() =&gt; &#123;</span><br><span class="line">            const file: HTMLImageElement = document.querySelector(option.el) as HTMLImageElement;</span><br><span class="line">            file.onload = ():void =&gt; &#123;</span><br><span class="line">                resolve(&#123;</span><br><span class="line">                    Baseurl: toBase64(file)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">        &#125;)</span><br><span class="line">        const toBase64 = (el: HTMLImageElement): string =&gt; &#123;</span><br><span class="line">            const canvas: HTMLCanvasElement = document.createElement(&apos;canvas&apos;)</span><br><span class="line">            const ctx = canvas.getContext(&apos;2d&apos;) as CanvasRenderingContext2D</span><br><span class="line">            canvas.width = el.width</span><br><span class="line">            canvas.height = el.height</span><br><span class="line">            ctx.drawImage(el, 0, 0, canvas.width,canvas.height)</span><br><span class="line">            console.log(el.width);</span><br><span class="line">            </span><br><span class="line">            return canvas.toDataURL(&apos;image/png&apos;)</span><br><span class="line"> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -2458,157 +2728,6 @@ components: {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/26/js最近日期获取汇总/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/01/26/js最近日期获取汇总/" itemprop="url">js最近日期获取汇总</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-26T11:18:21+08:00">
-                2022-01-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="常用日期汇总"><a href="#常用日期汇总" class="headerlink" title="常用日期汇总"></a>常用日期汇总</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">* 获取近半年日期</span><br><span class="line">function halfYear() &#123;</span><br><span class="line">  // 先获取当前时间</span><br><span class="line">  let curDate = (new Date()).getTime();</span><br><span class="line">  // 将半年的时间单位换算成毫秒</span><br><span class="line">  let halfYear = 365 / 2 * 24 * 3600 * 1000;</span><br><span class="line">  // 半年前的时间（毫秒单位）</span><br><span class="line">  let pastResult = curDate - halfYear;</span><br><span class="line">  // 日期函数，定义起点为半年前</span><br><span class="line">  let pastDate = new Date(pastResult);</span><br><span class="line">  let pastYear = pastDate.getFullYear();</span><br><span class="line">  let pastMonth = pastDate.getMonth() + 1;</span><br><span class="line">  pastMonth = pastMonth.toString().padStart(2, 0);</span><br><span class="line">  let pastDay = pastDate.getDate().toString().padStart(2, 0);</span><br><span class="line">  let endDate = pastYear + &apos;-&apos; + pastMonth + &apos;-&apos; + pastDay;</span><br><span class="line">  return endDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">* 获取近一年日期</span><br><span class="line">function reactYear() &#123;</span><br><span class="line">  let nowDate = new Date();</span><br><span class="line">  let dates = new Date(nowDate);</span><br><span class="line">  dates.setDate(dates.getDate() - 365);</span><br><span class="line">  let year = dates.getFullYear();</span><br><span class="line">  let month = dates.getMonth() + 1;</span><br><span class="line">  month = month.toString().padStart(2, 0);</span><br><span class="line">  let strDate = dates.getDate().toString().padStart(2, 0);</span><br><span class="line">  let currentDate = year + &apos;-&apos; + month + &apos;-&apos; + strDate;</span><br><span class="line">  return currentDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">* 获取当前日期</span><br><span class="line">function getCurDate(type) &#123;</span><br><span class="line">  const date = new Date();</span><br><span class="line">  // date.setTime(date.getTime() + 24 * 60 * 60 * 1000);</span><br><span class="line">  date.setTime(date.getTime());</span><br><span class="line">  let year = date.getFullYear()</span><br><span class="line">  let month = date.getMonth() + 1</span><br><span class="line">  month = month.toString().padStart(2, 0);</span><br><span class="line">  let strDate = date.getDate().toString().padStart(2, 0);</span><br><span class="line">  let hour = date.getHours().toString().padStart(2, 0);</span><br><span class="line">  let minutes = date.getMinutes().toString().padStart(2, 0);</span><br><span class="line">  let seconds = date.getSeconds().toString().padStart(2, 0);</span><br><span class="line">  let curDate = year + &apos;-&apos; + month + &apos;-&apos; + strDate;</span><br><span class="line">  if(type) &#123;</span><br><span class="line">    return `$&#123;year&#125;-$&#123;month&#125;-$&#123;strDate&#125; $&#123;hour&#125;:$&#123;minutes&#125;:$&#123;seconds&#125;`;</span><br><span class="line">  &#125;</span><br><span class="line">  return curDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* 最近三月</span><br><span class="line">function beforeThree() &#123;</span><br><span class="line">  const dates = new Date()</span><br><span class="line">  dates.setMonth(dates.getMonth() - 3);</span><br><span class="line">  let pastMonth = dates.getMonth() + 1;</span><br><span class="line">  let pastDay = dates.getDate();</span><br><span class="line">  pastMonth = pastMonth.toString().padStart(2, 0);</span><br><span class="line">  pastDay = pastDay.toString().padStart(2, 0);</span><br><span class="line">  const endDate = dates.getFullYear() + &apos;-&apos; + pastMonth + &apos;-&apos; + pastDay;</span><br><span class="line">  return endDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* 最近一月</span><br><span class="line">function oneMonth() &#123;</span><br><span class="line">  const dates = new Date();</span><br><span class="line">  dates.setMonth(dates.getMonth() - 1);</span><br><span class="line">  let pastMonth = dates.getMonth() + 1;</span><br><span class="line">  let pastDay = dates.getDate();</span><br><span class="line">  pastMonth = pastMonth.toString().padStart(2, 0);</span><br><span class="line">  pastDay = pastDay.toString().padStart(2, 0);</span><br><span class="line">  const endDate = dates.getFullYear() + &apos;-&apos; + pastMonth + &apos;-&apos; + pastDay;</span><br><span class="line">  return endDate</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">* 某年某月最后一天</span><br><span class="line">function getLastDay(year, month) &#123;</span><br><span class="line">  //获取本年本月的第一天日期</span><br><span class="line">  var date = new Date(year,month+1,&apos;01&apos;);</span><br><span class="line">  //设置日期</span><br><span class="line">  date.setDate(1);</span><br><span class="line">  //设置月份</span><br><span class="line">  date.setMonth(date.getMonth());</span><br><span class="line">  //获取本月的最后一天</span><br><span class="line">  let cdate = new Date(date.getTime() - 1000*60*60*24);</span><br><span class="line">  //返回结果</span><br><span class="line">  // return cdate.getDate();</span><br><span class="line">  return `$&#123;cdate.getFullYear()&#125;-$&#123;cdate.getMonth()+1&#125;-$&#123;cdate.getDate()&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* 当月</span><br><span class="line">function getMonthStartDate() &#123;</span><br><span class="line">  const dates = new Date();</span><br><span class="line">  dates.setMonth(dates.getMonth());</span><br><span class="line">  let pastMonth = dates.getMonth() + 1;</span><br><span class="line">  pastMonth = pastMonth.toString().padStart(2, 0);</span><br><span class="line">  const endDate = dates.getFullYear() + &apos;-&apos; + pastMonth + &apos;-&apos; + &apos;01&apos;;</span><br><span class="line">  return endDate</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* 获取某月多少天</span><br><span class="line">const _temp = &apos;2021-06-12&apos;;</span><br><span class="line">const month = _temp.substr(_temp.lastIndexOf(&quot;-&quot;) + 1, 2);</span><br><span class="line">const year = _temp.substr(0, _temp.lastIndexOf(&quot;-&quot;));</span><br><span class="line">// console.log(1111, year, month, new Date(year, month, 0).getDate())</span><br><span class="line">// 获取月份多少天</span><br><span class="line">const day = new Date(year, month, 0).getDate();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* 获取当年当月第一天</span><br><span class="line">getYearStartDate() &#123;</span><br><span class="line">  const dates = new Date();</span><br><span class="line">  dates.setMonth(dates.getMonth());</span><br><span class="line">  const endDate = dates.getFullYear() + &quot;-&quot; + &quot;01&quot; + &quot;-&quot; + &quot;01&quot;;</span><br><span class="line">  return endDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// utils.js</span><br><span class="line">const globalFun =  &#123;</span><br><span class="line">  halfYear, reactYear, getCurDate, beforeThree, oneMonth,getLastDay, checkFull, getMonthStartDate,</span><br><span class="line">&#125;;</span><br><span class="line">export default globalFun;</span><br><span class="line"></span><br><span class="line">// 全局方法挂载 main.js</span><br><span class="line">import globalFun from &quot;@/utils/utils.js&quot;;</span><br><span class="line">Object.keys(globalFun).forEach((key) =&gt; &#123;</span><br><span class="line">  Vue.prototype[key] = globalFun[key];</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2661,7 +2780,7 @@ components: {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
