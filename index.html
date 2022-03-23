@@ -268,6 +268,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/23/Router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/23/Router/" itemprop="url">Router</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-23T16:47:59+08:00">
+                2022-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tool/" itemprop="url" rel="index">
+                    <span itemprop="name">tool</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h3><h4 id="router-路由"><a href="#router-路由" class="headerlink" title="router 路由"></a>router 路由</h4><ul>
+<li>应为vue是单页应用不会有那么多html 让我们跳转 所有要使用路由做页面的跳转</li>
+<li>Vue 路由允许我们通过不同的 URL 访问不同的内容。通过 Vue 可以实现多视图的单页Web应用</li>
+<li><p>构建前端项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm init vue@latest</span><br><span class="line">//或者</span><br><span class="line">npm init vite@latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><span style="color: red;">使用Vue3 安装对应的router4版本</span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router@4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><span style="color: red;">使用Vue2安装对应的router3版本</span></p>
+</li>
+<li><p>在src目录下面新建router 文件 然后在router 文件夹下面新建 index.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//引入路由对象</span><br><span class="line">import &#123; createRouter, createWebHistory, createWebHashHistory, createMemoryHistory, RouteRecordRaw &#125; from &apos;vue-router&apos;</span><br><span class="line">//vue2 mode history vue3 createWebHistory</span><br><span class="line">//vue2 mode  hash  vue3  createWebHashHistory</span><br><span class="line">//vue2 mode abstact vue3  createMemoryHistory</span><br><span class="line"> </span><br><span class="line">//路由数组的类型 RouteRecordRaw</span><br><span class="line">// 定义一些路由</span><br><span class="line">// 每个路由都需要映射到一个组件。</span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; = [&#123;</span><br><span class="line">  path: &apos;/&apos;,</span><br><span class="line">  component: () =&gt; import(&apos;../components/a.vue&apos;)</span><br><span class="line">&#125;,&#123;</span><br><span class="line">  path: &apos;/register&apos;,</span><br><span class="line">  component: () =&gt; import(&apos;../components/b.vue&apos;)</span><br><span class="line">&#125;]</span><br><span class="line"> </span><br><span class="line">const router = createRouter(&#123;</span><br><span class="line">  history: createWebHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line">//导出router</span><br><span class="line">export default router</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>router-link<a href="https://router.vuejs.org/zh/guide/#router-link" style="color: blue;" target="_blank" rel="noopener"> # </a></p>
+<ul>
+<li>没有使用常规的 a 标签，而是使用一个自定义组件 router-link 来创建链接。这使得 Vue Router 可以在不重新加载页面的情况下更改 URL，处理 URL 的生成以及编码</li>
+</ul>
+</li>
+<li>router-view<a href="https://router.vuejs.org/zh/guide/#router-view" style="color: blue;" target="_blank" rel="noopener"> # </a><ul>
+<li>router-view 将显示与 url 对应的组件。你可以把它放在任何地方，以适应你的布局</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;router&lt;/h1&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">    &lt;!--使用 router-link 组件进行导航 --&gt;</span><br><span class="line">    &lt;!--通过传递 `to` 来指定链接 --&gt;</span><br><span class="line">    &lt;!--`&lt;router-link&gt;` 将呈现一个带有正确 `href` 属性的 `&lt;a&gt;` 标签--&gt;</span><br><span class="line">      &lt;router-link tag=&quot;div&quot; to=&quot;/&quot;&gt;跳转a&lt;/router-link&gt;</span><br><span class="line">      &lt;router-link tag=&quot;div&quot; style=&quot;margin-left:200px&quot; to=&quot;/register&quot;&gt;跳转b&lt;/router-link&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;hr /&gt;</span><br><span class="line">    &lt;!-- 路由出口 --&gt;</span><br><span class="line">    &lt;!-- 路由匹配到的组件将渲染在这里 --&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后在main.ts 挂载<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createApp &#125; from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line">import router from &apos;./router&apos;</span><br><span class="line">createApp(App).use(router).mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="命名路由-编程式导航"><a href="#命名路由-编程式导航" class="headerlink" title="命名路由-编程式导航"></a>命名路由-编程式导航</h4><ul>
+<li><p>命名路由</p>
+<ul>
+<li>除了 path 之外，你还可以为任何路由提供 name。这有以下优点：<ul>
+<li>没有硬编码的 URL</li>
+<li>params 的自动编码/解码</li>
+<li>防止你在 url 中出现打字错误</li>
+<li>绕过路径排序（如显示一个）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const routes:Array&lt;RouteRecordRaw&gt; = [</span><br><span class="line">    &#123;</span><br><span class="line">        path:&quot;/&quot;,</span><br><span class="line">        name:&quot;Login&quot;,</span><br><span class="line">        component:()=&gt; import(&apos;../components/login.vue&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path:&quot;/reg&quot;,</span><br><span class="line">        name:&quot;Reg&quot;,</span><br><span class="line">        component:()=&gt; import(&apos;../components/reg.vue&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>router-link跳转方式需要改变 变为对象并且有对应name</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;router&lt;/h1&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;router-link :to=&quot;&#123;name:&apos;Login&apos;&#125;&quot;&gt;Login&lt;/router-link&gt;</span><br><span class="line">  &lt;router-link style=&quot;margin-left:10px&quot; :to=&quot;&#123;name:&apos;Reg&apos;&#125;&quot;&gt;Reg&lt;/router-link&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;hr /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编程式导航</p>
+<ul>
+<li>除了使用 <router-link> 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现</router-link></li>
+<li><p>字符串模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useRouter &#125; from &apos;vue-router&apos;</span><br><span class="line">const router = useRouter()</span><br><span class="line">const toPage = () =&gt; &#123;</span><br><span class="line">  router.push(&apos;/reg&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useRouter &#125; from &apos;vue-router&apos;</span><br><span class="line">const router = useRouter()</span><br><span class="line"></span><br><span class="line">const toPage = () =&gt; &#123;</span><br><span class="line">  router.push(&#123;</span><br><span class="line">    path: &apos;/reg&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名式路由模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useRouter &#125; from &apos;vue-router&apos;</span><br><span class="line">const router = useRouter()</span><br><span class="line"></span><br><span class="line">const toPage = () =&gt; &#123;</span><br><span class="line">  router.push(&#123;</span><br><span class="line">    name: &apos;Reg&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>a标签跳转</p>
+<ul>
+<li>直接通过a href也可以跳转但是会刷新页面  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;/reg&quot;&gt;rrr&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="历史记录"><a href="#历史记录" class="headerlink" title="历史记录"></a>历史记录</h4><ul>
+<li>replace的使用<ul>
+<li>采用replace进行页面的跳转会同样也会创建渲染新的Vue组件，但是在history中其不会重复保存记录，而是替换原有的vue组件</li>
+</ul>
+</li>
+<li><p>router-link 使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link replace to=&quot;/&quot;&gt;Login&lt;/router-link&gt;</span><br><span class="line">&lt;router-link replace style=&quot;margin-left:10px&quot; to=&quot;/reg&quot;&gt;Reg&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编程式导航</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;toPage(&apos;/&apos;)&quot;&gt;Login&lt;/button&gt;</span><br><span class="line">&lt;button @click=&quot;toPage(&apos;/reg&apos;)&quot;&gt;Reg&lt;/button&gt;</span><br><span class="line">// js</span><br><span class="line">import &#123; useRouter &#125; from &apos;vue-router&apos;</span><br><span class="line">const router = useRouter()</span><br><span class="line">const toPage = (url: string) =&gt; &#123;</span><br><span class="line">  router.replace(url)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>横跨历史</p>
+<ul>
+<li>该方法采用一个整数作为参数，表示在历史堆栈中前进或后退多少步<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;next&quot;&gt;前进&lt;/button&gt;</span><br><span class="line"> &lt;button @click=&quot;prev&quot;&gt;后退&lt;/button&gt;</span><br><span class="line">const next = () =&gt; &#123;</span><br><span class="line">  //前进 数量不限于1</span><br><span class="line">  router.go(1)</span><br><span class="line">&#125;</span><br><span class="line">const prev = () =&gt; &#123;</span><br><span class="line">  //后退</span><br><span class="line">  router.back()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h4><ul>
+<li><p>Query路由传参</p>
+<ul>
+<li>编程式导航 使用router push 或者 replace 的时候 改为对象形式新增query 必须传入一个对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const toDetail = (item: Item) =&gt; &#123;</span><br><span class="line">  router.push(&#123;</span><br><span class="line">      path: &apos;/reg&apos;,</span><br><span class="line">      query: item</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>接受参数</p>
+<ul>
+<li><span style="color: red;">使用 useRoute 的 query</span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useRoute &#125; from &apos;vue-router&apos;;</span><br><span class="line">const route = useRoute()</span><br><span class="line">&lt;div&gt;ID：&#123;&#123; route.query?.id &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Params路由传参</p>
+<ul>
+<li>编程式导航 使用router push 或者 replace 的时候 改为对象形式并且只能使用name，path无效，然后传入params<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const toDetail = (item: Item) =&gt; &#123;</span><br><span class="line">  router.push(&#123;</span><br><span class="line">    name: &apos;Reg&apos;,</span><br><span class="line">    params: item</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>接受参数</p>
+<ul>
+<li><span style="color: red;">使用 useRoute 的 params</span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useRoute &#125; from &apos;vue-router&apos;;</span><br><span class="line">const route = useRoute()</span><br><span class="line">&lt;div&gt;品牌：&#123;&#123; route.params?.name &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;div&gt;价格：&#123;&#123; route.params?.price &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;div&gt;ID：&#123;&#123; route.params?.id &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>动态路由传参</p>
+<ul>
+<li>很多时候，我们需要将给定匹配模式的路由映射到同一个组件。例如，我们可能有一个 User 组件，它应该对所有用户进行渲染，但用户 ID 不同。在 Vue Router 中，我们可以在路径中使用一个动态字段来实现，我们称之为 路径参数 </li>
+<li><span style="color: red;">路径参数 用冒号 : 表示。当一个路由被匹配时，它的 params 的值将在每个组件</span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const routes:Array&lt;RouteRecordRaw&gt; = [</span><br><span class="line">    &#123;</span><br><span class="line">        path:&quot;/&quot;,</span><br><span class="line">        name:&quot;Login&quot;,</span><br><span class="line">        component:()=&gt; import(&apos;../components/login.vue&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        //动态路由参数</span><br><span class="line">        path:&quot;/reg/:id&quot;,</span><br><span class="line">        name:&quot;Reg&quot;,</span><br><span class="line">        component:()=&gt; import(&apos;../components/reg.vue&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">const toDetail = (item: Item) =&gt; &#123;</span><br><span class="line">    router.push(&#123;</span><br><span class="line">        name: &apos;Reg&apos;,</span><br><span class="line">        params: &#123;</span><br><span class="line">            id: item.id</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">import &#123; useRoute &#125; from &apos;vue-router&apos;;</span><br><span class="line">import &#123; data &#125; from &apos;./list.json&apos;</span><br><span class="line">const route = useRoute()</span><br><span class="line">const item = data.find(v =&gt; v.id === Number(route.params.id))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>二者的区别</p>
+<ul>
+<li>query 传参配置的是 path，而 params 传参配置的是name，在 params中配置 path 无效</li>
+<li>query 在路由配置不需要设置参数，而 params 必须设置</li>
+<li>query 传递的参数会显示在地址栏中</li>
+<li>params传参刷新会无效，但是 query 会保存传递过来的值，刷新不变</li>
+<li>路由配置</li>
+</ul>
+</li>
+</ul>
+<h4 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h4><ul>
+<li>一些应用程序的 UI 由多层嵌套的组件组成。在这种情况下，URL 的片段通常对应于特定的嵌套组件结构，例如：</li>
+<li>如你所见，children 配置只是另一个路由数组，就像 routes 本身一样。因此，你可以根据自己的需要，不断地嵌套视图<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const routes: Array&lt;RouteRecordRaw&gt; = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/user&quot;,</span><br><span class="line">    component: () =&gt; import(&apos;../components/footer.vue&apos;),</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: &quot;&quot;,</span><br><span class="line">        name: &quot;Login&quot;,</span><br><span class="line">        component: () =&gt; import(&apos;../components/login.vue&apos;)</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: &quot;reg&quot;,</span><br><span class="line">        name: &quot;Reg&quot;,</span><br><span class="line">        component: () =&gt; import(&apos;../components/reg.vue&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><span style="color: red;">TIPS：不要忘记写router-view</span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;router-link to=&quot;/&quot;&gt;login&lt;/router-link&gt;</span><br><span class="line">      &lt;router-link style=&quot;margin-left:10px;&quot; to=&quot;/user/reg&quot;&gt;reg&lt;/router-link&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="命名视图"><a href="#命名视图" class="headerlink" title="命名视图"></a>命名视图</h4><ul>
+<li>命名视图可以在同一级（同一个组件）中展示更多的路由视图，而不是嵌套显示。 命名视图可以让一个组件中具有多个路由渲染出口，这对于一些特定的布局组件非常有用。 命名视图的概念非常类似于“具名插槽”，并且视图的默认名称也是 default</li>
+<li>一个视图使用一个组件渲染，因此对于同个路由，多个视图就需要多个组件。确保正确使用 components 配置 (带上 s)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createRouter, createWebHistory, RouteRecordRaw &#125; from &apos;vue-router&apos;</span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/&quot;,</span><br><span class="line">    components: &#123;</span><br><span class="line">      default: () =&gt; import(&apos;../components/layout/menu.vue&apos;),</span><br><span class="line">      header: () =&gt; import(&apos;../components/layout/header.vue&apos;),</span><br><span class="line">      content: () =&gt; import(&apos;../components/layout/content.vue&apos;),</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br><span class="line">const router = createRouter(&#123;</span><br><span class="line">  history: createWebHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line">export default router</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>对应Router-view 通过name 对应组件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;router-view name=&quot;header&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;router-view name=&quot;content&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/22/Pinia/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2567,172 +2852,11 @@ components: {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/26/echarts汇总/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/01/26/echarts汇总/" itemprop="url">echarts汇总</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-26T11:43:35+08:00">
-                2022-01-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="echarts汇总"><a href="#echarts汇总" class="headerlink" title="echarts汇总"></a>echarts汇总</h3><ul>
-<li><a href="https://echarts.apache.org/zh/index.html" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> <h4 id="setOption"><a href="#setOption" class="headerlink" title="setOption"></a>setOption</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import * as echarts from &apos;echarts&apos;</span><br><span class="line">Vue.prototype.$echarts = echarts</span><br><span class="line">* echarts setOption第二个参数的含义</span><br><span class="line">chart.setOption(option, notMerge, lazyUpdate)</span><br><span class="line">* notMerge 可选，是否不跟之前设置的 option 进行合并，默认为 false，即合并</span><br><span class="line"></span><br><span class="line">myChart.setOption(&#123;...&#125;,true)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="ECharts-默认loading"><a href="#ECharts-默认loading" class="headerlink" title="ECharts 默认loading"></a>ECharts 默认loading</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">initChart() &#123;</span><br><span class="line">  this.chart = this.$echarts.init(this.$el);</span><br><span class="line">  this.chart.showLoading(&#123;</span><br><span class="line">    text: &apos;loading...&apos;,</span><br><span class="line">    color: &apos;#1376fe&apos;,</span><br><span class="line">    textColor: &apos;#1376fe&apos;,</span><br><span class="line">    // maskColor: &apos;rgba(0, 0, 0, 0.8)&apos;,</span><br><span class="line">    zlevel: 0,</span><br><span class="line">  &#125;);</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    this.chart.hideLoading();</span><br><span class="line">    this.setOptions(this.chartData);</span><br><span class="line">  &#125;, 1000)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<h4 id="resize"><a href="#resize" class="headerlink" title="resize"></a>resize</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 每个子组件图表重新初始化一次，只需要在init中加入this.echart.resize</span><br><span class="line">this.echart.resize()</span><br></pre></td></tr></table></figure>
-<h4 id="echarts设置之stack参数"><a href="#echarts设置之stack参数" class="headerlink" title="echarts设置之stack参数"></a>echarts设置之stack参数</h4><ul>
-<li>stack—数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加</li>
-<li>解决方法是，stack去掉，或者stack给不同的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">series: [&#123;</span><br><span class="line"> stack: &apos;total&apos;,</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="echarts案例大全"><a href="#echarts案例大全" class="headerlink" title="echarts案例大全"></a>echarts案例大全</h4><ul>
-<li>强大社区Make A Pie展示各类的ECharts案例被关闭</li>
-<li>新的资源库<ul>
-<li><a href="http://192.144.199.210/forum.php?mod=forumdisplay&amp;fid=2" target="_blank" rel="noopener">http://192.144.199.210/forum.php?mod=forumdisplay&amp;fid=2</a></li>
-<li><a href="http://analysis.datains.cn/finance-admin/#/chartLib/all" target="_blank" rel="noopener">http://analysis.datains.cn/finance-admin/#/chartLib/all</a></li>
-<li><a href="http://ppchart.com/#/" target="_blank" rel="noopener">http://ppchart.com/#/</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2780,7 +2904,7 @@ components: {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

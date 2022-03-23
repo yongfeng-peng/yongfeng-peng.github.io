@@ -268,6 +268,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序兼容性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/02/小程序兼容性/" itemprop="url">微信小程序兼容性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-02T09:53:23+08:00">
+                2020-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="IOS常见兼容性"><a href="#IOS常见兼容性" class="headerlink" title="IOS常见兼容性"></a>IOS常见兼容性</h4><h5 id="iOS中input的placeholder属性字体不居中"><a href="#iOS中input的placeholder属性字体不居中" class="headerlink" title="iOS中input的placeholder属性字体不居中"></a>iOS中input的placeholder属性字体不居中</h5><ul>
+<li>对placeholder设置line-height及font-size</li>
+<li>对input设置高度</li>
+</ul>
+<h5 id="iOS中滚动卡顿"><a href="#iOS中滚动卡顿" class="headerlink" title="iOS中滚动卡顿"></a>iOS中滚动卡顿</h5><ul>
+<li>设置-webkit-overflow-scrolling:touch<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-webkit-overflow-scrolling: touch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="iOS中new-Date-时间格式不兼容"><a href="#iOS中new-Date-时间格式不兼容" class="headerlink" title="iOS中new Date() 时间格式不兼容"></a>iOS中new Date() 时间格式不兼容</h5><ul>
+<li>在实现倒计时，根据后台返回的时间格式转换时，后台返回了时间格式为”2018-11-12 11:12:11”，然后利用new Date() 转换时，ios中无法展示，安卓中显示正常<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let time = &apos;2018-12-10 11:11:11&apos;;</span><br><span class="line">let formateTIme = new Date(time);</span><br><span class="line">this.setData(&#123;</span><br><span class="line">  formateTIme</span><br><span class="line">&#125;)</span><br><span class="line">/* 利用正则表达式替换时间中的”-”为”/”即可 */</span><br><span class="line">let time = &apos;2018-12-10 11:11:11&apos;;</span><br><span class="line">let temporaryTime = new Date(time.replace(/-/g,&apos;/&apos;));</span><br><span class="line">let temporaryTime1 = new Date(time);</span><br><span class="line">this.setData(&#123;</span><br><span class="line">  timeRemain: temporaryTime,</span><br><span class="line">  timeRemain1: temporaryTime1,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="scroll-view隐藏滚动条方法"><a href="#scroll-view隐藏滚动条方法" class="headerlink" title="scroll-view隐藏滚动条方法"></a>scroll-view隐藏滚动条方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  width: 0;</span><br><span class="line">  height: 0;</span><br><span class="line">  color: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="图片本地资源名称，尽量使用小写命名"><a href="#图片本地资源名称，尽量使用小写命名" class="headerlink" title="图片本地资源名称，尽量使用小写命名"></a>图片本地资源名称，尽量使用小写命名</h5><ul>
+<li><p>在解决iPhone X适配时，底部多余部分使用图片时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image class=&apos;iphonexImg&apos; src=&quot;/imgs/iphoneBGT.png&quot; mode=&quot;aspectFill&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路径是 src=’imgs/iphoneBGT.png’(发现在pc IDE上面可以显示出来，但是真机调试时，图片找不到)，将图片名称改为iphonex.png真机调试就可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image class=&apos;iphonexImg&apos; src=&quot;/imgs/iphonex.png&quot; mode=&quot;aspectFill&quot; /&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/微信小程序限制转发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1849,259 +2010,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/grid/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/09/grid/" itemprop="url">grid</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T18:20:50+08:00">
-                2019-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="grid-布局优势"><a href="#grid-布局优势" class="headerlink" title="grid 布局优势"></a>grid 布局优势</h4><ul>
-<li>固定或弹性的轨道尺寸</li>
-<li>定位项目</li>
-<li>创建额外的轨道来保存内容</li>
-<li>对齐控制</li>
-<li>控制重叠内容（z-index）</li>
-</ul>
-<h4 id="grid-VS-flexbox"><a href="#grid-VS-flexbox" class="headerlink" title="grid VS flexbox"></a>grid VS flexbox</h4><ul>
-<li>flexbox是yi w一维布局，只能在一条直线上放置内容区块</li>
-<li><p>grid是二维布局，根据设计需求将内容区块放置到任何地方</p>
-</li>
-<li><p>实际上</p>
-<ul>
-<li>grid和flexbox可以很好到</li>
-</ul>
-</li>
-<li><p>Grid Container网格容器</p>
-<ul>
-<li>元素应用display: grid,他是其所有网格项的父元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;One&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;Two&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Grid Item 网格项</p>
-<ul>
-<li>网格容器的子元素，下面的item元素是网格项</li>
-</ul>
-</li>
-<li>Grid Line 网格线 <ul>
-<li>组成网格项的分界线</li>
-</ul>
-</li>
-<li>Grid Track 网格轨道<ul>
-<li>两个相邻的网格线之间的网格轨道</li>
-</ul>
-</li>
-<li>Grid Cell 网格单元<br>  *两个相邻的列网格线和两个相邻的行网格线组成的是网格单元</li>
-<li><p>Grid Area 网格区域</p>
-<ul>
-<li>四个网格线包围的总空间</li>
-</ul>
-</li>
-<li><p>单位</p>
-<ul>
-<li>fr(单位)</li>
-<li>剩余空间分配数，用于在一系列长度值中分配剩余空间，如果多个已指定了多个部分，则剩余的空间根据各自的数字按比例分配</li>
-<li>gr(单位)—–暂未认证</li>
-<li>网格数</li>
-</ul>
-</li>
-<li>display: grid|inline-grid|subgrid</li>
-<li>注意<ul>
-<li>当元素设置了网格布局,column, float, clear, vertical-align属性无效</li>
-<li>subgrid目前所有浏览器不支持</li>
-</ul>
-</li>
-<li>grid-template</li>
-<li>grid-template-columns 列</li>
-<li>grid-template-rows 行推荐值，使用auto（高度确定平均分布，高度不确定平均收缩）<ul>
-<li>属性值<ul>
-<li>轨道大小(track-size)：可以使用css长度(px,em等)，百分比或用分数（用fr单位）</li>
-<li>网格线名字(line-name)：可以选择任用名字</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>grid-template-area:网格区域的名称来定义网格区域</p>
-<ul>
-<li>none </li>
-<li>. empty<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid-template-areas: &quot;header header header header&quot;</span><br><span class="line">                    &quot;main main . slider&quot;</span><br><span class="line">                    &quot;footer footer . footer&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>grid-column-gap/grid-row-gap 设置网格间距</p>
-</li>
-<li><p>设置行列简写</p>
-<ul>
-<li>grid-gap: grid-row-gap行 grid-column-gap列;</li>
-<li>gap: grid-row-gap行 grid-column-gap列;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grid-column-gap: 10px;</span><br><span class="line">grid-row-gap: 15px;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>items</p>
-</li>
-<li>justify-items: start | end | center | stretch（内容宽度占据整个网格区域）; // 沿着行轴(水平)对齐网格内的内容</li>
-<li>align-items</li>
-</ul>
-<h5 id="（grid布局应用）一行css代码搞定响应式"><a href="#（grid布局应用）一行css代码搞定响应式" class="headerlink" title="（grid布局应用）一行css代码搞定响应式"></a>（grid布局应用）一行css代码搞定响应式</h5><ul>
-<li><p>fraction单位值，很容易更改列的宽度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line"> .container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    /* grid-template-columns: 100px 100px 100px; */</span><br><span class="line">    grid-template-columns: 1fr 2fr 1fr;</span><br><span class="line">    grid-template-rows: 50px 50px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;4&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;5&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;6&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上面列子总是三列宽，预期希望网格能根据容器的宽度改变列的数量</p>
-</li>
-<li><p>repeat(param1, param2)函数，强大的指定列和行的方法，param1指定行与列的数量，param2指定行与列的宽度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> .container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: repeat(3, 100px);</span><br><span class="line">    grid-template-rows: repeat(2, 50px);</span><br><span class="line">    border: 1px solid #ddd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>auto-fit 可跳过固定数量的列，将3替换为自适应数量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> .container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-gap: 5px; // 设置网格之间的间距</span><br><span class="line">    grid-template-columns: repeat(auto-fit), 100px);</span><br><span class="line">    grid-template-rows: repeat(2, 50px);</span><br><span class="line">    border: 1px solid #ddd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>auto-fit 自适应设置，存在问题，网格右侧通常留有空白部分<br>  <strong>解决方法minmax()</strong></p>
-<ul>
-<li>minmax()函数定义的范围大于或等于 min， 小于或等于 max。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-gap: 5px;</span><br><span class="line">    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));</span><br><span class="line">    grid-template-rows: repeat(2, 100px);</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line">* 为网格添加图片，使图片适应于每个条目，将其宽高设置为于条目本身一样</span><br><span class="line">    **使用object-fit: conver**</span><br><span class="line">    * 将使图片覆盖它的整个容器，根据需要，浏览器将会对其进行裁剪</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p><style><br> .container {<br>    display: grid;<br>    grid-gap: 5px;<br>    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));<br>    grid-template-rows: repeat(2, 200px);<br>}<br>div {<br>    border: 1px solid #ff9400;<br>}<br>.container &gt; div &gt; img {<br>    width: 100%;<br>    height: 100%;<br>    object-fit: cover;<br>}<br></style></p>
-<p><div class="container"><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br>    <div><br>        <img src="/2019/07/09/grid/./self.jpg" alt><br>    </div><br></div><br><code>`</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2149,7 +2062,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
