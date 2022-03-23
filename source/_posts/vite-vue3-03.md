@@ -291,7 +291,7 @@ export default defineConfig({
 })
 ```
 * 配置完成之后使用ref reactive watch 等 无须import 导入 可以直接使用 
-  * <a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;"> v-model</a>
+  * <a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;">Vue3自动引入插件</a>
 * v-model
 *  <span style="color: red;">TIps 在Vue3 v-model 是破坏性更新的</span> 
 * v-model在组件里面也是很重要的
@@ -611,7 +611,7 @@ const vMove: Directive = {
   * Vue3 的自定义的hook
   * Vue3 的 hook函数 相当于 vue2 的 mixin, 不同在与 hooks 是函数
   * Vue3 的 hook函数 可以帮助我们提高代码的复用性, 让我们能在不同的组件中都利用 hooks 函数
-  * Vue3 hook <a href="https://github.com/antfu/unplugin-auto-import" style="color: blue;">库Get Started | VueUse</a>
+  * Vue3 hook <a href="https://vueuse.org/guide/" style="color: blue;">库Get Started | VueUse</a>
 ```
 import { onMounted } from 'vue'
 type Options = {
