@@ -10,6 +10,13 @@ keywords:
 author: yongfeng.peng
 language: zh-Hans
 timezone:
+# 代码块复制功能 https://www.jianshu.com/p/3e9d614c1e77
+copy_button:
+  enable: true
+  # Show text copy result.
+  show_result: false
+  # Available values: default | flat | mac
+  style:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
