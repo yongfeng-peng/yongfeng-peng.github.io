@@ -268,6 +268,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序数据过滤的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/02/小程序数据过滤的实现/" itemprop="url">小程序数据过滤的实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-02T10:30:42+08:00">
+                2020-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h4><ul>
+<li>微信小程序的wxml和js的内部实现机制是分开编译的，在wxml是没办法调用js的函数的。导致WXML缺少一个我们常用的功能，没有办法在视图层对数据进行格式化处理。</li>
+<li>比如我们从后端获取到一个包含了时间戳数据的数组，需要在界面上把这些日期都格式化显示为2017-01-01这种格式的日期形式，在Vue, Angular之类的前端Web框架中，一般在视图层都提供了如filter之类相应比较好用的方案。微信小程序推出了wxs类型文件解决这类问题的</li>
+</ul>
+<h5 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h5><ul>
+<li><p>新建filter.wxs文件(一般作为公共方法存在)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var formatDate = function (timestamp, option) &#123;</span><br><span class="line">  var date = getDate(parseInt(timestamp));</span><br><span class="line">  var year = date.getFullYear();</span><br><span class="line">  var month = date.getMonth() + 1;</span><br><span class="line">  var day = date.getDate();</span><br><span class="line">  var hour = date.getHours();</span><br><span class="line">  var minute = date.getMinutes();</span><br><span class="line">  var second = date.getSeconds();</span><br><span class="line">  if (option == &apos;notime&apos;) &#123;  //不需要时间</span><br><span class="line">    return [year, month, day].map(formatNumber).join(&apos;-&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">  return [year, month, day].map(formatNumber).join(&apos;-&apos;) + &apos; &apos; + [hour, minute, second].map(formatNumber).join(&apos;:&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var formatNumber = function(n) &#123;</span><br><span class="line">  n = n.toString();</span><br><span class="line">  return n[1] ? n : &apos;0&apos; + n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  formatDate: formatDate,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在wxml文件中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs src=&apos;../../utils/filter.wxs&apos; module=&apos;filter&apos; /&gt;</span><br><span class="line">&lt;view&gt;日期：&#123;&#123;filter.formatDate(&apos;1599013002483&apos;)&#125;&#125;&lt;/view&gt;</span><br><span class="line">&lt;view&gt;日期：&#123;&#123;filter.formatDate(&apos;1599013002483&apos;, &apos;notime&apos;)&#125;&#125;&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="在-wxs模块中引用其他-wxs-文件模块，可以使用-require-函数"><a href="#在-wxs模块中引用其他-wxs-文件模块，可以使用-require-函数" class="headerlink" title="在.wxs模块中引用其他 wxs 文件模块，可以使用 require 函数"></a>在.wxs模块中引用其他 wxs 文件模块，可以使用 require 函数</h5><ul>
+<li>引用的时候，要注意如下几点：<ul>
+<li>只能引用 .wxs 文件模块，且必须使用相对路径。</li>
+<li>wxs 模块均为单例，wxs 模块在第一次被引用时，会自动初始化为单例对象。多个页面，多个地方，多次引用，使用的都是同一个 wxs 模块对象。</li>
+<li>如果一个 wxs 模块在定义之后，一直没有被引用，则该模块不会被解析与运行</li>
+</ul>
+</li>
+<li>了解更多，参照小程序官方文档(wxs是不同于js文件的。所以很多js的api是不支持的)<ul>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/" target="_blank" rel="noopener">To Learn More…</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序兼容性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1817,199 +1982,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/css技巧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/10/css技巧/" itemprop="url">css技巧</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T09:43:41+08:00">
-                2019-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="css的一些使用技巧（含css3）"><a href="#css的一些使用技巧（含css3）" class="headerlink" title="css的一些使用技巧（含css3）"></a>css的一些使用技巧（含css3）</h4><h5 id="按钮渐变动画效果"><a href="#按钮渐变动画效果" class="headerlink" title="按钮渐变动画效果"></a>按钮渐变动画效果</h5><ul>
-<li>改变渐变的位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">    background-image: linear-gradient(#5187c4, #1c2f45);</span><br><span class="line">    background-size: auto 200%;</span><br><span class="line">    background-position: 0 100%;</span><br><span class="line">    transition: background-position 0.5s;</span><br><span class="line">&#125;    </span><br><span class="line">button:hover &#123;</span><br><span class="line">    background-position: 0 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="包裹长文本（不确定长度）"><a href="#包裹长文本（不确定长度）" class="headerlink" title="包裹长文本（不确定长度）"></a>包裹长文本（不确定长度）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pre &#123;</span><br><span class="line">    white-space: pre-line;</span><br><span class="line">    word-wrap: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="css设置模糊文本"><a href="#css设置模糊文本" class="headerlink" title="css设置模糊文本"></a>css设置模糊文本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.blurry-text &#123;</span><br><span class="line">   color: transparent;</span><br><span class="line">   text-shadow: 0 0 5px rgba(0,0,0,0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="用css实现省略号动画"><a href="#用css实现省略号动画" class="headerlink" title="用css实现省略号动画"></a>用css实现省略号动画</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.loading:after &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    content:  &quot;\2026&quot;; /* ascii code for the ellipsis character */</span><br><span class="line">    animation: ellipsis 2s infinite;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes ellipsis &#123;</span><br><span class="line">    from &#123;</span><br><span class="line">        width: 2px;</span><br><span class="line">    &#125;</span><br><span class="line">    to &#123;</span><br><span class="line">        width: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="样式重置"><a href="#样式重置" class="headerlink" title="样式重置"></a>样式重置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">    border: 0;</span><br><span class="line">    font-size: 100%;</span><br><span class="line">    font: inherit;</span><br><span class="line">    vertical-align: baseline;</span><br><span class="line">    outline: none;</span><br><span class="line">    -webkit-box-sizing: border-box;</span><br><span class="line">    -moz-box-sizing: border-box;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line">html &#123; height: 101%; &#125;</span><br><span class="line">body &#123; font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, sans-serif; &#125;</span><br><span class="line">article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section &#123; display: block; &#125;</span><br><span class="line">ol, ul &#123; list-style: none; &#125;</span><br><span class="line">blockquote, q &#123; quotes: none; &#125;</span><br><span class="line">blockquote:before, blockquote:after, q:before, q:after &#123; content: &apos;&apos;; content: none; &#125;</span><br><span class="line">strong &#123; font-weight: bold; &#125; </span><br><span class="line">table &#123; border-collapse: collapse; border-spacing: 0; &#125;</span><br><span class="line">img &#123; border: 0; max-width: 100%; &#125;</span><br><span class="line">p &#123; font-size: 1.2em; line-height: 1.0em; color: #333; &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="css清除浮动"><a href="#css清除浮动" class="headerlink" title="css清除浮动"></a>css清除浮动</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &quot;.&quot;; </span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">    line-height: 0;</span><br><span class="line">    height: 0; </span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123; display: inline-block; &#125;</span><br><span class="line">html[xmlns] .clearfix &#123; display: block; &#125;</span><br><span class="line">* html .clearfix &#123; height: 1%; &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .container:after &#123; content: &quot;&quot;; display: table; &#125;</span><br><span class="line">.clearfix:after &#123; clear: both; &#125;</span><br><span class="line">/* IE 6/7 */</span><br><span class="line">.clearfix &#123; zoom: 1; &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="自定义文本选中后的颜色"><a href="#自定义文本选中后的颜色" class="headerlink" title="自定义文本选中后的颜色"></a>自定义文本选中后的颜色</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.txt::selection &#123; </span><br><span class="line">    background: #e2eae2; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="css设置背景渐变"><a href="#css设置背景渐变" class="headerlink" title="css设置背景渐变"></a>css设置背景渐变</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.colorbox &#123;</span><br><span class="line">    background: #629721;</span><br><span class="line">    background-image: -webkit-gradient(linear, left top, left bottom, from(#83b842), to(#629721));</span><br><span class="line">    background-image: -webkit-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -moz-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -ms-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -o-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: linear-gradient(top, #83b842, #629721);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="css原图案"><a href="#css原图案" class="headerlink" title="css原图案"></a>css原图案</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background: radial-gradient(circle, white 10%, transparent 10%),</span><br><span class="line">    radial-gradient(circle, white 10%, black 10%) 50px 50px;</span><br><span class="line">    background-size: 100px 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><a href="https://juejin.im/post/5b1f41246fb9a01e725131fb" target="_blank" rel="noopener">To Learn More…</a></li>
-</ul>
-<h5 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h5><ul>
-<li>遇到问题自动换行木有效果<br><strong>子元素需要设置具体的宽度</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flex-wrap: wrap; // 父元素设置</span><br><span class="line">flex: 1; // 子元素不能这样设置，必须是具体的宽度</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h5><ul>
-<li>ul&gt;li*3&gt;{hello$}</li>
-</ul>
-<h5 id="css实现边框齿轮效果"><a href="#css实现边框齿轮效果" class="headerlink" title="css实现边框齿轮效果"></a>css实现边框齿轮效果</h5><ul>
-<li><a href="http://www.fly63.com/article/detial/521" target="_blank" rel="noopener">To Learn More…</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .toothbg &#123;</span><br><span class="line">        width: 100%;</span><br><span class="line">        height: 20px;</span><br><span class="line">        background: #ff94000;</span><br><span class="line">        background-image:-webkit-gradient(linear,50% 0,0 100%,from(transparent), color-stop(.5,transparent),color-stop(.5,#e5e5e5),to(#e5e5e5)),</span><br><span class="line">                        -webkit-gradient(linear,50% 0,100% 100%,from(transparent), color-stop(.5,transparent),color-stop(.5,#e5e5e5),to(#e5e5e5));</span><br><span class="line">        background-image:-moz-linear-gradient(50% 0 -45deg,transparent,transparent 50%,#e5e5e5 50%,#e5e5e5),</span><br><span class="line">                        -moz-linear-gradient(50% 0 -135deg,transparent,transparent 50%,#e5e5e5 50%,#e5e5e5);                                </span><br><span class="line">        background-size:30px 15px;</span><br><span class="line">        background-repeat:repeat-x;</span><br><span class="line">        background-position:0 100%;                    </span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;toothbg&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="css实现动画效果"><a href="#css实现动画效果" class="headerlink" title="css实现动画效果"></a>css实现动画效果</h5><ul>
-<li>国外网站参考</li>
-<li><a href="https://reeoo.com/" target="_blank" rel="noopener">To Learn More…</a></li>
-</ul>
-<h5 id="css边框"><a href="#css边框" class="headerlink" title="css边框"></a>css边框</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-style: none | solid | dashed | dotted | double;</span><br></pre></td></tr></table></figure>
-<h5 id="css文本控制"><a href="#css文本控制" class="headerlink" title="css文本控制"></a>css文本控制</h5><ul>
-<li><p>first-letter 选中首个字符(针对块元素有作用)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.txt &#123;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    border: 1px double #ff9400;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.txt::first-letter &#123;</span><br><span class="line">    font-size: 40px;</span><br><span class="line">    color: #ff0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;txt&quot;&gt;¥ 200&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>text-transform 指定文本大小写(应用在假设输入框只能输入大小写)</p>
-</li>
-<li><p>capitalize 首字母大写 | uppercase 全部大写 lowercase 全部小写 none</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform: capitalize | uppercase | lowercase | none;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>word-spacing 指定空格间隙（前后空格没有用，设置的是<strong>字符</strong>之间空格）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word-spacing: 10px;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>white-space 空白符处理</p>
-</li>
-<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/white-space" style="color: blue;" target="_blank" rel="noopener">To Learn More…</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">white-space: normal | nowrap | pre | pre-wrap | pre-line;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>text-align: justify 设置两端对齐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">div &#123;</span><br><span class="line">  outline: 1px solid;</span><br><span class="line">&#125;</span><br><span class="line">span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-bottom: 1px solid lightcyan;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: cyan;</span><br><span class="line">&#125;</span><br><span class="line">i &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  outline: 1px dashed;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;1&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;2&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;3&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;4&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;5&lt;/span&gt;</span><br><span class="line">    &lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;x</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2062,7 +2034,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2299,4 +2271,7 @@
   
 
 </body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </html>
