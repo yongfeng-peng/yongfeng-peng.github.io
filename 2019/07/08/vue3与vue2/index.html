@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="vue3(指vue-cli3)与vue2差异创建项目，vue3比起vue2简单很多* vue create xxx(项目名称) 或者vue ui     * 选择安装模式     * ts-sass自己安装过的模板     * default系统默认     * Manually select features自己选配置     * 注意的是     * 卸载 npm uninstall vue-">
+<meta name="description" content="vue3(指vue-cli3)与vue2差异 vue3 性能的提升 打包大小减小41% 初次渲染快55%，更新快了33% 内存使用减少54%   composition api 更好的TS支持   vue2 随着功能对增长，复杂组件对代码难以维护 Mixin缺点 命名冲突 不清楚暴露出来变量的作用 重用到其它component经常会遇到问题     vue2对ts支持非常有限创建项目，vue3比起">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue3与vue2">
 <meta property="og:url" content="http://yoursite.com/2019/07/08/vue3与vue2/index.html">
 <meta property="og:site_name" content="Shero.">
-<meta property="og:description" content="vue3(指vue-cli3)与vue2差异创建项目，vue3比起vue2简单很多* vue create xxx(项目名称) 或者vue ui     * 选择安装模式     * ts-sass自己安装过的模板     * default系统默认     * Manually select features自己选配置     * 注意的是     * 卸载 npm uninstall vue-">
+<meta property="og:description" content="vue3(指vue-cli3)与vue2差异 vue3 性能的提升 打包大小减小41% 初次渲染快55%，更新快了33% 内存使用减少54%   composition api 更好的TS支持   vue2 随着功能对增长，复杂组件对代码难以维护 Mixin缺点 命名冲突 不清楚暴露出来变量的作用 重用到其它component经常会遇到问题     vue2对ts支持非常有限创建项目，vue3比起">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-02T08:39:48.880Z">
+<meta property="og:updated_time" content="2022-03-30T09:27:50.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue3与vue2">
-<meta name="twitter:description" content="vue3(指vue-cli3)与vue2差异创建项目，vue3比起vue2简单很多* vue create xxx(项目名称) 或者vue ui     * 选择安装模式     * ts-sass自己安装过的模板     * default系统默认     * Manually select features自己选配置     * 注意的是     * 卸载 npm uninstall vue-">
+<meta name="twitter:description" content="vue3(指vue-cli3)与vue2差异 vue3 性能的提升 打包大小减小41% 初次渲染快55%，更新快了33% 内存使用减少54%   composition api 更好的TS支持   vue2 随着功能对增长，复杂组件对代码难以维护 Mixin缺点 命名冲突 不清楚暴露出来变量的作用 重用到其它component经常会遇到问题     vue2对ts支持非常有限创建项目，vue3比起">
 
 
 
@@ -357,18 +357,48 @@
       
 
       
-        <h4 id="vue3-指vue-cli3-与vue2差异"><a href="#vue3-指vue-cli3-与vue2差异" class="headerlink" title="vue3(指vue-cli3)与vue2差异"></a>vue3(指vue-cli3)与vue2差异</h4><h5 id="创建项目，vue3比起vue2简单很多"><a href="#创建项目，vue3比起vue2简单很多" class="headerlink" title="创建项目，vue3比起vue2简单很多"></a>创建项目，vue3比起vue2简单很多</h5><pre><code>* vue create xxx(项目名称) 或者vue ui
-    * 选择安装模式
-    * ts-sass自己安装过的模板
-    * default系统默认
-    * Manually select features自己选配置
-    * 注意的是
-    * 卸载 npm uninstall vue-cli -g
-    * npm install -g @vue/cli // 安装cli3.x
-    * 更新node到最新版本 npm install -g n(安装模块 这个模块是专门用来管理node.js版本的) n stable(sudo n stable） // 更新node版本
-* &lt;a href=&quot;https://juejin.im/post/5bdec6e8e51d4505327a8952&quot; style=&quot;color: blue;&quot;&gt;想了解more跳转&lt;/a&gt;
-* 移动端vue3配置 &lt;a href=&quot;https://juejin.im/post/5cbf32bc6fb9a03236393379“ style=&quot;color: blue;&quot;&gt;想了解more跳转&lt;/a&gt;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// vue.config.js的配置</span><br><span class="line">// vue.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    // 选项...</span><br><span class="line">    // 当使用基于 HTML5 history.pushState 的路由时；</span><br><span class="line">    // 当使用 pages 选项构建多页面应用时。</span><br><span class="line">    baseUrl:&quot;&quot;,</span><br><span class="line">    // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。</span><br><span class="line">    outputDir:&quot;webApp&quot;,</span><br><span class="line">    // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。</span><br><span class="line">    assetsDir:&quot;assets&quot;,</span><br><span class="line">    // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。</span><br><span class="line">    indexPath:&quot;index.html&quot;,</span><br><span class="line">    // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。然而，这也要求 index 的 HTML 是被 Vue CLI 自动生成的。如果你无法使用 Vue CLI 生成的 index HTML，你可以通过将这个选项设为 false 来关闭文件名哈希。</span><br><span class="line">    filenameHashing:true,</span><br><span class="line">    // 多页面</span><br><span class="line">    pages:undefined,</span><br><span class="line">    // 编译警告</span><br><span class="line">    lintOnSave:false,</span><br><span class="line">    // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。</span><br><span class="line">    runtimeCompiler:false,</span><br><span class="line">    // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来。</span><br><span class="line">    transpileDependencies:[],</span><br><span class="line">    // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。</span><br><span class="line">    productionSourceMap:false,</span><br><span class="line">    // 设置生成的 HTML 中 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签的 crossorigin 属性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。</span><br><span class="line">    crossorigin:undefined,</span><br><span class="line">    // 在生成的 HTML 中的 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签上启用 Subresource Integrity (SRI)。如果你构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。另外，当启用 SRI 时，preload resource hints 会被禁用，因为 Chrome 的一个 bug 会导致文件被下载两次。</span><br><span class="line">    integrity:false,</span><br><span class="line">    // 反向代理</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        // devServer: &#123;</span><br><span class="line">        //     proxy: &#123;</span><br><span class="line">        //       &apos;/api&apos;: &#123;</span><br><span class="line">        //         target: &apos;1&apos;,</span><br><span class="line">        //         ws: true,</span><br><span class="line">        //         changeOrigin: true</span><br><span class="line">        //       &#125;</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="vue3-指vue-cli3-与vue2差异"><a href="#vue3-指vue-cli3-与vue2差异" class="headerlink" title="vue3(指vue-cli3)与vue2差异"></a>vue3(指vue-cli3)与vue2差异</h4><ul>
+<li>vue3<ul>
+<li>性能的提升<ul>
+<li>打包大小减小41%</li>
+<li>初次渲染快55%，更新快了33%</li>
+<li>内存使用减少54%</li>
+</ul>
+</li>
+<li>composition api</li>
+<li>更好的TS支持</li>
+</ul>
+</li>
+<li>vue2<ul>
+<li>随着功能对增长，复杂组件对代码难以维护<ul>
+<li>Mixin缺点<ul>
+<li>命名冲突</li>
+<li>不清楚暴露出来变量的作用</li>
+<li>重用到其它component经常会遇到问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>vue2对ts支持非常有限<h5 id="创建项目，vue3比起vue2简单很多"><a href="#创建项目，vue3比起vue2简单很多" class="headerlink" title="创建项目，vue3比起vue2简单很多"></a>创建项目，vue3比起vue2简单很多</h5><ul>
+<li>vue create xxx(项目名称) 或者vue ui<ul>
+<li>选择安装模式</li>
+<li>ts-sass自己安装过的模板</li>
+<li>default系统默认</li>
+<li>Manually select features自己选配置</li>
+<li>注意的是</li>
+<li>卸载 npm uninstall vue-cli -g</li>
+<li>npm install -g @vue/cli // 安装cli3.x</li>
+<li>更新node到最新版本 npm install -g n(安装模块 这个模块是专门用来管理node.js版本的) n stable(sudo n stable） // 更新node版本</li>
+</ul>
+</li>
+<li><a href="https://juejin.im/post/5bdec6e8e51d4505327a8952" style="color: blue;" target="_blank" rel="noopener">想了解more跳转</a></li>
+<li>移动端vue3配置 &lt;a href=”<a href="https://juejin.im/post/5cbf32bc6fb9a03236393379“" target="_blank" rel="noopener">https://juejin.im/post/5cbf32bc6fb9a03236393379“</a> style=”color: blue;”&gt;想了解more跳转</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// vue.config.js的配置</span><br><span class="line">// vue.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    // 选项...</span><br><span class="line">    // 当使用基于 HTML5 history.pushState 的路由时；</span><br><span class="line">    // 当使用 pages 选项构建多页面应用时。</span><br><span class="line">    baseUrl:&quot;&quot;,</span><br><span class="line">    // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。</span><br><span class="line">    outputDir:&quot;webApp&quot;,</span><br><span class="line">    // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。</span><br><span class="line">    assetsDir:&quot;assets&quot;,</span><br><span class="line">    // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。</span><br><span class="line">    indexPath:&quot;index.html&quot;,</span><br><span class="line">    // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。然而，这也要求 index 的 HTML 是被 Vue CLI 自动生成的。如果你无法使用 Vue CLI 生成的 index HTML，你可以通过将这个选项设为 false 来关闭文件名哈希。</span><br><span class="line">    filenameHashing:true,</span><br><span class="line">    // 多页面</span><br><span class="line">    pages:undefined,</span><br><span class="line">    // 编译警告</span><br><span class="line">    lintOnSave:false,</span><br><span class="line">    // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。</span><br><span class="line">    runtimeCompiler:false,</span><br><span class="line">    // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来。</span><br><span class="line">    transpileDependencies:[],</span><br><span class="line">    // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。</span><br><span class="line">    productionSourceMap:false,</span><br><span class="line">    // 设置生成的 HTML 中 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签的 crossorigin 属性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。</span><br><span class="line">    crossorigin:undefined,</span><br><span class="line">    // 在生成的 HTML 中的 &lt;link rel=&quot;stylesheet&quot;&gt; 和 &lt;script&gt; 标签上启用 Subresource Integrity (SRI)。如果你构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性。需要注意的是该选项仅影响由 html-webpack-plugin 在构建时注入的标签 - 直接写在模版 (public/index.html) 中的标签不受影响。另外，当启用 SRI 时，preload resource hints 会被禁用，因为 Chrome 的一个 bug 会导致文件被下载两次。</span><br><span class="line">    integrity:false,</span><br><span class="line">    // 反向代理</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        // devServer: &#123;</span><br><span class="line">        //     proxy: &#123;</span><br><span class="line">        //       &apos;/api&apos;: &#123;</span><br><span class="line">        //         target: &apos;1&apos;,</span><br><span class="line">        //         ws: true,</span><br><span class="line">        //         changeOrigin: true</span><br><span class="line">        //       &#125;</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>* cd xxx(项目名称)
 * yarn serve
 </code></pre><h5 id="vue开发技巧"><a href="#vue开发技巧" class="headerlink" title="vue开发技巧"></a>vue开发技巧</h5><ul>
