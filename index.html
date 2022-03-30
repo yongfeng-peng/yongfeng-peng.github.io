@@ -268,6 +268,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/30/TS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/30/TS/" itemprop="url">TS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T14:54:03+08:00">
+                2022-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="typeScript"><a href="#typeScript" class="headerlink" title="typeScript"></a>typeScript</h3><ul>
+<li><a href="https://www.typescriptlang.org/zh/" style="color: blue;" target="_blank" rel="noopener">Typescript</a> </li>
+<li><a href="https://github.com/nvm-sh/nvm" style="color: blue;" target="_blank" rel="noopener">使用 nvm 来管理 node 版本</a> <h4 id="为什么要学习ts"><a href="#为什么要学习ts" class="headerlink" title="为什么要学习ts"></a>为什么要学习ts</h4></li>
+<li>程序更容易理解<ul>
+<li>函数或者方法输入输出的参数类型、外部条件</li>
+<li>动态语言的约束：需要手动调试等过程</li>
+<li>ts可以解决以上问题</li>
+</ul>
+</li>
+<li>效率更高<ul>
+<li>在不同的代码块和定义中进行跳转</li>
+<li>代码自动补全</li>
+<li>丰富的接口提示</li>
+</ul>
+</li>
+<li>更少的错误<ul>
+<li>编译期间能够发现大部分错误</li>
+<li>杜绝一些比较常见的错误</li>
+</ul>
+</li>
+<li>非常好的包容性<ul>
+<li>完全兼容javascript</li>
+<li>第三方库可以单独编写类型文件</li>
+<li>大多数项目都支持ts</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>增加一些学习成本</li>
+<li>短期内增加了一些开发成本</li>
+</ul>
+</li>
+<li><p>安装 Typescript:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line">yarn global add typescript</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 tsc 全局命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 查看 tsc 版本</span><br><span class="line">tsc -v</span><br><span class="line">// 编译 ts 文件</span><br><span class="line">tsc fileName.ts</span><br><span class="line">// 运行</span><br><span class="line">ts-node fileName.ts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组和元组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//最简单的方法是使用「类型 + 方括号」来表示数组：</span><br><span class="line">let arrOfNumbers: number[] = [1, 2, 3, 4]</span><br><span class="line">//数组的项中不允许出现其他的类型：</span><br><span class="line">//数组的一些方法的参数也会根据数组在定义时约定的类型进行限制：</span><br><span class="line">arrOfNumbers.push(3)</span><br><span class="line">arrOfNumbers.push(&apos;abc&apos;)</span><br><span class="line"></span><br><span class="line">// 元祖的表示和数组非常类似，只不过它将类型写在了里面 这就对每一项起到了限定的作用</span><br><span class="line">let user: [string, number] = [&apos;viking&apos;, 20]</span><br><span class="line">//但是当我们写少一项 就会报错 同样写多一项也会有问题</span><br><span class="line">user = [&apos;molly&apos;, 20, true]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>interface 接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 我们定义了一个接口 Person</span><br><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line">// 接着定义了一个变量 viking，它的类型是 Person。这样，我们就约束了 viking 的形状必须和接口 Person 一致。</span><br><span class="line">let viking: Person =&#123;</span><br><span class="line">  name: &apos;viking&apos;,</span><br><span class="line">  age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//有时我们希望不要完全匹配一个形状，那么可以用可选属性：</span><br><span class="line">interface Person &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    age?: number;</span><br><span class="line">&#125;</span><br><span class="line">let viking: Person = &#123;</span><br><span class="line">    name: &apos;Viking&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//接下来还有只读属性，有时候我们希望对象中的一些字段只能在创建的时候被赋值，那么可以用 readonly 定义只读属性</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">  readonly id: number;</span><br><span class="line">  name: string;</span><br><span class="line">  age?: number;</span><br><span class="line">&#125;</span><br><span class="line">viking.id = 9527</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 来到我们的第一个例子，约定输入，约定输出</span><br><span class="line">function add(x: number, y: number): number &#123;</span><br><span class="line">  return x + y</span><br><span class="line">&#125;</span><br><span class="line">// 可选参数</span><br><span class="line">function add(x: number, y: number, z?: number): number &#123;</span><br><span class="line">  if (typeof z === &apos;number&apos;) &#123;</span><br><span class="line">    return x + y + z</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return x + y</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 函数本身的类型</span><br><span class="line">const add2: (x: number, y: number, z?:number) =&gt; number = add</span><br><span class="line"></span><br><span class="line">// interface 描述函数类型</span><br><span class="line">const sum = (x: number, y: number) =&gt; &#123;</span><br><span class="line">  return x + y</span><br><span class="line">&#125;</span><br><span class="line">interface ISum &#123;</span><br><span class="line">  (x: number, y: number): number</span><br><span class="line">&#125;</span><br><span class="line">const sum2: ISum = sum</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型推论，联合类型 和 类型断言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 联合类型 - union types</span><br><span class="line">// 我们只需要用中竖线来分割两个</span><br><span class="line">let numberOrString: number | string </span><br><span class="line">// 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：</span><br><span class="line">numberOrString.length</span><br><span class="line">numberOrString.toString()</span><br><span class="line">// 类型断言 - type assertions</span><br><span class="line">// 这里我们可以用 as 关键字，告诉typescript 编译器，你没法判断我的代码，但是我本人很清楚，这里我就把它看作是一个 string，你可以给他用 string 的方法。</span><br><span class="line">function getLength(input: string | number): number &#123;</span><br><span class="line">  const str = input as string</span><br><span class="line">  if (str.length) &#123;</span><br><span class="line">    return str.length</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    const number = input as number</span><br><span class="line">    return number.toString().length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 类型守卫 - type guard</span><br><span class="line">// typescript 在不同的条件分支里面，智能的缩小了范围，这样我们代码出错的几率就大大的降低了。</span><br><span class="line">function getLength2(input: string | number): number &#123;</span><br><span class="line">  if (typeof input === &apos;string&apos;) &#123;</span><br><span class="line">    return input.length</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return input.toString().length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>枚举 Enums</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 数字枚举，一个数字枚举可以用 enum 这个关键词来定义，我们定义一系列的方向，然后这里面的值，枚举成员会被赋值为从 0 开始递增的数字,</span><br><span class="line">enum Direction &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right,</span><br><span class="line">&#125;</span><br><span class="line">console.log(Direction.Up)</span><br><span class="line"></span><br><span class="line">// 还有一个神奇的点是这个枚举还做了反向映射</span><br><span class="line">console.log(Direction[0])</span><br><span class="line"></span><br><span class="line">// 字符串枚举</span><br><span class="line">enum Direction &#123;</span><br><span class="line">  Up = &apos;UP&apos;,</span><br><span class="line">  Down = &apos;DOWN&apos;,</span><br><span class="line">  Left = &apos;LEFT&apos;,</span><br><span class="line">  Right = &apos;RIGHT&apos;,</span><br><span class="line">&#125;</span><br><span class="line">const value = &apos;UP&apos;</span><br><span class="line">if (value === Direction.Up) &#123;</span><br><span class="line">  console.log(&apos;go up!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>泛型 Generics</p>
+<ul>
+<li>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性</li>
+<li>相当于一个占位符<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function echo(arg) &#123;</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line">const result = echo(123)</span><br><span class="line">// 这时候我们发现了一个问题，我们传入了数字，但是返回了 any</span><br><span class="line"></span><br><span class="line">function echo&lt;T&gt;(arg: T): T &#123;</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line">const result = echo(123)</span><br><span class="line"></span><br><span class="line">// 泛型也可以传入多个值</span><br><span class="line">function swap&lt;T, U&gt;(tuple: [T, U]): [U, T] &#123;</span><br><span class="line">  return [tuple[1], tuple[0]]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const result = swap([&apos;string&apos;, 123])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>泛型约束</p>
+<ul>
+<li>在函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function echoWithArr&lt;T&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length)</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 缺陷 只能指定特定类型</span><br><span class="line">// function echoWithArr&lt;T&gt;(arg: T[]): T[] &#123;</span><br><span class="line">//   console.log(arg.length)</span><br><span class="line">//   return arg</span><br><span class="line">// &#125;</span><br><span class="line">// 上例中，泛型 T 不一定包含属性 length，我们可以给他传入任意类型，当然有些不包括 length 属性，那样就会报错</span><br><span class="line"></span><br><span class="line">interface IWithLength &#123;</span><br><span class="line">  length: number;</span><br><span class="line">&#125;</span><br><span class="line">function echoWithLength&lt;T extends IWithLength&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length)</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echoWithLength(&apos;str&apos;)</span><br><span class="line">const result3 = echoWithLength(&#123;length: 10&#125;)</span><br><span class="line">const result4 = echoWithLength([1, 2, 3])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>泛型与类和接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class Queue &#123;</span><br><span class="line">  private data = [];</span><br><span class="line">  push(item) &#123;</span><br><span class="line">    return this.data.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">  pop() &#123;</span><br><span class="line">    return this.data.shift()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const queue = new Queue()</span><br><span class="line">queue.push(1)</span><br><span class="line">queue.push(&apos;str&apos;)</span><br><span class="line">console.log(queue.pop().toFixed())</span><br><span class="line">console.log(queue.pop().toFixed())</span><br><span class="line"></span><br><span class="line">//在上述代码中存在一个问题，它允许你向队列中添加任何类型的数据，当然，当数据被弹出队列时，也可以是任意类型。在上面的示例中，看起来人们可以向队列中添加string 类型的数据，但是那么在使用的过程中，就会出现我们无法捕捉到的错误，</span><br><span class="line"></span><br><span class="line">class Queue&lt;T&gt; &#123;</span><br><span class="line">  private data = [];</span><br><span class="line">  push(item: T) &#123;</span><br><span class="line">    return this.data.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">  pop(): T &#123;</span><br><span class="line">    return this.data.shift()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const queue = new Queue&lt;number&gt;()</span><br><span class="line"></span><br><span class="line">//泛型和 interface</span><br><span class="line">interface KeyPair&lt;T, U&gt; &#123;</span><br><span class="line">  key: T;</span><br><span class="line">  value: U;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let kp1: KeyPair&lt;number, string&gt; = &#123; key: 1, value: &quot;str&quot;&#125;</span><br><span class="line">let kp2: KeyPair&lt;string, number&gt; = &#123; key: &quot;str&quot;, value: 123&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型别名(Type Aliases) 和 交叉类型( Intersection Types)</p>
+<ul>
+<li>类型别名，就是给类型起一个别名，让它可以更方便的被重用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let sum: (x: number, y: number) =&gt; number</span><br><span class="line">const result = sum(1,2)</span><br><span class="line">type PlusType = (x: number, y: number) =&gt; number</span><br><span class="line">let sum2: PlusType</span><br><span class="line"></span><br><span class="line">// 支持联合类型</span><br><span class="line">type StrOrNumber = string | number</span><br><span class="line">let result2: StrOrNumber = &apos;123&apos;</span><br><span class="line">result2 = 123</span><br><span class="line"></span><br><span class="line">// 字符串字面量</span><br><span class="line">type Directions = &apos;Up&apos; | &apos;Down&apos; | &apos;Left&apos; | &apos;Right&apos;</span><br><span class="line">let toWhere: Directions = &apos;Up&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface IName  &#123;</span><br><span class="line">  name: string</span><br><span class="line">&#125;</span><br><span class="line">type IPerson = IName &amp; &#123; age: number &#125;</span><br><span class="line">let person: IPerson = &#123; name: &apos;hello&apos;, age: 12&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.imooc.com/wiki/vue3TS/w20c7.html" style="color: blue;" target="_blank" rel="noopener">more…</a> </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/28/移动端H5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2724,164 +2944,6 @@ components: {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/使用秋云-ucharts-echarts踩坑/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/02/使用秋云-ucharts-echarts踩坑/" itemprop="url">使用秋云 ucharts echarts踩坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-02T11:07:10+08:00">
-                2022-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架、uniapp/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架、uniapp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="uniapp使用秋云-ucharts-echarts-高性能跨全端图表组件"><a href="#uniapp使用秋云-ucharts-echarts-高性能跨全端图表组件" class="headerlink" title="uniapp使用秋云 ucharts echarts 高性能跨全端图表组件"></a>uniapp使用秋云 ucharts echarts 高性能跨全端图表组件</h3><ul>
-<li><a href="https://ext.dcloud.net.cn/plugin?id=271" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> </li>
-<li>依赖uniapp的vue-cli项目：请将uni-modules目录复制到src目录，即src/uni_modules。（请升级uniapp依赖为最新版本）</li>
-</ul>
-<h4 id="自定义echarts参数"><a href="#自定义echarts参数" class="headerlink" title="自定义echarts参数"></a>自定义echarts参数</h4><ul>
-<li>使用eopts 但参数不能包含函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;qiun-data-charts</span><br><span class="line">  :style=&quot;&#123; height: height, width: width &#125;&quot;</span><br><span class="line">  type=&quot;area&quot;</span><br><span class="line">  ref=&quot;pieChart&quot;</span><br><span class="line">  :eopts=&quot;lineEopts&quot;</span><br><span class="line">  :opts=&quot;&#123;yAxis:&#123;data:[&#123;min:0&#125;]&#125;,extra:&#123;area:&#123;type:&apos;curve&apos;,addLine:true,gradient:true&#125;&#125;&#125;&quot;</span><br><span class="line">  :chartData=&quot;chartData&quot; </span><br><span class="line">  :echartsH5=&quot;true&quot; </span><br><span class="line">  :echartsApp=&quot;true&quot;</span><br><span class="line">  tooltipFormat=&quot;lineTooltip&quot;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="自定义tooltipFormat格式"><a href="#自定义tooltipFormat格式" class="headerlink" title="自定义tooltipFormat格式"></a>自定义tooltipFormat格式</h4><ul>
-<li>在配置文件config-echarts.js里面定义对应的formatter 函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;qiun-data-charts</span><br><span class="line">  :style=&quot;&#123; height: height, width: width &#125;&quot;</span><br><span class="line">  type=&quot;area&quot;</span><br><span class="line">  ref=&quot;pieChart&quot;</span><br><span class="line">  :eopts=&quot;lineEopts&quot;</span><br><span class="line">  :opts=&quot;&#123;yAxis:&#123;data:[&#123;min:0&#125;]&#125;,extra:&#123;area:&#123;type:&apos;curve&apos;,addLine:true,gradient:true&#125;&#125;&#125;&quot;</span><br><span class="line">  :chartData=&quot;chartData&quot; </span><br><span class="line">  :echartsH5=&quot;true&quot; </span><br><span class="line">  :echartsApp=&quot;true&quot;</span><br><span class="line">  tooltipFormat=&quot;lineTooltip&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">// tooltip排序</span><br><span class="line">function compare(property) &#123;</span><br><span class="line">  return (arr, arr2) =&gt; &#123;</span><br><span class="line">    let a = arr[property];</span><br><span class="line">    let b = arr2[property];</span><br><span class="line">    return b - a;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cfe = &#123;</span><br><span class="line">  &quot;formatter&quot;:&#123;</span><br><span class="line">    lineTooltip: (res) =&gt; &#123;</span><br><span class="line">      let result = &apos;&apos;;</span><br><span class="line">      let _res = res.sort(compare(&quot;value&quot;));</span><br><span class="line">      for (let i in _res) &#123;</span><br><span class="line">        if (i == 0) &#123;</span><br><span class="line">          result += res[i].axisValueLabel</span><br><span class="line">        &#125;</span><br><span class="line">        let value = &apos;--&apos;</span><br><span class="line">        if (_res[i].data !== null) &#123;</span><br><span class="line">          value = _res[i].data;</span><br><span class="line">        &#125;</span><br><span class="line">        // #ifdef H5</span><br><span class="line">        result += &apos;\n&apos; + _res[i].seriesName + &apos;：&apos; + value;</span><br><span class="line">        // #endif</span><br><span class="line">        </span><br><span class="line">        // #ifdef APP-PLUS</span><br><span class="line">        result += &apos;&lt;br/&gt;&apos; + _res[i].marker + _res[i].seriesName + &apos;：&apos; + value;</span><br><span class="line">        // #endif</span><br><span class="line">      &#125;</span><br><span class="line">      return result;</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="区域图设置渐变-自定义颜色color、graphicColor"><a href="#区域图设置渐变-自定义颜色color、graphicColor" class="headerlink" title="区域图设置渐变,自定义颜色color、graphicColor"></a>区域图设置渐变,自定义颜色color、graphicColor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">initColor() &#123;</span><br><span class="line">  this.colorList = this.color.map((item, index) =&gt; &#123;</span><br><span class="line">    return  &#123;</span><br><span class="line">      color: item,</span><br><span class="line">      areaStyle: &#123;</span><br><span class="line">        color: &#123;</span><br><span class="line">          type: &apos;linear&apos;,</span><br><span class="line">          x: 0,</span><br><span class="line">          y: 0,</span><br><span class="line">          x2: 0,</span><br><span class="line">          y2: 1,</span><br><span class="line">          colorStops: [&#123;</span><br><span class="line">            offset: 0,</span><br><span class="line">            color: this.graphicColor[index] // 0% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 0.4,</span><br><span class="line">            color: this.graphicColor[index] // 100% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 1,</span><br><span class="line">            color: &quot;#ffffff&quot;,</span><br><span class="line">          &#125;],</span><br><span class="line">          global: false // 缺省为 false</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<h4 id="tab切换数据合并问题，设置eopts参数"><a href="#tab切换数据合并问题，设置eopts参数" class="headerlink" title="tab切换数据合并问题，设置eopts参数"></a>tab切换数据合并问题，设置eopts参数</h4><ul>
-<li>eopts不能传递function，如果option配置参数需要function，请将option写在config-echarts.js中即可实现。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lineEopts: &#123;</span><br><span class="line">   notMerge: true, // 是否不跟之前设置的 option 进行合并。默认为false。即表示合并</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2934,7 +2996,7 @@ components: {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

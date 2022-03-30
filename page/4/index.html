@@ -268,6 +268,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/css特效/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/14/css特效/" itemprop="url">css特效</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T11:32:21+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="CSS特效"><a href="#CSS特效" class="headerlink" title="CSS特效"></a>CSS特效</h4><h5 id="search-搜索"><a href="#search-搜索" class="headerlink" title="search 搜索"></a>search 搜索</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;search&quot; type=&quot;text&quot; placeholder=&quot;搜索...&quot;&gt;</span><br><span class="line">.search&#123;</span><br><span class="line">  width:80px;</span><br><span class="line">  height:40px;</span><br><span class="line">  border-radius:40px;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position: absolute;</span><br><span class="line">  right:200px;</span><br><span class="line">  outline:none;</span><br><span class="line">  text-indent:12px;</span><br><span class="line">  color:#666;</span><br><span class="line">  font-size:16px;</span><br><span class="line">  padding:0;</span><br><span class="line">  -webkit-transition:width 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">.search:focus&#123;</span><br><span class="line">  width:200px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="若隐若现，鼠标放上显示"><a href="#若隐若现，鼠标放上显示" class="headerlink" title="若隐若现，鼠标放上显示"></a>若隐若现，鼠标放上显示</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">.banner&#123;</span><br><span class="line">  width:234px;</span><br><span class="line">  height:34px;</span><br><span class="line">  border-radius:40px;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:400px;</span><br><span class="line">  left:600px;</span><br><span class="line">&#125;</span><br><span class="line">.banner a&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:30px;</span><br><span class="line">  height:30px;</span><br><span class="line">  line-height:30px;</span><br><span class="line">  border-radius:50%;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position:absolute;</span><br><span class="line">  left:0px;top:0px;</span><br><span class="line">  background:lightgreen;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-align:center;</span><br><span class="line">  text-decoration:none;</span><br><span class="line">  cursor:pointer;</span><br><span class="line">  z-index:2;</span><br><span class="line">&#125;</span><br><span class="line">.banner a:hover + span&#123;</span><br><span class="line">  -webkit-transform:translateX(40px);</span><br><span class="line">  opacity:1;</span><br><span class="line">&#125;</span><br><span class="line">.banner span&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:auto;</span><br><span class="line">  padding:0 20px;</span><br><span class="line">  height:30px;line-height:30px;</span><br><span class="line">  background:lightblue;</span><br><span class="line">  border-radius:30px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color:#fff;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:2px;</span><br><span class="line">  opacity:0;</span><br><span class="line">  -webkit-transition:all 1s;</span><br><span class="line">  -webkit-transform:translateX(80px);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;banner&quot;&gt;</span><br><span class="line">  &lt;a href=&quot;javascript:;&quot;&gt;博&lt;/a&gt;</span><br><span class="line">  &lt;span&gt;这是我的个人博客&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="博客可用效果1"><a href="#博客可用效果1" class="headerlink" title="博客可用效果1"></a>博客可用效果1</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">.banner&#123;</span><br><span class="line">  width:234px;</span><br><span class="line">  height:34px;</span><br><span class="line">  border-radius:34px;</span><br><span class="line">  position:absolute;</span><br><span class="line">  top:400px;</span><br><span class="line">  left:200px;</span><br><span class="line">&#125;</span><br><span class="line">.banner a&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:30px;</span><br><span class="line">  height:30px;</span><br><span class="line">  line-height:30px;</span><br><span class="line">  border-radius:50%;</span><br><span class="line">  border:2px solid lightblue;</span><br><span class="line">  position:absolute;</span><br><span class="line">  left:0px;top:0px;</span><br><span class="line">  background:lightgreen;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-align:center;</span><br><span class="line">  text-decoration:none;</span><br><span class="line">  cursor:pointer;</span><br><span class="line">  z-index:2;</span><br><span class="line">&#125;</span><br><span class="line">.banner a:hover + span&#123;</span><br><span class="line">  -webkit-transform:rotate(360deg);</span><br><span class="line">  opacity:1;</span><br><span class="line">&#125;</span><br><span class="line">.banner span&#123;</span><br><span class="line">  display:inline-block;</span><br><span class="line">  width:auto;</span><br><span class="line">  padding:0 20px;</span><br><span class="line">  height:34px;</span><br><span class="line">  line-height:34px;</span><br><span class="line">  background:lightblue;</span><br><span class="line">  border-radius:34px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  position:absolute;</span><br><span class="line">  color:#fff;</span><br><span class="line">  text-indent:25px;</span><br><span class="line">  opacity:0;</span><br><span class="line">  -webkit-transform-origin:8% center;</span><br><span class="line">  -webkit-transition:all 1s;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;banner&quot;&gt;</span><br><span class="line">  &lt;a href=&quot;javascript:;&quot;&gt;博&lt;/a&gt;</span><br><span class="line">  &lt;span&gt;这是我的个人博客&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="博客可用效果2"><a href="#博客可用效果2" class="headerlink" title="博客可用效果2"></a>博客可用效果2</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  background: lightblue;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 200px;</span><br><span class="line">  left: 400px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper:after &#123;</span><br><span class="line">  content: &apos;你猜&apos;;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #fff;</span><br><span class="line">  font-size: 24px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper:hover .round &#123;</span><br><span class="line">  -webkit-transform: scale(1);</span><br><span class="line">  opacity: 1;</span><br><span class="line">  -webkit-animation: rotating 6s 1.2s linear infinite alternate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@-webkit-keyframes rotating &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -webkit-transform: rotate(0deg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  100% &#123;</span><br><span class="line">    -webkit-transform: rotate(180deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round &#123;</span><br><span class="line">  width: 240px;</span><br><span class="line">  height: 240px;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: -70px;</span><br><span class="line">  left: -70px;</span><br><span class="line">  -webkit-transition: all 1s;</span><br><span class="line">  -webkit-transform: scale(0.35);</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span &#123;</span><br><span class="line">  width: 40px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  line-height: 40px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: lightblue;</span><br><span class="line">  border: 2px solid lightgreen;</span><br><span class="line">  color: #fff;</span><br><span class="line">  text-align: center;</span><br><span class="line">  position: absolute;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(1) &#123;</span><br><span class="line">  right: -22px;</span><br><span class="line">  top: 50%;</span><br><span class="line">  margin-top: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(2) &#123;</span><br><span class="line">  left: -22px;</span><br><span class="line">  top: 50%;</span><br><span class="line">  margin-top: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(3) &#123;</span><br><span class="line">  left: 50%;</span><br><span class="line">  bottom: -22px;</span><br><span class="line">  margin-left: -22px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round span:nth-child(4) &#123;</span><br><span class="line">  left: 50%;</span><br><span class="line">  top: -22px;</span><br><span class="line">  margin-left: -22px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;round&quot;&gt;</span><br><span class="line">    &lt;span&gt;东&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;南&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;西&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;北&lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="hover效果"><a href="#hover效果" class="headerlink" title="hover效果"></a>hover效果</h5><p><a href="https://mp.weixin.qq.com/s/jVgvphBIIuZj1b8x0BfjZw" style="color: blue;" target="_blank" rel="noopener">more…</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/小程序数据过滤的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1789,199 +1935,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/小程序canvas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/13/小程序canvas/" itemprop="url">小程序canvas</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T11:10:24+08:00">
-                2019-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="在小程序某一个页面使用canvas绘制多个动态圆环"><a href="#在小程序某一个页面使用canvas绘制多个动态圆环" class="headerlink" title="在小程序某一个页面使用canvas绘制多个动态圆环"></a>在小程序某一个页面使用canvas绘制多个动态圆环</h4><ul>
-<li><p>封装的公共的canvas.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">// 绘制圆环动画共有方法</span><br><span class="line">export default&#123; </span><br><span class="line">  // data: &#123;</span><br><span class="line">  //   percentage: &apos;&apos;, //百分比</span><br><span class="line">  //   animTime: &apos;&apos;, // 动画执行时间</span><br><span class="line">  // &#125;,</span><br><span class="line">  options:&#123;</span><br><span class="line">    /*  @description &#123;绘制圆形进度条方法&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param c: 绘制动画进度, id: canvas画板id, w,h: 圆心的横纵坐标</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    run(c, w, h, id) &#123;</span><br><span class="line">      // 需要在这里重新获取一下id，不然只能绘制一次</span><br><span class="line">      let context = wx.createCanvasContext(id);</span><br><span class="line">      let num = (2 * Math.PI / 100 * c) - 0.5 * Math.PI;</span><br><span class="line">      context.arc(w, h, w - 8, -0.5 * Math.PI, num); // 每个间隔绘制的弧度</span><br><span class="line">      // 设置为渐变的颜色</span><br><span class="line">      var gradient = context.createLinearGradient(200, 100, 100, 200);</span><br><span class="line">      gradient.addColorStop(&apos;0&apos;, &apos;#2661DD&apos;);</span><br><span class="line">      gradient.addColorStop(&apos;0.5&apos;, &apos;#40ED94&apos;);</span><br><span class="line">      gradient.addColorStop(&apos;1.0&apos;, &apos;#5956CC&apos;);</span><br><span class="line">      context.setStrokeStyle(gradient);</span><br><span class="line">      // 设置单一的颜色</span><br><span class="line">      // context.setStrokeStyle(&apos;#5ba2b6&apos;);</span><br><span class="line">      context.setLineWidth(&apos;16&apos;);</span><br><span class="line">      context.setLineCap(&apos;butt&apos;);</span><br><span class="line">      context.stroke();</span><br><span class="line">      context.beginPath();</span><br><span class="line">      context.setFontSize(20); // 注意不要加引号</span><br><span class="line">      context.setFillStyle(&apos;#ffef00&apos;);</span><br><span class="line">      context.setTextAlign(&apos;center&apos;);</span><br><span class="line">      context.setTextBaseline(&apos;middle&apos;);</span><br><span class="line">      context.fillText(c + &apos;%&apos;, w, h);</span><br><span class="line">      context.draw();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    /*  @description &#123;绘制圆环的动画效果实现&#125;&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param start: 起始百分比, end: 结束百分比, </span><br><span class="line">               w,h: 圆心的横纵坐标, id: canvas画板id</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    canvasTap(start, end, time, w, h, id) &#123;</span><br><span class="line">      start++;</span><br><span class="line">      if (start &gt; end) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">      this.run(start, w, h, id);</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        this.canvasTap(start, end, time, w, h, id);</span><br><span class="line">      &#125;, time);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    /*  @description &#123;绘制圆环&#125;&#125;</span><br><span class="line">      * @date 2019-7-13</span><br><span class="line">      * @author pengyf</span><br><span class="line">      * @param id: canvas画板id, percent: 进度条百分比,time: 画图动画执行时间</span><br><span class="line">      * @returns 无</span><br><span class="line">    */</span><br><span class="line">    draw(id, percent, animTime) &#123;</span><br><span class="line">      let time = animTime / percent;</span><br><span class="line">      wx.createSelectorQuery().select(&apos;#&apos; + id).boundingClientRect((rect) =&gt; &#123;</span><br><span class="line">        //监听canvas的宽高</span><br><span class="line">        let w = parseInt(rect.width / 2); // 获取canvas宽的的一半</span><br><span class="line">        let h = parseInt(rect.height / 2); // 获取canvas高的一半，</span><br><span class="line">        this.canvasTap(0, percent, time, w, h, id);</span><br><span class="line">      &#125;).exec();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在page页面使用<br><strong>使用了grid布局</strong></p>
-</li>
-<li><p>wxml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&quot;contain&quot;&gt;</span><br><span class="line">  &lt;view class=&quot;data&quot;&gt;</span><br><span class="line">    &lt;view class=&quot;row&quot; wx:for=&quot;&#123;&#123;canvasList&#125;&#125;&quot; wx:key=&quot;&#123;&#123;index&#125;&#125;&quot;&gt;</span><br><span class="line">      &lt;view class=&apos;bigCircle pos-center&apos;&gt;&lt;/view&gt;</span><br><span class="line">      &lt;view class=&apos;littleCircle pos-center&apos;&gt;&lt;/view&gt;</span><br><span class="line">      &lt;canvas canvas-id=&quot;&#123;&#123;item.id&#125;&#125;&quot; id=&quot;&#123;&#123;item.id&#125;&#125;&quot; class=&apos;canvas pos-center&apos;&gt;&lt;/canvas&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>wxss</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">.data &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  /* display: flex;</span><br><span class="line">  flex-wrap: wrap; */</span><br><span class="line">  display: grid;</span><br><span class="line">  grid-gap: 5px;</span><br><span class="line">  grid-template-columns: repeat(auto-fit, minmax(350rpx, 1fr));</span><br><span class="line">  grid-template-rows: repeat(2, 350rpx);</span><br><span class="line">&#125;</span><br><span class="line">.data .row &#123;</span><br><span class="line">  /* flex: 1; */</span><br><span class="line">  /* width: 350rpx;</span><br><span class="line">  height: 500rpx; */</span><br><span class="line">  position: relative;</span><br><span class="line">  background-color: #f5f5f5;</span><br><span class="line">  border: 1rpx solid #ddd;</span><br><span class="line">&#125;</span><br><span class="line">/* .canvasBox&#123;</span><br><span class="line">  height: 500rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">  background-color: #f5f5f5;</span><br><span class="line">&#125; */</span><br><span class="line">.pos-center &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top:0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  margin: auto;</span><br><span class="line">&#125;</span><br><span class="line">.bigCircle&#123;</span><br><span class="line">  width: 320rpx;</span><br><span class="line">  height: 320rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: #313250;</span><br><span class="line">&#125;</span><br><span class="line">.littleCircle&#123;</span><br><span class="line">  width: 256rpx;</span><br><span class="line">  height: 256rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: #171a3b;</span><br><span class="line">&#125;</span><br><span class="line">.canvas&#123;</span><br><span class="line">  width: 320rpx;</span><br><span class="line">  height: 320rpx;</span><br><span class="line">  z-index: 99;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import Canvas from &apos;../../utils/canvas.js&apos;</span><br><span class="line">Page(&#123;</span><br><span class="line">  ...Canvas.options, // 通过解构赋值，将共有文件中的方法和数据传递到要使用方法的文件</span><br><span class="line">  /**</span><br><span class="line">   * 页面的初始数据</span><br><span class="line">   */</span><br><span class="line">  data: &#123;</span><br><span class="line">    canvasList: [&#123;</span><br><span class="line">      id: &apos;circle-one&apos;,</span><br><span class="line">      percent: 60</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &apos;circle-second&apos;,</span><br><span class="line">      percent: 45</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &apos;circle-three&apos;,</span><br><span class="line">      percent: 30</span><br><span class="line">    &#125;],</span><br><span class="line">  &#125;,</span><br><span class="line">  /**</span><br><span class="line">   * 生命周期函数--监听页面加载</span><br><span class="line">   */</span><br><span class="line">  onLoad: function (options) &#123;</span><br><span class="line">    const _canvasList= this.data.canvasList;</span><br><span class="line">    const len = _canvasList.length;</span><br><span class="line">    for(let i = 0; i &lt; len; i++) &#123;</span><br><span class="line">      this.draw(_canvasList[i].id, _canvasList[i].percent, 1000);</span><br><span class="line">    &#125;</span><br><span class="line">    // this.draw(canvasList[0], this.data.percent2, 1000);</span><br><span class="line">    // this.draw(&apos;three&apos;, this.data.percent2, 1000);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><code>`</code></p>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_41257563/article/details/83542225" style="color: blue;" target="_blank" rel="noopener">To Learn More…</a></li>
-</ul>
-<h5 id="使用wx-charts画图"><a href="#使用wx-charts画图" class="headerlink" title="使用wx-charts画图"></a>使用wx-charts画图</h5><ul>
-<li><a href="https://blog.csdn.net/m0_37938910/article/details/80744562" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
-<li><a href="https://blog.csdn.net/Che_rish/article/details/78932945" style="color: blue;" target="_blank" rel="noopener">参考实例2</a></li>
-<li><a href="https://www.oschina.net/p/wx-charts" style="color: blue;" target="_blank" rel="noopener">参考实例3</a></li>
-<li>支持图标类型<ul>
-<li>饼图 pie</li>
-<li>圆环图 ring</li>
-<li>线图 line</li>
-<li>柱状图 column</li>
-<li>区域图 area</li>
-<li>雷达图 radar</li>
-</ul>
-</li>
-</ul>
-<h5 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h5><ul>
-<li>inMap</li>
-<li><a href="https://juejin.im/post/5a41f3a451882560b76c6d05" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
-<li><a href="https://moweide.com/2019/01/10/vue_inaction_toolkits/" style="color: blue;" target="_blank" rel="noopener">涉及的Blog</a></li>
-</ul>
-<h5 id="微信小程序里面评论功能"><a href="#微信小程序里面评论功能" class="headerlink" title="微信小程序里面评论功能"></a>微信小程序里面评论功能</h5><ul>
-<li><a href="https://www.oschina.net/p/wxcomment" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
-</ul>
-<h5 id="微信小程序图片预加载"><a href="#微信小程序图片预加载" class="headerlink" title="微信小程序图片预加载"></a>微信小程序图片预加载</h5><ul>
-<li><a href="https://www.oschina.net/p/wxapp-img-loader" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
-</ul>
-<h5 id="微信小程序分享相关"><a href="#微信小程序分享相关" class="headerlink" title="微信小程序分享相关"></a>微信小程序分享相关</h5><ul>
-<li>action-sheet 底部弹窗<ul>
-<li><a href="https://blog.csdn.net/weixin_42567361/article/details/81329926" style="color: blue;" target="_blank" rel="noopener">参考实例1</a></li>
-<li><a href="https://gitee.com/ZhongBangKeJi/CRMEB" style="color: blue;" target="_blank" rel="noopener">参考实例2</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2034,7 +1987,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="typeScript Typescript  使用 nvm 来管理 node 版本 为什么要学习ts 程序更容易理解 函数或者方法输入输出的参数类型、外部条件 动态语言的约束：需要手动调试等过程 ts可以解决以上问题   效率更高 在不同的代码块和定义中进行跳转 代码自动补全 丰富的接口提示   更少的错误 编译期间能够发现大部分错误 杜绝一些比较常见的错误   非常好的包容性 完全兼容javas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS">
+<meta property="og:url" content="http://yoursite.com/2022/03/30/TS/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="typeScript Typescript  使用 nvm 来管理 node 版本 为什么要学习ts 程序更容易理解 函数或者方法输入输出的参数类型、外部条件 动态语言的约束：需要手动调试等过程 ts可以解决以上问题   效率更高 在不同的代码块和定义中进行跳转 代码自动补全 丰富的接口提示   更少的错误 编译期间能够发现大部分错误 杜绝一些比较常见的错误   非常好的包容性 完全兼容javas">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-03-30T08:56:37.435Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TS">
+<meta name="twitter:description" content="typeScript Typescript  使用 nvm 来管理 node 版本 为什么要学习ts 程序更容易理解 函数或者方法输入输出的参数类型、外部条件 动态语言的约束：需要手动调试等过程 ts可以解决以上问题   效率更高 在不同的代码块和定义中进行跳转 代码自动补全 丰富的接口提示   更少的错误 编译期间能够发现大部分错误 杜绝一些比较常见的错误   非常好的包容性 完全兼容javas">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/03/30/TS/">
+
+
+
+
+
+  <title>TS | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/30/TS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T14:54:03+08:00">
+                2022-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="typeScript"><a href="#typeScript" class="headerlink" title="typeScript"></a>typeScript</h3><ul>
+<li><a href="https://www.typescriptlang.org/zh/" style="color: blue;" target="_blank" rel="noopener">Typescript</a> </li>
+<li><a href="https://github.com/nvm-sh/nvm" style="color: blue;" target="_blank" rel="noopener">使用 nvm 来管理 node 版本</a> <h4 id="为什么要学习ts"><a href="#为什么要学习ts" class="headerlink" title="为什么要学习ts"></a>为什么要学习ts</h4></li>
+<li>程序更容易理解<ul>
+<li>函数或者方法输入输出的参数类型、外部条件</li>
+<li>动态语言的约束：需要手动调试等过程</li>
+<li>ts可以解决以上问题</li>
+</ul>
+</li>
+<li>效率更高<ul>
+<li>在不同的代码块和定义中进行跳转</li>
+<li>代码自动补全</li>
+<li>丰富的接口提示</li>
+</ul>
+</li>
+<li>更少的错误<ul>
+<li>编译期间能够发现大部分错误</li>
+<li>杜绝一些比较常见的错误</li>
+</ul>
+</li>
+<li>非常好的包容性<ul>
+<li>完全兼容javascript</li>
+<li>第三方库可以单独编写类型文件</li>
+<li>大多数项目都支持ts</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>增加一些学习成本</li>
+<li>短期内增加了一些开发成本</li>
+</ul>
+</li>
+<li><p>安装 Typescript:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line">yarn global add typescript</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 tsc 全局命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 查看 tsc 版本</span><br><span class="line">tsc -v</span><br><span class="line">// 编译 ts 文件</span><br><span class="line">tsc fileName.ts</span><br><span class="line">// 运行</span><br><span class="line">ts-node fileName.ts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组和元组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//最简单的方法是使用「类型 + 方括号」来表示数组：</span><br><span class="line">let arrOfNumbers: number[] = [1, 2, 3, 4]</span><br><span class="line">//数组的项中不允许出现其他的类型：</span><br><span class="line">//数组的一些方法的参数也会根据数组在定义时约定的类型进行限制：</span><br><span class="line">arrOfNumbers.push(3)</span><br><span class="line">arrOfNumbers.push(&apos;abc&apos;)</span><br><span class="line"></span><br><span class="line">// 元祖的表示和数组非常类似，只不过它将类型写在了里面 这就对每一项起到了限定的作用</span><br><span class="line">let user: [string, number] = [&apos;viking&apos;, 20]</span><br><span class="line">//但是当我们写少一项 就会报错 同样写多一项也会有问题</span><br><span class="line">user = [&apos;molly&apos;, 20, true]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>interface 接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 我们定义了一个接口 Person</span><br><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line">// 接着定义了一个变量 viking，它的类型是 Person。这样，我们就约束了 viking 的形状必须和接口 Person 一致。</span><br><span class="line">let viking: Person =&#123;</span><br><span class="line">  name: &apos;viking&apos;,</span><br><span class="line">  age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//有时我们希望不要完全匹配一个形状，那么可以用可选属性：</span><br><span class="line">interface Person &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    age?: number;</span><br><span class="line">&#125;</span><br><span class="line">let viking: Person = &#123;</span><br><span class="line">    name: &apos;Viking&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//接下来还有只读属性，有时候我们希望对象中的一些字段只能在创建的时候被赋值，那么可以用 readonly 定义只读属性</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">  readonly id: number;</span><br><span class="line">  name: string;</span><br><span class="line">  age?: number;</span><br><span class="line">&#125;</span><br><span class="line">viking.id = 9527</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 来到我们的第一个例子，约定输入，约定输出</span><br><span class="line">function add(x: number, y: number): number &#123;</span><br><span class="line">  return x + y</span><br><span class="line">&#125;</span><br><span class="line">// 可选参数</span><br><span class="line">function add(x: number, y: number, z?: number): number &#123;</span><br><span class="line">  if (typeof z === &apos;number&apos;) &#123;</span><br><span class="line">    return x + y + z</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return x + y</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 函数本身的类型</span><br><span class="line">const add2: (x: number, y: number, z?:number) =&gt; number = add</span><br><span class="line"></span><br><span class="line">// interface 描述函数类型</span><br><span class="line">const sum = (x: number, y: number) =&gt; &#123;</span><br><span class="line">  return x + y</span><br><span class="line">&#125;</span><br><span class="line">interface ISum &#123;</span><br><span class="line">  (x: number, y: number): number</span><br><span class="line">&#125;</span><br><span class="line">const sum2: ISum = sum</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型推论，联合类型 和 类型断言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 联合类型 - union types</span><br><span class="line">// 我们只需要用中竖线来分割两个</span><br><span class="line">let numberOrString: number | string </span><br><span class="line">// 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：</span><br><span class="line">numberOrString.length</span><br><span class="line">numberOrString.toString()</span><br><span class="line">// 类型断言 - type assertions</span><br><span class="line">// 这里我们可以用 as 关键字，告诉typescript 编译器，你没法判断我的代码，但是我本人很清楚，这里我就把它看作是一个 string，你可以给他用 string 的方法。</span><br><span class="line">function getLength(input: string | number): number &#123;</span><br><span class="line">  const str = input as string</span><br><span class="line">  if (str.length) &#123;</span><br><span class="line">    return str.length</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    const number = input as number</span><br><span class="line">    return number.toString().length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 类型守卫 - type guard</span><br><span class="line">// typescript 在不同的条件分支里面，智能的缩小了范围，这样我们代码出错的几率就大大的降低了。</span><br><span class="line">function getLength2(input: string | number): number &#123;</span><br><span class="line">  if (typeof input === &apos;string&apos;) &#123;</span><br><span class="line">    return input.length</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return input.toString().length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>枚举 Enums</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 数字枚举，一个数字枚举可以用 enum 这个关键词来定义，我们定义一系列的方向，然后这里面的值，枚举成员会被赋值为从 0 开始递增的数字,</span><br><span class="line">enum Direction &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right,</span><br><span class="line">&#125;</span><br><span class="line">console.log(Direction.Up)</span><br><span class="line"></span><br><span class="line">// 还有一个神奇的点是这个枚举还做了反向映射</span><br><span class="line">console.log(Direction[0])</span><br><span class="line"></span><br><span class="line">// 字符串枚举</span><br><span class="line">enum Direction &#123;</span><br><span class="line">  Up = &apos;UP&apos;,</span><br><span class="line">  Down = &apos;DOWN&apos;,</span><br><span class="line">  Left = &apos;LEFT&apos;,</span><br><span class="line">  Right = &apos;RIGHT&apos;,</span><br><span class="line">&#125;</span><br><span class="line">const value = &apos;UP&apos;</span><br><span class="line">if (value === Direction.Up) &#123;</span><br><span class="line">  console.log(&apos;go up!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>泛型 Generics</p>
+<ul>
+<li>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性</li>
+<li>相当于一个占位符<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function echo(arg) &#123;</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line">const result = echo(123)</span><br><span class="line">// 这时候我们发现了一个问题，我们传入了数字，但是返回了 any</span><br><span class="line"></span><br><span class="line">function echo&lt;T&gt;(arg: T): T &#123;</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line">const result = echo(123)</span><br><span class="line"></span><br><span class="line">// 泛型也可以传入多个值</span><br><span class="line">function swap&lt;T, U&gt;(tuple: [T, U]): [U, T] &#123;</span><br><span class="line">  return [tuple[1], tuple[0]]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const result = swap([&apos;string&apos;, 123])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>泛型约束</p>
+<ul>
+<li>在函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function echoWithArr&lt;T&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length)</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 缺陷 只能指定特定类型</span><br><span class="line">// function echoWithArr&lt;T&gt;(arg: T[]): T[] &#123;</span><br><span class="line">//   console.log(arg.length)</span><br><span class="line">//   return arg</span><br><span class="line">// &#125;</span><br><span class="line">// 上例中，泛型 T 不一定包含属性 length，我们可以给他传入任意类型，当然有些不包括 length 属性，那样就会报错</span><br><span class="line"></span><br><span class="line">interface IWithLength &#123;</span><br><span class="line">  length: number;</span><br><span class="line">&#125;</span><br><span class="line">function echoWithLength&lt;T extends IWithLength&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length)</span><br><span class="line">  return arg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echoWithLength(&apos;str&apos;)</span><br><span class="line">const result3 = echoWithLength(&#123;length: 10&#125;)</span><br><span class="line">const result4 = echoWithLength([1, 2, 3])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>泛型与类和接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class Queue &#123;</span><br><span class="line">  private data = [];</span><br><span class="line">  push(item) &#123;</span><br><span class="line">    return this.data.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">  pop() &#123;</span><br><span class="line">    return this.data.shift()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const queue = new Queue()</span><br><span class="line">queue.push(1)</span><br><span class="line">queue.push(&apos;str&apos;)</span><br><span class="line">console.log(queue.pop().toFixed())</span><br><span class="line">console.log(queue.pop().toFixed())</span><br><span class="line"></span><br><span class="line">//在上述代码中存在一个问题，它允许你向队列中添加任何类型的数据，当然，当数据被弹出队列时，也可以是任意类型。在上面的示例中，看起来人们可以向队列中添加string 类型的数据，但是那么在使用的过程中，就会出现我们无法捕捉到的错误，</span><br><span class="line"></span><br><span class="line">class Queue&lt;T&gt; &#123;</span><br><span class="line">  private data = [];</span><br><span class="line">  push(item: T) &#123;</span><br><span class="line">    return this.data.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">  pop(): T &#123;</span><br><span class="line">    return this.data.shift()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const queue = new Queue&lt;number&gt;()</span><br><span class="line"></span><br><span class="line">//泛型和 interface</span><br><span class="line">interface KeyPair&lt;T, U&gt; &#123;</span><br><span class="line">  key: T;</span><br><span class="line">  value: U;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let kp1: KeyPair&lt;number, string&gt; = &#123; key: 1, value: &quot;str&quot;&#125;</span><br><span class="line">let kp2: KeyPair&lt;string, number&gt; = &#123; key: &quot;str&quot;, value: 123&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型别名(Type Aliases) 和 交叉类型( Intersection Types)</p>
+<ul>
+<li>类型别名，就是给类型起一个别名，让它可以更方便的被重用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let sum: (x: number, y: number) =&gt; number</span><br><span class="line">const result = sum(1,2)</span><br><span class="line">type PlusType = (x: number, y: number) =&gt; number</span><br><span class="line">let sum2: PlusType</span><br><span class="line"></span><br><span class="line">// 支持联合类型</span><br><span class="line">type StrOrNumber = string | number</span><br><span class="line">let result2: StrOrNumber = &apos;123&apos;</span><br><span class="line">result2 = 123</span><br><span class="line"></span><br><span class="line">// 字符串字面量</span><br><span class="line">type Directions = &apos;Up&apos; | &apos;Down&apos; | &apos;Left&apos; | &apos;Right&apos;</span><br><span class="line">let toWhere: Directions = &apos;Up&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface IName  &#123;</span><br><span class="line">  name: string</span><br><span class="line">&#125;</span><br><span class="line">type IPerson = IName &amp; &#123; age: number &#125;</span><br><span class="line">let person: IPerson = &#123; name: &apos;hello&apos;, age: 12&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.imooc.com/wiki/vue3TS/w20c7.html" style="color: blue;" target="_blank" rel="noopener">more…</a> </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/03/28/移动端H5/" rel="next" title="移动端H5">
+                <i class="fa fa-chevron-left"></i> 移动端H5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#typeScript"><span class="nav-number">1.</span> <span class="nav-text">typeScript</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要学习ts"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要学习ts</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</html>

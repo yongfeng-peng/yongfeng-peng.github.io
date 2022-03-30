@@ -268,6 +268,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/使用秋云-ucharts-echarts踩坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/02/使用秋云-ucharts-echarts踩坑/" itemprop="url">使用秋云 ucharts echarts踩坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-02T11:07:10+08:00">
+                2022-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架、uniapp/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架、uniapp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="uniapp使用秋云-ucharts-echarts-高性能跨全端图表组件"><a href="#uniapp使用秋云-ucharts-echarts-高性能跨全端图表组件" class="headerlink" title="uniapp使用秋云 ucharts echarts 高性能跨全端图表组件"></a>uniapp使用秋云 ucharts echarts 高性能跨全端图表组件</h3><ul>
+<li><a href="https://ext.dcloud.net.cn/plugin?id=271" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> </li>
+<li>依赖uniapp的vue-cli项目：请将uni-modules目录复制到src目录，即src/uni_modules。（请升级uniapp依赖为最新版本）</li>
+</ul>
+<h4 id="自定义echarts参数"><a href="#自定义echarts参数" class="headerlink" title="自定义echarts参数"></a>自定义echarts参数</h4><ul>
+<li>使用eopts 但参数不能包含函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;qiun-data-charts</span><br><span class="line">  :style=&quot;&#123; height: height, width: width &#125;&quot;</span><br><span class="line">  type=&quot;area&quot;</span><br><span class="line">  ref=&quot;pieChart&quot;</span><br><span class="line">  :eopts=&quot;lineEopts&quot;</span><br><span class="line">  :opts=&quot;&#123;yAxis:&#123;data:[&#123;min:0&#125;]&#125;,extra:&#123;area:&#123;type:&apos;curve&apos;,addLine:true,gradient:true&#125;&#125;&#125;&quot;</span><br><span class="line">  :chartData=&quot;chartData&quot; </span><br><span class="line">  :echartsH5=&quot;true&quot; </span><br><span class="line">  :echartsApp=&quot;true&quot;</span><br><span class="line">  tooltipFormat=&quot;lineTooltip&quot;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="自定义tooltipFormat格式"><a href="#自定义tooltipFormat格式" class="headerlink" title="自定义tooltipFormat格式"></a>自定义tooltipFormat格式</h4><ul>
+<li>在配置文件config-echarts.js里面定义对应的formatter 函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;qiun-data-charts</span><br><span class="line">  :style=&quot;&#123; height: height, width: width &#125;&quot;</span><br><span class="line">  type=&quot;area&quot;</span><br><span class="line">  ref=&quot;pieChart&quot;</span><br><span class="line">  :eopts=&quot;lineEopts&quot;</span><br><span class="line">  :opts=&quot;&#123;yAxis:&#123;data:[&#123;min:0&#125;]&#125;,extra:&#123;area:&#123;type:&apos;curve&apos;,addLine:true,gradient:true&#125;&#125;&#125;&quot;</span><br><span class="line">  :chartData=&quot;chartData&quot; </span><br><span class="line">  :echartsH5=&quot;true&quot; </span><br><span class="line">  :echartsApp=&quot;true&quot;</span><br><span class="line">  tooltipFormat=&quot;lineTooltip&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">// tooltip排序</span><br><span class="line">function compare(property) &#123;</span><br><span class="line">  return (arr, arr2) =&gt; &#123;</span><br><span class="line">    let a = arr[property];</span><br><span class="line">    let b = arr2[property];</span><br><span class="line">    return b - a;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cfe = &#123;</span><br><span class="line">  &quot;formatter&quot;:&#123;</span><br><span class="line">    lineTooltip: (res) =&gt; &#123;</span><br><span class="line">      let result = &apos;&apos;;</span><br><span class="line">      let _res = res.sort(compare(&quot;value&quot;));</span><br><span class="line">      for (let i in _res) &#123;</span><br><span class="line">        if (i == 0) &#123;</span><br><span class="line">          result += res[i].axisValueLabel</span><br><span class="line">        &#125;</span><br><span class="line">        let value = &apos;--&apos;</span><br><span class="line">        if (_res[i].data !== null) &#123;</span><br><span class="line">          value = _res[i].data;</span><br><span class="line">        &#125;</span><br><span class="line">        // #ifdef H5</span><br><span class="line">        result += &apos;\n&apos; + _res[i].seriesName + &apos;：&apos; + value;</span><br><span class="line">        // #endif</span><br><span class="line">        </span><br><span class="line">        // #ifdef APP-PLUS</span><br><span class="line">        result += &apos;&lt;br/&gt;&apos; + _res[i].marker + _res[i].seriesName + &apos;：&apos; + value;</span><br><span class="line">        // #endif</span><br><span class="line">      &#125;</span><br><span class="line">      return result;</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="区域图设置渐变-自定义颜色color、graphicColor"><a href="#区域图设置渐变-自定义颜色color、graphicColor" class="headerlink" title="区域图设置渐变,自定义颜色color、graphicColor"></a>区域图设置渐变,自定义颜色color、graphicColor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">initColor() &#123;</span><br><span class="line">  this.colorList = this.color.map((item, index) =&gt; &#123;</span><br><span class="line">    return  &#123;</span><br><span class="line">      color: item,</span><br><span class="line">      areaStyle: &#123;</span><br><span class="line">        color: &#123;</span><br><span class="line">          type: &apos;linear&apos;,</span><br><span class="line">          x: 0,</span><br><span class="line">          y: 0,</span><br><span class="line">          x2: 0,</span><br><span class="line">          y2: 1,</span><br><span class="line">          colorStops: [&#123;</span><br><span class="line">            offset: 0,</span><br><span class="line">            color: this.graphicColor[index] // 0% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 0.4,</span><br><span class="line">            color: this.graphicColor[index] // 100% 处的颜色</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            offset: 1,</span><br><span class="line">            color: &quot;#ffffff&quot;,</span><br><span class="line">          &#125;],</span><br><span class="line">          global: false // 缺省为 false</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="tab切换数据合并问题，设置eopts参数"><a href="#tab切换数据合并问题，设置eopts参数" class="headerlink" title="tab切换数据合并问题，设置eopts参数"></a>tab切换数据合并问题，设置eopts参数</h4><ul>
+<li>eopts不能传递function，如果option配置参数需要function，请将option写在config-echarts.js中即可实现。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lineEopts: &#123;</span><br><span class="line">   notMerge: true, // 是否不跟之前设置的 option 进行合并。默认为false。即表示合并</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/01/使用mescroll-uni踩坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1768,199 +1926,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/23/react原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/23/react原理/" itemprop="url">react原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-23T14:25:09+08:00">
-                2020-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="react原理剖析"><a href="#react原理剖析" class="headerlink" title="react原理剖析"></a>react原理剖析</h3><h4 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a><a href="https://github.com/facebook/react/blob/master/packages/react/src/React.js" target="_blank" rel="noopener">核心API</a></h4><ul>
-<li>React.createElement：创建虚拟的DOM</li>
-<li>React.Component: 实现自定义组件</li>
-<li>ReactDOM.render: 渲染真实DOM</li>
-</ul>
-<ul>
-<li><a href="https://github.com/facebook/react/blob/master/packages/react-dom/src/client/ReactDOM.js" target="_blank" rel="noopener">react-dom</a>：主要是render逻辑</li>
-</ul>
-<h4 id="JSX是什么"><a href="#JSX是什么" class="headerlink" title="JSX是什么"></a>JSX是什么</h4><ul>
-<li><a href="https://reactjs.org/" target="_blank" rel="noopener">在线JSX预编译</a></li>
-<li>react使用JSX来替代常规的JavaScript，JSX是一个看起来很像XML的JavaScript语法扩展<h4 id="为什么需要JXS"><a href="#为什么需要JXS" class="headerlink" title="为什么需要JXS"></a>为什么需要JXS</h4></li>
-<li>JSX执行更快，因为它在编译为JavaScript代码后进行了优化（在react里面可以用它描述视图）</li>
-<li>它是<strong>类型安全</strong>的，在编译过程中就能发现错误（编译器可以对它进行规范处理、一系列严谨转换、类型检测）</li>
-<li>使用JSX编写模版更加简单快捷（开发效率）<h4 id="JXS怎么用"><a href="#JXS怎么用" class="headerlink" title="JXS怎么用"></a>JXS怎么用</h4></li>
-<li>原理：babel-loader会预编译JSX为React.createElement(…)</li>
-</ul>
-<h4 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h4><ul>
-<li>class组件的特点，就是拥有特殊状态并且可以通过setState更新状态，从而重新渲染视图，是学习React中最重要的api</li>
-<li>setState并没有直接操作去渲染，而是执行了一个异步的updater队列,使用一个类来专门管理</li>
-</ul>
-<h4 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h4><ul>
-<li>用JavaScript对象表示DOM信息和结构，当状态变更的时候，重新渲染这个JavaScript的对象结构。这个JavaScript对象称为virtual dom</li>
-<li>简单的说虚拟dom就是js对象，可以描述dom<br><img src="https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/vdom.jpg" alt="Image text"><!-- * ![Image text](/../images/vdom.jpg) -->
-</li>
-</ul>
-<h4 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h4><ul>
-<li>diff策略<ul>
-<li>同级比较，Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计</li>
-<li>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。例如：div-&gt;p, CompA-&gt;CompB</li>
-<li>对于同一层级的一组子节点，通过唯一的key进行区分</li>
-</ul>
-</li>
-<li>基于以上三个前提策略，React 分别对 tree diff、component diff 以及 element diff 进行算法优化，事实也证明，这三个前提策略是合理且准确的，它保证了整体界面构建的性能</li>
-<li>element diff 差异类型：<ul>
-<li>替换原来的节点，例如把div换成了p，Comp1换成Comp2</li>
-<li>移动、删除、新增子节点， 例如ul中的多个子节点li中出现了顺序互换</li>
-<li>修改了节点的属性，例如节点类名发生了变化</li>
-<li>对于文本节点，文本内容可能会改变</li>
-</ul>
-</li>
-<li>重排（reorder）操作：INSERT_MARKUP（插入）、MOVE_EXISTING（移动）和 REMOVE_NODE（删除）<ul>
-<li>INSERT_MARKUP，新的 component 类型不在老集合里， 即是全新的节点，需要对新节点执行插入操作</li>
-<li>MOVE_EXISTING，在老集合有新 component 类型，且 element 是可更新的类型，generateComponentChildren 已调用 receiveComponent，这种情况下 prevChild=nextChild，就需要做移动操作，可以复用以前的   DOM 节点</li>
-<li>REMOVE_NODE，老 component 类型，在新集合里也有，但对应的 element 不同则不能直接复用和更新，需要执行删除操作，或者老 component 不在新集合里的，也需要执行删除操作</li>
-</ul>
-</li>
-<li>为什么需要虚拟dom和对diff算法理解<ul>
-<li>抽象出虚拟dom层，减少重布局、重排、重绘次数，不直接更新真实dom</li>
-<li>比较出应不应该更新dom，即使更新，尽可能的一次性、批量的更新</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2013,7 +1978,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
