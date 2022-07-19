@@ -268,6 +268,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/JavaScript-精简技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/14/JavaScript-精简技巧/" itemprop="url">JavaScript 精简技巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T14:47:30+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h3 id="JavaScript-精简技巧"><a href="#JavaScript-精简技巧" class="headerlink" title="JavaScript 精简技巧"></a>JavaScript 精简技巧</h3><h4 id="快速浮点数转整数"><a href="#快速浮点数转整数" class="headerlink" title="快速浮点数转整数"></a>快速浮点数转整数</h4><ul>
+<li>将浮点数转换为整数，可以使用Math.floor()、Math.ceil()或Math.round()。但是还有一种更快的方法可以使用|(位或运算符)将浮点数截断为整数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(23.2 | 0); // Result: 23</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="JavaScript-浮点数陷阱及解法"><a href="#JavaScript-浮点数陷阱及解法" class="headerlink" title="JavaScript 浮点数陷阱及解法"></a><a href="https://github.com/nefe/number-precision" target="_blank" rel="noopener">JavaScript 浮点数陷阱及解法</a></h4><ul>
+<li>数据展示类 如：1.4000000000000001 取整<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parseFloat(1.4000000000000001.toPrecision(12)) === 1.4  // true</span><br><span class="line">&lt;!-- 简单封装 --&gt;</span><br><span class="line">function strip(num, precision = 12) &#123;</span><br><span class="line">  return +parseFloat(num.toPrecision(precision));</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 为什么选择 12 做为默认精度？这是一个经验的选择，一般选12就能解决掉大部分0001和0009问题，而且大部分情况下也够用了，如果你需要更精确可以调高 --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="数据运算类"><a href="#数据运算类" class="headerlink" title="数据运算类"></a>数据运算类</h4><ul>
+<li>对于运算类操作，如 +-*/，就不能使用 toPrecision 了。正确的做法是把小数转成整数后再运算<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 精确加法</span><br><span class="line">*/</span><br><span class="line">function add(num1, num2) &#123;</span><br><span class="line">  const num1Digits = (num1.toString().split(&apos;.&apos;)[1] || &apos;&apos;).length;</span><br><span class="line">  const num2Digits = (num2.toString().split(&apos;.&apos;)[1] || &apos;&apos;).length;</span><br><span class="line">  const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));</span><br><span class="line">  return (num1 * baseNum + num2 * baseNum) / baseNum;</span><br><span class="line">&#125;</span><br><span class="line">add(0.1, 0.2); // 0.3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/css特效/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1680,261 +1834,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/front-tool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/20/front-tool/" itemprop="url">front-tool前端开发工具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T14:01:02+08:00">
-                2019-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ide/" itemprop="url" rel="index">
-                    <span itemprop="name">ide</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="开发工具插件"><a href="#开发工具插件" class="headerlink" title="开发工具插件"></a>开发工具插件</h4><h5 id="VScode常有插件"><a href="#VScode常有插件" class="headerlink" title="VScode常有插件"></a>VScode常有插件</h5><ul>
-<li><a href="https://juejin.im/post/5d300d5ff265da1b7004e0c1" target="_blank" rel="noopener">To Learn More…</a></li>
-<li>安装javascript console utils （crtl + shift + l）快捷console语句</li>
-<li>安装Path Autocomplete 路径自动补全</li>
-</ul>
-<h5 id="VScode快捷键"><a href="#VScode快捷键" class="headerlink" title="VScode快捷键"></a>VScode快捷键</h5><ul>
-<li><a href="https://juejin.im/post/5d34fdfff265da1b897b0c8d" target="_blank" rel="noopener">To Learn More…</a></li>
-<li>ctrl + shift + f(command + shift + f)项目目录中，搜索任何匹配的文本</li>
-<li><p>合并行 Control + J<br><strong>左侧可以单击小箭头，出现第二框，即替换的内容</strong></p>
-</li>
-<li><p>为 tabs 设置强调色（Material Theme）（Command + K 再 Command + T）</p>
-<ul>
-<li>打开的命令面板(Ctrl(Command) + Shift + P)，选择 Material Theme: Set accent color并从列表中选择一个颜色，它将更改选项卡的下划线颜色</li>
-</ul>
-</li>
-<li><p>进程资源管理器</p>
-<ul>
-<li>在VsCode 中按Ctrl + Alt + Delete可以打开该任务管理器</li>
-</ul>
-</li>
-<li><p>Expand Bracket Selection</p>
-<ul>
-<li>打开键盘快捷键(Ctrl + Shift + P 或 command + Shift + p)，搜索 Expand Bracket Selection</li>
-<li>自动选择整个块，从开始的大括号到结束(比如选择if/else)</li>
-</ul>
-</li>
-<li><p>重新打开关闭的编辑页面（Windows: Ctrl + Shift + T Mac: command + Shift + T）</p>
-</li>
-<li><p>通过匹配文本打开文件</p>
-<ul>
-<li>Windows: Ctrl + T Mac: command + Tconsole.log();</li>
-</ul>
-</li>
-<li><p>集成终端</p>
-<ul>
-<li>Windows: Ctrl + Mac: control +</li>
-<li>通过 <strong>Ctrl + `</strong>可以打开或关闭终端</li>
-</ul>
-</li>
-<li><p>查看正在运行的插件</p>
-<ul>
-<li>(Ctrl + Shift + P)并输入 Show running extensions </li>
-</ul>
-</li>
-<li><p>重新加载</p>
-<ul>
-<li>Windows: Ctrl + Alt + R Mac: Control + Option + R</li>
-</ul>
-</li>
-<li><p>移动tabs栏</p>
-<ul>
-<li>Mac：Command + Option + 左右键 Windows:Ctrl + Alt + 左右键头</li>
-</ul>
-</li>
-<li><p>选择左侧或者右侧所有的内容</p>
-<ul>
-<li>Mac：Command + Shift + 左右键 Windows:Ctrl + Shift + Home/End</li>
-</ul>
-</li>
-<li><p>删除上一个单词</p>
-<ul>
-<li>Mac：option + delete Windows: Ctrl + Backspace</li>
-</ul>
-</li>
-<li><p>逐个选择文本</p>
-<ul>
-<li>Mac：option + shift + 左右键 Windows: Ctrl + shift + 左右键</li>
-</ul>
-</li>
-<li><p>重复行</p>
-<ul>
-<li>Mac：option + shift + 上下键 Windows: Alt + shift + 上下键</li>
-</ul>
-</li>
-<li><p>移至文件的开头和结尾</p>
-<ul>
-<li>Mac：Command + 上下键 Windows: Ctrl + Home/End</li>
-</ul>
-</li>
-<li><p>批量替换当前文件中所有匹配的文本</p>
-<ul>
-<li>Ctrl + F2 (Mac: Command + F2)一次改所有出现的文本</li>
-</ul>
-</li>
-<li><p>向上/向下移动一行</p>
-<ul>
-<li>Mac：option + 上下键 Windows: Alt + 上下键</li>
-</ul>
-</li>
-<li><p>删除一行</p>
-<ul>
-<li>Mac：Command + X / Command + shift + k Windows: Crtl + X /Ctrl + shift + K</li>
-</ul>
-</li>
-<li><p>复制光标向上或者向上批量添加内容</p>
-<ul>
-<li>Mac：Command + option + 上下箭头  Windows: Ctrl + Alt + 上下箭头<h5 id="vscode注释插件推荐"><a href="#vscode注释插件推荐" class="headerlink" title="vscode注释插件推荐"></a>vscode注释插件推荐</h5></li>
-</ul>
-</li>
-<li>Better Comments：特点是可以改变注释的颜色，通过不同颜色来表示不同情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">文件顶部的注释，包括描述、作者、日期、最后编辑时间，最后编辑人</span><br><span class="line"></span><br><span class="line"> ```typescript</span><br><span class="line"> /*</span><br><span class="line">  * @Description: app im菜单配置列表中的表格模块</span><br><span class="line">  * @Author: maoyuyu</span><br><span class="line">  * @Date: 2019-08-05 10:31:12</span><br><span class="line">  * @LastEditTime: 2019-08-14 17:08:33</span><br><span class="line">  * @LastEditors: Please set LastEditors</span><br><span class="line">  */</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p><strong>文件头部添加注释快捷键</strong>：<code>window</code>：<code>ctrl+alt+i</code>,<code>mac</code>：<code>ctrl+cmd+i</code></p>
-<p><strong>在光标处添加函数注释</strong>：<code>window</code>：<code>ctrl+alt+t</code>,<code>mac</code>：<code>ctrl+cmd+t</code></p>
-<p><strong>vscode setting 配置如下</strong></p>
-</blockquote>
-  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">"fileheader.configObj": &#123;</span><br><span class="line">  "autoAdd": false, // 自动添加头部注释开启才能自动添加</span><br><span class="line">&#125;,</span><br><span class="line">"fileheader.customMade": &#123;</span><br><span class="line">  "Author":"[you name]",</span><br><span class="line">  "Date": "Do not edit", // 文件创建时间(不变)</span><br><span class="line">  "LastEditors": "[you name]", // 文件最后编辑者</span><br><span class="line">  "LastEditTime": "Do not edit", // 文件最后编辑时间</span><br><span class="line">  "Description":""</span><br><span class="line">&#125;,</span><br><span class="line">"fileheader.cursorMode": &#123;</span><br><span class="line">  "Author":"[you name]",</span><br><span class="line">  "description": "", </span><br><span class="line">  "param": "", </span><br><span class="line">  "return":""</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* koroFileHeader：特点是可以在文件头部快捷添加注释和函数注释</span><br></pre></td></tr></table></figure>
-<p>  ！ ， 红色注释<br>  ? , 蓝色注释<br>  // , 灰色删除线注释<br>  todo ,橘红色注释</p>
-<ul>
-<li>, 浅绿色注释</li>
-<li>setting.json配置<br>“better-comments.tags”: [<br>{<br>  “tag”: “!”,<br>  “color”: “#FF2D00”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “?”,<br>  “color”: “#3498DB”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “//“,<br>  “color”: “#474747”,<br>  “strikethrough”: true,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “todo”,<br>  “color”: “#FF8C00”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>},<br>{<br>  “tag”: “*”,<br>  “color”: “#98C379”,<br>  “strikethrough”: false,<br>  “backgroundColor”: “transparent”<br>}<br>]<br><code>`</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1987,7 +1886,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
