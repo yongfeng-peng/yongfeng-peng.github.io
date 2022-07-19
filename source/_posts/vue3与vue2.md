@@ -7,6 +7,21 @@ tags:
 ---
 
 #### vue3(指vue-cli3)与vue2差异
+* vue3
+  * 性能的提升
+    * 打包大小减小41%
+    * 初次渲染快55%，更新快了33%
+    * 内存使用减少54%
+  * Composition API
+  * 其他特性和新增加的内置组件
+  * 更好的 Typescript 支持
+* vue2
+  * 随着功能的增长，复杂组件的代码变得越来越难以维护
+    * Mixin缺点
+      * 命名冲突
+      * 不清楚暴露出来变量的作用
+      * 重用到其它component经常会遇到问题
+  * Vue2 对 Typescript 的支持不完善
 ##### 创建项目，vue3比起vue2简单很多
     * vue create xxx(项目名称) 或者vue ui
         * 选择安装模式
