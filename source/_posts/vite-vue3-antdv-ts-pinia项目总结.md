@@ -1,10 +1,3 @@
-<!--
- * @Author: yfp
- * @Date: 2022-07-19 09:50:09
- * @LastEditors: yfp
- * @LastEditTime: 2022-07-19 16:38:06
- * @Description: 
--->
 ---
 title: vite（2.9.9）+vue3+antdv（3.2.3）+ts+pinia项目总结
 date: 2022-07-19 09:50:09
@@ -80,4 +73,26 @@ const throttleFun = throttle(
 );
 ```
 
+#### 父组件使用v-model传值 
+* <span style="color: red;">注 </span>**update:modelValue** 冒号两边无空格
+```
+<Editor v-model="state"></Editor>
+// 子组件
+props: {
+  modelValue: {
+    type: Object,
+  }
+},
+emits: ['update:modelValue'], // 触发事件
+setup (props, { emit }) {
+const data = computed({
+  get() {
+    return props.modelValue
+  },
+  set(newValue) {
+      emit('update:modelValue', deepcopy(newValue));
+    }
+  });
+}
+```
 

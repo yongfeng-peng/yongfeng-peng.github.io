@@ -39,4 +39,32 @@ function add(num1, num2) {
 add(0.1, 0.2); // 0.3
 ```
 
+#### Switch 简记法
+```
+// 长
+switch (data) {
+  case 1:
+    test1();
+  break;
+
+  case 2:
+    test2();
+  break;
+
+  case 3:
+    test();
+  break;
+  // And so on...
+}
+
+// 短
+const data = {
+  1: test1,
+  2: test2,
+  3: test
+};
+
+data[something] && data[something]();
+```
+
 
