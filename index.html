@@ -268,6 +268,371 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/03/web安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/03/web安全/" itemprop="url">web安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-03T16:37:34+08:00">
+                2022-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="web安全"><a href="#web安全" class="headerlink" title="web安全"></a>web安全</h3><h4 id="网站或移动端"><a href="#网站或移动端" class="headerlink" title="网站或移动端"></a>网站或移动端</h4><ul>
+<li>硬件<ul>
+<li>服务器—》运维的 硬件 软件</li>
+</ul>
+</li>
+<li>软件或者程序<ul>
+<li>后台 java php python …编程都涉及到程序安全</li>
+<li>前端 与后台交互 容易出现安全隐患<ul>
+<li>加密 校验 程序的抗压力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="xss攻击（跨站脚本攻击）"><a href="#xss攻击（跨站脚本攻击）" class="headerlink" title="xss攻击（跨站脚本攻击）"></a>xss攻击（跨站脚本攻击）</h4><ul>
+<li>web页面<ul>
+<li>包含html js文件 嵌入可执行代码(js) </li>
+<li>网络传输的时候，js文件可下载的或通过ajax提交</li>
+</ul>
+</li>
+<li>xss危害<ul>
+<li>用户提交的数据，未经处理之前 ===》 js obj.value</li>
+<li>强行改变程序的执行方式</li>
+</ul>
+</li>
+<li>xss解决<ul>
+<li>运维=&gt;设置只读</li>
+<li>通过后台程序，写一套监测程序，监测文件的大小改变，报警更换文件</li>
+<li>校验用户输入信息 正则验证合法性</li>
+<li>对特殊符号 ！、？、@… 进行过滤</li>
+</ul>
+</li>
+</ul>
+<h4 id="跨站请求伪造-csrf攻击"><a href="#跨站请求伪造-csrf攻击" class="headerlink" title="跨站请求伪造(csrf攻击)"></a>跨站请求伪造(csrf攻击)</h4><ul>
+<li>用户和后台交互数据的时候，交互的页面是伪造页面，所有的用户信息将被泄露</li>
+<li>csrf解决<ul>
+<li>token 添加二次校验</li>
+<li>验证码 手机号 微信验证（保证验证信息 是自己项目发的）</li>
+</ul>
+</li>
+</ul>
+<h4 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h4><ul>
+<li>一般发生在注册、评论、添加商品…凡是有输入的地方，就有可能发生sql注入</li>
+<li>原理<ul>
+<li>or 1 == 1 or 2 &gt; 3</li>
+<li>and select * from user where uName = $uName and uPwd = $uPwd<pre><code>* uName = &apos;&apos; or 1 == 1 and uPwd = &apos;&apos; or 1 == 1
+</code></pre></li>
+</ul>
+</li>
+<li>危害：任意账户 任意登录 任意操作</li>
+<li>避免：前端<br>— 添加正则校验（特殊符号）<br>— 屏蔽敏感词汇（过滤程序）<br>— 缩减用户权限（取最小）<br>— sql语句（有工具可以检测漏洞）</li>
+</ul>
+<h4 id="接口加密"><a href="#接口加密" class="headerlink" title="接口加密"></a>接口加密</h4><ul>
+<li>url?keyword=va11 &amp; id=3 &amp; name=xx &amp; pwd=1333 — get传输、post传输有可能 — 数据有可能会被劫持—》抓包</li>
+<li><p>js原生</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let url = &quot;https://www.baidu.com&quot;</span><br><span class="line">let params = &quot;?keyword=&quot;+val</span><br><span class="line">params+=&quot;&amp;id=3&quot;</span><br><span class="line">params+=&quot;&amp;name&quot;+&quot;xxx&quot;</span><br><span class="line">params+=&quot;&amp;pwd&quot;+&quot;123&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>md5() — 加密方式 — “?keyword=”+md5(val) — 值加密</p>
+</li>
+<li>路径加密 url = md5(url+params)</li>
+<li>前端后端都需要加密 —- 加密是双向的</li>
+<li>vue 加密<ul>
+<li>加密软件对象 npm install bcryptjs — 一般这种加密包，加密方式不止一种</li>
+<li>对象.标准.加密方法(数据, 密匙, 参数)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install bcryptjs</span><br><span class="line">import bcrypt from &apos;bcryptjs&apos;</span><br><span class="line">var salt = bcrypt.genSaltSync(12);    //定义密码加密的计算强度,默认10</span><br><span class="line">var hash = bcrypt.hashSync(明文密码, salt);    //变量hash就是加密后的密码</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/29/持续集成与持续部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/29/持续集成与持续部署/" itemprop="url">持续集成与持续部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-29T16:08:39+08:00">
+                2022-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="持续集成与持续部署"><a href="#持续集成与持续部署" class="headerlink" title="持续集成与持续部署"></a>持续集成与持续部署</h3><h4 id="传统开发过程中的坑"><a href="#传统开发过程中的坑" class="headerlink" title="传统开发过程中的坑"></a>传统开发过程中的坑</h4><ul>
+<li>BUG总是在最后才发现</li>
+<li>越到项目后期，加班越严重</li>
+<li>交付无法保障</li>
+<li>变更频繁，导致效率低下</li>
+<li><p>无效的等待多，用户满足度低</p>
+</li>
+<li><p>理想状态</p>
+</li>
+<li>不用为开发测试环境不一致而苦恼</li>
+<li>不用麻烦运维人员帮忙调试环境</li>
+<li>不用手动进行测试，模拟环境中进行自测</li>
+<li>不用手动发布、部署，自动化实现发布部署</li>
+<li>不用管开发、测试环境，只用专注代码的开发</li>
+</ul>
+<h4 id="持续集成CI解决问题？"><a href="#持续集成CI解决问题？" class="headerlink" title="持续集成CI解决问题？"></a>持续集成CI解决问题？</h4><ul>
+<li>提高软件质量</li>
+<li>效率迭代</li>
+<li>便捷部署</li>
+<li>快速交付、便于管理</li>
+</ul>
+<h4 id="持续集成CI-continuous-integration-持续交付CD-continuous-delivery-持续部署CD-continuous-deployment"><a href="#持续集成CI-continuous-integration-持续交付CD-continuous-delivery-持续部署CD-continuous-deployment" class="headerlink" title="持续集成CI(continuous integration) 持续交付CD(continuous delivery) 持续部署CD(continuous deployment)"></a>持续集成CI(continuous integration) 持续交付CD(continuous delivery) 持续部署CD(continuous deployment)</h4><ul>
+<li>CI 不断提交代码测试</li>
+<li>CD 在CI的基础上，对代码进行构建，打包进行储存，发布交由人工完成</li>
+<li>CD 在CD的基础上，对代码进行自动化发布部署，快速验证</li>
+</ul>
+<h4 id="持续集成组成要素"><a href="#持续集成组成要素" class="headerlink" title="持续集成组成要素"></a>持续集成组成要素</h4><ul>
+<li>版本管理工具 github gitlab</li>
+<li>构建脚本工具 </li>
+<li>CI服务器</li>
+</ul>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<li>打包平台<ul>
+<li>常见的大包，java应用(Gradle/Maven)、Nodejs前端应用(npm/yarn)</li>
+<li>移动端大包(Android/IOS)</li>
+</ul>
+</li>
+<li>测试平台<ul>
+<li>接口测试</li>
+<li>自动化测试Robotium/TestLink</li>
+<li>单元测试junit</li>
+<li>性能测试 JmeTest</li>
+</ul>
+</li>
+<li>自动部署 <ul>
+<li>FTP</li>
+<li>Shell</li>
+<li>Tomcat/Docker</li>
+</ul>
+</li>
+<li>持续集成<ul>
+<li>Git: gitlab/github/gitee等</li>
+<li>Jenkins/TravisCi/CircleCi</li>
+<li>Docker</li>
+</ul>
+</li>
+</ul>
+<!-- ![Image text](https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/ci-1.png) -->
+<p><img src="/2022/07/29/持续集成与持续部署/../../images/ci-1.png" alt="Image text"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/20/SEO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -552,6 +917,10 @@
 <h4 id="校验，滚动到第一个校验失败位置"><a href="#校验，滚动到第一个校验失败位置" class="headerlink" title="校验，滚动到第一个校验失败位置"></a><a-form>校验，滚动到第一个校验失败位置</a-form></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 由于校验失败ant会自动给失败表单项添加类名，直接获取滚动到对应位置</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  const errorList = (document as any).querySelectorAll(&quot;.ant-form-item-has-error&quot;);</span><br><span class="line">  if (errorList.length) &#123;</span><br><span class="line">    errorList[0].scrollIntoView(&#123;</span><br><span class="line">      block: &quot;center&quot;,</span><br><span class="line">      behavior: &quot;smooth&quot;,</span><br><span class="line">    &#125;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 50);</span><br></pre></td></tr></table></figure>
 <h4 id="校验-手动触发校验及清除校验"><a href="#校验-手动触发校验及清除校验" class="headerlink" title="校验,手动触发校验及清除校验"></a><a-form>校验,手动触发校验及清除校验</a-form></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// ref=&quot;formRef&quot;</span><br><span class="line">const formRef = ref&lt;FormInstance&gt;();</span><br><span class="line">(formRef.value as any)</span><br><span class="line">  .validateFields()</span><br><span class="line">  .then(() =&gt; &#123;</span><br><span class="line">    // 校验成功，逻辑</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((errorInfo: any) =&gt; &#123;&#125;);</span><br><span class="line"></span><br><span class="line">// rpName 清除校验字段</span><br><span class="line">formRef.value as any).clearValidate([&quot;rpName&quot;]);</span><br></pre></td></tr></table></figure>
 <h4 id="lodash使用"><a href="#lodash使用" class="headerlink" title="lodash使用"></a>lodash使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// import &#123; throttle &#125; from &quot;lodash-es&quot;;</span><br><span class="line">const throttleFun = throttle(</span><br><span class="line">  () =&gt; &#123;</span><br><span class="line">    initClassTree();</span><br><span class="line">  &#125;,</span><br><span class="line">  500,</span><br><span class="line">  &#123;</span><br><span class="line">    leading: true,</span><br><span class="line">    trailing: true,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="父组件使用v-model传值"><a href="#父组件使用v-model传值" class="headerlink" title="父组件使用v-model传值"></a>父组件使用v-model传值</h4><ul>
+<li><span style="color: red;">注 </span><strong>update:modelValue</strong> 冒号两边无空格<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;Editor v-model=&quot;state&quot;&gt;&lt;/Editor&gt;</span><br><span class="line">// 子组件</span><br><span class="line">props: &#123;</span><br><span class="line">  modelValue: &#123;</span><br><span class="line">    type: Object,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">emits: [&apos;update:modelValue&apos;], // 触发事件</span><br><span class="line">setup (props, &#123; emit &#125;) &#123;</span><br><span class="line">const data = computed(&#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    return props.modelValue</span><br><span class="line">  &#125;,</span><br><span class="line">  set(newValue) &#123;</span><br><span class="line">      emit(&apos;update:modelValue&apos;, deepcopy(newValue));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
           
         
@@ -2326,616 +2695,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/17/vite-vue3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/17/vite-vue3/" itemprop="url">vite+vue3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-17T09:59:13+08:00">
-                2022-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><ul>
-<li><a href="https://vitejs.cn/guide/why.html#slow-server-start" style="color: blue;" target="_blank" rel="noopener">vite</a></li>
-<li><a href="https://blog.csdn.net/qq1195566313/category_11618172.html" style="color: blue;" target="_blank" rel="noopener">more</a><h4 id="首次执行命令-npm-init-vite-latest-一直报错"><a href="#首次执行命令-npm-init-vite-latest-一直报错" class="headerlink" title="首次执行命令(npm init vite@latest)一直报错"></a>首次执行命令(npm init vite@latest)一直报错</h4></li>
-<li><p>解决</p>
-<ul>
-<li>修改源地址位淘宝镜像<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>修改源地址为官方源</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmjs.org/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再使用cnpm</p>
-</li>
-<li><p>下载淘宝镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm  install -g cnpm --registry==http://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定淘宝镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set  registry  http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="vite的优势"><a href="#vite的优势" class="headerlink" title="vite的优势"></a>vite的优势</h4><ul>
-<li>冷服务 默认构建目标浏览器是能在script标签上支持原生ESM和原生ESM动态导入<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/400573436" style="color: blue;" target="_blank" rel="noopener">更多ESM</a></li>
-</ul>
-</li>
-<li>HMR模块热替换（hot module replacement）速度快 模块热更新（HMR）</li>
-<li>Rollup打包，它使用rollup打包的代码，并且它是预配置的 支持大部分的rollup插件</li>
-</ul>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li>public – 静态文件（不被编译）</li>
-<li>src/assets – 静态文件（被编译）</li>
-</ul>
-<h4 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h4><ul>
-<li>有无key 是否覆盖，及跳过（顺、逆、乱）</li>
-</ul>
-<h4 id="相关Ref"><a href="#相关Ref" class="headerlink" title="相关Ref"></a>相关Ref</h4><ul>
-<li>ref<ul>
-<li>接受一个内部值并返回一个响应式且可变的 ref 对象。ref 对象仅有一个 .value property，指向该内部值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">let mes: string = &quot;初学习vite&quot;</span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  mes = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>以上操作，无法改变mes的值,因为mes并不是响应式的，无法被vue跟踪要改成ref</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123;ref, Ref&#125; from &apos;vue&apos;</span><br><span class="line">let mes:Ref&lt;string&gt; = ref(&quot;我是message&quot;);</span><br><span class="line"> </span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  mes.value = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">// ------------------------------- ts两种方式 ---------------------------------</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;changeHandle&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; mes &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; ref &#125; from &apos;vue&apos;</span><br><span class="line">let mes = ref&lt;string | number&gt;(&quot;我是message&quot;)</span><br><span class="line"> </span><br><span class="line">const changeHandle = () =&gt; &#123;</span><br><span class="line">  message.value = &quot;change msg&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>isRef</p>
-<ul>
-<li>判断是不是一个ref对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ref, Ref,isRef &#125; from &apos;vue&apos;</span><br><span class="line">let message: Ref&lt;string | number&gt; = ref(&quot;我是message&quot;)</span><br><span class="line">let notRef:number = 123</span><br><span class="line">const changeMsg = () =&gt; &#123;</span><br><span class="line">  message.value = &quot;change msg&quot;</span><br><span class="line">  console.log(isRef(message)); //true</span><br><span class="line">  console.log(isRef(notRef)); //false</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>shallowRef</p>
-<ul>
-<li>创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的</li>
-<li>修改其属性是非响应式的这样是不会改变的</li>
-</ul>
-</li>
-<li><p>triggerRef</p>
-<ul>
-<li>强制更新页面DOM</li>
-</ul>
-</li>
-<li><p>customRef</p>
-<ul>
-<li>customRef 是个工厂函数要求我们返回一个对象 并且实现 get 和 set </li>
-</ul>
-</li>
-</ul>
-<h4 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h4><ul>
-<li>用来绑定复杂的数据类型 例如 对象 数组</li>
-<li>不可以绑定普通的数据类型这样是不允许 会给我们报错</li>
-<li>如果用ref去绑定对象 或者 数组 等复杂的数据类型,看源码里面其实也是 去调用reactive,使用reactive 去修改值无须.value</li>
-<li><p>数组异步赋值问题</p>
-<ul>
-<li>不会变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let person = reactive&lt;number[]&gt;([])</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  person = [1, 2, 3]</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>解决方案1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; reactive &#125; from &apos;vue&apos;</span><br><span class="line">let person = reactive&lt;number[]&gt;([])</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  const arr = [1, 2, 3]</span><br><span class="line">  person.push(...arr)</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决方案2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Person = &#123;</span><br><span class="line">  list?:Array&lt;number&gt;</span><br><span class="line">&#125;</span><br><span class="line">let person = reactive&lt;Person&gt;(&#123;</span><br><span class="line">  list:[]</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  const arr = [1, 2, 3]</span><br><span class="line">  person.list = arr;</span><br><span class="line">  console.log(person);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>readonly</p>
-<ul>
-<li>拷贝一份proxy对象将其设置为只读</li>
-</ul>
-</li>
-<li>shallowReactive<ul>
-<li>只能对浅层的数据 如果是深层的数据只会改变值,不会改变视图</li>
-</ul>
-</li>
-</ul>
-<h4 id="to系列"><a href="#to系列" class="headerlink" title="to系列"></a>to系列</h4><ul>
-<li>toRef<ul>
-<li>原始对象是非响应式的就不会更新视图 数据是会变的</li>
-<li>原始对象是响应式的是会更新视图并且改变数据的</li>
-</ul>
-</li>
-<li>toRefs<ul>
-<li>批量创建ref对象主要是方便我们解构使用</li>
-</ul>
-</li>
-<li>toRaw<ul>
-<li>响应式对象转化为普通对象</li>
-</ul>
-</li>
-</ul>
-<h4 id="computed计算属性"><a href="#computed计算属性" class="headerlink" title="computed计算属性"></a>computed计算属性</h4><ul>
-<li>computed用法<ul>
-<li>计算属性就是当依赖的属性的值发生变化的时候，才会触发他的更改，如果依赖的值，不发生变化的时候，使用的是缓存中的属性值</li>
-<li>参数（函数或对象）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const name = computed(() =&gt; &#123;</span><br><span class="line">  return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">&#125;)</span><br><span class="line">const name = computed(&#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">  &#125;,</span><br><span class="line">  set() &#123;</span><br><span class="line">    return `$&#123;fistName.value&#125; ----- $&#123;lastName.value&#125;`</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="watch侦听器"><a href="#watch侦听器" class="headerlink" title="watch侦听器"></a>watch侦听器</h4><ul>
-<li>watch 需要侦听特定的数据源，并在单独的回调函数中执行副作用</li>
-<li><p>watch参数</p>
-<ul>
-<li><p>第一个参数监听源(单个数据源、数组、函数)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ref, watch, reactive &#125; from &apos;vue&apos;;</span><br><span class="line">let message = reactive(&#123;</span><br><span class="line">  name: &apos;凤&apos;,</span><br><span class="line">  name2: &apos;凤凤&apos;,</span><br><span class="line">&#125;);</span><br><span class="line">// 只想监听特定的某个属性，可以传入函数</span><br><span class="line">watch(() =&gt; message.name, (newVal, oldVal) =&gt; &#123;</span><br><span class="line">  console.log(&apos;新的&apos;, newVal);</span><br><span class="line">  console.log(&apos;旧的&apos;, oldVal);</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  // deep: true, // reactive类型 是否设置deep 都深度监听</span><br><span class="line">  // immediate: true, // 第一次进入页面是否执行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二个参数回调函数cb（newVal, oldVal）</p>
-</li>
-<li>第三个参数一个options配置项是一个对象，可不传 undefined<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  immediate: true, // 是否立即调用一次</span><br><span class="line">  deep: true // 是否开启深度监听， 如果是reactive类型，是否设置此属性默认深度监听</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="watchEffect高级侦听器）"><a href="#watchEffect高级侦听器）" class="headerlink" title="watchEffect高级侦听器）"></a>watchEffect高级侦听器）</h4><ul>
-<li>立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数</li>
-<li>如果用到message 就只会监听message 就是用到几个监听几个 而且是非惰性 会默认调用一次</li>
-<li>清除副作用<ul>
-<li>就是在触发监听之前会调用一个函数可以处理你的逻辑例如防抖</li>
-</ul>
-</li>
-<li><p>停止跟踪 watchEffect 返回一个函数 调用之后将停止更新</p>
-</li>
-<li><p>更多的配置项</p>
-<ul>
-<li>副作用刷新时机 flush 一般使用post(可以获取到DOM元素)</li>
-<li>更新时机，pre组件更新前执行， sync强制效果始终同步触发， post组件更新后执行</li>
-<li>onTrigger  可以帮助我们调试 watchEffect<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;input id=&quot;inp&quot; v-model=&quot;message&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">  &lt;input v-model=&quot;message2&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">  &lt;button @click=&quot;stopWatch&quot;&gt;停止监听&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">import &#123; ref, watch, watchEffect, reactive &#125; from &apos;vue&apos;;</span><br><span class="line">const message = ref&lt;string&gt;(&apos;凤&apos;);</span><br><span class="line">const message2 = ref&lt;string&gt;(&apos;凤凤&apos;);</span><br><span class="line">// 默认会执行一次 </span><br><span class="line">const stop = watchEffect((oninvalidate) =&gt; &#123;</span><br><span class="line">  const inp:HTMLInputElement = document.querySelector(&apos;#inp&apos;) as HTMLInputElement;</span><br><span class="line">  console.log(&apos;message--------&apos;, message.value);</span><br><span class="line">  // console.log(&apos;message2--------&apos;, message2.value);</span><br><span class="line">  console.log(inp, &apos;进入页面&apos;);</span><br><span class="line">  oninvalidate(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;before&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  flush: &apos;post&apos;,</span><br><span class="line">  onTrigger(e) &#123;</span><br><span class="line">    // dev可以帮助我们调试 watchEffect</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const stopWatch = () =&gt; stop();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="识组件-amp-Vue3生命周期"><a href="#识组件-amp-Vue3生命周期" class="headerlink" title="识组件&amp;Vue3生命周期"></a>识组件&amp;Vue3生命周期</h4><ul>
-<li>每一个.vue 文件都可以充当组件来使用</li>
-<li>每一个组件都可以复用</li>
-<li><p>父组件使用</p>
-<ul>
-<li>引入子组件 xxx 然后直接就可以去当标签去使用 （切记组件名称不能与html元素标签名称一样）</li>
-<li>vue3使用组件无需注册</li>
-</ul>
-</li>
-<li><p>组件的生命周期</p>
-<ul>
-<li>是一个组件从创建到销毁的过程成为生命周期</li>
-<li>在我们使用Vue3 组合式API 是没有 beforeCreate 和 created 这两个生命周期的</li>
-</ul>
-</li>
-<li>onBeforeMount()<ul>
-<li>在组件DOM实际渲染安装之前调用。在这一步中，根元素还不存在</li>
-</ul>
-</li>
-<li>onMounted()<ul>
-<li>在组件的第一次渲染后调用，该元素现在可用，允许直接DOM访问</li>
-</ul>
-</li>
-<li>onBeforeUpdate()<ul>
-<li>数据更新时调用，发生在虚拟 DOM 打补丁之前</li>
-</ul>
-</li>
-<li>updated()<ul>
-<li>DOM更新后，updated的方法即会调用</li>
-</ul>
-</li>
-<li>*nBeforeUnmounted()<ul>
-<li>在卸载组件实例之前调用。在这个阶段，实例仍然是完全正常的</li>
-</ul>
-</li>
-<li>onUnmounted()<ul>
-<li>卸载组件实例后调用。调用此钩子时，组件实例的所有指令都被解除绑定，所有事件侦听器都被移除，所有子组件实例被卸载</li>
-</ul>
-</li>
-</ul>
-<h4 id="实操组件和认识less-和-scoped"><a href="#实操组件和认识less-和-scoped" class="headerlink" title="实操组件和认识less 和 scoped"></a>实操组件和认识less 和 scoped</h4><ul>
-<li><p>less</p>
-<ul>
-<li>Less （Leaner Style Sheets 的缩写） 是一门向后兼容的 CSS 扩展语言。这里呈现的是 Less 的官方文档（中文版），包含了 Less 语言以及利用 JavaScript 开发的用于将 Less 样式转换成 CSS 样式的 Less.js 工具</li>
-<li>Less 和 CSS 非常像，很容易学习。而且 Less 仅对 CSS 语言增加了少许方便的扩展，这就是 Less 如此易学的原因之一 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/400573436" style="color: blue;" target="_blank" rel="noopener">官方文档 Less 快速入门 | Less.js 中文文档 - Less 中文网</a></li>
-</ul>
-</li>
-<li>在vite中使用less<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install less less-loader -D // 安装即可</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在style标签注明即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;less&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>scoped</p>
-<ul>
-<li>实现组件的私有化, 当前style属性只属于当前模块<ul>
-<li>在DOM结构中可以发现,vue通过在DOM结构以及css样式上加了唯一标记,达到样式私有化,不污染全局的作用</li>
-<li>样式穿透问题学到第三方组件精讲 ::v-deep  &gt;&gt;&gt; /deep/</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="父子组件传参"><a href="#父子组件传参" class="headerlink" title="父子组件传参"></a>父子组件传参</h4><ul>
-<li>父组件通过v-bind绑定一个数据，然后子组件通过defineProps接受传过来的值<ul>
-<li>传递了一个title 字符串类型是不需要v-bind</li>
-<li>传递非字符串类型需要加v-bind  简写 冒号</li>
-</ul>
-</li>
-<li>子组件接受值<ul>
-<li>通过defineProps 来接受 defineProps是无须引入的直接使用即可</li>
-<li>如果我们使用的TypeScript，可以使用传递字面量类型的纯类型语法做为参数</li>
-</ul>
-</li>
-<li>TS 特有的默认值方式</li>
-<li><p>withDefaults是个函数也是无须引入开箱即用接受一个props函数第二个参数是一个对象设置默认值</p>
-</li>
-<li><p>子组件给父组件传参</p>
-<ul>
-<li>是通过defineEmits派发一个事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;menu&quot;&gt;</span><br><span class="line">        &lt;button @click=&quot;clickTap&quot;&gt;派发给父组件&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; reactive &#125; from &apos;vue&apos;</span><br><span class="line">const list = reactive&lt;number[]&gt;([4, 5, 6])</span><br><span class="line"> </span><br><span class="line">const emit = defineEmits([&apos;on-click&apos;])</span><br><span class="line">const clickTap = () =&gt; &#123;</span><br><span class="line">    emit(&apos;on-click&apos;, list)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在子组件绑定了一个click 事件 然后通过defineEmits 注册了一个自定义事件</p>
-<ul>
-<li>点击click 触发 emit 去调用我们注册的事件 然后传递参数</li>
-<li>父组件接受子组件的事件</li>
-</ul>
-</li>
-<li>组件暴露给父组件内部属性<ul>
-<li>通过defineExpose</li>
-<li>父组件获取子组件实例通过ref</li>
-<li>父组件想要读到子组件的属性可以通过 defineExpose暴露</li>
-</ul>
-</li>
-</ul>
-<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><ul>
-<li>让多个组件使用同一个挂载点，并动态切换，这就是动态组件。</li>
-<li><p>在挂载点使用component标签，然后使用v-bind:is=”组件”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;component :is=&quot;A&quot;&gt;&lt;/component&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用场景</p>
-<ul>
-<li>tab切换 居多</li>
-</ul>
-</li>
-<li>注意事项<br>1.在Vue2 的时候is 是通过组件名称切换的 在Vue3 setup 是通过组件实例切换的</li>
-</ul>
-<p>2.如果你把组件实例放到Reactive Vue会给你一个警告runtime-core.esm-bundler.js:38 [Vue warn]: Vue received a Component which was made a reactive object. This can lead to unnecessary performance overhead, and should be avoided by marking the component with <code>markRaw</code> or using <code>shallowRef</code> instead of <code>ref</code>.<br>Component that was made reactive: </p>
-<ul>
-<li><p>这是因为reactive 会进行proxy 代理 而我们组件代理之后毫无用处 节省性能开销 推荐我们使用shallowRef 或者  markRaw 跳过proxy 代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const tab = reactive&lt;Com[]&gt;([&#123;</span><br><span class="line">    name: &quot;A组件&quot;,</span><br><span class="line">    comName: markRaw(A)</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: &quot;B组件&quot;,</span><br><span class="line">    comName: markRaw(B)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>?.length的语法</p>
-<ul>
-<li>某个对象下的某个数组不存在，读取length会报错，处理方式(是否存在，不存在并赋值为空数组) item.children?.length ?? []</li>
-<li>null ?? [] 得到[],但是 0 ?? [] 得到 0 false ?? [] 得到false</li>
-</ul>
-</li>
-<li><p>vue2 与 vue3使用方式区别</p>
-</li>
-<li><component :is="current.comName"></component></li>
-<li>vue3中 is 如果是字符串，不会被渲染  setup 与 component之间没有建立媒介关系</li>
-<li>改写为vue 2方式没有问题<pre><code>&lt;script lang=&quot;ts&quot;&gt;
-export default {
-components: {
-  A,
-}
-}
-&lt;/script&gt;
-</code></pre></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/05/for循环和forEach的语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/05/for循环和forEach的语法/" itemprop="url">for循环和forEach的语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-05T15:20:22+08:00">
-                2022-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="for循环和forEach的语法"><a href="#for循环和forEach的语法" class="headerlink" title="for循环和forEach的语法"></a>for循环和forEach的语法</h3><ul>
-<li><a href="https://mp.weixin.qq.com/s/9UR22JFovfJegmhhUPMjdg" style="color: blue;" target="_blank" rel="noopener">To Learn More</a> </li>
-</ul>
-<h4 id="for循环和forEach的本质区别"><a href="#for循环和forEach的本质区别" class="headerlink" title="for循环和forEach的本质区别"></a>for循环和forEach的本质区别</h4><ul>
-<li>forEach 是负责遍历（Array Set Map）可迭代对象的，而 for 循环是一种循环机制，只是能通过它遍历出数组</li>
-<li>只要是可迭代对象，调用内部的 Symbol.iterator 都会提供一个迭代器，并根据迭代器返回的next 方法来访问内部，这也是 for…of 的实现原理</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4]  // 可迭代对象</span><br><span class="line">let iterator = arr[Symbol.iterator]()  // 调用 Symbol.iterator 后生成了迭代器对象</span><br><span class="line">console.log(iterator.next()); // &#123;value: 1, done: false&#125;  访问迭代器对象的next方法</span><br></pre></td></tr></table></figure>
-<h4 id="for循环和forEach的语法区别"><a href="#for循环和forEach的语法区别" class="headerlink" title="for循环和forEach的语法区别"></a>for循环和forEach的语法区别</h4><ul>
-<li>forEach 的参数</li>
-<li><p>arr.forEach((self,index,arr) =&gt;{},this) // this： 回调函数中this指向</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4];</span><br><span class="line">let person = &#123;</span><br><span class="line">    name: &apos;xx&apos;</span><br><span class="line">&#125;;</span><br><span class="line">arr.forEach(function (self, index, arr) &#123;</span><br><span class="line">    console.log(`当前元素为$&#123;self&#125;索引为$&#123;index&#125;,属于数组$&#123;arr&#125;`);</span><br><span class="line">    console.log(this.name+=&apos;美美哒&apos;);</span><br><span class="line">&#125;, person)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>arr 实现数组去重</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let arr1 = [1, 2, 1, 3, 1];</span><br><span class="line">let arr2 = [];</span><br><span class="line">arr1.forEach(function (self, index, arr) &#123;</span><br><span class="line">    arr.indexOf(self) === index ? arr2.push(self) : null;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(arr2);   // [1,2,3]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>forEach 的中断</p>
-</li>
-<li><p>js中有break return continue 对函数进行中断或跳出循环的操作(优化数组遍历查找),但forEach属于迭代器，只能按序依次遍历完成，不支持上述的中断行为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4],</span><br><span class="line">    i = 0,</span><br><span class="line">    length = arr.length;</span><br><span class="line">for (; i &lt; length; i++) &#123;</span><br><span class="line">    console.log(arr[i]); //1,2</span><br><span class="line">    if (arr[i] === 2) &#123;</span><br><span class="line">        break;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">arr.forEach((self,index) =&gt; &#123;</span><br><span class="line">    console.log(self);</span><br><span class="line">    if (self === 2) &#123;</span><br><span class="line">        break; //报错</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">arr.forEach((self,index) =&gt; &#123;</span><br><span class="line">    console.log(self);</span><br><span class="line">    if (self === 2) &#123;</span><br><span class="line">        continue; //报错</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>forEach 中跳出循环呢？其实是有办法的，借助try/catch</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    var arr = [1, 2, 3, 4];</span><br><span class="line">    arr.forEach(function (item, index) &#123;</span><br><span class="line">        //跳出条件</span><br><span class="line">        if (item === 3) &#123;</span><br><span class="line">            throw new Error(&quot;LoopTerminates&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        //do something</span><br><span class="line">        console.log(item);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">    if (e.message !== &quot;LoopTerminates&quot;) throw e;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>return 并不会报错，但是不会生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4];</span><br><span class="line">function find(array, num) &#123;</span><br><span class="line">    array.forEach((self, index) =&gt; &#123;</span><br><span class="line">        if (self === num) &#123;</span><br><span class="line">            return index;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">let index = find(arr, 2);// undefined</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>forEach 删除自身元素，index不可被重置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1,2,3,4]</span><br><span class="line">arr.forEach((item, index) =&gt; &#123;</span><br><span class="line">    console.log(item); // 1 2 3 4</span><br><span class="line">    index++;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>for 循环可以控制循环起点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4],</span><br><span class="line">    i = 1,</span><br><span class="line">    length = arr.length;</span><br><span class="line"></span><br><span class="line">for (; i &lt; length; i++) &#123;</span><br><span class="line">    console.log(arr[i]) // 2 3 4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组遍历并删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 1],</span><br><span class="line">    i = 0,</span><br><span class="line">    length = arr.length;</span><br><span class="line"></span><br><span class="line">for (; i &lt; length; i++) &#123;</span><br><span class="line">    // 删除数组中所有的1</span><br><span class="line">    if (arr[i] === 1) &#123;</span><br><span class="line">        arr.splice(i, 1);</span><br><span class="line">        //重置i，否则i会跳一位</span><br><span class="line">        i--;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(arr); // [2]</span><br><span class="line">//等价于</span><br><span class="line">var arr1 = arr.filter(index =&gt; index !== 1);</span><br><span class="line">console.log(arr1) // [2]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>for循环和forEach的性能区别</p>
-<ul>
-<li>性能比较：for &gt; forEach &gt; map 在chrome 62 和 Node.js v9.1.0环境下：for 循环比 forEach 快1倍，forEach 比 map快20%左右</li>
-<li>for循环没有额外的函数调用栈和上下文，所以它的实现最为简单</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2988,7 +2747,7 @@ components: {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

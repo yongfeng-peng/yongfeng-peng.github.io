@@ -268,6 +268,383 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/工具函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/05/工具函数/" itemprop="url">工具函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-05T15:58:02+08:00">
+                2019-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="js工具函数"><a href="#js工具函数" class="headerlink" title="js工具函数"></a>js工具函数</h4><h5 id="toFixed-精度高的用法"><a href="#toFixed-精度高的用法" class="headerlink" title="toFixed 精度高的用法"></a>toFixed 精度高的用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function round(number, precision) &#123;</span><br><span class="line">  return Math.round(+number + &apos;e&apos; + precision) / Math.pow(10, precision);</span><br><span class="line">&#125;</span><br><span class="line">* 注意整数使用toFixed 写法需要括号(6).toFixed(2)</span><br></pre></td></tr></table></figure>
+<h5 id="switch实现"><a href="#switch实现" class="headerlink" title="switch实现"></a>switch实现</h5><ul>
+<li><p>数组+索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function previewWeek(i) &#123;</span><br><span class="line">  return  i &gt; 0 &amp;&amp; i &lt; 8 ? &apos;星期&apos;+[&apos;一&apos;,&apos;二&apos;,&apos;三&apos;,&apos;四&apos;,&apos;五&apos;,&apos;六&apos;,&apos;日&apos;][i-1] : &apos;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function previewWeek(i)&#123;</span><br><span class="line">  let weeksMap = new Map([</span><br><span class="line">      [1, &apos;一&apos;],</span><br><span class="line">      [2, &apos;二&apos;],</span><br><span class="line">      [3, &apos;三&apos;],</span><br><span class="line">      [4, &apos;四&apos;],</span><br><span class="line">      [5, &apos;五&apos;],</span><br><span class="line">      [6, &apos;六&apos;],</span><br><span class="line">      [7, &apos;日&apos;]</span><br><span class="line">  ]);</span><br><span class="line">  return weeksMap.get(i) ? &apos;星期&apos;+weeksMap.get(i) : &apos;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="过滤数组中的false"><a href="#过滤数组中的false" class="headerlink" title="过滤数组中的false"></a>过滤数组中的false</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 0, undefined, null, false];</span><br><span class="line">arr.filter(Boolean);</span><br></pre></td></tr></table></figure>
+<h5 id="创建一个纯净的空对象"><a href="#创建一个纯净的空对象" class="headerlink" title="创建一个纯净的空对象"></a>创建一个纯净的空对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let dict = Object.create(null);</span><br><span class="line">dict.__proto__ === &quot;undefined&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a>合并对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const page = &#123;</span><br><span class="line">    current: 1,</span><br><span class="line">    pageSize: 10</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;&apos;,</span><br><span class="line">    sex: &apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line">const params = &#123;...obj, ...page&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="解构赋值使用别名"><a href="#解构赋值使用别名" class="headerlink" title="解构赋值使用别名"></a>解构赋值使用别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123; x: 1 &#125;;</span><br><span class="line">// Grabs obj.x as &#123; x &#125;</span><br><span class="line">const &#123; x &#125; = obj;</span><br><span class="line"></span><br><span class="line">// Grabs obj.x as &#123; otherName &#125;</span><br><span class="line">const &#123; x: otherName &#125; = obj;</span><br></pre></td></tr></table></figure>
+<h5 id="数组map方法，抽离数组对象中的某个属性"><a href="#数组map方法，抽离数组对象中的某个属性" class="headerlink" title="数组map方法，抽离数组对象中的某个属性"></a>数组map方法，抽离数组对象中的某个属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const cities = [</span><br><span class="line">    &#123; name: &apos;Paris&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Lyon&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Marseille&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Rome&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Milan&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Palermo&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Genoa&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Berlin&apos;, visited: &apos;no&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;Hamburg&apos;, visited: &apos;yes&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;New York&apos;, visited: &apos;yes&apos; &#125;</span><br><span class="line">];</span><br><span class="line">const cityNames = Array.from(cities, (&#123; name&#125;) =&gt; name);</span><br><span class="line">console.log(cityNames);</span><br></pre></td></tr></table></figure>
+<h5 id="有条件的对象属性"><a href="#有条件的对象属性" class="headerlink" title="有条件的对象属性"></a>有条件的对象属性</h5><ul>
+<li>根据一个条件创建两个不同的对象，可以使用展开运算符号来处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const getUser = (emailIncluded) =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    name: &apos;John&apos;,</span><br><span class="line">    surname: &apos;Doe&apos;,</span><br><span class="line">    ...emailIncluded &amp;&amp; &#123; email : &apos;john@doe.com&apos; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const user = getUser(true);</span><br><span class="line">console.log(user); // outputs &#123; name: &quot;John&quot;, surname: &quot;Doe&quot;, email: &quot;john@doe.com&quot; &#125;</span><br><span class="line">const userWithoutEmail = getUser(false);</span><br><span class="line">console.log(userWithoutEmail); // outputs &#123; name: &quot;John&quot;, surname: &quot;Doe&quot; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="公用的正则表达式"><a href="#公用的正则表达式" class="headerlink" title="公用的正则表达式"></a>公用的正则表达式</h5><ul>
+<li><p>国内座机号码（0341-86091234）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let reg = /\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>中文型姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let reg = /^([\u4e00-\u9fa5·]&#123;2,10&#125;)$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>车牌号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 新能源车牌号</span><br><span class="line">let reg =  /[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]&#123;1&#125;[A-HJ-NP-Z]&#123;1&#125;(([0-9]&#123;5&#125;[DF])|([DF][A-HJ-NP-Z0-9][0-9]&#123;4&#125;))$/;</span><br><span class="line">// 非新能源车牌号</span><br><span class="line">let reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]&#123;1&#125;[A-HJ-NP-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/;</span><br><span class="line">// 新能源车牌号+非新能源车牌号</span><br><span class="line">let reg = /^([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]&#123;1&#125;[A-HJ-NP-Z]&#123;1&#125;(([0-9]&#123;5&#125;[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]&#123;4&#125;)))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-HJ-NP-Z0-9]&#123;4&#125;[A-HJ-NP-Z0-9 挂学警港澳]&#123;1&#125;)$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>手机号校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 手机号严谨</span><br><span class="line">let reg = /^1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$/;</span><br><span class="line">// 手机号宽松</span><br><span class="line">let reg = /^1[3-9]\d&#123;9&#125;$/;</span><br><span class="line">或者 let reg = /^1[3456789]\d&#123;9&#125;$/;</span><br><span class="line">// 手机号（最简单的11位校验）</span><br><span class="line">let reg = /^1\d&#123;10&#125;$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>email地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>身份证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 一代身份证(15位数)</span><br><span class="line">let reg = /^\d&#123;8&#125;(0\d|11|12)([0-2]\d|30|31)\d&#123;3&#125;$/;</span><br><span class="line">// 二代身份证(18位数)</span><br><span class="line">let reg = /^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$/;</span><br><span class="line">// 一代身份证+二代身份证</span><br><span class="line">let reg = /(^\d&#123;8&#125;(0\d|11|12)([0-2]\d|30|31)\d&#123;3&#125;$)|(^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$)/;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="年月日格式替换"><a href="#年月日格式替换" class="headerlink" title="年月日格式替换"></a>年月日格式替换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">filterDate(date) &#123;</span><br><span class="line">  let _date = date.replace(/[年月]/g, &apos;-&apos;);</span><br><span class="line">  let _day = _date_.replace(/[日]/, &apos;&apos;);</span><br><span class="line">  return _day;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">filterDateName(date) &#123;</span><br><span class="line">  let [year, month, day] = `$&#123;date&#125;`.split(&apos;-&apos;);</span><br><span class="line">  return `$&#123;year&#125;年$&#123;month&#125;月$&#123;day&#125;日`;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="js简单粗暴截断数组"><a href="#js简单粗暴截断数组" class="headerlink" title="js简单粗暴截断数组"></a>js简单粗暴截断数组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [0, 1, 2, 3, 4, 5];</span><br><span class="line">array.length = 3;</span><br><span class="line">console.log(array);</span><br><span class="line">Output: [0, 1, 2];</span><br></pre></td></tr></table></figure>
+<h5 id="随机排列数组中的元素"><a href="#随机排列数组中的元素" class="headerlink" title="随机排列数组中的元素"></a>随机排列数组中的元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];</span><br><span class="line">console.log(arr.sort(function() &#123; return Math.random() - 0.5&#125;));</span><br></pre></td></tr></table></figure>
+<h5 id="展平多维数组"><a href="#展平多维数组" class="headerlink" title="展平多维数组"></a>展平多维数组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let entries = [1, [2, 5], [6, 7], 9];</span><br><span class="line">let flat_entries = [].concat(...entries);</span><br></pre></td></tr></table></figure>
+<h5 id="提取唯一值"><a href="#提取唯一值" class="headerlink" title="提取唯一值"></a>提取唯一值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let entries = [1, 2, 2, 3, 4, 5, 6, 6, 7, 7, 8, 4, 2, 1];</span><br><span class="line">let unique_entries = [...new Set(entries)];</span><br><span class="line">console.log(unique_entries); // [1, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<h5 id="动态属性名称"><a href="#动态属性名称" class="headerlink" title="动态属性名称"></a>动态属性名称</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const dynamic = &apos;flavour&apos;;</span><br><span class="line">let item = &#123;    name: &apos;Coke&apos;,    [dynamic]: &apos;Cherry&apos;&#125;;</span><br><span class="line">console.log(item); // &#123; name: &quot;Coke&quot;, flavour: &quot;Cherry&quot; &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="手机号码脱敏显示-前三位和后三位"><a href="#手机号码脱敏显示-前三位和后三位" class="headerlink" title="手机号码脱敏显示 前三位和后三位"></a>手机号码脱敏显示 前三位和后三位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">secretPhone(phone) &#123;</span><br><span class="line">  if(!phone || phone.length !== 11) &#123;</span><br><span class="line">    return &apos;&apos;</span><br><span class="line">  &#125; </span><br><span class="line">  return phone</span><br><span class="line">    .match(/(\d&#123;3&#125;)(\d&#123;5&#125;)(\d&#123;3&#125;)/)</span><br><span class="line">    .slice(1)</span><br><span class="line">    .reduce(function(value, item, index) &#123;</span><br><span class="line">      return index === 1 ? value + &apos;*****&apos; : value + item;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数组乱序"><a href="#数组乱序" class="headerlink" title="数组乱序"></a>数组乱序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const shuffleArray = (arr) =&gt; arr.sort(() =&gt; Math.random() - 0.5)</span><br><span class="line">// 测试</span><br><span class="line">const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];</span><br><span class="line">console.log(shuffleArray(arr))</span><br></pre></td></tr></table></figure>
+<h4 id="滚动到顶部、滚动到底部"><a href="#滚动到顶部、滚动到底部" class="headerlink" title="滚动到顶部、滚动到底部"></a>滚动到顶部、滚动到底部</h4><ul>
+<li>“smooth “来实现平滑的滚动动画</li>
+<li>如scrollToTop方法，scrollToBottom方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const scrollToTop = (element) =&gt; &#123;</span><br><span class="line">  element.scrollIntoView(&#123; behavior: &quot;smooth&quot;, block: &quot;start&quot; &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const scrollToBottom = (element) =&gt; &#123;</span><br><span class="line">  element.scrollIntoView(&#123; behavior: &quot;smooth&quot;, block: &quot;end&quot; &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="生成随机颜色"><a href="#生成随机颜色" class="headerlink" title="生成随机颜色"></a>生成随机颜色</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const generateRandomHexColor = () =&gt; &#123;</span><br><span class="line">  return `#$&#123;Math.floor(Math.random() * 0xffffff).toString(16)&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="JavaScript常见错误"><a href="#JavaScript常见错误" class="headerlink" title="JavaScript常见错误"></a>JavaScript常见错误</h5><ul>
+<li><a href="https://juejin.im/post/5d0b9338f265da1bb80c34fd" style="color: blue;" target="_blank" rel="noopener">To Learn More</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/04/小程序踩坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/04/小程序踩坑/" itemprop="url">小程序踩坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-04T11:18:48+08:00">
+                2019-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="容易忽视的小程序细节"><a href="#容易忽视的小程序细节" class="headerlink" title="容易忽视的小程序细节"></a>容易忽视的小程序细节</h4><h5 id="wx-for属性"><a href="#wx-for属性" class="headerlink" title="wx:for属性"></a>wx:for属性</h5><pre><code>* 绑定一个数组，默认数组当前项的下标变量名为index，数组当前项默认为 item
+* 实质是遍历Array数组，但在开发中经常会遇到遍历**Object对象**,会使用在多层嵌套的循环中，不可避免的会重定义item与index
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wx:for-item=&quot;xxx&quot;</span><br><span class="line">wx:for-index=&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>针对对象Object,以上两个属性木有用呀</strong></p>
+<ul>
+<li>一般复杂的逻辑，尽量数据结构都是键值对key-value的显示吧，可以让不认真看文档的我，开发效率提高哟</li>
+</ul>
+<h5 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h5><ul>
+<li><p>可滚动视图区域 <strong>值得注意的是，行内样式的设置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width: 100%;</span><br><span class="line">white-space: nowrap; // 不进行换行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>会遇到需求就是滚动区域内的布局，可换行，<strong>两者之间会冲突，取舍去吧</strong></p>
+</li>
+<li>微信小程序之Android环境下的横向滚动，当遇到不能滚动时，加上overflow-x: auto</li>
+</ul>
+<h5 id="wx-navigator-不可跳转到pages是底部tab"><a href="#wx-navigator-不可跳转到pages是底部tab" class="headerlink" title="wx.navigator 不可跳转到pages是底部tab"></a>wx.navigator 不可跳转到pages是底部tab</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;</span><br><span class="line">    url: &apos;/pages/xxx/xxx&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="wx-getSystemInfoSync获取windowHeight不准确"><a href="#wx-getSystemInfoSync获取windowHeight不准确" class="headerlink" title="wx.getSystemInfoSync获取windowHeight不准确"></a>wx.getSystemInfoSync获取windowHeight不准确</h5><ul>
+<li>主要原因在于获取是时机，wx.getSystemInfoSync是在页面初始化的时候就计算了，基本上可以理解为是屏幕高度。所以，最好的方法是使用异步接口，并且在onReady函数中调用。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onReady() &#123;</span><br><span class="line">  wx.getSystemInfo(&#123;</span><br><span class="line">    success(&#123;windowHeight&#125;) &#123;</span><br><span class="line">      // todo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="无法获取UnionID的问题"><a href="#无法获取UnionID的问题" class="headerlink" title="无法获取UnionID的问题"></a>无法获取UnionID的问题</h5><ul>
+<li>login获取UID必须满足两个条件：<ul>
+<li>把小程序和公众号都绑定在开放平台</li>
+<li>用户必须已经关注公众号</li>
+</ul>
+</li>
+<li>用wx.getUserInfo获取满足一个条件：<ul>
+<li>把小程序和公众号都绑定在开放平台</li>
+</ul>
+</li>
+</ul>
+<h5 id="wx-getUserInfo-接口更改问题"><a href="#wx-getUserInfo-接口更改问题" class="headerlink" title="wx.getUserInfo()接口更改问题"></a>wx.getUserInfo()接口更改问题</h5><p>*微信小程序最近被吐槽最多的一个更改，就是用户使用wx.getUserInfo（开发和体验版）时不会弹出授权，正式版不受影响。现在授权方式是需要引导用户点击一个授权按钮，然后再弹出授权。</p>
+<ul>
+<li>解法很长，请参考:</li>
+<li><a href="http://caibaojian.com/wx-getuserinfo.html" style="color: blue;" target="_blank" rel="noopener">微信小程序不支持wx.getUserInfo授权的解决方法</a></li>
+<li><a href="https://developers.weixin.qq.com/community/develop/doc/000aacd65388b86a44c69fd9a52804" style="color: blue;" target="_blank" rel="noopener">getUserInfo兼容解决方案</a></li>
+</ul>
+<ul>
+<li><a href="http://www.wxappclub.com/topic/596" style="color: blue;" target="_blank" rel="noopener">想了解more跳转</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1882,404 +2259,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/html-css/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/html-css/" itemprop="url">HTML、CSS基础概念总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T16:37:46+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><h5 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h5><ul>
-<li>HTML 语义化就是使用正<strong>确的标签</strong>，内容的结构化（内容语义化），选择合适的标签（代码语义化）</li>
-<li>定义麻烦，可以直接<strong>举例</strong>，如：<ul>
-<li>段落就写 p 标签，标题就写 h1~h6 标签，</li>
-<li>文章就写article标签，视频就写video标签，section就写文档中的一个区域（或节），article比section更具有独立性、完整性。可通过该段内容脱离了所在的语境，是否完整、独立来判断等等。</li>
-</ul>
-</li>
-<li>也可以<strong>阐述</strong>一下历史<ul>
-<li>咱们的后台开发人员常使用table布局，美工人员常使用div+css布局，前端的优势当然就是会使用正确的标签进行页面开发啦</li>
-</ul>
-</li>
-</ul>
-<h5 id="语义话的好处"><a href="#语义话的好处" class="headerlink" title="语义话的好处"></a>语义话的好处</h5><ul>
-<li>可简单解释为：便于<strong>开发者</strong>阅读和写出更优雅的代码的同时让<strong>浏览器</strong>的爬虫和机器很好地解析</li>
-</ul>
-<ol>
-<li>在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构—–为了裸奔时好看</li>
-<li>有利于<a href="https://baike.baidu.com/item/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96/3132?fromtitle=SEO&fromid=102990" style="color: blue;" target="_blank" rel="noopener"><strong>SEO</strong></a>：和搜索引擎建立良好沟通，有助于<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/5162711?fromtitle=%E7%88%AC%E8%99%AB&fromid=22046949" style="color: blue;" target="_blank" rel="noopener"><strong>爬虫</strong></a>抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重</li>
-<li>方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以有意义的方式来渲染网页</li>
-<li>有利于团队开发和维护</li>
-</ol>
-<h5 id="meta-viewport是做什么呢？有什么用呢？"><a href="#meta-viewport是做什么呢？有什么用呢？" class="headerlink" title="meta viewport是做什么呢？有什么用呢？"></a>meta viewport是做什么呢？有什么用呢？</h5><ul>
-<li>先了解一下不设置meta viewport标签会导致什么后果呢<ul>
-<li>移动设备上浏览器默认的宽度值为800px，980px，1024px等，总之是大于屏幕宽度的。这里的宽度所用的单位px都是指css中的px，它与实际屏幕物理像素的px不是一回事</li>
-</ul>
-</li>
-<li><p>meta标签的就是让<strong>当前viewport的宽度等于设备的宽度</strong>，同时不允许用户手动缩放</p>
-<ul>
-<li>因为每个移动设备浏览器中都有一个理想的宽度，可以用meta标签把viewport的宽度设为那个理想的宽度<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>width: 设置layout viewport的宽度，为一个正整数，或字符串”width-device”</p>
-</li>
-<li>height: 设置layout viewport的高度，这个属性对我们并不重要，很少使用</li>
-<li>initial-scale: 设置页面的初始缩放值，为一个数字，可以带小数</li>
-<li>minimum-scale: 允许用户的最小缩放值，为一个数字，可以带小数</li>
-<li>maximum-scale: 允许用户的最大缩放值，为一个数字，可以带小数</li>
-<li>user-scalable    是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</li>
-</ul>
-<p>想深入了解的孩童可以看看：<a href="https://www.cnblogs.com/2050/p/3877280.html" style="color: blue;" target="_blank" rel="noopener">click here！</a></p>
-<h5 id="HTML-5-标签都有"><a href="#HTML-5-标签都有" class="headerlink" title="HTML 5 标签都有"></a>HTML 5 标签都有</h5><ol>
-<li><section> : 定义文档中的一个章节</section></li>
-<li><nav> : 定义只包含导航链接的章节</nav></li>
-<li><article> : 定义可以独立于内容其余部分的完整独立内容块</article></li>
-<li><aside> : 定义和页面内容关联度较低的内容——如果被删除，剩下的内容仍然很合理</aside></li>
-<li><header> : 定义页面或章节的头部。它经常包含 logo、页面标题和导航性的目录</header></li>
-<li><footer> : 定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址</footer></li>
-<li><address>: 定义包含联系信息的一个章节</address></li>
-<li><main>: 定义文档中主要或重要的内容<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list" style="color: blue;" target="_blank" rel="noopener">想了解更多:)</a></main></li>
-</ol>
-<h5 id="H5-理解"><a href="#H5-理解" class="headerlink" title="H5 理解"></a>H5 理解</h5><ul>
-<li>简单理解：H5表示移动端页面，反正不是HTML5</li>
-<li>H5更应该被理解为针对酷炫的移动端页面的一种<strong>解决方案</strong>，而这个解决方案里包含HTML5新增的标签(audio/video),canvas技术，拖拽的特性，本地存储，websocket通信，也会用到基本的盒模型，定位等一些<strong>前端基本知识</strong>，所以，H5更应该理解为一个技术合集，前端的技术广度/深度</li>
-<li>H5移动端各种产品的简称吧</li>
-</ul>
-<h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><h5 id="两种盒模型分别说一下"><a href="#两种盒模型分别说一下" class="headerlink" title="两种盒模型分别说一下"></a>两种盒模型分别说一下</h5><ul>
-<li>css盒模型的包括（margin + padding + content）</li>
-<li>标准模型(content) + IE模型(content+padding+border)</li>
-<li>两者的区别：计算宽度和高度的不同</li>
-</ul>
-<h5 id="css如何设置这两种模型"><a href="#css如何设置这两种模型" class="headerlink" title="css如何设置这两种模型"></a>css如何设置这两种模型</h5><ul>
-<li>(标准)box-sizing: content-box         </li>
-<li>(IE)box-sizing: border-box</li>
-</ul>
-<h5 id="js如何设置获取盒模型的宽和高"><a href="#js如何设置获取盒模型的宽和高" class="headerlink" title="js如何设置获取盒模型的宽和高"></a>js如何设置获取盒模型的宽和高</h5><ol>
-<li>dom.style.width/height(获取的是内联)</li>
-<li>dom.currentStyle.width/height(获取页面渲染之后的，只支持IE)</li>
-<li>window.getComputedStyle(dom).width/height(firefox google)</li>
-<li>dom.getBoundingClientRect().width/height(计算元素的绝对位置，获取的是viewport左上角的位置)<br>平时开发<strong>更多使用border-box</strong>，因为更好用</li>
-</ol>
-<h5 id="CSS-选择器优先级"><a href="#CSS-选择器优先级" class="headerlink" title="CSS 选择器优先级"></a>CSS 选择器优先级</h5><ul>
-<li><p>普通的权重比较，<strong>不是完全正确</strong> </p>
-<ul>
-<li>（外部样式）External style sheet &lt;（内部样式）Internal style sheet &lt;（内联样式）Inline style </li>
-</ul>
-<ol>
-<li>内联样式表的权值最高 1000</li>
-<li>ID 选择器的权值为 100</li>
-<li>Class 类选择器的权值为 10</li>
-<li>HTML 标签选择器的权值为 1</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xugang/archive/2010/09/24/1833760.html" style="color: blue;" target="_blank" rel="noopener">详细参考</a></li>
-</ul>
-</li>
-<li><p>越具体优先级越高</p>
-</li>
-<li>优先级写在后面的覆盖写在前面的</li>
-<li>!important 优先级最高，但是要<strong>少用</strong></li>
-</ul>
-<h5 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h5><ol>
-<li><p>父级div定义伪类：after <strong>强烈推荐</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    display: block; /* 或者table */</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix&#123;</span><br><span class="line">    zoom: 1; /* IE 兼容 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在结尾处添加空div标签clear: both</p>
-</li>
-<li>父级div定义height</li>
-<li>父级div定义overflow: hidden</li>
-<li>父级div定义overflow: auto</li>
-</ol>
-<h5 id="flex布局左边一栏-右边两栏"><a href="#flex布局左边一栏-右边两栏" class="headerlink" title="flex布局左边一栏 右边两栏"></a>flex布局左边一栏 右边两栏</h5><p><strong>margin-left: auto</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> &lt;style&gt;</span><br><span class="line">    .box &#123;</span><br><span class="line">        display: flex;</span><br><span class="line">        border: 1px solid red;</span><br><span class="line">        justify-content: space-between;</span><br><span class="line">        padding: 10px 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .box div &#123;</span><br><span class="line">        width: 300px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        border: 1px solid #ff9400;</span><br><span class="line">    &#125;</span><br><span class="line">    .box div:nth-child(2) &#123;</span><br><span class="line">        margin-left: auto;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">    &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/window-quick/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongfeng.peng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog-avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shero.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/window-quick/" itemprop="url">window下git bash 命令行实用技巧</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T11:43:59+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="命令窗口，使用快捷键快速跳转"><a href="#命令窗口，使用快捷键快速跳转" class="headerlink" title="命令窗口，使用快捷键快速跳转"></a>命令窗口，使用快捷键快速跳转</h4><ol>
-<li>新建一个文件目录，mkdir ~/repos</li>
-<li>切换目录 cd ~/repos</li>
-<li>克隆 git clone <a href="https://github.com/rupa/z.git" target="_blank" rel="noopener">https://github.com/rupa/z.git</a></li>
-<li>新建bashrc文件，如果<strong>已经存在这个文件，可忽略这步</strong>，touch ~/.bashrc</li>
-<li>打开bashrc文件，start ~/.bashrc</li>
-<li><p>在文件里写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">. ~/repos/z/z.sh</span><br><span class="line">alias j=&apos;z&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启 Git Bash</p>
-</li>
-<li>验证你的配置，使用 j XXX 就可以快速到达之前去过的目录了</li>
-<li>使用 j 可以查看所有去过的目录，使用z也可以调整目录，调整目录名都可以不用写文件名全称，如：d/document 使用快速调整 z doc 或 j doc<br> <strong>注意，~/repos/z/z.sh 不能删除，删除了就不能用了</strong></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2332,7 +2311,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

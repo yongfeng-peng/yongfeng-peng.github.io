@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="持续集成与持续部署传统开发过程中的坑 BUG总是在最后才发现 越到项目后期，加班越严重 交付无法保障 变更频繁，导致效率低下 无效的等待多，用户满足度低  理想状态  不用为开发测试环境不一致而苦恼 不用麻烦运维人员帮忙调试环境 不用手动进行测试，模拟环境中进行自测 不用手动发布、部署，自动化实现发布部署 不用管开发、测试环境，只用专注代码的开发  持续集成CI解决问题？ 提高软件质量 效率迭代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="持续集成与持续部署">
+<meta property="og:url" content="http://yoursite.com/2022/07/29/持续集成与持续部署/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="持续集成与持续部署传统开发过程中的坑 BUG总是在最后才发现 越到项目后期，加班越严重 交付无法保障 变更频繁，导致效率低下 无效的等待多，用户满足度低  理想状态  不用为开发测试环境不一致而苦恼 不用麻烦运维人员帮忙调试环境 不用手动进行测试，模拟环境中进行自测 不用手动发布、部署，自动化实现发布部署 不用管开发、测试环境，只用专注代码的开发  持续集成CI解决问题？ 提高软件质量 效率迭代">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2022/07/images/ci-1.png">
+<meta property="og:updated_time" content="2022-07-29T09:27:42.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="持续集成与持续部署">
+<meta name="twitter:description" content="持续集成与持续部署传统开发过程中的坑 BUG总是在最后才发现 越到项目后期，加班越严重 交付无法保障 变更频繁，导致效率低下 无效的等待多，用户满足度低  理想状态  不用为开发测试环境不一致而苦恼 不用麻烦运维人员帮忙调试环境 不用手动进行测试，模拟环境中进行自测 不用手动发布、部署，自动化实现发布部署 不用管开发、测试环境，只用专注代码的开发  持续集成CI解决问题？ 提高软件质量 效率迭代">
+<meta name="twitter:image" content="http://yoursite.com/2022/07/images/ci-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/07/29/持续集成与持续部署/">
+
+
+
+
+
+  <title>持续集成与持续部署 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/29/持续集成与持续部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">持续集成与持续部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-29T16:08:39+08:00">
+                2022-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="持续集成与持续部署"><a href="#持续集成与持续部署" class="headerlink" title="持续集成与持续部署"></a>持续集成与持续部署</h3><h4 id="传统开发过程中的坑"><a href="#传统开发过程中的坑" class="headerlink" title="传统开发过程中的坑"></a>传统开发过程中的坑</h4><ul>
+<li>BUG总是在最后才发现</li>
+<li>越到项目后期，加班越严重</li>
+<li>交付无法保障</li>
+<li>变更频繁，导致效率低下</li>
+<li><p>无效的等待多，用户满足度低</p>
+</li>
+<li><p>理想状态</p>
+</li>
+<li>不用为开发测试环境不一致而苦恼</li>
+<li>不用麻烦运维人员帮忙调试环境</li>
+<li>不用手动进行测试，模拟环境中进行自测</li>
+<li>不用手动发布、部署，自动化实现发布部署</li>
+<li>不用管开发、测试环境，只用专注代码的开发</li>
+</ul>
+<h4 id="持续集成CI解决问题？"><a href="#持续集成CI解决问题？" class="headerlink" title="持续集成CI解决问题？"></a>持续集成CI解决问题？</h4><ul>
+<li>提高软件质量</li>
+<li>效率迭代</li>
+<li>便捷部署</li>
+<li>快速交付、便于管理</li>
+</ul>
+<h4 id="持续集成CI-continuous-integration-持续交付CD-continuous-delivery-持续部署CD-continuous-deployment"><a href="#持续集成CI-continuous-integration-持续交付CD-continuous-delivery-持续部署CD-continuous-deployment" class="headerlink" title="持续集成CI(continuous integration) 持续交付CD(continuous delivery) 持续部署CD(continuous deployment)"></a>持续集成CI(continuous integration) 持续交付CD(continuous delivery) 持续部署CD(continuous deployment)</h4><ul>
+<li>CI 不断提交代码测试</li>
+<li>CD 在CI的基础上，对代码进行构建，打包进行储存，发布交由人工完成</li>
+<li>CD 在CD的基础上，对代码进行自动化发布部署，快速验证</li>
+</ul>
+<h4 id="持续集成组成要素"><a href="#持续集成组成要素" class="headerlink" title="持续集成组成要素"></a>持续集成组成要素</h4><ul>
+<li>版本管理工具 github gitlab</li>
+<li>构建脚本工具 </li>
+<li>CI服务器</li>
+</ul>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<li>打包平台<ul>
+<li>常见的大包，java应用(Gradle/Maven)、Nodejs前端应用(npm/yarn)</li>
+<li>移动端大包(Android/IOS)</li>
+</ul>
+</li>
+<li>测试平台<ul>
+<li>接口测试</li>
+<li>自动化测试Robotium/TestLink</li>
+<li>单元测试junit</li>
+<li>性能测试 JmeTest</li>
+</ul>
+</li>
+<li>自动部署 <ul>
+<li>FTP</li>
+<li>Shell</li>
+<li>Tomcat/Docker</li>
+</ul>
+</li>
+<li>持续集成<ul>
+<li>Git: gitlab/github/gitee等</li>
+<li>Jenkins/TravisCi/CircleCi</li>
+<li>Docker</li>
+</ul>
+</li>
+</ul>
+<!-- ![Image text](https://raw.githubusercontent.com/yongfeng-peng/yongfeng-peng.github.io/dev/source/images/ci-1.png) -->
+<p><img src="/2022/07/29/持续集成与持续部署/../../images/ci-1.png" alt="Image text"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/07/20/SEO/" rel="next" title="SEO">
+                <i class="fa fa-chevron-left"></i> SEO
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/08/03/web安全/" rel="prev" title="web安全">
+                web安全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#持续集成与持续部署"><span class="nav-number">1.</span> <span class="nav-text">持续集成与持续部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统开发过程中的坑"><span class="nav-number">1.1.</span> <span class="nav-text">传统开发过程中的坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持续集成CI解决问题？"><span class="nav-number">1.2.</span> <span class="nav-text">持续集成CI解决问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持续集成CI-continuous-integration-持续交付CD-continuous-delivery-持续部署CD-continuous-deployment"><span class="nav-number">1.3.</span> <span class="nav-text">持续集成CI(continuous integration) 持续交付CD(continuous delivery) 持续部署CD(continuous deployment)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持续集成组成要素"><span class="nav-number">1.4.</span> <span class="nav-text">持续集成组成要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用场景"><span class="nav-number">1.5.</span> <span class="nav-text">应用场景</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</html>

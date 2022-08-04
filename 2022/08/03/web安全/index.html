@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="web安全网站或移动端 硬件 服务器—》运维的 硬件 软件   软件或者程序 后台 java php python …编程都涉及到程序安全 前端 与后台交互 容易出现安全隐患 加密 校验 程序的抗压力      xss攻击（跨站脚本攻击） web页面 包含html js文件 嵌入可执行代码(js)  网络传输的时候，js文件可下载的或通过ajax提交   xss危害 用户提交的数据，未经处理之前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web安全">
+<meta property="og:url" content="http://yoursite.com/2022/08/03/web安全/index.html">
+<meta property="og:site_name" content="Shero.">
+<meta property="og:description" content="web安全网站或移动端 硬件 服务器—》运维的 硬件 软件   软件或者程序 后台 java php python …编程都涉及到程序安全 前端 与后台交互 容易出现安全隐患 加密 校验 程序的抗压力      xss攻击（跨站脚本攻击） web页面 包含html js文件 嵌入可执行代码(js)  网络传输的时候，js文件可下载的或通过ajax提交   xss危害 用户提交的数据，未经处理之前">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-08-04T02:13:53.634Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web安全">
+<meta name="twitter:description" content="web安全网站或移动端 硬件 服务器—》运维的 硬件 软件   软件或者程序 后台 java php python …编程都涉及到程序安全 前端 与后台交互 容易出现安全隐患 加密 校验 程序的抗压力      xss攻击（跨站脚本攻击） web页面 包含html js文件 嵌入可执行代码(js)  网络传输的时候，js文件可下载的或通过ajax提交   xss危害 用户提交的数据，未经处理之前">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/08/03/web安全/">
+
+
+
+
+
+  <title>web安全 | Shero.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shero.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活百般滋味，你要笑着面对😊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/03/web安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongfeng.peng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shero.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">web安全</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-03T16:37:34+08:00">
+                2022-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="web安全"><a href="#web安全" class="headerlink" title="web安全"></a>web安全</h3><h4 id="网站或移动端"><a href="#网站或移动端" class="headerlink" title="网站或移动端"></a>网站或移动端</h4><ul>
+<li>硬件<ul>
+<li>服务器—》运维的 硬件 软件</li>
+</ul>
+</li>
+<li>软件或者程序<ul>
+<li>后台 java php python …编程都涉及到程序安全</li>
+<li>前端 与后台交互 容易出现安全隐患<ul>
+<li>加密 校验 程序的抗压力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="xss攻击（跨站脚本攻击）"><a href="#xss攻击（跨站脚本攻击）" class="headerlink" title="xss攻击（跨站脚本攻击）"></a>xss攻击（跨站脚本攻击）</h4><ul>
+<li>web页面<ul>
+<li>包含html js文件 嵌入可执行代码(js) </li>
+<li>网络传输的时候，js文件可下载的或通过ajax提交</li>
+</ul>
+</li>
+<li>xss危害<ul>
+<li>用户提交的数据，未经处理之前 ===》 js obj.value</li>
+<li>强行改变程序的执行方式</li>
+</ul>
+</li>
+<li>xss解决<ul>
+<li>运维=&gt;设置只读</li>
+<li>通过后台程序，写一套监测程序，监测文件的大小改变，报警更换文件</li>
+<li>校验用户输入信息 正则验证合法性</li>
+<li>对特殊符号 ！、？、@… 进行过滤</li>
+</ul>
+</li>
+</ul>
+<h4 id="跨站请求伪造-csrf攻击"><a href="#跨站请求伪造-csrf攻击" class="headerlink" title="跨站请求伪造(csrf攻击)"></a>跨站请求伪造(csrf攻击)</h4><ul>
+<li>用户和后台交互数据的时候，交互的页面是伪造页面，所有的用户信息将被泄露</li>
+<li>csrf解决<ul>
+<li>token 添加二次校验</li>
+<li>验证码 手机号 微信验证（保证验证信息 是自己项目发的）</li>
+</ul>
+</li>
+</ul>
+<h4 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h4><ul>
+<li>一般发生在注册、评论、添加商品…凡是有输入的地方，就有可能发生sql注入</li>
+<li>原理<ul>
+<li>or 1 == 1 or 2 &gt; 3</li>
+<li>and select * from user where uName = $uName and uPwd = $uPwd<pre><code>* uName = &apos;&apos; or 1 == 1 and uPwd = &apos;&apos; or 1 == 1
+</code></pre></li>
+</ul>
+</li>
+<li>危害：任意账户 任意登录 任意操作</li>
+<li>避免：前端<br>— 添加正则校验（特殊符号）<br>— 屏蔽敏感词汇（过滤程序）<br>— 缩减用户权限（取最小）<br>— sql语句（有工具可以检测漏洞）</li>
+</ul>
+<h4 id="接口加密"><a href="#接口加密" class="headerlink" title="接口加密"></a>接口加密</h4><ul>
+<li>url?keyword=va11 &amp; id=3 &amp; name=xx &amp; pwd=1333 — get传输、post传输有可能 — 数据有可能会被劫持—》抓包</li>
+<li><p>js原生</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let url = &quot;https://www.baidu.com&quot;</span><br><span class="line">let params = &quot;?keyword=&quot;+val</span><br><span class="line">params+=&quot;&amp;id=3&quot;</span><br><span class="line">params+=&quot;&amp;name&quot;+&quot;xxx&quot;</span><br><span class="line">params+=&quot;&amp;pwd&quot;+&quot;123&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>md5() — 加密方式 — “?keyword=”+md5(val) — 值加密</p>
+</li>
+<li>路径加密 url = md5(url+params)</li>
+<li>前端后端都需要加密 —- 加密是双向的</li>
+<li>vue 加密<ul>
+<li>加密软件对象 npm install bcryptjs — 一般这种加密包，加密方式不止一种</li>
+<li>对象.标准.加密方法(数据, 密匙, 参数)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install bcryptjs</span><br><span class="line">import bcrypt from &apos;bcryptjs&apos;</span><br><span class="line">var salt = bcrypt.genSaltSync(12);    //定义密码加密的计算强度,默认10</span><br><span class="line">var hash = bcrypt.hashSync(明文密码, salt);    //变量hash就是加密后的密码</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/07/29/持续集成与持续部署/" rel="next" title="持续集成与持续部署">
+                <i class="fa fa-chevron-left"></i> 持续集成与持续部署
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog-avatar.jpeg" alt="yongfeng.peng">
+            
+              <p class="site-author-name" itemprop="name">yongfeng.peng</p>
+              <p class="site-description motion-element" itemprop="description">(女英</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#web安全"><span class="nav-number">1.</span> <span class="nav-text">web安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网站或移动端"><span class="nav-number">1.1.</span> <span class="nav-text">网站或移动端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xss攻击（跨站脚本攻击）"><span class="nav-number">1.2.</span> <span class="nav-text">xss攻击（跨站脚本攻击）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨站请求伪造-csrf攻击"><span class="nav-number">1.3.</span> <span class="nav-text">跨站请求伪造(csrf攻击)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql注入"><span class="nav-number">1.4.</span> <span class="nav-text">sql注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口加密"><span class="nav-number">1.5.</span> <span class="nav-text">接口加密</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongfeng.peng</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</html>
